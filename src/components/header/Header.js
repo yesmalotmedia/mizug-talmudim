@@ -23,7 +23,7 @@ function Header() {
       padding: 10,
     },
     logo: {
-      height: 140,
+      height: "10vw",
       zIndex: 100,
       marginRight: 50,
     },
@@ -31,7 +31,7 @@ function Header() {
       position: "absolute",
       right: -20,
       top: -20,
-      width: 350,
+      width: "25vw",
       height: 250,
     },
   };
@@ -42,6 +42,10 @@ function Header() {
         color={colors.white}
         bgColor={bgColors.orangeGradient}
         title={"לתרומות"}
+        borderRadius={5}
+        fontSize={30}
+        fontWeight={600}
+        width={"280px"}
       />
       {!isMobile && <Nav />}
       <Logo style={styles.logo} />

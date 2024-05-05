@@ -6,29 +6,27 @@ import YouTubeVideo from "../elements/Video";
 import { sectionAzure, sectionCream } from "../../styles/sectionsStyle";
 import colors from "../../styles/colors";
 import Spacer from "../elements/Spacer";
+import bgColors from "../../styles/bg-colors";
 const LastLessons = () => {
   const styles = {
-    container: sectionCream,
-    lastLessons: {
+    container: {
+      width: "80%",
+      maxWidth: 1400,
+      margin: "auto",
+      backgroundColor: bgColors.azure,
+      borderRadius: 50,
+      transform: "translateY(-70px)",
       display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    h2: {
-      color: colors.darkBlue,
+      padding: 20,
+      justifyContent: "space-between",
+      zIndex: 100,
     },
   };
   const lastLessonsElements = videoUrls.map((url) => (
     <YouTubeVideo url={url} />
   ));
 
-  return (
-    <div style={styles.container}>
-      <h2 style={styles.h2}>שיעורים אחרונים</h2>
-      <Spacer height={20} />
-      <div style={styles.lastLessons}>{lastLessonsElements}</div>
-    </div>
-  );
+  return <div style={styles.container}>{lastLessonsElements}</div>;
 };
 
 export default LastLessons;

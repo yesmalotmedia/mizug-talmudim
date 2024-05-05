@@ -2,7 +2,16 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import bgColors from "../../styles/bg-colors";
 
-const Button = ({ color, bgColor, title }) => {
+const Button = ({
+  color,
+  bgColor,
+  title,
+  fontWeight,
+  fontSize,
+  borderRadius,
+  width,
+  arrow,
+}) => {
   // context
   // states
 
@@ -19,14 +28,20 @@ const Button = ({ color, bgColor, title }) => {
       alignItems: "center",
       borderRadius: 5,
       cursor: "pointer",
+      borderRadius,
+      width,
     },
 
     text: {
       color,
-      width: "50%",
+      width: "90%",
       textAlign: "center",
       fontSize: 35,
-      fontWeight: 700,
+      fontWeight,
+      fontSize,
+    },
+    img: {
+      width: "8%",
     },
   };
 
@@ -35,6 +50,7 @@ const Button = ({ color, bgColor, title }) => {
   return (
     <div style={styles.button}>
       <div style={styles.text}>{title}</div>
+      {arrow && <img style={styles.img} src="arrow-to-left.png" />}
     </div>
   );
 };

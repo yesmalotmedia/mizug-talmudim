@@ -16,10 +16,10 @@ const HeroHomePage = () => {
     },
     text: {
       position: "absolute",
-      bottom: 200,
+      bottom: "11vw",
       right: 100,
       color: colors.white,
-      fontSize: 80,
+      fontSize: "5vw",
       fontWeight: 700,
     },
     orangeText: {

@@ -7,11 +7,11 @@ const Nav = () => {
   const styles = {
     container: {
       color: colors.white,
-      width: "50%",
+      width: "45vw",
       maxWidth: 1000,
       display: "flex",
       justifyContent: "space-between",
-      fontSize: 20,
+      fontSize: "1.2vw",
     },
     // Individual styles for each navigation item
     navItem: {

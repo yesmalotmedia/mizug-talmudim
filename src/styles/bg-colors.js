@@ -1,5 +1,5 @@
 const bgColors = {
-  azure: "#7EBFFF",
+  azure: "#E7F9FF ",
   white: "#FFFFFF",
   darkBlue: "#0053A0",
   azureWhiteGradient:
