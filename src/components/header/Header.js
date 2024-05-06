@@ -26,6 +26,7 @@ function Header() {
       height: "10vw",
       zIndex: 100,
       marginRight: 50,
+      marginTop: 20,
     },
     vector: {
       position: "absolute",

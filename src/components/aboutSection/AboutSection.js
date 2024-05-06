@@ -9,7 +9,6 @@ const AboutSection = () => {
     container: {
       width: "100%",
       position: "relative",
-      minHeight: 900,
       zIndex: -1, // Set z-index for the container
       display: "flex",
       justifyContent: "space-around",
@@ -23,7 +22,7 @@ const AboutSection = () => {
       justifyContent: "center",
       flexDirection: "column",
       alignItems: "start",
-      transform: "translateY(-6vw) translateX(-10vw)",
+      transform: "translateY(-1vw) translateX(-10vw)",
     },
     bookIcon: {
       width: "30%",
@@ -31,21 +30,20 @@ const AboutSection = () => {
     },
     title: {
       color: colors.white,
-      fontSize: 45,
+      fontSize: "3vw",
       fontWeight: 500,
       textAlign: "right",
       maxWidth: 400,
     },
     description: {
       width: "50%",
-      maxHeight: 600,
       backgroundColor: bgColors.white,
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       borderRadius: 50,
-      padding: 60,
+      padding: 100,
       color: colors.darkBlue,
       fontWeight: 600,
-      fontSize: 20,
+      fontSize: "1.5vw",
       lineHeight: 1.5,
       maxWidth: 1000,
     },
