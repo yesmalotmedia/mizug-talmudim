@@ -3,7 +3,8 @@ import Button from "../elements/Button";
 import colors from "../../styles/colors";
 import bgColors from "../../styles/bg-colors";
 
-function YouTubeVideo({ url }) {
+function YouTubeVideo({ url, index }) {
+  console.log(bgColors.azure);
   const styles = {
     container: {
       width: "30%",
@@ -53,7 +54,7 @@ function YouTubeVideo({ url }) {
 
       <Button
         color={colors.white}
-        bgColor={bgColors.orangeGradient}
+        bgColor={index === 2 ? bgColors.azureGradient : bgColors.orangeGradient}
         title={"לכל השיעורים האחרונים"}
         fontSize={20}
         fontWeight={500}

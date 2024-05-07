@@ -59,7 +59,7 @@ const AboutSection = () => {
   return (
     <div style={styles.container}>
       <div style={styles.titleSection}>
-        <img src={"book-img.png"} style={styles.bookIcon} />
+        <img src={"book-img.png"} style={styles.bookIcon} alt="boog-img" />
         <br />
         <div style={styles.title}>
           פה יהיה משפט <br /> מרגש שמבטא את

@@ -5,6 +5,7 @@ import DailyText from "../../components/dailyText/DailyText";
 import Spacer from "../../components/elements/Spacer";
 import HeroHomePage from "../../components/heroHomepage/HeroHomePage";
 import GallerySection from "../../components/gallerySection/GallerySection";
+import DedicationSection from "../../components/dedicationSection/DedicationSection";
 
 const Home = () => {
   return (
@@ -14,6 +15,9 @@ const Home = () => {
       <LastLessons />
       <AboutSection />
       <GallerySection />
+      <Spacer height={"12vw"} />
+      <DailyText />
+      <DedicationSection />
     </div>
   );
 };

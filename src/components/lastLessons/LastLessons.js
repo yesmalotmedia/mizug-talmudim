@@ -13,7 +13,7 @@ const LastLessons = () => {
       width: "80%",
       maxWidth: 1400,
       margin: "auto",
-      backgroundColor: bgColors.azure,
+      backgroundColor: bgColors.lightAzure,
       borderRadius: 50,
       transform: "translateY(-70px)",
       display: "flex",
@@ -22,8 +22,8 @@ const LastLessons = () => {
       zIndex: 100,
     },
   };
-  const lastLessonsElements = videoUrls.map((url) => (
-    <YouTubeVideo url={url} />
+  const lastLessonsElements = videoUrls.map((url, index) => (
+    <YouTubeVideo url={url} index={index} />
   ));
 
   return <div style={styles.container}>{lastLessonsElements}</div>;

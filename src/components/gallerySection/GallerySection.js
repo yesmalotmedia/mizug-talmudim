@@ -14,15 +14,22 @@ const GallerySection = () => {
     margin: "auto",
     backgroundColor: "transparent",
     transform: "translateY(10vw)",
+    zIndex: 2,
   };
 
   const bgImgStyle = {
     position: "absolute",
     width: "100%",
-    transform: "translateY(-100px)",
+    transform: "translateY(-110px) rotate(180deg)",
     zIndex: -2,
   };
-
+  const bgGradient = {
+    position: "absolute",
+    width: "100%",
+    zIndex: -2,
+    bottom: 0,
+    transform: "translateY(24vw)",
+  };
   const imageCommonStyle = {
     position: "absolute",
     borderRadius: 50,
@@ -86,6 +93,7 @@ const GallerySection = () => {
   return (
     <div style={containerStyle}>
       <img src="orange-bg.jpg" style={bgImgStyle} alt="Background" />
+
       <div style={subContainerStyle}>
         {images.map((image, index) => (
           <img

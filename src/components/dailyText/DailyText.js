@@ -1,41 +1,53 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
-import { sectionAzure, sectionCream } from "../../styles/sectionsStyle";
 import colors from "../../styles/colors";
 import Spacer from "../elements/Spacer";
 
 const DailyText = () => {
+  // context
   const { colors, bgColors, isMobile, dailyTextsData } = useContext(AppContext);
 
+  // states
+  const text = "כאן יופיע טקסט מתחלף מהמקורות";
+  const textSource = "עין איה שם, שם";
+  const screenWidth = window.innerWidth;
+  // styles
+
   const styles = {
-    container: { ...sectionAzure, position: "relative", overflow: "hidden" },
-    text: {
-      color: colors.white,
-      fontSize: 40,
-      fontWeight: 600,
-      width: "30%",
-      zIndex: 10,
-      textShadow: "2px 2px 4px rgba(0, 0, 0)", // Add shadow to the text
+    container: {
+      position: "relative",
+      width: "100%",
+      minHeight: 600,
+      backgroundColor: "transparent",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      transform: screenWidth < 1400 ? "translateY(-150px)" : "translateY(50px)",
     },
-    img: {
+    text: { color: colors.darkBlue, fontSize: 40, fontWeight: 600 },
+    textSource: {
+      textAlign: "center",
+      color: colors.darkBlue,
+      fontWeight: 500,
+      fontSize: 20,
+    },
+    bgImg: {
+      width: "70%",
       position: "absolute",
-      width: "100%", // Adjust this value to zoom out
-      height: "220%", // Adjust this value to zoom out
-      left: "50%", // Center the image horizontally
-      top: "30%", // Center the image vertically
-      transform: "translate(-50%, -50%)", // Center the image
-      opacity: 0.5,
+      bottom: 0,
+      left: 0,
+      zIndex: -10,
     },
   };
+  // functions
 
   return (
     <div style={styles.container}>
-      <img
-        style={styles.img}
-        src="mizug-img1.jpeg"
-        alt="Daily Text Background"
-      />
-      <div style={styles.text}>{dailyTextsData[0]}</div>
+      <img style={styles.bgImg} src="bg-book.png" alt="bg-book" />
+      <div>
+        <div style={styles.text}>{text}</div>
+        <div style={styles.textSource}>{textSource}</div>
+      </div>
     </div>
   );
 };
