@@ -10,6 +10,8 @@ const DedicationSection = () => {
   // states
   const text = "הלימוד היום מוקדש הלימוד היום מוקדש הלימוד היום מוקדש";
   const textSource = "עין איה שם, שם";
+  const screenWidth = window.innerWidth;
+
   // styles
 
   const styles = {
@@ -21,13 +23,14 @@ const DedicationSection = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      transform: "translateY(-15vw)",
+      transform: "translateY(-15.3vw)",
+      marginBottom: -600,
     },
     text: {
       color: colors.darkBlue,
-      fontSize: 20,
+      fontSize: "2vw",
       fontWeight: 600,
-      marginTop: "10vw",
+      marginTop: screenWidth < 1400 ? "-20px" : "6%",
     },
     textSource: {
       textAlign: "center",
@@ -36,7 +39,7 @@ const DedicationSection = () => {
       fontSize: 20,
     },
     bgImg: {
-      width: "100%",
+      width: screenWidth < 1400 ? "150%" : "105%",
       position: "absolute",
       bottom: 0,
       left: 0,

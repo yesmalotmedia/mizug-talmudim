@@ -11,9 +11,11 @@ import LastLessons from "./components/lastLessons/LastLessons";
 import Home from "./pages/home/Home";
 import Footer from "./components/footer/Footer";
 import VideoUploader from "./components/VideoUploader";
+import BeitHamidrash from "./pages/beitHamidrash/BeitHamidrash";
 export const AppContext = React.createContext();
 function App() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 840);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+
   useEffect(() => {
     setIsMobile(window.innerWidth < 840);
   }, []);
@@ -30,7 +32,9 @@ function App() {
     >
       <div className="App">
         <Header />
-        <Home />
+        {/* <Home /> */}
+        <BeitHamidrash />
+        <Footer />
       </div>
     </AppContext.Provider>
   );

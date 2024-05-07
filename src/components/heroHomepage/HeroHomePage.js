@@ -10,6 +10,7 @@ const HeroHomePage = () => {
   const styles = {
     container: {
       position: "relative",
+      height: "100vh",
     },
     img: {
       width: "100%",

@@ -12,31 +12,32 @@ const Footer = () => {
   //styles
   const styles = {
     container: {
-      minHeight: "600px",
       minWidth: "100%",
       backgroundImage: 'url("footerImages/Union.png")',
       backgroundSize: "cover",
       color: colors.white,
+      zIndex: 200,
+      position: "relative", // Adding position property
     },
-
     footerItemWrapper: {
-      paddingTop: "300px",
+      paddingTop: "350px",
       maxWidth: "90%",
       display: "flex",
       alignItems: "stretch",
       justifyContent: "center",
       gap: "5%",
       marginInline: "auto",
+      position: "relative", // Adding position property
     },
-    footerMenuWrapper:{
-      display: 'flex',
-    gap: 30,
-      
+    footerMenuWrapper: {
+      display: "flex",
+      gap: 30,
     },
     copyRight: {
       textAlign: "center",
       marginTop: "30px",
       padding: "30px",
+      position: "relative", // Adding position property
     },
   };
 
@@ -55,7 +56,7 @@ const Footer = () => {
 
       <div style={styles.copyRight}>
         © כל הזכויות שמורות לצדקו יחדיו - בית מדרש לאיחוד התלמודים | האתר נבנה
-        ועוצב ב-❤ ע"י bms סטודיו לפיתוח תוכנה ובניית אתרים
+        ב-❤ ע"י bms סטודיו לפיתוח תוכנה ובניית אתרים | עיצוב - closeApp
       </div>
     </div>
   );
