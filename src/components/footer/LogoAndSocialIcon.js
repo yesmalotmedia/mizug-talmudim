@@ -14,6 +14,7 @@ export default function LogoAndSocialIcon() {
     socialLogoImage: {
       maxHeight: "35px",
       maxWidth: "35px",
+      cursor: 'pointer',
       
     },
   };

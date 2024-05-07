@@ -6,6 +6,8 @@ import Logo from "../elements/Logo";
 import FooterMenu from "./FooterMenu";
 import LogoAndSocialIcon from "./LogoAndSocialIcon";
 import FooterSearch from "./FooterSearch";
+import Modal from "../elements/Modal";
+import FooterMenuData from "./FooterMenuData";
 
 const Footer = () => {
   const { colors, bgColors, isMobile } = useContext(AppContext);
@@ -28,10 +30,9 @@ const Footer = () => {
       gap: "5%",
       marginInline: "auto",
     },
-    footerMenuWrapper:{
-      display: 'flex',
-    gap: 30,
-      
+    footerMenuWrapper: {
+      display: "flex",
+      gap: 60,
     },
     copyRight: {
       textAlign: "center",
@@ -42,12 +43,13 @@ const Footer = () => {
 
   return (
     <div style={styles.container}>
+      <Modal/>
       <div style={styles.footerItemWrapper}>
         <LogoAndSocialIcon />
 
         <div style={styles.footerMenuWrapper}>
-          <FooterMenu />
-          <FooterMenu />
+          <FooterMenu data={FooterMenuData}/>
+          <FooterMenu data={FooterMenuData}/>
         </div>
 
         <FooterSearch />

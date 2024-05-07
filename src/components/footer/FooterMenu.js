@@ -1,6 +1,8 @@
 import FooterMenuData from "./FooterMenuData";
 
-export default function FooterMenu() {
+export default function FooterMenu({data}) {
+  console.log(data);
+  
   const styles = {
     menuColumn: {
      minWidth: '16%',
@@ -19,6 +21,9 @@ export default function FooterMenu() {
       fontSize: 20,
       fontWwight: " medium",
     },
+    menu:{
+      cursor: 'pointer',
+    },
     MenuTitle: {
       fontSize: "1.8vw",
     },
@@ -27,7 +32,7 @@ export default function FooterMenu() {
     <>
       <div style={styles.menuColumn}>
         <h2 style={styles.MenuTitle}> קישורים מהירים </h2>
-        {FooterMenuData.map((item, index) => (
+        {data.map((item, index) => (
           <div key={index}>
             <div style={styles.footerMenu}>
               <img
@@ -35,10 +40,11 @@ export default function FooterMenu() {
                 src="footerImages/arrow.png"
                 alt="Arrow"
               ></img>
-              <p>{item.title}</p>
+              <p style={styles.menu}>{item.title}</p>
             </div>
           </div>
         ))}
+
       </div>
     </>
   );
