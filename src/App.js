@@ -12,9 +12,11 @@ import Home from "./pages/home/Home";
 import Footer from "./components/footer/Footer";
 import VideoUploader from "./components/VideoUploader";
 import BeitHamidrash from "./pages/beitHamidrash/BeitHamidrash";
+import Modal from "./components/elements/Modal";
 export const AppContext = React.createContext();
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+  //context
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 840);
@@ -32,8 +34,9 @@ function App() {
     >
       <div className="App">
         <Header />
-        {/* <Home /> */}
-        <BeitHamidrash />
+        <Home />
+        {/* <BeitHamidrash /> */}
+        <Modal />
         <Footer />
       </div>
     </AppContext.Provider>

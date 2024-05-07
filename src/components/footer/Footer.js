@@ -45,7 +45,6 @@ const Footer = () => {
 
   return (
     <div style={styles.container}>
-      <Modal />
       <div style={styles.footerItemWrapper}>
         <LogoAndSocialIcon />
 
