@@ -8,8 +8,8 @@ export default function FooterSearch() {
     orangeText: {
       color: colors.orange,
       marginBottom: "10px",
-      fontSize: '1.7rem',
-      textAlign: 'center'
+      fontSize: "1.7rem",
+      textAlign: "center",
     },
     SearchForm: {
       display: "flex",
@@ -23,7 +23,7 @@ export default function FooterSearch() {
       padding: "15px",
       fontSize: 20,
       fontWeight: 500,
-            borderTopRightRadius: "30px",
+      borderTopRightRadius: "30px",
       borderBottomRightRadius: "30px",
     },
 
@@ -39,6 +39,7 @@ export default function FooterSearch() {
       fontSize: "20px",
       fontWeight: "bold",
       top: 3,
+      cursor: 'pointer',
     },
     arrow: {
       height: "20px",
@@ -60,7 +61,7 @@ export default function FooterSearch() {
             placeholder=" נא למלא את כתובת המייל "
           ></input>
           <button style={styles.searchBtn}>
-          שלח  <img style={styles.arrow} src="footerImages/arrow.png"></img>
+            שלח <img style={styles.arrow} src="footerImages/arrow.png"></img>
           </button>
         </form>
       </div>
