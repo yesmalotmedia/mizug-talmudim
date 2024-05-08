@@ -1,61 +1,73 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Nav = () => {
-  const { colors, bgColors, pagesList } = useContext(AppContext);
+  const { colors, pagesList } = useContext(AppContext);
+  const [hoveredIndex, setHoveredIndex] = useState(null); // State to keep track of hovered index
+  const location = useLocation(); // Getting the current location
 
   const styles = {
     container: {
       color: colors.white,
-      width: "45vw",
-      maxWidth: 1000,
+      width: 'auto',
       display: "flex",
+      alignItems: "center",
       justifyContent: "space-between",
       fontSize: "1.2vw",
+      zIndex: 100,
     },
-    // Individual styles for each navigation item
-    navItem: {
-      cursor: "pointer",
+    menu: {
       color: colors.azure,
-      padding: 10,
-      borderRadius: 5,
+      textDecoration: "none",
       fontWeight: 500,
+      padding: "10px 10px",
+      display: "inline-block",
+      width: 'auto',
+      borderRadius: 10,
+      marginRight: 10,
     },
-    // Style for hovered navigation item
-    navItemHovered: {
-      backgroundColor: bgColors.darkBlue,
+    li: {
+      listStyle: "none",
+    },
+    hoverMenu: {
+      background: colors.darkBlue,
       color: colors.white,
+      borderRadius: 10,
+      marginRight: 10,
+    },
+    activeMenu: {
+      background: colors.darkBlue,
+      color: colors.white,
+      borderRadius: 10,
     },
   };
 
-  // State to track the index of the hovered item
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  // Function to handle mouse enter event
-  const handleMouseEnter = (index) => {
-    setHoveredIndex(index);
-  };
-
-  // Function to handle mouse leave event
-  const handleMouseLeave = () => {
-    setHoveredIndex(null);
-  };
-
-  const navItems = pagesList.map((page, index) => (
-    <div
-      key={index}
-      style={{
-        ...styles.navItem,
-        ...(index === hoveredIndex && styles.navItemHovered),
-      }}
-      onMouseEnter={() => handleMouseEnter(index)}
-      onMouseLeave={handleMouseLeave}
-    >
-      {page}
+  return (
+    <div style={styles.container}>
+      {pagesList.map((item, index) => (
+        <ul style={styles.ul} key={index}>
+          <li
+            style={styles.li}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <NavLink 
+              style={{
+                ...styles.menu,
+                ...(index === hoveredIndex && styles.hoverMenu),
+                ...(location.pathname === item.path && styles.activeMenu) 
+              }}
+              to={item.path}
+              activeClassName="active" 
+            >
+              {item.name}
+            </NavLink>
+          </li>
+        </ul>
+      ))}
     </div>
-  ));
-
-  return <div style={styles.container}>{navItems}</div>;
+  );
 };
 
 export default Nav;

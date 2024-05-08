@@ -15,7 +15,7 @@ const LastLessons = () => {
       margin: "auto",
       backgroundColor: bgColors.lightAzure,
       borderRadius: 50,
-      transform: "translateY(-70px)",
+      transform: "translateY(-170px)",
       display: "flex",
       padding: 20,
       justifyContent: "space-between",

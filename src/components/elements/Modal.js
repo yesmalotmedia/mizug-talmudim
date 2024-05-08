@@ -18,11 +18,12 @@ export default function Modal() {
       position: "fixed",
       left: 20,
       bottom: isShrink ? 20 : 300,
-
       borderRadius: isShrink ? "50%" : 30,
       zIndex: 999,
       opacity: isVisible ? 1 : 0, // Set opacity based on visibility state
       transition: "all 0.3s ease", // Add transition effect
+      border: "solid white 1px",
+      boxShadow: "rgba(99, 99, 99, 0.2) 0px 10px 20px 0px",
     },
     label: {
       fontSize: isShrink ? 20 : 30,
@@ -62,26 +63,19 @@ export default function Modal() {
     },
   };
 
-  //functions
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true); // Set visibility to true after 10 seconds
-    }, 5000);
+    const handleScroll = () => {
+      if (!isVisible && window.scrollY > 150) {
+        setIsVisible(true);
+      } else if (!isShrink && isVisible && window.scrollY > 500) {
+        setIsShrink(true);
+      }
+    };
 
-    return () => clearTimeout(timer); // Cleanup function to clear the timer
-  }, []); // Run effect only once on component mount
+    window.addEventListener("scroll", handleScroll);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsShrink(true); // Set visibility to true after 10 seconds
-  //   }, 8000);
-
-  //   return () => clearTimeout(timer); // Cleanup function to clear the timer
-  // }, []); // Run effect only once on component mount
-
-  // const handleClose = () => {
-  //   setIsVisible(false); // Close the modal
-  // };
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isVisible, isShrink]);
 
   return (
     <>

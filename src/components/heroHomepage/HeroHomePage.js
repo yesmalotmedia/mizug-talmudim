@@ -10,14 +10,20 @@ const HeroHomePage = () => {
   const styles = {
     container: {
       position: "relative",
-      height: "100vh",
+      width: "100%", // Ensure container fills the viewport width
+      height: "100vh", // Ensure container fills the viewport height
+      overflow: "hidden", // Hide any overflow from the image
     },
     img: {
-      width: "100%",
+      width: "100%", // Ensure the image fills the container width
+      height: "100%", // Ensure the image fills the container height
+      objectFit: "cover", // Maintain aspect ratio and cover the entire container
+      objectPosition: "center", // Center the image within the container
+      zIndex: -100,
     },
     text: {
       position: "absolute",
-      bottom: "12vw",
+      bottom: "30%",
       right: 100,
       color: colors.white,
       fontSize: "5vw",
@@ -32,7 +38,7 @@ const HeroHomePage = () => {
 
   return (
     <div style={styles.container}>
-      <img style={styles.img} src="hero1.png" />
+      <img style={styles.img} src="hero1.png" alt="Hero Image" />
       <div style={styles.text}>
         <span style={styles.orangeText}>צדקו יחדיו</span> <br /> בית מדרש
         <br /> לאיחוד

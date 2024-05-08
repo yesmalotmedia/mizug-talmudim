@@ -13,6 +13,7 @@ const AboutSection = () => {
       display: "flex",
       justifyContent: "space-around",
       paddingTop: "10vw",
+      zIndex: 50,
     },
     titleSection: {
       zIndex: 10,
