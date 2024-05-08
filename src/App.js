@@ -6,13 +6,11 @@ import description from "./data/description";
 import dailyTextsData from "./data/dailyTextsData";
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import Header from "./components/header/Header";
 import LastLessons from "./components/lastLessons/LastLessons";
-import Home from "./pages/home/Home";
-import Footer from "./components/footer/Footer";
 import VideoUploader from "./components/VideoUploader";
-import BeitHamidrash from "./pages/beitHamidrash/BeitHamidrash";
-import Modal from "./components/elements/Modal";
+import { RouterProvider } from "react-router-dom";
+import routers from "./Routes";
+
 export const AppContext = React.createContext();
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
@@ -21,6 +19,8 @@ function App() {
   useEffect(() => {
     setIsMobile(window.innerWidth < 840);
   }, []);
+
+  
   return (
     <AppContext.Provider
       value={{
@@ -33,11 +33,7 @@ function App() {
       }}
     >
       <div className="App">
-        <Header />
-        <Home />
-        {/* <BeitHamidrash /> */}
-        <Modal />
-        <Footer />
+        <RouterProvider router={routers} />
       </div>
     </AppContext.Provider>
   );
