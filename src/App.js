@@ -19,7 +19,6 @@ function App() {
   useEffect(() => {
     setIsMobile(window.innerWidth < 840);
   }, []);
-
   return (
     <AppContext.Provider
       value={{
