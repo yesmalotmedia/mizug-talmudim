@@ -4,7 +4,7 @@ import HeroHomePage from "../../components/heroHomepage/HeroHomePage";
 import Spacer from "../../components/elements/Spacer";
 import HeroBeitHamidrash from "./HeroBeitHamidrash";
 import SeltectButtons from "./SeltectButtons";
-import SideBarSearch from "./SideBarSearch";
+import SideBarSearch from "./sideBarSearch/SideBarSearch";
 import LessonsSection from "./LessonsSection";
 
 const BeitHamidrash = () => {
