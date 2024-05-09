@@ -47,15 +47,25 @@ const SeltectButtons = () => {
       justifyContent: "space-around",
       margin: "auto",
     },
+    title: {
+      fontWeight: 600,
+      textAlign: "center",
+      color: colors.darkBlue,
+      marginTop: 10,
+      fontSize: "1.1vw",
+    },
   };
 
   //functions
 
-  const selectedButtonsElementns = selectButtons.map((btn) => (
-    <CyrcleButton imgSrc={btn.img} />
+  const selectedButtonsElements = selectButtons.map((btn, index) => (
+    <div key={index}>
+      <CyrcleButton imgSrc={btn.img} />
+      <div style={styles.title}>{btn.title}</div>
+    </div>
   ));
 
-  return <div style={styles.container}>{selectedButtonsElementns}</div>;
+  return <div style={styles.container}>{selectedButtonsElements}</div>;
 };
 
 export default SeltectButtons;

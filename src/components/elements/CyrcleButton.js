@@ -15,13 +15,14 @@ const CyrcleButton = ({ imgSrc }) => {
       borderRadius: "50%",
       overFlow: "hidden",
       border: "solid 4px " + colors.orange,
+      cursor: "pointer",
     },
     img: { width: "100%" },
   };
 
   return (
     <div style={styles.container}>
-      <img style={styles.img} src={imgSrc} />
+      <img style={styles.img} src={imgSrc} alt="selectIcon" />
     </div>
   );
 };

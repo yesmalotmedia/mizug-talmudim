@@ -15,15 +15,24 @@ const BeitHamidrash = () => {
   // states
 
   // styles
-
+  const styles = {
+    mainSection: {
+      padding: 15,
+      display: "flex",
+      marginTop: 100,
+      justifyContent: "center",
+    },
+  };
   // functions
 
   return (
     <div>
       <Spacer height={60} />
       <HeroBeitHamidrash />
-      <SideBarSearch />
-      <LessonsSection />
+      <section style={styles.mainSection}>
+        <SideBarSearch />
+        <LessonsSection />
+      </section>
     </div>
   );
 };

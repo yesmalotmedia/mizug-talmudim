@@ -10,12 +10,13 @@ const SelectInput = () => {
   // styles
   const styles = {
     input: {
-      padding: 10,
+      padding: "10px 12px",
       borderRadius: 50,
       cursor: "pointer",
       width: "90%",
       outline: "none",
       border: "solid 1px" + colors.darkBlue,
+      fontSize: 17,
 
       color: "grey",
       fontWeight: 500,

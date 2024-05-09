@@ -3,6 +3,7 @@ const colors = {
   azure: "#26ABDF",
   white: "white",
   darkBlue: "#0053A0",
+  grey: "#828282",
 };
 
 export default colors;

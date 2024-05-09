@@ -2,25 +2,35 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../App";
 import Button from "../../../components/elements/Button";
 import SelectInput from "./SelectInput";
+import SlideSelect from "./Slider";
+import Slider from "./Slider";
+import Checkbox from "./Checkbox";
 
 const SideBarSearch = () => {
   // data
   const { colors, bgColors, isMobile } = useContext(AppContext);
 
+  const [selectedValue, setSelectedValue] = useState(500);
+
   // states
+  const [selectedOption, setSelectedOption] = useState("");
 
   // styles
+
+  //functions
+  const handleChange = (value) => {
+    setSelectedValue(value);
+  };
   const styles = {
     container: {
       backgroundColor: bgColors.lightAzure,
       borderRadius: 50,
       padding: 20,
-      width: 250,
+      width: 300,
       display: "flex",
       justifyContent: "space-around",
       alignItems: "center",
       flexDirection: "column",
-      marginTop: 50,
     },
     searchContainer: {
       position: "relative",
@@ -28,7 +38,7 @@ const SideBarSearch = () => {
       marginBottom: 20,
     },
     searchInput: {
-      padding: 10,
+      padding: "10px 12px",
       borderRadius: 50,
       width: "100%",
       outline: "none",
@@ -36,6 +46,7 @@ const SideBarSearch = () => {
       color: colors.darkBlue,
       fontWeight: 500,
       paddingRight: 10, // Adjust padding to accommodate the icon
+      fontSize: 17,
     },
     searchIcon: {
       position: "absolute",
@@ -59,7 +70,7 @@ const SideBarSearch = () => {
 
   //functions
   return (
-    <div style={styles.container}>
+    <form style={styles.container}>
       <div style={styles.searchContainer}>
         <input style={styles.searchInput} placeholder="הקלידו לחיפוש" />
         <img
@@ -78,11 +89,12 @@ const SideBarSearch = () => {
       <div style={styles.lable}>המסכת</div>
       <SelectInput />
       <div style={styles.lable}>סוג השיעור</div>
-      {/* <CheckBox />
-      <CheckBox />
-      <CheckBox /> */}
-      <label>אורך הזמן הנדרש</label>
-      {/* <Slider /> */}
+      <Checkbox label={"שיעורי וידאו"} />
+      <Checkbox label={"שיעורי שמע"} />
+      <Checkbox label={"שיעורי טקסט"} />
+      <br />
+      <div style={styles.lable}>משך זמן השיעור</div>
+      <Slider min={1} max={120} step={1} onChange={handleChange} />{" "}
       <Button
         color={colors.white}
         bgColor={bgColors.orangeGradient}
@@ -94,7 +106,7 @@ const SideBarSearch = () => {
         arrow={true}
       />{" "}
       <style>{`::placeholder {color: ${colors.darkBlue}`}</style>
-    </div>
+    </form>
   );
 };
 
