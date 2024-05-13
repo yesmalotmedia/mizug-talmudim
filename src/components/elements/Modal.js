@@ -103,7 +103,6 @@ export default function Modal() {
             fontWeight={600}
             fontSize={20}
             title=" חזרו אלי "
-            
           />
         )}
       </form>
