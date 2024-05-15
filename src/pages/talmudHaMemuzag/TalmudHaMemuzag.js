@@ -1,29 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../App";
+import HeroSection from "../../components/elements/HeroSection";
 import LessonsSection from "../beitHamidrash/lessons/LessonSection";
 
 export default function TalmudHaMemuzag() {
-  const styles = {
-    container: {
-      position: "relative",
-      top: 100,
-      height: 'auto',
-      marginBottom: 300,
-    padding: 30,
-
-  
-    },
-    text: {
-      textAlign: "left",
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    },
-  };
+  const { colors } = useContext(AppContext);
   return (
-    <div style={styles.container}>
-      <div style={styles.text}>
-        <h1>Talmud HaMemuzag</h1>
-      </div>
+    <div>
+      <HeroSection
+        title={"בית המדרש"}
+        backgroundImage={"hero2.png"}
+        subTitle={"בחרו את הנושא שמעניין אתכם"}
+        titleColor={colors.white}
+        height={"60vmin"}
+        marginTop={90}
+      />
     </div>
   );
 }

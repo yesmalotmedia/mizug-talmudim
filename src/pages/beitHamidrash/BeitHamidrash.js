@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import HeroHomePage from "../../components/heroHomepage/HeroHomePage";
 import Spacer from "../../components/elements/Spacer";
-import HeroBeitHamidrash from "./HeroBeitHamidrash";
+import HeroBeitHamidrash from "../../components/elements/HeroSection";
 import SeltectButtons from "./SeltectButtons";
 import SideBarSearch from "./sideBarSearch/SideBarSearch";
-import LessonPreviewBox from "./lessons/LessonPreviewBox";
+import LessonsSection from "./lessons/LessonSection";
+import HeroSection from "../../components/elements/HeroSection";
 import LessonsCollection from "./lessons/LessonsCollection";
 
 const BeitHamidrash = () => {
@@ -30,7 +31,14 @@ const BeitHamidrash = () => {
 
   return (
     <div>
-      <Spacer height={60} />
+      <HeroSection
+        title={"בית המדרש"}
+        backgroundImage={"hero2.png"}
+        subTitle={"בחרו את הנושא שמעניין אתכם"}
+        titleColor={colors.white}
+        height={"60vmin"}
+        marginTop={90}
+      />
       <HeroBeitHamidrash />
       <div style={styles.titleSection}>
         <div>שיעורי עיון</div>

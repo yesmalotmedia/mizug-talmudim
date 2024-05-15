@@ -1,59 +1,74 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
-import MenuBtn from "../elements/MenuBtn";
-import Logo from "../elements/Logo";
 
 import FooterMenu from "./FooterMenu";
 import LogoAndSocialIcon from "./LogoAndSocialIcon";
-import FooterSearch from "./FooterSearch";
-import Modal from "../elements/Modal";
 import FooterMenuData from "./FooterMenuData";
+import Subscribe from "../elements/Subscribe";
 
 const Footer = () => {
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors } = useContext(AppContext);
   //styles
   const styles = {
     container: {
       minWidth: "100%",
       backgroundImage: 'url("footerImages/Union.png")',
-      backgroundSize: "cover",
+      backgroundSize: "100% 100%",
       color: colors.white,
       zIndex: 200,
-      position: "relative", // Adding position property
+      position: "relative",
     },
     footerItemWrapper: {
-      paddingTop: "350px",
-      maxWidth: "90%",
+      paddingTop: "50vh",
+      maxWidth: "80%",
       display: "flex",
-      alignItems: "stretch",
       justifyContent: "center",
-      gap: "5%",
+      gap: "6%",
       marginInline: "auto",
-      position: "relative", // Adding position property
+      position: "relative",
     },
     footerMenuWrapper: {
       display: "flex",
-      gap: 30,
+      justifyContent: "space-between",
+      width: "38vmax",
     },
     copyRight: {
       textAlign: "center",
       marginTop: "30px",
       padding: "30px",
-      position: "relative", // Adding position property
+      position: "relative",
     },
+    subscribe: {
+      color: colors.orange,
+      fontSize: "1.5vw",
+      textAlign: "center",
+      position: "relative",
+      top: -4,
+    },
+    icon: {
+      position: "relative",
+      top: 8,
+    },
+    text:{
+      paddingBottom: 10,
+    }
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.footerItemWrapper}>
-        <LogoAndSocialIcon />
+        <div style={styles.icon}>
+          <LogoAndSocialIcon />
+        </div>
 
         <div style={styles.footerMenuWrapper}>
           <FooterMenu data={FooterMenuData} />
           <FooterMenu data={FooterMenuData} />
         </div>
-
-        <FooterSearch />
+        <div style={styles.subscribe}>
+          <h2 style={styles.text}>רוצים לקבל התראה במייל על תוכן חדש? </h2>
+          <Subscribe />
+        </div>
       </div>
 
       <div style={styles.copyRight}>

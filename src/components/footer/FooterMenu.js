@@ -1,7 +1,6 @@
-import FooterMenuData from "./FooterMenuData";
+
 
 export default function FooterMenu({data}) {
-  console.log(data);
   
   const styles = {
     menuColumn: {

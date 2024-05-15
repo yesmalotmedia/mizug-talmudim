@@ -11,6 +11,7 @@ const Button = ({
   borderRadius,
   width,
   arrow,
+  height,
 }) => {
   // context
   // states
@@ -30,6 +31,7 @@ const Button = ({
       cursor: "pointer",
       borderRadius,
       width,
+      height,
     },
 
     text: {
