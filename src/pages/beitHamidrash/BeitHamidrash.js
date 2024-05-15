@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import HeroHomePage from "../../components/heroHomepage/HeroHomePage";
 import Spacer from "../../components/elements/Spacer";
@@ -14,7 +14,7 @@ const BeitHamidrash = () => {
   const { colors, bgColors, isMobile } = useContext(AppContext);
   const screenWidth = window.innerWidth;
   // states
-
+  const [lessonsType, setlessonsType] = useState();
   // styles
   const styles = {
     mainSection: {
@@ -25,6 +25,9 @@ const BeitHamidrash = () => {
     },
     titleSection: {
       display: "flex",
+      width: "60%",
+      justifyContent: "space-between",
+      margin: "auto",
     },
   };
   // functions
@@ -39,14 +42,19 @@ const BeitHamidrash = () => {
         height={"60vmin"}
         marginTop={90}
       />
+
       <HeroBeitHamidrash />
-      <div style={styles.titleSection}>
-        <div>שיעורי עיון</div>
-        <div>sort</div>
-      </div>
+      <SeltectButtons
+        lessonsType={lessonsType}
+        setlessonsType={setlessonsType}
+      />
+
       <section style={styles.mainSection}>
         <SideBarSearch />
-        <LessonsCollection />
+        <LessonsCollection
+          lessonsType={lessonsType}
+          setlessonsType={setlessonsType}
+        />
       </section>
     </div>
   );

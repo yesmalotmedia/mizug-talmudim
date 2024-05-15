@@ -7,7 +7,7 @@ export default function LessonPreviewBox() {
   const styles = {
     container: {
       height: "auto",
-      width: "16vw",
+      width: "13vw",
       border: `1px solid ${colors.azure}`,
       borderRadius: 30,
       boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
@@ -29,14 +29,14 @@ export default function LessonPreviewBox() {
       padding: 5,
     },
     title: {
-      fontSize: "1.5VW",
+      fontSize: "1.2VW",
     },
     subTitle: {
-      fontSize: "1.2VW",
+      fontSize: "1VW",
       padding: 5,
     },
     date: {
-      fontSize: "1VW",
+      fontSize: "0.9VW",
     },
     bottomSection: {
       textAlign: "right",
@@ -58,7 +58,7 @@ export default function LessonPreviewBox() {
       border: `1px solid ${colors.azure}`,
       color: colors.azure,
       fontWeight: 500,
-      fontSize: "0.8vw",
+      fontSize: "0.6vw",
       background: colors.white,
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       cursor: "pointer",

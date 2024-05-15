@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { AppContext } from "../../App";
 import bgColors from "../../styles/bg-colors";
 
 const Button = ({
   color,
   bgColor,
+  hoveredBgColor,
   title,
   fontWeight,
   fontSize,
@@ -13,17 +14,15 @@ const Button = ({
   arrow,
   height,
 }) => {
-  // context
-  // states
+  const [isHovered, setIsHovered] = useState(false);
 
-  // styles
   const styles = {
     button: {
       color,
       width: 280,
       height: 50,
       padding: 10,
-      backgroundImage: bgColor,
+      backgroundImage: isHovered ? hoveredBgColor : bgColor,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -33,7 +32,6 @@ const Button = ({
       width,
       height,
     },
-
     text: {
       color,
       width: "90%",
@@ -47,12 +45,14 @@ const Button = ({
     },
   };
 
-  // functions
-
   return (
-    <div style={styles.button}>
+    <div
+      style={styles.button}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div style={styles.text}>{title}</div>
-      {arrow && <img style={styles.img} src="arrow-to-left.png" />}
+      {arrow && <img style={styles.img} src="arrow-to-left.png" alt="arrow" />}
     </div>
   );
 };

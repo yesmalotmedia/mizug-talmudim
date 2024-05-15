@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import CyrcleButton from "../../components/elements/CyrcleButton";
 
-const SeltectButtons = () => {
+const SeltectButtons = ({ lessonsType, setlessonsType }) => {
   // Context
   const { colors, bgColors, isMobile, dailyTextsData } = useContext(AppContext);
 
@@ -10,7 +10,7 @@ const SeltectButtons = () => {
   const selectButtons = [
     {
       img: "selectedBtns1.png",
-      title: "כללים",
+      title: "הדף היומי",
     },
     {
       img: "selectedBtns2.png",
@@ -38,10 +38,7 @@ const SeltectButtons = () => {
 
   const styles = {
     container: {
-      position: "absolute",
-      top: "22vw",
-      left: "50%",
-      transform: "translateX(-50%)",
+      transform: "translateY(-60%)",
       display: "flex",
       width: "43vw",
       justifyContent: "space-around",
@@ -57,9 +54,11 @@ const SeltectButtons = () => {
   };
 
   //functions
-
+  const handleClick = (btnTitle) => {
+    setlessonsType(btnTitle);
+  };
   const selectedButtonsElements = selectButtons.map((btn, index) => (
-    <div key={index}>
+    <div onClick={() => handleClick(btn.title)} key={index}>
       <CyrcleButton imgSrc={btn.img} />
       <div style={styles.title}>{btn.title}</div>
     </div>

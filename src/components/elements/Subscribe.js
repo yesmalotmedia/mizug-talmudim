@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { AppContext } from "../../App";
 
 export default function Subscribe() {
   const { colors } = useContext(AppContext);
+  const [isHovered, setIsHovered] = useState(false);
 
   const styles = {
- 
     form: {
       position: "relative",
       display: "inline-block",
@@ -21,7 +21,6 @@ export default function Subscribe() {
       borderRadius: 30,
       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
     },
-
     btn: {
       position: "absolute",
       left: 0,
@@ -32,7 +31,7 @@ export default function Subscribe() {
       padding: "0 20px",
       borderTopLeftRadius: "30px",
       borderBottomLeftRadius: "30px",
-      background: colors.orange,
+      background: isHovered ? colors.azure : colors.orange,
       color: colors.white,
       fontSize: "20px",
       fontWeight: "bold",
@@ -47,6 +46,7 @@ export default function Subscribe() {
       top: 5,
     },
   };
+
   return (
     <div style={styles.subscribe}>
       <form style={styles.form}>
@@ -55,9 +55,17 @@ export default function Subscribe() {
           type="text"
           placeholder="נא למלא את כתובת המייל"
         ></input>
-        <button style={styles.btn}>
-        שלח
-          <img style={styles.arrow} src="footerImages/arrow.png"></img>
+        <button
+          style={styles.btn}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          שלח
+          <img
+            style={styles.arrow}
+            src="footerImages/arrow.png"
+            alt="arrow"
+          ></img>
         </button>
       </form>
     </div>
