@@ -10,11 +10,13 @@ import LastLessons from "./components/lastLessons/LastLessons";
 import VideoUploader from "./components/VideoUploader";
 import { RouterProvider } from "react-router-dom";
 import routers from "./Routes";
-
+import useCollections from "./server/useCollections";
 export const AppContext = React.createContext();
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   //context
+
+  // getDatabase();
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 840);
