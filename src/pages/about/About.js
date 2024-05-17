@@ -1,7 +1,7 @@
 import React from "react";
+import TextEditor from "../admin/TextEditor";
 
 export default function About() {
- 
   const styles = {
     container: {
       position: "relative",
