@@ -5,7 +5,6 @@ export default function Subscribe() {
   const { colors } = useContext(AppContext);
 
   const styles = {
- 
     form: {
       position: "relative",
       display: "inline-block",
@@ -39,12 +38,10 @@ export default function Subscribe() {
       cursor: "pointer",
     },
     arrow: {
-      height: "20px",
-      width: "20px",
-      filter: "brightness(0) invert(1)",
+      height: "1vw",
       marginRight: "10px",
       position: "relative",
-      top: 5,
+      top: 2,
     },
   };
   return (
@@ -56,8 +53,8 @@ export default function Subscribe() {
           placeholder="נא למלא את כתובת המייל"
         ></input>
         <button style={styles.btn}>
-        שלח
-          <img style={styles.arrow} src="footerImages/arrow.png"></img>
+          שלח
+          <img style={styles.arrow} src="/arrow-to-left.png"></img>
         </button>
       </form>
     </div>

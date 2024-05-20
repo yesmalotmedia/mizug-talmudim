@@ -50,7 +50,7 @@ function Header() {
       />
       {!isMobile && <Nav />}
       <Logo style={styles.logo} />
-      <img style={styles.vector} src="logo-vector.png" alt="logo-vector" />
+      <img style={styles.vector} src="/logo-vector.png" alt="logo-vector" />
     </div>
   );
 }

@@ -10,9 +10,14 @@ import LastLessons from "./components/lastLessons/LastLessons";
 import VideoUploader from "./components/VideoUploader";
 import { RouterProvider } from "react-router-dom";
 import routers from "./Routes";
+import postsData from "./data/postsData";
 
 export const AppContext = React.createContext();
+
 function App() {
+  //data
+
+  //state
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   //context
 
@@ -28,10 +33,12 @@ function App() {
         isMobile,
         description,
         dailyTextsData,
+        postsData,
       }}
     >
       <div className="App">
-        <RouterProvider router={routers} />
+        <RouterProvider router={routers}/>
+     
       </div>
     </AppContext.Provider>
   );

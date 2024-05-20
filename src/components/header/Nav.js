@@ -4,8 +4,8 @@ import { NavLink, useLocation } from "react-router-dom";
 
 const Nav = () => {
   const { colors, pagesList } = useContext(AppContext);
-  const [hoveredIndex, setHoveredIndex] = useState(null); // State to keep track of hovered index
-  const location = useLocation(); // Getting the current location
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const location = useLocation();
 
   const styles = {
     container: {
@@ -43,6 +43,8 @@ const Nav = () => {
     },
   };
 
+  const isActive = (path) => location.pathname === path || location.pathname.startsWith(`${path}/`);
+
   return (
     <div style={styles.container}>
       {pagesList.map((item, index) => (
@@ -56,10 +58,10 @@ const Nav = () => {
               style={{
                 ...styles.menu,
                 ...(index === hoveredIndex && styles.hoverMenu),
-                ...(location.pathname === item.path && styles.activeMenu) 
+                ...(isActive(item.path) && styles.activeMenu)
               }}
               to={item.path}
-              activeClassName="active" 
+              activeClassName="active"
             >
               {item.name}
             </NavLink>

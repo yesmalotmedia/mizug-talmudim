@@ -12,7 +12,7 @@ const Footer = () => {
   const styles = {
     container: {
       minWidth: "100%",
-      backgroundImage: 'url("footerImages/Union.png")',
+      backgroundImage: 'url("/footerImages/Union.png")',
       backgroundSize: "100% 100%",
       color: colors.white,
       zIndex: 200,
