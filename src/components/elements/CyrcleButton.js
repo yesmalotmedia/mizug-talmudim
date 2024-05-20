@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
 
-const CyrcleButton = ({ imgSrc }) => {
+const CyrcleButton = ({ imgSrc, title }) => {
   // Context
   const { colors, bgColors, isMobile, dailyTextsData } = useContext(AppContext);
   //states
@@ -18,11 +18,19 @@ const CyrcleButton = ({ imgSrc }) => {
       cursor: "pointer",
     },
     img: { width: "100%" },
+    title: {
+      fontWeight: 600,
+      textAlign: "center",
+      color: colors.darkBlue,
+      marginTop: 10,
+      fontSize: "1.1vw",
+    },
   };
 
   return (
     <div style={styles.container}>
       <img style={styles.img} src={imgSrc} alt="selectIcon" />
+      <div style={styles.title}>{title}</div>
     </div>
   );
 };

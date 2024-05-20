@@ -38,18 +38,11 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
 
   const styles = {
     container: {
-      transform: "translateY(-60%)",
+      transform: "translateY(-90%)",
       display: "flex",
       width: "43vw",
       justifyContent: "space-around",
       margin: "auto",
-    },
-    title: {
-      fontWeight: 600,
-      textAlign: "center",
-      color: colors.darkBlue,
-      marginTop: 10,
-      fontSize: "1.1vw",
     },
   };
 
@@ -59,8 +52,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
   };
   const selectedButtonsElements = selectButtons.map((btn, index) => (
     <div onClick={() => handleClick(btn.title)} key={index}>
-      <CyrcleButton imgSrc={btn.img} />
-      <div style={styles.title}>{btn.title}</div>
+      <CyrcleButton imgSrc={btn.img} title={btn.title} />
     </div>
   ));
 
