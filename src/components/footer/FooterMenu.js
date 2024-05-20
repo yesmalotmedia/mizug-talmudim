@@ -1,15 +1,10 @@
-
-
-export default function FooterMenu({data}) {
-  
+export default function FooterMenu({ data }) {
   const styles = {
     menuColumn: {
-     minWidth: '16%',
+      minWidth: "16%",
     },
     arrow: {
-      height: "20px",
-      width: "20px",
-      filter: "brightness(0) invert(1)",
+height: '1vw',
       marginLeft: "10px",
     },
     footerMenu: {
@@ -20,8 +15,8 @@ export default function FooterMenu({data}) {
       fontSize: 20,
       fontWwight: " medium",
     },
-    menu:{
-      cursor: 'pointer',
+    menu: {
+      cursor: "pointer",
     },
     MenuTitle: {
       fontSize: "1.8vw",
@@ -36,14 +31,13 @@ export default function FooterMenu({data}) {
             <div style={styles.footerMenu}>
               <img
                 style={styles.arrow}
-                src="footerImages/arrow.png"
+                src="/arrow-to-left.png"
                 alt="Arrow"
               ></img>
               <p style={styles.menu}>{item.title}</p>
             </div>
           </div>
         ))}
-
       </div>
     </>
   );

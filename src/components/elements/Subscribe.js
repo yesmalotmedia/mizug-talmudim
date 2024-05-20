@@ -38,12 +38,10 @@ export default function Subscribe() {
       cursor: "pointer",
     },
     arrow: {
-      height: "20px",
-      width: "20px",
-      filter: "brightness(0) invert(1)",
+      height: "1vw",
       marginRight: "10px",
       position: "relative",
-      top: 5,
+      top: 2,
     },
   };
 
@@ -55,17 +53,9 @@ export default function Subscribe() {
           type="text"
           placeholder="נא למלא את כתובת המייל"
         ></input>
-        <button
-          style={styles.btn}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        <button style={styles.btn}>
           שלח
-          <img
-            style={styles.arrow}
-            src="footerImages/arrow.png"
-            alt="arrow"
-          ></img>
+          <img style={styles.arrow} src="footerImages/arrow.png"></img>
         </button>
       </form>
     </div>

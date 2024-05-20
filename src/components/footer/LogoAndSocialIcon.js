@@ -21,7 +21,7 @@ export default function LogoAndSocialIcon() {
   return (
     <>
       <div style={styles.footerColumn}>
-        <img style={styles.logoWhite} src="footerImages/logo-white.png" alt="Logo"></img>
+        <img style={styles.logoWhite} src="/footerImages/logo-white.png" alt="Logo"></img>
         <div style={styles.socialLogoWrapper}>
           {SocialIconData.map((item, index) => (
             <img key={index} style={styles.socialLogoImage} src={item.image} alt={item.alt}></img>

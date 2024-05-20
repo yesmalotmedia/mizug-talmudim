@@ -12,7 +12,6 @@ import WhatsNew from "./pages/whatsnew/WhatsNew";
 import About from "./pages/about/About";
 import Publishing from "./pages/publishing/Publishing";
 import ErrorPage from "./pages/ErrorPage";
-import TextEditor from "./pages/admin/TextEditor";
 
 const routers = createBrowserRouter([
   {
@@ -25,23 +24,28 @@ const routers = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/BeitHamidrash",
+        path: "BeitHamidrash",
         element: <BeitHamidrash />,
       },
       {
-        path: "/TalmudHaMemuzag",
+        path: "TalmudHaMemuzag",
         element: <TalmudHaMemuzag />,
       },
       {
-        path: "/Contact",
+        path: "Contact",
         element: <Contact />,
       },
       {
-        path: "/WhatsNew",
+        path: "WhatsNew",
         element: <WhatsNew />,
       },
+
       {
-        path: "/About",
+        path: "WhatsNew/:postId",
+        element: <PostDetails />,
+      },
+      {
+        path: "About",
         element: <About />,
       },
       {

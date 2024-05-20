@@ -31,7 +31,7 @@ export default function ErrorPage() {
     <>
       <Header />
       <div style={styles.container}>
-        <img style={styles.errorImg} src="error.png" alt="error image"></img>
+        <img style={styles.errorImg} src="/error.png" alt="error image"></img>
 
         <h3 style={styles.message}>
           מצטער!! הדף לא נמצא. <br />
