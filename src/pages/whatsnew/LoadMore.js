@@ -8,11 +8,10 @@ const LoadMore = ({ onClick }) => {
 
   const handleClick = () => {
     setIsLoading(true);
-    setTimeout(()=>{
-       onClick();
-    setIsLoading(false);
-    },4000)
-   
+    setTimeout(() => {
+      onClick();
+      setIsLoading(false);
+    }, 4000);
   };
 
   const styles = {

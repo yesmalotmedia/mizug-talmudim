@@ -55,7 +55,7 @@ export default function Subscribe() {
         ></input>
         <button style={styles.btn}>
           שלח
-          <img style={styles.arrow} src="footerImages/arrow.png"></img>
+          <img style={styles.arrow} src="arrow-to-left.png"></img>
         </button>
       </form>
     </div>

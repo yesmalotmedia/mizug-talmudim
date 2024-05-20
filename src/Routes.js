@@ -12,6 +12,7 @@ import WhatsNew from "./pages/whatsnew/WhatsNew";
 import About from "./pages/about/About";
 import Publishing from "./pages/publishing/Publishing";
 import ErrorPage from "./pages/ErrorPage";
+import PostDetails from "./pages/whatsnew/PostDetails";
 
 const routers = createBrowserRouter([
   {
@@ -51,10 +52,6 @@ const routers = createBrowserRouter([
       {
         path: "Publishing",
         element: <Publishing />,
-      },
-      {
-        path: "Admin",
-        element: <TextEditor />,
       },
     ],
   },

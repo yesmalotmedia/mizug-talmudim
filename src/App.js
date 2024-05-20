@@ -10,6 +10,7 @@ import LastLessons from "./components/lastLessons/LastLessons";
 import VideoUploader from "./components/VideoUploader";
 import { RouterProvider } from "react-router-dom";
 import routers from "./Routes";
+import postsData from "./data/postsData";
 
 export const AppContext = React.createContext();
 
@@ -20,8 +21,8 @@ function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
 
   //data
-  const videos = useVideos();
-  console.log(videos);
+  // const videos = useVideos();
+  // console.log(videos);
 
   //state
   //context

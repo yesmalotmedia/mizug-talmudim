@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import HeroSection from "../../components/elements/HeroSection";
 import PostsCollection from "./PostsCollection";
-
+import NewUpdates from "./NewUpdates";
+import LoadMore from "./LoadMore";
 export default function WhatsNew() {
   const { colors } = useContext(AppContext);
 
@@ -21,12 +22,7 @@ export default function WhatsNew() {
         height={"60vmin"}
         marginTop={60}
       />
-      <NewUpdates />
-      <NewUpdates />
-      <NewUpdates />
-      <div style={styles.loadmore}>
-        <LoadMore />
-      </div>
+      <PostsCollection />
     </>
   );
 }
