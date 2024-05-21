@@ -40,7 +40,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
     container: {
       transform: "translateY(-90%)",
       display: "flex",
-      width: "43vw",
+      width: "45vw",
       justifyContent: "space-around",
       margin: "auto",
     },
