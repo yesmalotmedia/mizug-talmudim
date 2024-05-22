@@ -9,25 +9,29 @@ const CyrcleButton = ({ imgSrc, title, smallImgButton }) => {
   const styles = smallImgButton
     ? {
         container: {
+          position: "absolute",
           height: "8vw",
           width: "8vw",
           borderRadius: "50%",
           cursor: "pointer",
-          border: `solid 4px ${colors.darkBlue}`,
+          border:  `4px solid ${colors.darkBlue}`,
           background: "#FFF2E7",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
         },
         img: {
           width: "5vw",
-          margin: 20,
         },
         title: {
+          position: "relative",
           fontWeight: 600,
           textAlign: "center",
           color: colors.darkBlue,
-          marginTop: 10,
+          top: "5vw",
           fontSize: "1.1vw",
-          width: 180,
-          marginRight: -35,
+          whiteSpace: "nowrap",
         },
       }
     : {
@@ -50,10 +54,21 @@ const CyrcleButton = ({ imgSrc, title, smallImgButton }) => {
       };
 
   return (
-    <div style={styles.container}>
-      <img style={styles.img} src={imgSrc} alt="selectIcon" />
-      <div style={styles.title}>{title}</div>
-    </div>
+    <>
+      {smallImgButton ? (
+        <>
+          <div style={styles.title}>{title}</div>
+          <div style={styles.container}>
+            <img style={styles.img} src={imgSrc} alt="selectIcon" />
+          </div>
+        </>
+      ) : (
+        <div style={styles.container}>
+          <img style={styles.img} src={imgSrc} alt="selectIcon" />
+          <div style={styles.title}>{title}</div>
+        </div>
+      )}
+    </>
   );
 };
 
