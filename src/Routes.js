@@ -13,6 +13,7 @@ import About from "./pages/about/About";
 import Publishing from "./pages/publishing/Publishing";
 import ErrorPage from "./pages/ErrorPage";
 import PostDetails from "./pages/whatsnew/PostDetails";
+import Terumot from "./pages/terumot/Terumot";
 
 
 const routers = createBrowserRouter([
@@ -49,6 +50,10 @@ const routers = createBrowserRouter([
       {
         path: "About",
         element: <About />,
+      },
+      {
+        path: "Terumot",
+        element: <Terumot />,
       },
       {
         path: "Publishing",

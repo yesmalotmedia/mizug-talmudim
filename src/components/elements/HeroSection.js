@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 import Button from "./Button";
 import Subscribe from "./Subscribe";
 
-const HeroSection = ({backgroundImage, title, subTitle, titleColor, isButton, isSubscribe , height, marginTop}) => {
+const HeroSection = ({backgroundImage, title, subTitle, titleColor, btnTitle, isButton, isSubscribe , height, marginTop}) => {
   // Context
   const { colors, bgColors } = useContext(AppContext);
 
@@ -51,12 +51,15 @@ const HeroSection = ({backgroundImage, title, subTitle, titleColor, isButton, is
         {isButton && (
           <Button
             color={colors.white}
-            title={"this is a button"}
+            title={btnTitle}
             bgColor={bgColors.orangeGradient}
+            hoveredBgColor={bgColors.azureGradient}
             width={"27vw"}
             height={"7vh"}
             borderRadius={30}
             arrow={true}
+            fontSize={'1.6vw'}
+            fontWeight={600}
           />
         )}
         {isSubscribe && (

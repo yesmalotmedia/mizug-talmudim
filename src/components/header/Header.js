@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import MenuBtn from "../elements/MenuBtn";
 import Logo from "../elements/Logo";
 import Button from "../elements/Button";
+import { Link } from "react-router-dom";
 
 function Header() {
   //context
@@ -35,10 +36,14 @@ function Header() {
       width: "25vw",
       height: 250,
     },
+    terumot:{
+      textDecoration: 'none',
+    }
   };
 
   return (
     <div style={styles.container}>
+      <Link to={"/terumot"} style={styles.terumot}>
       <Button
         color={colors.white}
         bgColor={bgColors.orangeGradient}
@@ -49,6 +54,7 @@ function Header() {
         fontWeight={600}
         width={"280px"}
       />
+      </Link>
       {!isMobile && <Nav />}
       <Logo style={styles.logo} />
       <img style={styles.vector} src="/logo-vector.png" alt="logo-vector" />
