@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import PostsPreviewBox from "./PostsPreviewBox";
-import LoadMore from "./LoadMore";
+import LoadMore from "../../components/elements/LoadMore";
 
 const PostsCollection = () => {
   const { postsData } = useContext(AppContext);
