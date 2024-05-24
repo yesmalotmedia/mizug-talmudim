@@ -14,7 +14,7 @@ export default function ErrorPage() {
       marginInline: "auto",
       borderRadius: 30,
       background: "#EEF9ED",
-      boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+      boxShadow: "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px",
       color: "red",
     },
 

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
-import LoaderAnimation from "../../components/elements/LoaderAnimation";
+import LoaderAnimation from "./LoaderAnimation";
 
 const LoadMore = ({ onClick }) => {
   const { colors } = useContext(AppContext);
@@ -15,6 +15,7 @@ const LoadMore = ({ onClick }) => {
   };
 
   const styles = {
+
     readMore: {
       height: "3vw",
       width: "10vw",
@@ -40,14 +41,14 @@ const LoadMore = ({ onClick }) => {
   };
 
   return (
-    <div>
+    <>
       <LoaderAnimation isLoading={isLoading} color={colors.orange} />
       {!isLoading && (
         <div style={styles.readMore} onClick={handleClick}>
           <p> טען עוד </p>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
