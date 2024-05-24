@@ -21,12 +21,10 @@ export default function Publishing() {
     },
     filterBtn: {
       margin: "60px 0",
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
- 
   };
   return (
     <>
@@ -40,7 +38,7 @@ export default function Publishing() {
       />
       <div style={styles.mainContainer}>
         <div style={styles.filterBtn}>
-       <Filters/>
+          <Filters />
         </div>
         <div style={styles.preview}>
           <BooksCollection />

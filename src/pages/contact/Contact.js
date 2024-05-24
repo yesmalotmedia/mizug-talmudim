@@ -5,7 +5,7 @@ import Socials from "./Socials";
 import Form from "./Form";
 
 export default function Contact() {
-  const { colors } = useContext(AppContext);
+  const { colors ,isMobile} = useContext(AppContext);
 
   const styles = {
     container: {

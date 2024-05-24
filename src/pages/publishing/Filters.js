@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 
 export default function Filters() {
   const { colors } = useContext(AppContext);
-  const [activeButton, setActiveButton] = useState(null);
+  const [activeButton, setActiveButton] = useState('all');
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
@@ -100,14 +100,14 @@ export default function Filters() {
       <button
         style={{
           ...styles.btn,
-          ...(activeButton === "button5" && styles.active),
+          ...(activeButton === "all" && styles.active),
         }}
-        onClick={() => handleButtonClick("button5")}
+        onClick={() => handleButtonClick("all")}
       >
         <span
           style={{
             ...styles.text,
-            ...(activeButton === "button5" && styles.active),
+            ...(activeButton === "all" && styles.active),
           }}
         >
           הכל{" "}
