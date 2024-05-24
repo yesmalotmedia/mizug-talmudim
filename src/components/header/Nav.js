@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, matchPath } from "react-router-dom";
 
 const Nav = () => {
   const { colors, pagesList } = useContext(AppContext);
@@ -43,7 +43,9 @@ const Nav = () => {
     },
   };
 
-  const isActive = (path) => location.pathname === path || location.pathname.startsWith(`${path}/`);
+  const isActive = (path) => {
+    return location.pathname === path || matchPath({ path: `${path}/*`, end: false }, location.pathname);
+  };
 
   return (
     <div style={styles.container}>
