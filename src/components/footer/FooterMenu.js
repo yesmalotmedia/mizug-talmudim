@@ -1,10 +1,14 @@
+import { useContext } from "react";
+import { AppContext } from "../../App";
+
 export default function FooterMenu({ data }) {
+  const { isMobile } = useContext(AppContext);
   const styles = {
     menuColumn: {
       minWidth: "16%",
     },
     arrow: {
-height: '1vw',
+      height: isMobile? "13px": "1vw",
       marginLeft: "10px",
     },
     footerMenu: {
@@ -19,7 +23,7 @@ height: '1vw',
       cursor: "pointer",
     },
     MenuTitle: {
-      fontSize: "1.8vw",
+      fontSize: isMobile ? "7vmin" : "1.8vw",
     },
   };
   return (

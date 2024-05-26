@@ -7,25 +7,28 @@ import FooterMenuData from "./FooterMenuData";
 import Subscribe from "../elements/Subscribe";
 
 const Footer = () => {
-  const { colors } = useContext(AppContext);
+  const { colors, isMobile } = useContext(AppContext);
   //styles
   const styles = {
     container: {
       minWidth: "100%",
-      backgroundImage: 'url("/footerImages/Union.png")',
+      backgroundImage: isMobile
+        ? 'url("/mobileFooterImg.png")'
+        : 'url("/footerImages/Union.png")',
       backgroundSize: "100% 100%",
       color: colors.white,
       zIndex: 200,
       position: "relative",
     },
     footerItemWrapper: {
-      paddingTop: "50vh",
+      paddingTop: isMobile ? "20vh" : "50vh",
       maxWidth: "80%",
       display: "flex",
       justifyContent: "center",
       gap: "6%",
       marginInline: "auto",
       position: "relative",
+      flexDirection: isMobile ? "column-reverse" : "",
     },
     footerMenuWrapper: {
       display: "flex",
@@ -44,27 +47,42 @@ const Footer = () => {
       textAlign: "center",
       position: "relative",
       top: -4,
+      width: isMobile ? "100%" : "",
     },
     icon: {
       position: "relative",
       top: 8,
     },
-    text:{
+    text: {
       paddingBottom: 10,
-    }
+      fontSize: isMobile ? "6vmin" : "",
+    },
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.footerItemWrapper}>
-        <div style={styles.icon}>
-          <LogoAndSocialIcon />
-        </div>
+        {!isMobile && (
+          <div style={styles.icon}>
+            <LogoAndSocialIcon />
+          </div>
+        )}
 
         <div style={styles.footerMenuWrapper}>
-          <FooterMenu data={FooterMenuData} />
-          <FooterMenu data={FooterMenuData} />
+          {isMobile ? (
+            <FooterMenu data={FooterMenuData} />
+          ) : (
+            <>
+              <FooterMenu data={FooterMenuData} />
+              <FooterMenu data={FooterMenuData} />
+            </>
+          )}
         </div>
+        {isMobile && (
+          <div style={styles.icon}>
+            <LogoAndSocialIcon />
+          </div>
+        )}
         <div style={styles.subscribe}>
           <h2 style={styles.text}>רוצים לקבל התראה במייל על תוכן חדש? </h2>
           <Subscribe />
