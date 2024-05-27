@@ -24,15 +24,19 @@ const DailyText = () => {
       alignItems: "center",
       transform: screenWidth < 1400 ? "translateY(-150px)" : "translateY(50px)",
     },
-    text: { color: colors.darkBlue, fontSize: 40, fontWeight: 600 },
+    text: {
+      color: colors.darkBlue,
+      fontSize: isMobile ? "6vw" : "3vw",
+      fontWeight: 600,
+    },
     textSource: {
       textAlign: "center",
       color: colors.darkBlue,
       fontWeight: 500,
-      fontSize: 20,
+      fontSize: isMobile ? "4.5vw" : "2vw",
     },
     bgImg: {
-      width: "70%",
+      width: isMobile ? "100%" : "70%",
       position: "absolute",
       bottom: 0,
       left: 0,

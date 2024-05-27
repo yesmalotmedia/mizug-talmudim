@@ -23,7 +23,7 @@ const DedicationSection = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      transform: "translateY(-15.3vw)",
+      transform: isMobile ? "translateY(-40vw)" : "translateY(-15.3vw)",
       marginBottom: -600,
     },
     text: {

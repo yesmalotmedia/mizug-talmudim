@@ -1,6 +1,9 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { AppContext } from "../../App";
 const GallerySection = () => {
+  // context
+  const { colors, isMobile } = useContext(AppContext);
+
   const containerStyle = {
     width: "100%",
     position: "relative",
@@ -8,7 +11,8 @@ const GallerySection = () => {
   };
 
   const subContainerStyle = {
-    width: "60%",
+    width: isMobile ? "80%" : "60%",
+    maxWidth: 600,
     height: 500,
     position: "relative",
     margin: "auto",
@@ -37,58 +41,101 @@ const GallerySection = () => {
     border: "2px solid white",
   };
 
-  const images = [
-    {
-      src: "gallerSecImg1.png",
-      style: {
-        ...imageCommonStyle,
-        width: "20%",
-        height: "100%",
-        top: 0,
-        right: 0,
-      },
-    },
-    {
-      src: "gallerSecImg1.png",
-      style: {
-        ...imageCommonStyle,
-        width: "22%",
-        height: "40%",
-        top: 0,
-        right: "25%",
-      },
-    },
-    {
-      src: "gallerSecImg1.png",
-      style: {
-        ...imageCommonStyle,
-        width: "50%",
-        height: "50%",
-        top: 0,
-        left: 0,
-      },
-    },
-    {
-      src: "gallerSecImg1.png",
-      style: {
-        ...imageCommonStyle,
-        width: "22%",
-        height: "50%",
-        top: "50%",
-        right: "25%",
-      },
-    },
-    {
-      src: "gallerSecImg1.png",
-      style: {
-        ...imageCommonStyle,
-        width: "50%",
-        height: "40%",
-        bottom: 0,
-        left: 0,
-      },
-    },
-  ];
+  const images = isMobile
+    ? [
+        {
+          src: "gallerSecImg1.png",
+          style: {
+            ...imageCommonStyle,
+            width: "100%",
+            height: "30%",
+            top: 0,
+            right: 0,
+          },
+        },
+        {
+          src: "gallerSecImg1.png",
+          style: {
+            ...imageCommonStyle,
+            width: "40%",
+            height: "71%",
+            top: "32%",
+            right: "0",
+          },
+        },
+        {
+          src: "gallerSecImg1.png",
+          style: {
+            ...imageCommonStyle,
+            width: "60%",
+            height: "35%",
+            top: "32%",
+            left: 0,
+          },
+        },
+        {
+          src: "gallerSecImg1.png",
+          style: {
+            ...imageCommonStyle,
+            width: "60%",
+            height: "35%",
+            top: "68%",
+            left: 0,
+          },
+        },
+      ]
+    : [
+        {
+          src: "gallerSecImg1.png",
+          style: {
+            ...imageCommonStyle,
+            width: "20%",
+            height: "100%",
+            top: 0,
+            right: 0,
+          },
+        },
+        {
+          src: "gallerSecImg1.png",
+          style: {
+            ...imageCommonStyle,
+            width: "22%",
+            height: "40%",
+            top: 0,
+            right: "25%",
+          },
+        },
+        {
+          src: "gallerSecImg1.png",
+          style: {
+            ...imageCommonStyle,
+            width: "50%",
+            height: "50%",
+            top: 0,
+            left: 0,
+          },
+        },
+        {
+          src: "gallerSecImg1.png",
+          style: {
+            ...imageCommonStyle,
+            width: "22%",
+            height: "50%",
+            top: "50%",
+            right: "25%",
+          },
+        },
+        {
+          src: "gallerSecImg1.png",
+          style: {
+            ...imageCommonStyle,
+            width: "50%",
+            height: "40%",
+            bottom: 0,
+            left: 0,
+          },
+        },
+      ];
 
   return (
     <div style={containerStyle}>

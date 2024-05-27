@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../App";
 import Button from "../elements/Button";
 import colors from "../../styles/colors";
 import bgColors from "../../styles/bg-colors";
 
 function YouTubeVideo({ url, index }) {
   console.log(bgColors.azure);
+
+  //context
+  const { colors, isMobile } = useContext(AppContext);
+
   const styles = {
     container: {
-      width: "30%",
+      width: isMobile ? "100%" : "30%",
+
       boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
       backgroundColor: bgColors.white,
       padding: 20,
-      margin: 10,
+
+      margin: isMobile ? "10px 0" : 10,
       borderRadius: "50px",
       display: "flex",
       flexDirection: "column",

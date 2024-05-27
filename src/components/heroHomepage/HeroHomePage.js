@@ -4,6 +4,9 @@ import colors from "../../styles/colors";
 
 const HeroHomePage = () => {
   // context
+
+  const { colors, isMobile } = useContext(AppContext);
+
   // states
 
   // styles
@@ -16,17 +19,19 @@ const HeroHomePage = () => {
     },
     img: {
       width: "100%", // Ensure the image fills the container width
-      height: "100%", // Ensure the image fills the container height
+      height: isMobile ? "80%" : "80%", // Ensure the image fills the container height
       objectFit: "cover", // Maintain aspect ratio and cover the entire container
-      objectPosition: "center", // Center the image within the container
+      objectPosition: "30%", // Center the image within the container
       zIndex: -100,
+      borderBottomLeftRadius: "50px", // Adjust the value as needed
+      borderBottomRightRadius: "50px", // Adjust the value as needed
     },
     text: {
       position: "absolute",
-      bottom: "30%",
-      right: 100,
+      bottom: isMobile ? "60%" : "30%",
+      right: isMobile ? 40 : 100,
       color: colors.white,
-      fontSize: "5vw",
+      fontSize: isMobile ? "50px" : "5vw",
       fontWeight: 700,
     },
     orangeText: {
@@ -35,15 +40,24 @@ const HeroHomePage = () => {
   };
 
   // functions
+  const deskTopTitle = (
+    <div style={styles.text}>
+      <span style={styles.orangeText}>צדקו יחדיו</span> <br /> בית מדרש לאיחוד
+      <br /> התלמודים
+    </div>
+  );
+  const mobileTitle = (
+    <div style={styles.text}>
+      <span style={styles.orangeText}>צדקו יחדיו</span> <br /> בית מדרש <br />{" "}
+      לאיחוד התלמודים
+    </div>
+  );
 
   return (
     <div style={styles.container}>
       <img style={styles.img} src="hero1.png" alt="Hero Image" />
-      <div style={styles.text}>
-        <span style={styles.orangeText}>צדקו יחדיו</span> <br /> בית מדרש
-        <br /> לאיחוד
-        <br /> התלמודים
-      </div>
+
+      {isMobile ? mobileTitle : deskTopTitle}
     </div>
   );
 };

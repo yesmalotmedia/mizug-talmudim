@@ -30,7 +30,7 @@ function App() {
   // getDatabase();
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 840);
+    setIsMobile(window.innerWidth < 1200);
   }, []);
   return (
     <AppContext.Provider
