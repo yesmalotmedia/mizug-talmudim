@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import { useParams } from "react-router-dom";
 import Spacer from "../../components/elements/Spacer";
-import Images from "./Images";
-
 import PostSuggestion from "./PostSuggestion";
 import NextAndPreviousBtn from "./NextAndPreviousBtn";
 import SharePost from "./SharePost";
+import Gallery from "../../components/elements/Gallery";
 
 const PostDetails = () => {
   const { colors, postsData } = useContext(AppContext);
@@ -57,7 +56,7 @@ const PostDetails = () => {
           </div>
           <article style={styles.article}>{post.article}</article>
 
-          <Images imgData={post} />
+          <Gallery data={post} />
 
           <NextAndPreviousBtn
             data={postsData}

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../../App";
 
 export default function Subscribe() {
-  const { colors } = useContext(AppContext);
+  const { colors, isMobile } = useContext(AppContext);
   const [isHovered, setIsHovered] = useState(false);
 
   const styles = {
@@ -13,10 +13,10 @@ export default function Subscribe() {
     input: {
       outline: "none",
       border: "none",
-      height: "40px",
-      width: "30vmax",
-      padding: "15px 15px 15px 120px",
-      fontSize: 20,
+      height: isMobile? '4vmax':"3vmax",
+      width: isMobile? '80vmin':"30vmax",
+      padding: isMobile ? "20px 15px 20px 105px": "15px 15px 15px 120px",
+      fontSize: isMobile? '3.6vmin': 20,
       fontWeight: 500,
       borderRadius: 30,
       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
@@ -38,10 +38,10 @@ export default function Subscribe() {
       cursor: "pointer",
     },
     arrow: {
-      height: "1vw",
+      height: isMobile? "13px":"1vw",
       marginRight: "10px",
       position: "relative",
-      top: 2,
+      top: isMobile ? -1: 4,
     },
   };
 

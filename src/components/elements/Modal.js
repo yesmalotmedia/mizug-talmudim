@@ -10,42 +10,42 @@ export default function Modal() {
   const styles = {
     form: {
       background: colors.darkBlue,
-      width: isShrink ? 150 : 500,
-      height: "auto",
+      width: isShrink ? (isMobile ? 80 : 150) : isMobile ? "40vmax" : 500,
+      height: isShrink ? (isMobile ? 80 : 150) : isMobile ? "340px" : "",
       display: "flex",
       flexDirection: "column",
       padding: 30,
       position: "fixed",
       left: 20,
-      bottom: isShrink ? 20 : 300,
+      bottom: isShrink ? (isMobile ? 110 : 50) : isMobile ? 20 : 200,
       borderRadius: isShrink ? "50%" : 30,
       zIndex: 999,
       opacity: isVisible ? 1 : 0, // Set opacity based on visibility state
-      transition: "all 0.3s ease", // Add transition effect
+      transition: "all 0.3s", // Add transition effect
       border: "solid white 1px",
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 10px 20px 0px",
     },
     label: {
-      fontSize: isShrink ? 20 : 30,
+      fontSize: isShrink ? (isMobile ? 12 : 20) : 30,
       fontWeight: 600,
       color: colors.white,
       cursor: isShrink ? "pointer" : "auto",
       textAlign: "center",
+      margin: isShrink ? (isMobile ? "-20px -10px 0 0" : "") : "",
     },
     inputContainer: {
       display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
+      flexDirection: isMobile ? "column" : "row",
       justifyContent: "space-between",
+      marginBottom: 30,
     },
     input: {
       outline: "none",
       border: "none",
       padding: 10,
       borderRadius: 30,
-      width: 210,
+      width: isMobile ? "auto" : 210,
       marginTop: 20,
-      marginBottom: 20,
       fontSize: 20,
       fontWeight: 600,
     },
@@ -86,8 +86,7 @@ export default function Modal() {
           </div>
         )}
         <label onClick={() => setIsShrink(false)} style={styles.label}>
-          {" "}
-          רוצים להקדיש שיעור? להנציח?{" "}
+          רוצים להקדיש שיעור? להנציח?
         </label>
         {!isShrink && (
           <div style={styles.inputContainer}>
@@ -103,6 +102,7 @@ export default function Modal() {
             fontWeight={600}
             fontSize={20}
             title=" חזרו אלי "
+            hoveredBgColor={bgColors.azureGradient}
           />
         )}
       </form>

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
 export default function Socials() {
-    const { colors } = useContext(AppContext);
+    const { colors, isMobile } = useContext(AppContext);
   const styles = {
 
     
@@ -11,7 +11,7 @@ export default function Socials() {
         marginBottom: 20,
     },
     img: {
-        height: "6vh",
+        height: isMobile? "40px":"35px",
       },
       label:{
         paddingRight: 30,

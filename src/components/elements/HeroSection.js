@@ -5,7 +5,7 @@ import Subscribe from "./Subscribe";
 
 const HeroSection = ({backgroundImage, title, subTitle, titleColor, btnTitle, isButton, isSubscribe , height, marginTop}) => {
   // Context
-  const { colors, bgColors } = useContext(AppContext);
+  const { colors, bgColors, isMobile } = useContext(AppContext);
 
   // Styles
   const styles = {
@@ -26,13 +26,13 @@ const HeroSection = ({backgroundImage, title, subTitle, titleColor, btnTitle, is
     },
     title: {
       fontWeight: 600,
-      fontSize: "4vw",
+      fontSize: isMobile? "9vmin" :"4vw",
       textAlign: "center",
       color: titleColor,
     },
     subTitle: {
       fontWeight: 600,
-      fontSize: "2vw",
+      fontSize: isMobile? '5vmin':"2vw",
       textAlign: "center",
       color: colors.orange,
     },

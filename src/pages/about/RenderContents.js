@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
+import Gallery from "../../components/elements/Gallery";
 
 const RenderContents = ({ sectionData }) => {
   const { colors } = useContext(AppContext);
@@ -21,24 +22,6 @@ const RenderContents = ({ sectionData }) => {
       borderRadius: 20,
       margin: "30px 0",
     },
-    imageRowContainer: {
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "space-between",
-      marginTop: 30,
-    },
-    imageRow: {
-      flex: "0 0 48%",
-      height: "21.5vw",
-      borderRadius: 20,
-      marginBottom: 20,
-    },
-    fullWidthImage: {
-      flex: "0 0 100%",
-      height: "40vw",
-      borderRadius: 20,
-      marginBottom: 20,
-    },
   };
 
   return (
@@ -52,22 +35,7 @@ const RenderContents = ({ sectionData }) => {
 
       <p style={styles.paragraph}>{sectionData.secondParagraph}</p>
 
-      <div style={styles.imageRowContainer}>
-        {sectionData.images.map((imgSrc, index) => {
-          // If the last image is alone, apply fullWidthImage style
-          const isLastImageAlone =
-            sectionData.images.length % 2 !== 0 &&
-            index === sectionData.images.length - 1;
-          return (
-            <img
-              key={index}
-              style={isLastImageAlone ? styles.fullWidthImage : styles.imageRow}
-              src={imgSrc}
-              alt={`Image ${index + 1}`}
-            />
-          );
-        })}
-      </div>
+      <Gallery data={sectionData} />
     </>
   );
 };
