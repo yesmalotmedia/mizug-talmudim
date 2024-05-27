@@ -13,14 +13,14 @@ export default function LogoAndSocialIcon() {
     socialLogoWrapper: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "center",
-      gap: isMobile ? 30 : 9,
+      justifyContent: "flex-start",
+      gap: 9,
     },
     socialLogoImage: {
-      height: isMobile ? '5vmax':"35px",
-      width: isMobile ? '5vmax':"35px",
+      height: isMobile ? "5vmax" : "35px",
+      width: isMobile ? "5vmax" : "35px",
       cursor: "pointer",
-      margin: isMobile ? '30px 10px' : ''
+      margin: isMobile ? "30px 10px" : "",
     },
   };
   return (

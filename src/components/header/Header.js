@@ -24,40 +24,56 @@ function Header() {
       padding: 10,
     },
     logo: {
-      height: "10vw",
+      height: isMobile ? "25vmin" : "10vw",
       zIndex: 100,
-      marginRight: 50,
-      marginTop: 20,
+      marginRight: isMobile ? "1vw" : 50,
+      marginTop: isMobile ? "1vw" : 20,
     },
     vector: {
       position: "absolute",
       right: -20,
       top: -20,
-      width: "25vw",
-      height: 250,
+      width: isMobile ? "50vmin" : "25vw",
+      height: isMobile ? "50vmin" : 250,
     },
     terumot: {
       textDecoration: "none",
+    },
+    humburgerAndLink: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-end",
+    },
+    humburgerIcon: {
+      height: 35,
+      margin: "0 20px 0 10px",
+      cursor: "pointer",
     },
   };
 
   return (
     <>
       <div style={styles.container}>
-        <Link to={"/terumot"} style={styles.terumot}>
-          <Button
-            color={colors.white}
-            bgColor={bgColors.orangeGradient}
-            hoveredBgColor={bgColors.azureGradient}
-            title={"לתרומות"}
-            borderRadius={5}
-            fontSize={30}
-            fontWeight={600}
-            width={"280px"}
-          />
-        </Link>
-        {!isMobile && <Nav />}
+        <div style={styles.humburgerAndLink}>
+          <Link to={"/terumot"} style={styles.terumot}>
+            <Button
+              color={colors.white}
+              bgColor={bgColors.orangeGradient}
+              hoveredBgColor={bgColors.azureGradient}
+              title={"לתרומות"}
+              borderRadius={5}
+              fontSize={isMobile ? 15 : 30}
+              fontWeight={600}
+              width={isMobile ? "130px" : "280px"}
+              height={isMobile? 30: ''}
+            />
+          </Link>
+          {isMobile && (
+            <img style={styles.humburgerIcon} src="/humburgerMenuIcon.svg" />
+          )}
+        </div>
 
+        {!isMobile && <Nav />}
         <Logo style={styles.logo} />
         <img style={styles.vector} src="/logo-vector.png" alt="logo-vector" />
       </div>
