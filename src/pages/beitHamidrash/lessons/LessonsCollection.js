@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import LessonPreviewBox from "./LessonPreviewBox";
 import colors from "../../../styles/colors";
 import SelectInput from "../sideBarSearch/SelectInput";
+import { AppContext } from "../../../App";
 
 const LessonsCollection = ({ lessonsType, setlessonsType }) => {
+  const {isMobile} = useContext(AppContext)
   // data
   const leesonsData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   // styles
   const styles = {
-    mainContainer: {},
+    mainContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
     lessonsContainer: {
-      width: "80%",
-      maxWidth: 1000,
+      width: isMobile? "100%":"80%",
+      maxWidth: 1200,
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-around",
+      justifyContent: "space-between",
       flexWrap: "wrap",
-    },
-    box: {
-      margin: "5px", // Adjust the space between boxes here
+      gap: "30px", // Adjust the space between boxes here
+      margin: "0 auto",
     },
     titleSection: {
       display: "flex",
@@ -46,10 +51,7 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
 
   // functions
   const lessonsBoxesElements = leesonsData.map((lesson) => (
-    <div key={lesson} style={styles.box}>
-      <LessonPreviewBox />
-      <br />
-    </div>
+    <LessonPreviewBox key={lesson} />
   ));
 
   return (

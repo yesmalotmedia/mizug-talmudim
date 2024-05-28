@@ -36,12 +36,14 @@ const CyrcleButton = ({ imgSrc, title, smallImgButton }) => {
       }
     : {
         container: {
-          width: "6vw",
-          height: "6vw",
+          width: isMobile ? '90px':"6vw",
+          height: isMobile ? '90px':"6vw",
           borderRadius: "50%",
           overFlow: "hidden",
           border: "solid 4px " + colors.orange,
           cursor: "pointer",
+
+          
         },
         img: { width: "100%" },
         title: {
@@ -49,7 +51,7 @@ const CyrcleButton = ({ imgSrc, title, smallImgButton }) => {
           textAlign: "center",
           color: colors.darkBlue,
           marginTop: 10,
-          fontSize: "1.1vw",
+          fontSize: isMobile? '2vmax': "1.1vw",
         },
       };
 

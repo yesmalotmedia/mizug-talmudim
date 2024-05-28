@@ -2,16 +2,22 @@ import React, { useContext } from "react";
 import { AppContext } from "../../../App";
 
 export default function LessonPreviewBox() {
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors, isMobile } = useContext(AppContext);
 
   const styles = {
     container: {
-      height: "auto",
-      width: "13vw",
+     
+      flex: isMobile ? "1 1 calc(47% - 20px)" : "1 1 calc(30% - 40px)",
+      boxSizing: "border-box",
+      margin: "10px",
       border: `1px solid ${colors.azure}`,
       borderRadius: 30,
       boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
       padding: 15,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      backgroundColor: colors.white,
     },
     thumbnail: {
       height: "50%",
@@ -29,14 +35,14 @@ export default function LessonPreviewBox() {
       padding: 5,
     },
     title: {
-      fontSize: "1.2VW",
+      fontSize: isMobile ? "2.5vmax" : "1.3vw",
     },
     subTitle: {
-      fontSize: "1VW",
+      fontSize: isMobile ? "2.5vmax" : "1vw",
       padding: 5,
     },
     date: {
-      fontSize: "0.9VW",
+      fontSize: isMobile ? "2vmax" : "0.9vw",
     },
     bottomSection: {
       textAlign: "right",
@@ -52,26 +58,26 @@ export default function LessonPreviewBox() {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: "0.4vw 0.7vw",
+      padding: isMobile ? "1vmax 2vmax" : "0.5vw 0.9vw",
       borderRadius: 20,
       outline: "none",
       border: `1px solid ${colors.azure}`,
       color: colors.azure,
       fontWeight: 500,
-      fontSize: "0.6vw",
+      fontSize: isMobile ? "2vmax" : "0.9vw",
       background: colors.white,
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       cursor: "pointer",
     },
     icon: {
-      height: "0.8vw",
-      width: "0.8vw",
+      height: isMobile ? "3vmax" : "1vw",
+      width: isMobile ? "3vmax" : "1vw",
     },
   };
 
   return (
     <div style={styles.container}>
-      <img style={styles.thumbnail} src="videoblock.jpg"></img>
+      <img style={styles.thumbnail} src="videoblock.jpg" alt="thumbnail"></img>
       <div style={styles.description}>
         <h2 style={styles.title}>שם השיעור?</h2>
         <h3 style={styles.date}>תאריך</h3>
@@ -81,13 +87,13 @@ export default function LessonPreviewBox() {
         <h4 style={styles.subTitle}>תת כותרת </h4>
         <div style={styles.btnContainer}>
           <button style={styles.btn}>
-            <img style={styles.icon} src="watch.png"></img>לצפיה
+            <img style={styles.icon} src="watch.png" alt="watch"></img>לצפיה
           </button>
           <button style={styles.btn}>
-            <img style={styles.icon} src="listen.png"></img>לשמיעה
+            <img style={styles.icon} src="listen.png" alt="listen"></img>לשמיעה
           </button>
           <button style={styles.btn}>
-            <img style={styles.icon} src="read.png"></img>לקריאה
+            <img style={styles.icon} src="read.png" alt="read"></img>לקריאה
           </button>
         </div>
       </div>
