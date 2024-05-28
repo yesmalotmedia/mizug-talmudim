@@ -5,10 +5,12 @@ import MenuBtn from "../elements/MenuBtn";
 import Logo from "../elements/Logo";
 import Button from "../elements/Button";
 import { Link } from "react-router-dom";
+import MobileNav from "./MobileNav";
 
 function Header() {
   //context
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors, bgColors, isMobile, isMobileNavOpen, setIsMobileNavOpen } =
+    useContext(AppContext);
   //styles
   const styles = {
     container: {
@@ -54,7 +56,10 @@ function Header() {
   return (
     <>
       <div style={styles.container}>
-        <div style={styles.humburgerAndLink}>
+        <div
+          onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+          style={styles.humburgerAndLink}
+        >
           <Link to={"/terumot"} style={styles.terumot}>
             <Button
               color={colors.white}
@@ -65,7 +70,7 @@ function Header() {
               fontSize={isMobile ? 15 : 30}
               fontWeight={600}
               width={isMobile ? "130px" : "280px"}
-              height={isMobile? 30: ''}
+              height={isMobile ? 30 : ""}
             />
           </Link>
           {isMobile && (
@@ -73,7 +78,7 @@ function Header() {
           )}
         </div>
 
-        {!isMobile && <Nav />}
+        {isMobile ? <MobileNav /> : <Nav />}
         <Logo style={styles.logo} />
         <img style={styles.vector} src="/logo-vector.png" alt="logo-vector" />
       </div>

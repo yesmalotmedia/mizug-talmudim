@@ -19,7 +19,7 @@ export default function Modal() {
       left: 20,
       bottom: isShrink ? (isMobile ? 110 : 50) : isMobile ? 20 : 200,
       borderRadius: isShrink ? "50%" : 30,
-      zIndex: 999,
+      zIndex: 500,
       opacity: isVisible ? 1 : 0, // Set opacity based on visibility state
       transition: "all 0.3s", // Add transition effect
       border: "solid white 1px",

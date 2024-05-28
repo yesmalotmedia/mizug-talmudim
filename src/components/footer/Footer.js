@@ -35,10 +35,10 @@ const Footer = () => {
       justifyContent: "space-between",
       width: "38vmax",
     },
-    footerMenu:{
-      display: 'flex',
-      alignItems: isMobile ? 'center': '',
-      justifyContent: isMobile ? 'center': '',
+    footerMenu: {
+      display: "flex",
+      alignItems: isMobile ? "center" : "",
+      justifyContent: isMobile ? "center" : "",
     },
     copyRight: {
       textAlign: "center",
@@ -56,9 +56,9 @@ const Footer = () => {
     },
     icon: {
       position: "relative",
-      display: 'flex',
-      alignItems: isMobile ? 'center': '',
-      justifyContent: isMobile ? 'center': '',
+      display: "flex",
+      alignItems: isMobile ? "center" : "",
+      justifyContent: isMobile ? "center" : "",
       top: 8,
     },
     text: {

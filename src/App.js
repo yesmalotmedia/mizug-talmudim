@@ -19,7 +19,7 @@ function App() {
 
   //state
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
-
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   //data
   // const videos = useVideos();
   // console.log(videos);
@@ -42,6 +42,8 @@ function App() {
         description,
         dailyTextsData,
         postsData,
+        isMobileNavOpen,
+        setIsMobileNavOpen,
       }}
     >
       <div className="App">
