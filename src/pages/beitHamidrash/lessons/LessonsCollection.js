@@ -17,7 +17,7 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       alignItems: "center",
     },
     lessonsContainer: {
-      width: isMobile? "100%":"80%",
+      width: isMobile? "99%":"80%",
       maxWidth: 1200,
       display: "flex",
       alignItems: "center",
@@ -48,7 +48,6 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       fontWeight: 500,
     },
   };
-
   // functions
   const lessonsBoxesElements = leesonsData.map((lesson) => (
     <LessonPreviewBox key={lesson} />

@@ -61,7 +61,6 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
       <CyrcleButton imgSrc={btn.img} title={btn.title} />
     </div>
   ));
-
   return <div style={styles.container}>{selectedButtonsElements}</div>;
 };
 
