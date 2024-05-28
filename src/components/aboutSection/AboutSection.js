@@ -39,7 +39,7 @@ const AboutSection = () => {
     },
     title: {
       color: colors.white,
-      fontSize: isMobile ? "6vw" : "3vw",
+      fontSize: isMobile ? "4.5vmax" : "3vw",
       fontWeight: 500,
       textAlign: "center",
       maxWidth: 400,
@@ -52,7 +52,7 @@ const AboutSection = () => {
       padding: "5vw",
       color: colors.darkBlue,
       fontWeight: 600,
-      fontSize: isMobile ? "2.7vw" : "1.5vw",
+      fontSize: isMobile ? "2vmax" : "1.5vw",
       lineHeight: 1.5,
       maxWidth: 1000,
       zIndex: 3,

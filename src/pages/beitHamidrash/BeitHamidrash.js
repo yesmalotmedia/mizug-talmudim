@@ -29,6 +29,16 @@ const BeitHamidrash = () => {
       justifyContent: "space-between",
       margin: "auto",
     },
+
+    selectionButtonContainer: isMobile
+      ? {
+          overflowY: "auto",
+          margin: "-60px 0 20px 0",
+          paddingTop: 100,
+          scrollbarWidth: "none",
+          paddingRight: 70,
+        }
+      : {},
   };
   // functions
 
@@ -39,18 +49,19 @@ const BeitHamidrash = () => {
         backgroundImage={"hero2.png"}
         subTitle={"בחרו את הנושא שמעניין אתכם"}
         titleColor={colors.white}
-        height={"60vmin"}
-        marginTop={90}
+        height={isMobile ? "75vmin" : "60vmin"}
+        marginTop={isMobile ? 95 : 90}
       />
-
-      <HeroBeitHamidrash />
-      <SeltectButtons
-        lessonsType={lessonsType}
-        setlessonsType={setlessonsType}
-      />
+      <div style={styles.selectionButtonContainer}>
+        <SeltectButtons
+          lessonsType={lessonsType}
+          setlessonsType={setlessonsType}
+        />
+      </div>
 
       <section style={styles.mainSection}>
-        <SideBarSearch />
+        {!isMobile &&    <SideBarSearch />}
+     
         <LessonsCollection
           lessonsType={lessonsType}
           setlessonsType={setlessonsType}

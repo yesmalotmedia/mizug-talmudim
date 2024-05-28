@@ -26,14 +26,14 @@ const DailyText = () => {
     },
     text: {
       color: colors.darkBlue,
-      fontSize: isMobile ? "6vw" : "3vw",
+      fontSize: isMobile ? "3vmax" : "3vw",
       fontWeight: 600,
     },
     textSource: {
       textAlign: "center",
       color: colors.darkBlue,
       fontWeight: 500,
-      fontSize: isMobile ? "4.5vw" : "2vw",
+      fontSize: isMobile ? "3vmax" : "2vw",
     },
     bgImg: {
       width: isMobile ? "100%" : "70%",

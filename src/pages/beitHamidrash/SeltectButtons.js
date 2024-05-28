@@ -41,9 +41,15 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
       transform: "translateY(-90%)",
       display: "flex",
       width: "45vw",
-      justifyContent: "space-around",
-      margin: "auto",
+      justifyContent: isMobile? 'center': "space-around",
+      marginInline: 'auto'
     },
+    btn: isMobile ? {
+      padding: "0 10px",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+    }: {}
   };
 
   //functions
@@ -51,7 +57,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
     setlessonsType(btnTitle);
   };
   const selectedButtonsElements = selectButtons.map((btn, index) => (
-    <div onClick={() => handleClick(btn.title)} key={index}>
+    <div style={styles.btn} onClick={() => handleClick(btn.title)} key={index}>
       <CyrcleButton imgSrc={btn.img} title={btn.title} />
     </div>
   ));
