@@ -16,11 +16,11 @@ export default function Modal() {
       flexDirection: "column",
       padding: 30,
       position: "fixed",
-      left: isShrink ? (isMobile? 60: 100):(isMobile? "50%": 300) ,
-      transform: 'translateX(-50%)',
+      left: isShrink ? (isMobile ? 60 : 100) : isMobile ? "50%" : 300,
+      transform: "translateX(-50%)",
       bottom: isShrink ? (isMobile ? 110 : 50) : isMobile ? 20 : 200,
       borderRadius: isShrink ? "50%" : 30,
-      zIndex: 500,
+      zIndex: 999,
       opacity: isVisible ? 1 : 0, // Set opacity based on visibility state
       transition: "all 0.3s", // Add transition effect
       border: "solid white 1px",
@@ -80,33 +80,35 @@ export default function Modal() {
 
   return (
     <>
-      <form style={styles.form}>
-        {!isShrink && (
-          <div style={styles.closeButton} onClick={() => setIsShrink(true)}>
-            X
-          </div>
-        )}
-        <label onClick={() => setIsShrink(false)} style={styles.label}>
-          רוצים להקדיש שיעור? להנציח?
-        </label>
-        {!isShrink && (
-          <div style={styles.inputContainer}>
-            <input style={styles.input} type="text" placeholder=" שם " />
-            <input style={styles.input} type="text" placeholder=" טלפון " />
-          </div>
-        )}
-        {!isShrink && (
-          <Button
-            bgColor={bgColors.orangeGradient}
-            color={colors.white}
-            borderRadius={30}
-            fontWeight={600}
-            fontSize={20}
-            title=" חזרו אלי "
-            hoveredBgColor={bgColors.azureGradient}
-          />
-        )}
-      </form>
+      {isVisible && ( // Conditionally render the form
+        <form style={styles.form}>
+          {!isShrink && (
+            <div style={styles.closeButton} onClick={() => setIsShrink(true)}>
+              X
+            </div>
+          )}
+          <label onClick={() => setIsShrink(false)} style={styles.label}>
+            רוצים להקדיש שיעור? להנציח?
+          </label>
+          {!isShrink && (
+            <div style={styles.inputContainer}>
+              <input style={styles.input} type="text" placeholder=" שם " />
+              <input style={styles.input} type="text" placeholder=" טלפון " />
+            </div>
+          )}
+          {!isShrink && (
+            <Button
+              bgColor={bgColors.orangeGradient}
+              color={colors.white}
+              borderRadius={30}
+              fontWeight={600}
+              fontSize={20}
+              title=" חזרו אלי "
+              hoveredBgColor={bgColors.azureGradient}
+            />
+          )}
+        </form>
+      )}
     </>
   );
 }

@@ -6,7 +6,7 @@ export default function LessonPreviewBox() {
 
   const styles = {
     container: {
-      flex: isMobile ? "1 1 calc(47% - 20px)" : "1 1 calc(30% - 40px)",
+      flex: isMobile ? "1 1 calc(48% - 20px)" : "1 1 calc(30% - 40px)",
       boxSizing: "border-box",
       margin: "10px",
       border: `1px solid ${colors.azure}`,

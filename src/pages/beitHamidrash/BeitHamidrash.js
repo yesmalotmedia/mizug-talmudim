@@ -8,7 +8,6 @@ import SideBarSearch from "./sideBarSearch/SideBarSearch";
 import LessonsSection from "./lessons/LessonSection";
 import HeroSection from "../../components/elements/HeroSection";
 import LessonsCollection from "./lessons/LessonsCollection";
-
 const BeitHamidrash = () => {
   // data
   const { colors, bgColors, isMobile } = useContext(AppContext);
@@ -20,7 +19,7 @@ const BeitHamidrash = () => {
     mainSection: {
       padding: 15,
       display: "flex",
-      marginTop: 100,
+      margin: isMobile ? 0 : 100,
       justifyContent: "center",
     },
     titleSection: {
@@ -33,7 +32,7 @@ const BeitHamidrash = () => {
     selectionButtonContainer: isMobile
       ? {
           overflowY: "auto",
-          margin: "-60px 0 20px 0",
+          margin: "-50px 0 20px 0",
           paddingTop: 100,
           scrollbarWidth: "none",
           paddingRight: 70,
@@ -43,7 +42,7 @@ const BeitHamidrash = () => {
   // functions
 
   return (
-    <div>
+    <>
       <HeroSection
         title={"בית המדרש"}
         backgroundImage={"hero2.png"}
@@ -52,6 +51,7 @@ const BeitHamidrash = () => {
         height={isMobile ? "75vmin" : "60vmin"}
         marginTop={isMobile ? 95 : 90}
       />
+
       <div style={styles.selectionButtonContainer}>
         <SeltectButtons
           lessonsType={lessonsType}
@@ -59,15 +59,16 @@ const BeitHamidrash = () => {
         />
       </div>
 
+  
       <section style={styles.mainSection}>
-        {!isMobile &&  <SideBarSearch />}
-     
+        {!isMobile && <SideBarSearch />}
+
         <LessonsCollection
           lessonsType={lessonsType}
           setlessonsType={setlessonsType}
         />
       </section>
-    </div>
+    </>
   );
 };
 
