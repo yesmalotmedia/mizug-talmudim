@@ -21,8 +21,8 @@ export default function Modal() {
       bottom: isShrink ? (isMobile ? 110 : 50) : isMobile ? 20 : 200,
       borderRadius: isShrink ? "50%" : 30,
       zIndex: 999,
-      opacity: isVisible ? 1 : 0, // Set opacity based on visibility state
-      transition: "all 0.3s", // Add transition effect
+      opacity: isVisible ? 1 : 0,
+      transition: "all 0.3s",
       border: "solid white 1px",
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 10px 20px 0px",
     },
@@ -80,33 +80,35 @@ export default function Modal() {
 
   return (
     <>
-      <form style={styles.form}>
-        {!isShrink && (
-          <div style={styles.closeButton} onClick={() => setIsShrink(true)}>
-            X
-          </div>
-        )}
-        <label onClick={() => setIsShrink(false)} style={styles.label}>
-          רוצים להקדיש שיעור? להנציח?
-        </label>
-        {!isShrink && (
-          <div style={styles.inputContainer}>
-            <input style={styles.input} type="text" placeholder=" שם " />
-            <input style={styles.input} type="text" placeholder=" טלפון " />
-          </div>
-        )}
-        {!isShrink && (
-          <Button
-            bgColor={bgColors.orangeGradient}
-            color={colors.white}
-            borderRadius={30}
-            fontWeight={600}
-            fontSize={20}
-            title=" חזרו אלי "
-            hoveredBgColor={bgColors.azureGradient}
-          />
-        )}
-      </form>
+      {isVisible && ( // Conditionally render the form
+        <form style={styles.form}>
+          {!isShrink && (
+            <div style={styles.closeButton} onClick={() => setIsShrink(true)}>
+              X
+            </div>
+          )}
+          <label onClick={() => setIsShrink(false)} style={styles.label}>
+            רוצים להקדיש שיעור? להנציח?
+          </label>
+          {!isShrink && (
+            <div style={styles.inputContainer}>
+              <input style={styles.input} type="text" placeholder=" שם " />
+              <input style={styles.input} type="text" placeholder=" טלפון " />
+            </div>
+          )}
+          {!isShrink && (
+            <Button
+              bgColor={bgColors.orangeGradient}
+              color={colors.white}
+              borderRadius={30}
+              fontWeight={600}
+              fontSize={20}
+              title=" חזרו אלי "
+              hoveredBgColor={bgColors.azureGradient}
+            />
+          )}
+        </form>
+      )}
     </>
   );
 }
