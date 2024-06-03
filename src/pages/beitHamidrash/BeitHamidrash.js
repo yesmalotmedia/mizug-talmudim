@@ -60,7 +60,7 @@ const BeitHamidrash = () => {
       </div>
 
       <section style={styles.mainSection}>
-        {!isMobile &&    <SideBarSearch />}
+        {!isMobile &&  <SideBarSearch />}
      
         <LessonsCollection
           lessonsType={lessonsType}
