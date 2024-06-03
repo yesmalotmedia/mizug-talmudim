@@ -11,18 +11,24 @@ import VideoUploader from "./components/VideoUploader";
 import { RouterProvider } from "react-router-dom";
 import routers from "./Routes";
 import postsData from "./data/postsData";
+import useFetch from "./assets/useFetch";
 
+import getVideoData from "./assets/getVideoData";
 export const AppContext = React.createContext();
 
 function App() {
   //data
-
+  const { data, loading, error } = useFetch(
+    "https://yesmalot.co.il/wp-json/wp/v2/posts?_fields=acf&per_page=10"
+  );
   //state
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   //data
   // const videos = useVideos();
-  // console.log(videos);
+  if (data) {
+    console.log(getVideoData(data));
+  }
 
   //state
   //context
@@ -44,6 +50,7 @@ function App() {
         postsData,
         isMobileNavOpen,
         setIsMobileNavOpen,
+        data,
       }}
     >
       <div className="App">

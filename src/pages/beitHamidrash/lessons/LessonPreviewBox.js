@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import { AppContext } from "../../../App";
 
 export default function LessonPreviewBox() {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, isMobile, data } = useContext(AppContext);
 
   const styles = {
     container: {
-     
       flex: isMobile ? "1 1 calc(47% - 20px)" : "1 1 calc(30% - 40px)",
       boxSizing: "border-box",
       margin: "10px",

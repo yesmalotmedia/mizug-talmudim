@@ -56,10 +56,7 @@ function Header() {
   return (
     <>
       <div style={styles.container}>
-        <div
-          onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-          style={styles.humburgerAndLink}
-        >
+        <div style={styles.humburgerAndLink}>
           <Link to={"/terumot"} style={styles.terumot}>
             <Button
               color={colors.white}
@@ -74,7 +71,12 @@ function Header() {
             />
           </Link>
           {isMobile && (
-            <img style={styles.humburgerIcon} src="/humburgerMenuIcon.svg" />
+            <img
+              onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+              style={styles.humburgerIcon}
+              src="/humburgerMenuIcon.svg"
+              alt="habmurgerBtn"
+            />
           )}
         </div>
 
