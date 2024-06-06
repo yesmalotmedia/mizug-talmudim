@@ -24,11 +24,11 @@ const SideBarSearch = () => {
   const styles = {
     container: {
       backgroundColor: bgColors.lightAzure,
-      borderRadius: isMobile? 0:50,
+      borderRadius: isMobile ? 0 : 50,
       padding: 20,
-      width: isMobile? "100%" : "20%",
-      maxWidth: isMobile? '100%': 300,
-      maxHeight: isMobile? "100vh":700,
+      width: isMobile ? "100%" : "40%",
+      maxWidth: isMobile ? "100%" : 300,
+      maxHeight: isMobile ? "100vh" : 700,
       display: "flex",
       justifyContent: "space-around",
       alignItems: "center",
@@ -65,34 +65,36 @@ const SideBarSearch = () => {
       color: colors.azure,
       fontSize: 15,
       fontWeight: 500,
-      width: isMobile? '50%':"90%",
+      width: isMobile ? "50%" : "90%",
       marginBottom: 5,
       marginRight: 5,
     },
-    clearAll:{
+    clearAll: {
       border: `1px solid ${colors.darkBlue}`,
       borderRadius: 20,
-      padding: '7px 14px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
+      padding: "7px 14px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
       gap: 10,
       color: colors.darkBlue,
       fontSize: 17,
       fontWeight: 500,
-      margin: '0 170px 20px 0'
-    }
+      margin: "0 170px 20px 0",
+    },
   };
 
   //functions
   return (
     <form style={styles.container}>
-      {isMobile && <>
-      <div style={styles.clearAll}>
-        <img src="clearAll.svg"/>
-        <span>נקה הכל</span>
-      </div>
-      </>}
+      {isMobile && (
+        <>
+          <div style={styles.clearAll}>
+            <img src="clearAll.svg" />
+            <span>נקה הכל</span>
+          </div>
+        </>
+      )}
       <div style={styles.searchContainer}>
         <input style={styles.searchInput} placeholder="הקלידו לחיפוש" />
         <img

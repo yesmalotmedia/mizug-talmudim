@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../App";
+import YouTubeVideo2 from "../../../components/elements/youTubeVideo2";
+import { Link } from "react-router-dom";
 
-export default function LessonPreviewBox() {
-  const { colors, isMobile, data } = useContext(AppContext);
-
+export default function LessonPreviewBox({ video }) {
+  const { colors, isMobile } = useContext(AppContext);
   const styles = {
     container: {
       flex: isMobile ? "1 1 calc(48% - 20px)" : "1 1 calc(30% - 40px)",
@@ -17,6 +18,8 @@ export default function LessonPreviewBox() {
       flexDirection: "column",
       justifyContent: "space-between",
       backgroundColor: colors.white,
+      maxWidth: 300,
+      height: 400,
     },
     thumbnail: {
       height: "50%",
@@ -28,20 +31,23 @@ export default function LessonPreviewBox() {
     },
     description: {
       display: "flex",
-      alignItems: "center",
+      alignItems: "start",
       justifyContent: "space-between",
       color: colors.darkBlue,
       padding: 5,
     },
     title: {
-      fontSize: isMobile ? "2.5vmax" : "1.3vw",
+      fontSize: isMobile ? "2.4vmax" : "1.2vw",
     },
     subTitle: {
       fontSize: isMobile ? "2.5vmax" : "1vw",
       padding: 5,
+      fontWeight: 400,
     },
     date: {
-      fontSize: isMobile ? "2vmax" : "0.9vw",
+      fontSize: isMobile ? "1.9vmax" : "0.8vw",
+      fontWeight: 400,
+      marginTop: 4,
     },
     bottomSection: {
       textAlign: "right",
@@ -50,8 +56,10 @@ export default function LessonPreviewBox() {
     btnContainer: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between",
-      paddingTop: 20,
+      justifyContent: "center",
+      paddingTop: 40,
+      height: "35%",
+      gap: 10,
     },
     btn: {
       display: "flex",
@@ -74,20 +82,28 @@ export default function LessonPreviewBox() {
     },
   };
 
+  //functions
+
+  const openToWatch = (lessonId) => {
+    console.log(lessonId);
+  };
   return (
     <div style={styles.container}>
-      <img style={styles.thumbnail} src="videoblock.jpg" alt="thumbnail"></img>
-      <div style={styles.description}>
-        <h2 style={styles.title}>שם השיעור?</h2>
-        <h3 style={styles.date}>תאריך</h3>
-      </div>
+      <YouTubeVideo2 url={video.url} index={video.key} />
 
+      <div style={styles.description}>
+        <div style={{ width: "60%" }}>
+          <h2 style={styles.title}> {video.title}</h2>
+          <h2 style={styles.subTitle}> {video.rabbiName}</h2>
+        </div>
+
+        <h3 style={styles.date}>{video.date}</h3>
+      </div>
       <div style={styles.bottomSection}>
-        <h4 style={styles.subTitle}>תת כותרת </h4>
         <div style={styles.btnContainer}>
-          <button style={styles.btn}>
+          <Link style={styles.btn} to={`/BeitHamidrash/${video.id}`}>
             <img style={styles.icon} src="watch.png" alt="watch"></img>לצפיה
-          </button>
+          </Link>
           <button style={styles.btn}>
             <img style={styles.icon} src="listen.png" alt="listen"></img>לשמיעה
           </button>

@@ -38,18 +38,20 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
 
   const styles = {
     container: {
-      transform: "translateY(-90%)",
+      transform: "translateY(-70%)",
       display: "flex",
       width: "45vw",
-      justifyContent: isMobile? 'center': "space-around",
-      marginInline: 'auto'
+      justifyContent: isMobile ? "center" : "space-around",
+      marginInline: "auto",
     },
-    btn: isMobile ? {
-      padding: "0 10px",
-      border: "none",
-      borderRadius: "5px",
-      cursor: "pointer",
-    }: {}
+    btn: isMobile
+      ? {
+          padding: "0 10px",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }
+      : {},
   };
 
   //functions

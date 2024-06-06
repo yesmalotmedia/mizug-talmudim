@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
-import Button from "../elements/Button";
+import Button from "./Button";
 import colors from "../../styles/colors";
 import bgColors from "../../styles/bg-colors";
 

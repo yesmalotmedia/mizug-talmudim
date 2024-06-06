@@ -24,7 +24,7 @@ const PostDetails = () => {
     textTitle: {
       color: colors.darkBlue,
       fontSize: "2.3vmax",
-      lineHeight: '3vw'
+      lineHeight: "3vw",
     },
     tarikContainer: {
       display: "flex",
@@ -64,7 +64,7 @@ const PostDetails = () => {
             UrlPageName={"WhatsNew"}
           />
           <div>
-            <SharePost/>
+            <SharePost />
           </div>
           <PostSuggestion
             currentPostId={post.id}

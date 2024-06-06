@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import LessonPreviewBox from "./LessonPreviewBox";
 import colors from "../../../styles/colors";
 import SelectInput from "../sideBarSearch/SelectInput";
@@ -6,9 +6,9 @@ import { AppContext } from "../../../App";
 import MobileFilter from "../MobileFilter";
 
 const LessonsCollection = ({ lessonsType, setlessonsType }) => {
-  const { isMobile } = useContext(AppContext);
+  const { isMobile, parsedData, videos } = useContext(AppContext);
+
   // data
-  const leesonsData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   // styles
   const styles = {
@@ -22,9 +22,9 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       maxWidth: 1200,
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between",
+      justifyContent: "center",
       flexWrap: "wrap",
-      gap: "30px",
+      gap: "10px",
       margin: "0 auto",
     },
     titleSection: {
@@ -37,24 +37,24 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       color: colors.darkBlue,
       fontWeight: 700,
       fontSize: 22,
-
     },
     sortContainer: {
       width: "40%",
       display: "flex",
     },
     label: {
-      width: "20%",
+      width: "30%",
       lineHeight: 3,
       color: colors.azure,
       fontWeight: 500,
     },
   };
   // functions
-  const lessonsBoxesElements = leesonsData.map((lesson) => (
-    <LessonPreviewBox key={lesson} />
+  const lessonsBoxesElements = videos.map((video) => (
+    <LessonPreviewBox key={video.id} video={video} />
   ));
 
+  console.log(videos);
   return (
     <div style={styles.mainContainer}>
       <div style={styles.titleSection}>

@@ -14,26 +14,29 @@ import postsData from "./data/postsData";
 import useFetch from "./assets/useFetch";
 
 import getVideoData from "./assets/getVideoData";
+import extractYoutubeUrl from "./assets/extractYoutubeUrl";
+import extractPostsData from "./assets/extractPostsData";
+
 export const AppContext = React.createContext();
 
 function App() {
   //data
   const { data, loading, error } = useFetch(
-    "https://yesmalot.co.il/wp-json/wp/v2/posts?_fields=acf&per_page=10"
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts"
   );
   //state
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   //data
-  // const videos = useVideos();
+  let parsedData = [];
+  let videos = [];
   if (data) {
-    console.log(getVideoData(data));
+    parsedData = extractPostsData(data);
+    videos = parsedData?.filter((e) => e.contentType === "video");
   }
 
   //state
   //context
-
-  // getDatabase();
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 1200);
@@ -49,8 +52,9 @@ function App() {
         dailyTextsData,
         postsData,
         isMobileNavOpen,
+        parsedData,
+        videos,
         setIsMobileNavOpen,
-        data,
       }}
     >
       <div className="App">

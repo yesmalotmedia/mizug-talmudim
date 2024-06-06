@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 import lastLessons from "../../data/lastLessons";
 import videoUrls from "../../data/videoUrls";
 import LessonLinkImg from "../elements/LessonLinkImg";
-import YouTubeVideo from "../elements/Video";
+import YouTubeVideo from "../elements/YouTubeVideo";
 import { sectionAzure, sectionCream } from "../../styles/sectionsStyle";
 import colors from "../../styles/colors";
 import Spacer from "../elements/Spacer";

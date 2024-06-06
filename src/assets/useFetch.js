@@ -6,20 +6,22 @@ const useFetch = (url, options = {}) => {
   const [error, setError] = useState(null);
 
   const memoizedOptions = useMemo(() => options, [JSON.stringify(options)]);
+  const cacheBuster = new Date().getTime();
 
   useEffect(() => {
     console.log("Fetching data from:", url);
-    console.log("With options:", memoizedOptions);
 
-    const abortController = new AbortController();
-    const signal = abortController.signal;
+    // const abortController = new AbortController();
+    // const signal = abortController.signal;
 
     const fetchData = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(url, { ...memoizedOptions, signal });
+        const response = await fetch(`${url}?cache_buster=${cacheBuster}`, {
+          ...memoizedOptions,
+        });
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }
@@ -38,7 +40,6 @@ const useFetch = (url, options = {}) => {
 
     return () => {
       console.log("Cleanup: aborting fetch");
-      abortController.abort();
     };
   }, [url, memoizedOptions]);
 

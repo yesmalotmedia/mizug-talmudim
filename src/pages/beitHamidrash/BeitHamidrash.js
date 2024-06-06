@@ -8,12 +8,14 @@ import SideBarSearch from "./sideBarSearch/SideBarSearch";
 import LessonsSection from "./lessons/LessonSection";
 import HeroSection from "../../components/elements/HeroSection";
 import LessonsCollection from "./lessons/LessonsCollection";
+import { useParams } from "react-router-dom";
 const BeitHamidrash = () => {
   // data
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors, bgColors, isMobile, videos } = useContext(AppContext);
   const screenWidth = window.innerWidth;
   // states
-  const [lessonsType, setlessonsType] = useState();
+  const [lessonsType, setlessonsType] = useState("הדף היומי");
+  const { videoId } = useParams();
   // styles
   const styles = {
     mainSection: {
@@ -26,7 +28,7 @@ const BeitHamidrash = () => {
       display: "flex",
       width: "60%",
       justifyContent: "space-between",
-      margin: "auto",
+      // margin: "auto",
     },
 
     selectionButtonContainer: isMobile
@@ -59,14 +61,16 @@ const BeitHamidrash = () => {
         />
       </div>
 
-  
       <section style={styles.mainSection}>
         {!isMobile && <SideBarSearch />}
-
-        <LessonsCollection
-          lessonsType={lessonsType}
-          setlessonsType={setlessonsType}
-        />
+        {!videoId ? (
+          <LessonsCollection
+            lessonsType={lessonsType}
+            setlessonsType={setlessonsType}
+          />
+        ) : (
+          <LessonsSection videoId={videoId} />
+        )}
       </section>
     </>
   );

@@ -15,6 +15,7 @@ import ErrorPage from "./pages/ErrorPage";
 import PostDetails from "./pages/whatsnew/PostDetails";
 import Terumot from "./pages/terumot/Terumot";
 import TextEditor from "./pages/admin/TextEditor";
+import LessonSection from "./pages/beitHamidrash/lessons/LessonSection";
 
 const routers = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const routers = createBrowserRouter([
       },
       {
         path: "BeitHamidrash",
+        element: <BeitHamidrash />,
+      },
+      {
+        path: "BeitHamidrash/:videoId",
         element: <BeitHamidrash />,
       },
       {

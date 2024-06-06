@@ -1,17 +1,21 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../App";
 import AudioPlayer from "../../../components/elements/AudioPlayer";
+import { useParams } from "react-router-dom";
+import YouTubeVideo2 from "../../../components/elements/youTubeVideo2";
 
-export default function LessonSection() {
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+export default function LessonSection({ videoId }) {
+  const { colors, bgColors, isMobile, videos } = useContext(AppContext);
+  const video = videos?.find((video) => video.id == videoId);
 
+  console.log(video);
   const styles = {
     container: {
       textAlign: "right",
       width: "100%",
     },
     headerSection: {
-        width: "70%",
+      width: "70%",
     },
     breadscrumb: {
       color: "gray",
@@ -48,28 +52,28 @@ export default function LessonSection() {
       borderRadius: 10,
       border: `2px solid ${colors.darkBlue}`,
     },
-    audioContainer:{
-        width: "70%",
-        marginTop: 10,
-        height: 60,
+    audioContainer: {
+      width: "70%",
+      marginTop: 10,
+      height: 60,
     },
     descriptionContainer: {
       width: "70%",
     },
     description: {
       textAlign: "justify",
-      padding: '15px 70px 10px 70px',
+      padding: "15px 70px 10px 70px",
       lineHeight: "1.9rem",
     },
-    footerSection:{
-        width: '70%'
+    footerSection: {
+      width: "70%",
     },
     commentsTitle: {
       color: colors.azure,
       padding: "30px 60px 10px 0",
     },
     input: {
-    width: '85%',
+      width: "85%",
       outline: "none",
       padding: 10,
       marginRight: 60,
@@ -83,24 +87,23 @@ export default function LessonSection() {
         <p style={styles.breadscrumb}>
           <span> שיעורי עיון </span> / <span> כאן רשום הנתיב </span>
         </p>
-        <h2 style={styles.nameOfRav}> שם הרב ??? </h2>
-        <h1 style={styles.nameOfSiur}> כאן שם השיעור? </h1>
+        <h2 style={styles.nameOfRav}> {video?.rabbiName} </h2>
+        <h1 style={styles.nameOfSiur}> {video?.title} </h1>
         <h3 style={styles.nameOfTitle}> תת כותרת </h3>
       </div>
 
       <div style={styles.videoSection}>
         <div style={styles.timeAndTimeContainer}>
-          <img style={styles.icon} src="tarik.png"></img>
-          <span style={styles.dateAndTimeText}> תאריך עברי ולועזי </span>
+          <span style={styles.dateAndTimeText}>{video?.date}</span>
           <img style={styles.icon} src="time.png"></img>
           <span style={styles.dateAndTimeText}> זמן קריאה: 8 דק’ </span>
         </div>
 
-        <img style={styles.video} src="videoblock.jpg" alt="video"></img>
+        <YouTubeVideo2 url={video?.url} index={video?.key} />
       </div>
-        <div style={styles.audioContainer}>
+      <div style={styles.audioContainer}>
         <AudioPlayer audioSrc="audioPlayer/testAudio.mp3" />
-        </div>
+      </div>
       <div style={styles.descriptionContainer}>
         <p style={styles.description}>
           ילקוף, מרגשי ומרגשח. עמחליף נולום ארווס סאפיאן - פוסיליס קוויס,
