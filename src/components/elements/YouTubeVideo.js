@@ -4,11 +4,14 @@ import Button from "./Button";
 import colors from "../../styles/colors";
 import bgColors from "../../styles/bg-colors";
 import getCategoryNameById from "../../assets/getCategoryNameById";
+import { useNavigate } from "react-router-dom";
+
 function YouTubeVideo({ url, index, title, category }) {
-  console.log(category);
+  const navigate = useNavigate();
 
   //context
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, isMobile, lessonsType, setlessonsType } =
+    useContext(AppContext);
 
   const styles = {
     container: {
@@ -42,6 +45,11 @@ function YouTubeVideo({ url, index, title, category }) {
     },
   };
 
+  //functions
+  const handleClick = () => {
+    setlessonsType(getCategoryNameById(category));
+    navigate(`/BeitHamidrash`);
+  };
   return (
     <div style={styles.container}>
       <div style={styles.subContainer}>
@@ -67,6 +75,7 @@ function YouTubeVideo({ url, index, title, category }) {
         borderRadius={50}
         width={"90%"}
         arrow={true}
+        onClick={handleClick}
       />
     </div>
   );

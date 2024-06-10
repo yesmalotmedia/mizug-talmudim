@@ -40,6 +40,8 @@ function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
+  const [lessonsType, setlessonsType] = useState("כל השיעורים");
+
   // Parsing data
   let parsedData = [];
   let videos = [];
@@ -78,6 +80,8 @@ function App() {
         videos,
         categories: categories || [], // Default to an empty array if categoriesData is undefined
         loadingCategories,
+        lessonsType,
+        setlessonsType,
         setIsMobileNavOpen,
       }}
     >

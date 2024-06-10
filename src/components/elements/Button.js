@@ -13,6 +13,7 @@ const Button = ({
   width,
   arrow,
   height,
+  onClick,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -50,6 +51,7 @@ const Button = ({
       style={styles.button}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
     >
       <div style={styles.text}>{title}</div>
       {arrow && <img style={styles.img} src="arrow-to-left.png" alt="arrow" />}

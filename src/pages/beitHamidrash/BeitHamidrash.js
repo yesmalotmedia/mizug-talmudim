@@ -11,11 +11,18 @@ import LessonsCollection from "./lessons/LessonsCollection";
 import { useParams } from "react-router-dom";
 const BeitHamidrash = () => {
   // data
-  const { colors, bgColors, isMobile, videos, categories, loadingCategories } =
-    useContext(AppContext);
+  const {
+    colors,
+    bgColors,
+    isMobile,
+    videos,
+    categories,
+    loadingCategories,
+    lessonsType,
+    setlessonsType,
+  } = useContext(AppContext);
   const screenWidth = window.innerWidth;
   // states
-  const [lessonsType, setlessonsType] = useState("כל השיעורים");
   const [lessonsFilter, setlessonsFilter] = useState();
   const { videoId } = useParams();
   // styles
