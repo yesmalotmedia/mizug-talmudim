@@ -9,6 +9,7 @@ function extractPostsData(data) {
     rabbiName: getRabbieNameById(item.rabbies[0]),
     contentType: item.acf.contentType,
     url: extractYoutubeUrl(item.acf.url),
+    categories: item.categories,
   }));
 }
 

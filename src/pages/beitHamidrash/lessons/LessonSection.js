@@ -3,11 +3,18 @@ import { AppContext } from "../../../App";
 import AudioPlayer from "../../../components/elements/AudioPlayer";
 import { useParams } from "react-router-dom";
 import YouTubeVideo2 from "../../../components/elements/youTubeVideo2";
+import getCategoryNameById from "../../../assets/getCategoryNameById";
+import extractYoutubeCoverByVideoId from "../../../assets/extractYoutubeCoverByVideoId";
+import VideoCover from "../../../components/elements/VideoCover";
 
 export default function LessonSection({ videoId }) {
   const { colors, bgColors, isMobile, videos } = useContext(AppContext);
-  const video = videos?.find((video) => video.id == videoId);
+  const video = videos?.find((video) => video?.id == videoId);
+  const coverImage = extractYoutubeCoverByVideoId(video?.url);
+  console.log(coverImage);
 
+  const mainCategory = getCategoryNameById(video?.categories[0]);
+  const subCategory = getCategoryNameById(video?.categories[1]);
   console.log(video);
   const styles = {
     container: {
@@ -45,6 +52,9 @@ export default function LessonSection({ videoId }) {
       padding: "0 10px",
       fontWeight: 400,
       color: "gray",
+    },
+    videoSection: {
+      width: "70%",
     },
     video: {
       height: " 40%",
@@ -85,11 +95,10 @@ export default function LessonSection({ videoId }) {
     <div style={styles.container}>
       <div style={styles.headerSection}>
         <p style={styles.breadscrumb}>
-          <span> שיעורי עיון </span> / <span> כאן רשום הנתיב </span>
+          <span> {mainCategory}</span> / <span>{subCategory}</span>
         </p>
         <h2 style={styles.nameOfRav}> {video?.rabbiName} </h2>
         <h1 style={styles.nameOfSiur}> {video?.title} </h1>
-        <h3 style={styles.nameOfTitle}> תת כותרת </h3>
       </div>
 
       <div style={styles.videoSection}>
@@ -98,8 +107,7 @@ export default function LessonSection({ videoId }) {
           <img style={styles.icon} src="time.png"></img>
           <span style={styles.dateAndTimeText}> זמן קריאה: 8 דק’ </span>
         </div>
-
-        <YouTubeVideo2 url={video?.url} index={video?.key} />
+        <YouTubeVideo2 url={video?.url} index={video?.key} />{" "}
       </div>
       <div style={styles.audioContainer}>
         <AudioPlayer audioSrc="audioPlayer/testAudio.mp3" />

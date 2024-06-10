@@ -6,7 +6,7 @@ const getCategoryNameById = (id) => {
       name = "בית מדרש";
       break;
     case 5:
-      name = "דף יומי בתלמוד הירושלמי";
+      name = "דף יומי בירושלמי";
       break;
     case 10:
       name = "התלמוד הממוזג";
@@ -27,10 +27,10 @@ const getCategoryNameById = (id) => {
       name = "פרסומי הוצאה לאור";
       break;
     case 6:
-      name = "שיעורי עיון";
+      name = "עיון";
       break;
     default:
-      name = "Unknown";
+      name = "קטגוריה";
   }
 
   return name;

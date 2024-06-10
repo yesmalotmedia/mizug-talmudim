@@ -1,5 +1,5 @@
 const bgColors = {
-  lightAzure: "#E7F9FF ",
+  lightAzure: "#E7F9FF",
   white: "#FFFFFF",
   darkBlue: "#0053A0",
   azureWhiteGradient:
@@ -8,6 +8,8 @@ const bgColors = {
     "linear-gradient(180deg, rgba(237, 114, 47, 0.8), rgba(241, 143, 22, 0.8))",
   azureGradient:
     "linear-gradient(180deg, rgba(32, 183, 199), rgba( 58, 195, 211))",
+  darkBlueGradient:
+    "linear-gradient(180deg, rgba(0, 65, 140, 1),rgba(0, 83, 160, 1))",
 };
 
 export default bgColors;

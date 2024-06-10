@@ -21,12 +21,15 @@ export const AppContext = React.createContext();
 
 function App() {
   //data
+  //posts
   const { data, loading, error } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts"
   );
+
   //state
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
   //data
   let parsedData = [];
   let videos = [];

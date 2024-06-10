@@ -8,10 +8,12 @@ import { sectionAzure, sectionCream } from "../../styles/sectionsStyle";
 import colors from "../../styles/colors";
 import Spacer from "../elements/Spacer";
 import bgColors from "../../styles/bg-colors";
+import YouTubeVideo2 from "../elements/youTubeVideo2";
 const LastLessons = () => {
   //context
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, isMobile, videos } = useContext(AppContext);
 
+  const lastVideos = getLastVideos(videos);
   const styles = {
     container: {
       width: "80%",
@@ -27,11 +29,33 @@ const LastLessons = () => {
       zIndex: 100,
     },
   };
-  const lastLessonsElements = videoUrls.map((url, index) => (
-    <YouTubeVideo url={url} index={index} />
+
+  //functions
+  function getLastVideos(videos) {
+    const lastDafYomi = [...videos]
+      .reverse()
+      .find((video) => video.categories.includes(5));
+    const lastEiun = [...videos]
+      .reverse()
+      .find((video) => video.categories.includes(6));
+    const clalim = [...videos]
+      .reverse()
+      .find((video) => video.categories.includes(9));
+
+    console.log(lastDafYomi, lastEiun, clalim);
+    return [lastEiun, clalim, lastDafYomi];
+  }
+
+  const lastVideosElements = lastVideos?.map((video, index) => (
+    <YouTubeVideo
+      title={video?.title}
+      url={video?.url}
+      index={index}
+      category={video?.categories[1]}
+    />
   ));
 
-  return <div style={styles.container}>{lastLessonsElements}</div>;
+  return <div style={styles.container}>{lastVideosElements}</div>;
 };
 
 export default LastLessons;

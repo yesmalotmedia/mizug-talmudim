@@ -10,9 +10,8 @@ function YouTubeVideo2({ url, index }) {
 
   const styles = {
     container: {
-      width: 600,
       maxWidth: "100%",
-      height: 400,
+      height: 600,
       boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
       backgroundColor: bgColors.white,
       padding: 20,

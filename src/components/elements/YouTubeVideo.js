@@ -3,9 +3,9 @@ import { AppContext } from "../../App";
 import Button from "./Button";
 import colors from "../../styles/colors";
 import bgColors from "../../styles/bg-colors";
-
-function YouTubeVideo({ url, index }) {
-  console.log(bgColors.azure);
+import getCategoryNameById from "../../assets/getCategoryNameById";
+function YouTubeVideo({ url, index, title, category }) {
+  console.log(category);
 
   //context
   const { colors, isMobile } = useContext(AppContext);
@@ -42,27 +42,26 @@ function YouTubeVideo({ url, index }) {
     },
   };
 
-  const videoId = url.split("v=")[1];
-
   return (
     <div style={styles.container}>
       <div style={styles.subContainer}>
         <iframe
           width={"100%"}
           height={"85%"}
-          src={`https://www.youtube.com/embed/${videoId}`}
+          src={url}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe>
-        <div style={styles.title}>כותרת</div>
+        <div style={styles.title}>{title}</div>
       </div>
 
       <Button
         color={colors.white}
         bgColor={index === 2 ? bgColors.azureGradient : bgColors.orangeGradient}
-        title={"לכל השיעורים האחרונים"}
+        hoveredBgColor={bgColors.darkBlueGradient}
+        title={`לכל שיעורי ${getCategoryNameById(category)}`}
         fontSize={20}
         fontWeight={500}
         borderRadius={50}
