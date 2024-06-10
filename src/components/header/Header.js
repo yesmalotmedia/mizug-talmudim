@@ -61,7 +61,7 @@ function Header() {
             <Button
               color={colors.white}
               bgColor={bgColors.orangeGradient}
-              hoveredBgColor={bgColors.azureGradient}
+              hoveredBgColor={bgColors.darkBlueGradient}
               title={"לתרומות"}
               borderRadius={5}
               fontSize={isMobile ? 15 : 30}

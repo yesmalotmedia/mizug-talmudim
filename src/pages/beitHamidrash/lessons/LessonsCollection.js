@@ -4,6 +4,7 @@ import colors from "../../../styles/colors";
 import SelectInput from "../sideBarSearch/SelectInput";
 import { AppContext } from "../../../App";
 import MobileFilter from "../MobileFilter";
+import getCategoryIdByName from "../../../assets/geCategoryIdByName";
 
 const LessonsCollection = ({ lessonsType, setlessonsType }) => {
   const { isMobile, parsedData, videos } = useContext(AppContext);
@@ -49,8 +50,15 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       fontWeight: 500,
     },
   };
+
   // functions
-  const lessonsBoxesElements = videos.map((video) => (
+  const filterLessonsByType = (lessonsType) => {
+    const filteredLessons = videos.filter(
+      (video) => video.categories[1] == getCategoryIdByName(lessonsType)
+    );
+    return lessonsType === "כל השיעורים" ? videos : filteredLessons;
+  };
+  const lessonsBoxesElements = filterLessonsByType(lessonsType).map((video) => (
     <LessonPreviewBox key={video.id} video={video} />
   ));
 

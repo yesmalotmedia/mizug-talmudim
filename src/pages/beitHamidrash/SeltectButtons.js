@@ -1,38 +1,13 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import CyrcleButton from "../../components/elements/CyrcleButton";
+import { useNavigate } from "react-router-dom";
 
 const SeltectButtons = ({ lessonsType, setlessonsType }) => {
   // Context
-  const { colors, bgColors, isMobile, dailyTextsData } = useContext(AppContext);
-
-  // states
-  const selectButtons = [
-    {
-      img: "selectedBtns1.png",
-      title: "הדף היומי",
-    },
-    {
-      img: "selectedBtns2.png",
-      title: "כללים",
-    },
-    {
-      img: "selectedBtns3.png",
-      title: "עיון",
-    },
-    {
-      img: "selectedBtns4.png",
-      title: "מועדים",
-    },
-    {
-      img: "selectedBtns5.png",
-      title: "פרשת השבוע",
-    },
-    {
-      img: "selectedBtns6.png",
-      title: "לכל השיעורים",
-    },
-  ];
+  const { colors, bgColors, isMobile, dailyTextsData, categories } =
+    useContext(AppContext);
+  const navigate = useNavigate();
 
   // Styles
 
@@ -54,15 +29,34 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
       : {},
   };
 
-  //functions
+  // Functions
+
+  const getDisplsyedCategories = (categories) => {
+    return categories
+      .filter((cat) => cat.parent == 3)
+      .sort((a, b) => a.id - b.id);
+  };
+
   const handleClick = (btnTitle) => {
+    navigate("/BeitHamidrash");
     setlessonsType(btnTitle);
   };
-  const selectedButtonsElements = selectButtons.map((btn, index) => (
-    <div style={styles.btn} onClick={() => handleClick(btn.title)} key={index}>
-      <CyrcleButton imgSrc={btn.img} title={btn.title} />
-    </div>
-  ));
+
+  const selectedButtonsElements = getDisplsyedCategories(categories)?.map(
+    (cat, index) => (
+      <div
+        style={styles.btn}
+        onClick={() => handleClick(cat.name)}
+        key={cat.id}
+      >
+        <CyrcleButton
+          imgSrc={`selectedBtns${index + 1}.png`}
+          title={cat.name}
+        />
+      </div>
+    )
+  );
+
   return <div style={styles.container}>{selectedButtonsElements}</div>;
 };
 
