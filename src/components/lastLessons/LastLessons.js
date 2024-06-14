@@ -9,10 +9,16 @@ import colors from "../../styles/colors";
 import Spacer from "../elements/Spacer";
 import bgColors from "../../styles/bg-colors";
 import YouTubeVideo2 from "../elements/youTubeVideo2";
-const LastLessons = () => {
-  //context
-  const { colors, isMobile, videos } = useContext(AppContext);
+import VideoCoverImage from "../elements/VideoCoverImage";
+import Button from "../elements/Button";
+import getCategoryNameById from "../../assets/getCategoryNameById";
+import { useNavigate } from "react-router-dom";
 
+const LastLessons = () => {
+  const navigate = useNavigate();
+  //context
+  const { colors, isMobile, videos, lessonsType, setlessonsType, categories } =
+    useContext(AppContext);
   const lastVideos = getLastVideos(videos);
   const styles = {
     container: {
@@ -42,17 +48,31 @@ const LastLessons = () => {
       .reverse()
       .find((video) => video.categories.includes(9));
 
-    console.log(lastDafYomi, lastEiun, clalim);
     return [lastEiun, clalim, lastDafYomi];
   }
 
+  const handleClick = (categoryId) => {
+    setlessonsType(getCategoryNameById(categoryId));
+    navigate(`/BeitHamidrash`);
+  };
+
   const lastVideosElements = lastVideos?.map((video, index) => (
-    <YouTubeVideo
-      title={video?.title}
-      url={video?.url}
-      index={index}
-      category={video?.categories[1]}
-    />
+    <div key={index} style={{ margin: isMobile ? "10px" : "20px" }}>
+      <VideoCoverImage url={video?.url} videoId={video?.id} />
+      <br></br>
+      <Button
+        color={colors.white}
+        bgColor={index === 2 ? bgColors.azureGradient : bgColors.orangeGradient}
+        hoveredBgColor={bgColors.darkBlueGradient}
+        title={`לכל שיעורי ${getCategoryNameById(video?.categories[1])}`}
+        fontSize={20}
+        fontWeight={500}
+        borderRadius={50}
+        width={"100%"}
+        arrow={true}
+        onClick={() => handleClick(video?.categories[1])}
+      />
+    </div>
   ));
 
   return <div style={styles.container}>{lastVideosElements}</div>;

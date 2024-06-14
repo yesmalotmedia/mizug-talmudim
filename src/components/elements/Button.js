@@ -54,7 +54,7 @@ const Button = ({
       onClick={onClick}
     >
       <div style={styles.text}>{title}</div>
-      {arrow && <img style={styles.img} src="arrow-to-left.png" alt="arrow" />}
+      {arrow && <img style={styles.img} src="/arrow-to-left.png" alt="arrow" />}
     </div>
   );
 };

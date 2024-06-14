@@ -9,7 +9,6 @@ const AboutSection = () => {
   const bgImg = isMobile
     ? "mobile-bg-img-homepage-1.png"
     : "bg-img-homepage-1.png";
-  console.log(bgImg);
   const styles = {
     container: {
       width: "100%",

@@ -37,7 +37,6 @@ const TextEditor = () => {
       const rabbi = rabbiRef.current.innerText;
       const body = bodyRef.current.innerText;
 
-      console.log("Button clicked!"); // Debug log
       await addDoc(articlesCollectionRef, {
         title,
         subTitle,
@@ -46,10 +45,7 @@ const TextEditor = () => {
         rabbi,
         body,
       });
-      console.log("Article created!"); // Debug log
-    } catch (error) {
-      console.error("Error creating article:", error);
-    }
+    } catch (error) {}
   };
 
   return (

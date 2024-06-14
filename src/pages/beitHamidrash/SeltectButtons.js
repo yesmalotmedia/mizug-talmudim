@@ -1,16 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../App";
 import CyrcleButton from "../../components/elements/CyrcleButton";
 import { useNavigate } from "react-router-dom";
 
 const SeltectButtons = ({ lessonsType, setlessonsType }) => {
   // Context
-  const { colors, bgColors, isMobile, dailyTextsData, categories } =
-    useContext(AppContext);
+  const {
+    colors,
+    bgColors,
+    isMobile,
+    dailyTextsData,
+    categories,
+    loadingCategories,
+  } = useContext(AppContext);
   const navigate = useNavigate();
-
   // Styles
-
   const styles = {
     container: {
       transform: "translateY(-70%)",
@@ -30,8 +34,8 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
   };
 
   // Functions
-
-  const getDisplsyedCategories = (categories) => {
+  useEffect(() => {}, [loadingCategories]);
+  const getDisplyedCategories = (categories) => {
     return categories
       .filter((cat) => cat.parent == 3)
       .sort((a, b) => a.id - b.id);
@@ -42,7 +46,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
     setlessonsType(btnTitle);
   };
 
-  const selectedButtonsElements = getDisplsyedCategories(categories)?.map(
+  const selectedButtonsElements = getDisplyedCategories(categories)?.map(
     (cat, index) => (
       <div
         style={styles.btn}
@@ -50,7 +54,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
         key={cat.id}
       >
         <CyrcleButton
-          imgSrc={`selectedBtns${index + 1}.png`}
+          imgSrc={`/selectedBtns${index + 1}.png`}
           title={cat.name}
         />
       </div>

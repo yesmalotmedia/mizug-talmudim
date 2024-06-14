@@ -130,7 +130,7 @@ const AudioPlayer = ({ audioSrc }) => {
 
       <img
         style={styles.volumeIcon}
-        src={`audioPlayer/${getVolumeIcon(volume)}`}
+        src={`/audioPlayer/${getVolumeIcon(volume)}`}
         alt="Volume Icon"
       />
 
@@ -155,13 +155,13 @@ const AudioPlayer = ({ audioSrc }) => {
         {isPlaying ? (
           <img
             style={styles.playAndPauseIcon}
-            src="audioPlayer/pause.png"
+            src="/audioPlayer/pause.png"
             alt="Pause"
           />
         ) : (
           <img
             style={styles.playAndPauseIcon}
-            src="audioPlayer/play.png"
+            src="/audioPlayer/play.png"
             alt="Play"
           />
         )}

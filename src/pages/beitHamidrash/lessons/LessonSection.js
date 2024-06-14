@@ -104,7 +104,7 @@ export default function LessonSection({ videoId }) {
       <div style={styles.videoSection}>
         <div style={styles.timeAndTimeContainer}>
           <span style={styles.dateAndTimeText}>{video?.date}</span>
-          <img style={styles.icon} src="time.png"></img>
+          <img style={styles.icon} src="/time.png"></img>
           <span style={styles.dateAndTimeText}> זמן קריאה: 8 דק’ </span>
         </div>
         <YouTubeVideo2 url={video?.url} index={video?.key} />{" "}

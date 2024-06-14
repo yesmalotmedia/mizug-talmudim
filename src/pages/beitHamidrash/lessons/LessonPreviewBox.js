@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../../../App";
 import YouTubeVideo2 from "../../../components/elements/youTubeVideo2";
 import { Link } from "react-router-dom";
+import VideoCoverImage from "../../../components/elements/VideoCoverImage";
 
 export default function LessonPreviewBox({ video }) {
   const { colors, isMobile } = useContext(AppContext);
@@ -84,13 +85,10 @@ export default function LessonPreviewBox({ video }) {
 
   //functions
 
-  const openToWatch = (lessonId) => {
-    console.log(lessonId);
-  };
   return (
     <div style={styles.container}>
-      <YouTubeVideo2 url={video.url} index={video.key} />
-
+      {/* <YouTubeVideo2 url={video.url} index={video.key} /> */}
+      <VideoCoverImage url={video.url} index={video.key} videoId={video.id} />
       <div style={styles.description}>
         <div style={{ width: "60%" }}>
           <h2 style={styles.title}> {video.title}</h2>

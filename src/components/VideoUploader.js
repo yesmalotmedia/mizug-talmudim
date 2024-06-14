@@ -13,9 +13,7 @@ const VideoUploader = ({ theme }) => {
     // Implement upload logic here
     if (selectedFile) {
       // Example: send selectedFile to a server using fetch or axios
-      console.log("Uploading file:", selectedFile);
     } else {
-      console.log("No file selected");
     }
   };
 

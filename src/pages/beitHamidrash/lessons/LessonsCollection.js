@@ -6,7 +6,7 @@ import { AppContext } from "../../../App";
 import MobileFilter from "../MobileFilter";
 import getCategoryIdByName from "../../../assets/geCategoryIdByName";
 
-const LessonsCollection = ({ lessonsType, setlessonsType }) => {
+const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
   const { isMobile, parsedData, videos } = useContext(AppContext);
 
   // data
@@ -58,11 +58,17 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
     );
     return lessonsType === "כל השיעורים" ? videos : filteredLessons;
   };
+
+  const filterLessons = (lessonsFilter) => {
+    const filteredLessons = videos.filter(
+      (video) => video.categories[1] == getCategoryIdByName(lessonsType)
+    );
+    return lessonsType === "כל השיעורים" ? videos : filteredLessons;
+  };
   const lessonsBoxesElements = filterLessonsByType(lessonsType).map((video) => (
     <LessonPreviewBox key={video.id} video={video} />
   ));
 
-  console.log(videos);
   return (
     <div style={styles.mainContainer}>
       <div style={styles.titleSection}>
@@ -71,7 +77,13 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
         {!isMobile && (
           <div style={styles.sortContainer}>
             <div style={styles.label}>מיין לפי</div>
-            <SelectInput />
+            <SelectInput
+              options={[
+                { name: "תאריך", value: "date" },
+                { name: "רב", value: "rabbi" },
+                { name: "נושא", value: "category" },
+              ]}
+            />
           </div>
         )}
       </div>

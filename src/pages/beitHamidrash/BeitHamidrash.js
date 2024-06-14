@@ -22,8 +22,10 @@ const BeitHamidrash = () => {
     setlessonsType,
   } = useContext(AppContext);
   const screenWidth = window.innerWidth;
+
   // states
-  const [lessonsFilter, setlessonsFilter] = useState();
+  const [lessonsFilter, setlessonsFilter] = useState({});
+  console.log(lessonsFilter);
   const { videoId } = useParams();
   // styles
   const styles = {
@@ -71,11 +73,18 @@ const BeitHamidrash = () => {
       </div>
 
       <section style={styles.mainSection}>
-        {!isMobile && <SideBarSearch />}
+        {!isMobile && (
+          <SideBarSearch
+            lessonsType={lessonsType}
+            setlessonsType={setlessonsType}
+            setlessonsFilter={setlessonsFilter}
+          />
+        )}
         {!videoId ? (
           <LessonsCollection
             lessonsType={lessonsType}
             setlessonsType={setlessonsType}
+            lessonsFilter={lessonsFilter}
           />
         ) : (
           <LessonsSection videoId={videoId} />

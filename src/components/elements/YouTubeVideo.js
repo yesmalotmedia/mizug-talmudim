@@ -45,11 +45,6 @@ function YouTubeVideo({ url, index, title, category }) {
     },
   };
 
-  //functions
-  const handleClick = () => {
-    setlessonsType(getCategoryNameById(category));
-    navigate(`/BeitHamidrash`);
-  };
   return (
     <div style={styles.container}>
       <div style={styles.subContainer}>
@@ -75,7 +70,6 @@ function YouTubeVideo({ url, index, title, category }) {
         borderRadius={50}
         width={"90%"}
         arrow={true}
-        onClick={handleClick}
       />
     </div>
   );

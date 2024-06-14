@@ -14,7 +14,7 @@ import useFetch from "./assets/useFetch";
 import getVideoData from "./assets/getVideoData";
 import extractYoutubeUrl from "./assets/extractYoutubeUrl";
 import extractPostsData from "./assets/extractPostsData";
-
+import getCategoriesByParent from "./assets/getCategoriesByParent";
 export const AppContext = React.createContext();
 
 function App() {
@@ -34,6 +34,14 @@ function App() {
     error: errorCategories,
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/categories?_fields=id,name,parent&per_page=100&page=1"
+  );
+  // Fetch rabbies data
+  const {
+    data: rabbiesData,
+    loading: loadingRabbies,
+    error: errorRabbies,
+  } = useFetch(
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/rabbies?_fields=id,description,name"
   );
 
   // State for handling mobile view
@@ -55,7 +63,6 @@ function App() {
   if (categoriesData) {
     categories = categoriesData; // Ensure categoriesData is assigned correctly
   }
-  console.log(categories);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1200);
@@ -81,8 +88,11 @@ function App() {
         categories: categories || [], // Default to an empty array if categoriesData is undefined
         loadingCategories,
         lessonsType,
+        rabbiesData,
+        loadingRabbies,
         setlessonsType,
         setIsMobileNavOpen,
+        getCategoriesByParent,
       }}
     >
       <div className="App">

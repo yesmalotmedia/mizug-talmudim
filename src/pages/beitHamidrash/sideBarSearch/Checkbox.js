@@ -39,7 +39,7 @@ const Checkbox = ({ label, checked, onChange }) => {
           style={styles.input}
           type="checkbox"
           checked={checked}
-          onChange={handleChange}
+          onChange={onChange}
         />
         {label}
       </label>

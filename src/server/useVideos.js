@@ -17,7 +17,6 @@ const useVideos = () => {
         }));
         setVideos(videosList);
       } catch (error) {
-        console.error("Error fetching videos: ", error);
       } finally {
         setLoading(false);
       }

@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../App";
 import teachers from "../../../data/teachers";
-const SelectInput = () => {
+const SelectInput = ({ options, onChange, value }) => {
   // data
   const { colors, bgColors, isMobile } = useContext(AppContext);
-
-  // states
-
   // styles
   const styles = {
     input: {
@@ -26,10 +23,16 @@ const SelectInput = () => {
 
   //functions
 
-  const optionsElements = teachers.map((option) => (
-    <option value={option}>{option}</option>
+  const optionsElements = options?.map((option, index) => (
+    <option key={index} value={option.name}>
+      {option.name}
+    </option>
   ));
-  return <select style={styles.input}>{optionsElements}</select>;
+  return (
+    <select onChange={onChange} style={styles.input}>
+      {optionsElements}
+    </select>
+  );
 };
 
 export default SelectInput;

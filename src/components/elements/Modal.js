@@ -66,9 +66,9 @@ export default function Modal() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!isVisible && window.scrollY > 150) {
+      if (!isVisible && window.scrollY > 100) {
         setIsVisible(true);
-      } else if (!isShrink && isVisible && window.scrollY > 500) {
+      } else if (!isShrink && isVisible && window.scrollY > 350) {
         setIsShrink(true);
       }
     };
