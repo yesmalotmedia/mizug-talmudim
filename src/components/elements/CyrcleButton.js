@@ -10,11 +10,11 @@ const CyrcleButton = ({ imgSrc, title, smallImgButton }) => {
     ? {
         container: {
           position: "absolute",
-          height: "8vw",
-          width: "8vw",
+          height: isMobile? "25vw":"8vw",
+          width: isMobile? "25vw":"8vw",
           borderRadius: "50%",
           cursor: "pointer",
-          border:  `4px solid ${colors.darkBlue}`,
+          border: `4px solid ${colors.darkBlue}`,
           background: "#FFF2E7",
           display: "flex",
           justifyContent: "center",
@@ -22,28 +22,26 @@ const CyrcleButton = ({ imgSrc, title, smallImgButton }) => {
           flexDirection: "column",
         },
         img: {
-          width: "5vw",
+          width: isMobile? "15vw":"5vw",
         },
         title: {
           position: "relative",
           fontWeight: 600,
           textAlign: "center",
           color: colors.darkBlue,
-          top: "5vw",
-          fontSize: "1.1vw",
+          top: isMobile? "18vw":"5vw",
+          fontSize:isMobile?"4vw": "1.1vw",
           whiteSpace: "nowrap",
         },
       }
     : {
         container: {
-          width: isMobile ? '92px':"6vw",
-          height: isMobile ? '92px':"6vw",
+          width: isMobile ? "91px" : "6vw",
+          height: isMobile ? "91px" : "6vw",
           borderRadius: "50%",
           overFlow: "hidden",
           border: "solid 4px " + colors.orange,
           cursor: "pointer",
-
-          
         },
         img: { width: "100%" },
         title: {
@@ -51,7 +49,7 @@ const CyrcleButton = ({ imgSrc, title, smallImgButton }) => {
           textAlign: "center",
           color: colors.darkBlue,
           marginTop: 10,
-          fontSize: isMobile? '2vmax': "1.1vw",
+          fontSize: isMobile ? "2vmax" : "1.1vw",
         },
       };
 

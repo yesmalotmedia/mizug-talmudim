@@ -61,7 +61,8 @@ const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
 
   const filterLessons = (lessonsFilter) => {
     const filteredLessons = videos.filter(
-      (video) => video.categories[1] == getCategoryIdByName(lessonsType)
+      (video) =>
+        video.categories[1] == getCategoryIdByName(lessonsType) || video.rab
     );
     return lessonsType === "כל השיעורים" ? videos : filteredLessons;
   };

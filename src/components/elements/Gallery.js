@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FullscreenImageViewer from "./fullscreenImageViewer";
+import { AppContext } from "../../App";
 
 export default function Gallery({ data }) {
+  const { isMobile } = useContext(AppContext);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -47,13 +49,12 @@ export default function Gallery({ data }) {
       flex: "0 0 48%",
       height: "21.5vw",
       borderRadius: 20,
-      marginBottom: 20,
+      marginBottom: isMobile ? 60 : 20,
     },
     fullWidthImage: {
       flex: "0 0 100%",
       height: "40vw",
       borderRadius: 20,
-      marginBottom: 20,
     },
   };
 

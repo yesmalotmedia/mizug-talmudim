@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 
 export default function Button({btnText, btnImg, background}) {
-  const { colors, bgColors } = useContext(AppContext);
+  const { colors, bgColors, isMobile } = useContext(AppContext);
   const styles = {
     btn: {
       display: "flex",
@@ -19,12 +19,12 @@ export default function Button({btnText, btnImg, background}) {
     text: {
       color: colors.white,
       fontWeight: 500,
-      fontSize: '0.9vw',
+      fontSize: isMobile? '5vw': '0.9vw',
       padding:2,
     },
     img: {
       paddingRight: 4,
-      height: '0.8vw'
+      height: isMobile? "4vw":'0.8vw'
     },
   };
   return (

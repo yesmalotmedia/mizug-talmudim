@@ -3,29 +3,31 @@ import { AppContext } from "../../App";
 import Button from "./Button";
 
 export default function BookPreviewBox({ img, title, author, price, discountPrice }) {
-  const { colors, bgColors } = useContext(AppContext);
+  const { colors, bgColors,isMobile } = useContext(AppContext);
 
   const styles = {
     mainContainer: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
-      height: "25vw",
-      width: "16vw",
+      height: isMobile? "auto":"25vw",
+      width: isMobile? "90%" :"16vw",
       border: `1px solid ${colors.azure}`,
       borderRadius: 20,
       textAlign: "center",
       padding: "10px",
     },
     bookImg: {
-      height: "10vw",
+      height: isMobile? "55vw": "10vw",
       objectFit: "cover",
     },
     title: {
+      fontSize: isMobile? '5vw': "",
       color: colors.darkBlue,
       fontWeight: 600,
     },
     author: {
+      fontSize: isMobile? '5vw': "",
       color: colors.darkBlue,
       padding: "10px 0",
       fontWeight: 500,
@@ -39,14 +41,17 @@ export default function BookPreviewBox({ img, title, author, price, discountPric
       color: colors.darkBlue,
       fontWeight: 600,
       marginBottom: "5px",
+      fontSize: isMobile? '5vw': "",
     },
     originalPrice: {
       color: "red",
       textDecoration: "line-through",
+      fontSize: isMobile? '5vw': "",
     },
     discountPrice: {
       color: colors.darkBlue,
       fontWeight: 600,
+      fontSize: isMobile? '5vw': "",
     },
     btnContainer: {
       display: "flex",

@@ -12,12 +12,14 @@ const BooksCollection = () => {
 
   const styles = {
     gridContainer: {
-      display: "grid",
-      gridTemplateColumns: "repeat(4, 1fr)",
+      display: 'flex',
+      flexWrap: 'wrap',
       gap: "20px",
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     loadMoreContainer: {
-      gridColumn: "span 4", 
+
       display: "flex",
       justifyContent: "center",
       marginTop: "20px",

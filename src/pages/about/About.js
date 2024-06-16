@@ -6,36 +6,41 @@ import aboutData from "../../data/aboutData";
 import RenderContents from "./RenderContents";
 
 export default function About() {
-  const { colors, bgColors } = useContext(AppContext);
+  const { colors, bgColors, isMobile } = useContext(AppContext);
   const [activeSection, setActiveSection] = useState("aboutUs");
 
   const styles = {
     container: {
       display: "flex",
-      alignItems: "flex-start",
+      width: isMobile? '100%': '',
+      flexDirection: isMobile? 'column': '',
+      alignItems: isMobile? 'center':"flex-start",
+      justifyContent: isMobile? 'center':'',
       gap: 80,
     },
     sideBtnContainer: {
       background: bgColors.lightAzure,
-      width: "15vw",
-      height: "100vh",
+      width:isMobile? "90%": "15vw",
+      height: isMobile? '40vw': "100vh",
       marginTop: "-40px",
       borderTopLeftRadius: 20,
       borderBottomLeftRadius: 20,
+      borderRadius: isMobile? 20: '',
       boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
-      display: "flex",
+      display:"flex",
       alignItems: "center",
-      flexDirection: "column",
-      paddingTop: 30,
+      flexDirection: isMobile? "row":"column",
+      padding: isMobile? "5px 35px 25px 0":"30px 0 0 0",
       gap: 45,
+     
     },
     link: (isActive) => ({
       textDecoration: "none",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      height: "8.2vw",
-      width: "8.2vw",
+      height: isMobile? "28vw":"8.2vw",
+      width:  isMobile? "28vw":"8.2vw",
       borderRadius: "50%",
       cursor: "pointer",
       transition: "background-color 0.3s, color 0.3s",
@@ -43,7 +48,7 @@ export default function About() {
 
     }),
     description: {
-      width: "60vw",
+      width: isMobile? '90%':"60vw",
     },
   };
 
@@ -59,8 +64,8 @@ console.log(getActiveSectionData());
         subTitle={"הכירו את בית המדרש לאיחוד התלמודים"}
         isSubscribe={false}
         titleColor={colors.darkBlue}
-        height={"60vmin"}
-        marginTop={50}
+        height={isMobile ? "80vmin": "60vmin"}
+        marginTop={isMobile ? 95:50}
       />
       <div style={styles.container}>
         <div style={styles.sideBtnContainer}>
