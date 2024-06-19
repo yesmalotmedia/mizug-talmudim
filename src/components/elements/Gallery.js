@@ -8,6 +8,12 @@ export default function Gallery({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
+  console.log(data.images); // Debugging: Check the images data
+
+  if (!data || !Array.isArray(data.images)) {
+    return <div>No images available</div>;
+  }
+
   const images = data.images.map((image) => `${image}`);
 
   const openViewer = (index) => {

@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 import NavigationBtn from "./NavigationBtn";
 
 export default function NextAndPreviousBtn({ currentId, data, UrlPageName }) {
-  const { colors } = useContext(AppContext);
+  const { colors, isMobile } = useContext(AppContext);
 
   const getCurrentPostIndex = () => {
     return data.findIndex((post) => post.id === currentId);
@@ -15,6 +15,7 @@ export default function NextAndPreviousBtn({ currentId, data, UrlPageName }) {
   
   const styles = {
     container: {
+      marginTop: isMobile? 50: '',
       display: "flex",
       alignItems: "center",
       justifyContent: hasPreviousPost ?  "space-between" : "flex-end" ,

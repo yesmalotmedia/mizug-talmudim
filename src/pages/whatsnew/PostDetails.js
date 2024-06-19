@@ -6,15 +6,15 @@ import PostSuggestion from "./PostSuggestion";
 import NextAndPreviousBtn from "./NextAndPreviousBtn";
 import SharePost from "./SharePost";
 import Gallery from "../../components/elements/Gallery";
-
+import whatsNewData from "../../data/whatsNewData";
 const PostDetails = () => {
-  const { colors, postsData } = useContext(AppContext);
+  const { colors, bgColors, isMobile } = useContext(AppContext);
   const { postId } = useParams();
-  const post = postsData.find((p) => p.id.toString() === postId);
+  const post = whatsNewData.find((p) => p.id.toString() === postId);
 
   const styles = {
     mainSection: {
-      width: "50%",
+      width: isMobile ? "95%" : "50%",
       marginInline: "auto",
     },
     textSection: {
@@ -23,8 +23,8 @@ const PostDetails = () => {
 
     textTitle: {
       color: colors.darkBlue,
-      fontSize: "2.3vmax",
-      lineHeight: "3vw",
+      fontSize: isMobile ? "8vw" : "2.3vmax",
+      lineHeight: isMobile ? "9vw" : "3vw",
     },
     tarikContainer: {
       display: "flex",
@@ -37,8 +37,20 @@ const PostDetails = () => {
       marginLeft: 10,
     },
     article: {
-      fontSize: "1.2vmax",
+      fontSize: isMobile ? "5vw" : "1.2vmax",
       textAlign: "justify",
+      lineHeight: isMobile ? "8vw" : "",
+    },
+    suggestionContainer: {
+      marginInline: "auto",
+      padding: isMobile? "5px": "15px 0",
+  
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "center",
+      background: bgColors.lightAzure,
+      borderRadius: 20,
+      gap: isMobile? 5: 10,
     },
   };
 
@@ -59,22 +71,24 @@ const PostDetails = () => {
           <Gallery data={post} />
 
           <NextAndPreviousBtn
-            data={postsData}
+            data={whatsNewData}
             currentId={post.id}
             UrlPageName={"WhatsNew"}
           />
           <div>
             <SharePost />
           </div>
-          <PostSuggestion
-            currentPostId={post.id}
-            tarikImg={"/tarik.png"}
-            UrlPageName={"WhatsNew"}
-            numPosts={4}
-            showPostsAfter={true}
-          />
-        </div>
+        </div> <div style={styles.suggestionContainer}>
+        <PostSuggestion
+          currentPostId={post.id}
+          tarikImg={"/tarik.png"}
+          UrlPageName={"WhatsNew"}
+          numPosts={4}
+          showPostsAfter={true}
+        />
       </div>
+      </div>
+     
     </>
   );
 };

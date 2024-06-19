@@ -9,7 +9,7 @@ import dailyTextsData from "./data/dailyTextsData";
 import LastLessons from "./components/lastLessons/LastLessons";
 import VideoUploader from "./components/VideoUploader";
 import routers from "./Routes";
-import postsData from "./data/postsData";
+import postsData from "./data/whatsNewData";
 import useFetch from "./assets/useFetch";
 import getVideoData from "./assets/getVideoData";
 import extractYoutubeUrl from "./assets/extractYoutubeUrl";

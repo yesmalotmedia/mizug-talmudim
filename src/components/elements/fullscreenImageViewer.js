@@ -51,32 +51,36 @@ function FullscreenImageViewer({ images, currentIndex, onClose }) {
     },
   };
 
-  const handlePrev = () => {
+  const handlePrev = (e) => {
+    e.stopPropagation();
     setCurrentImageIndex(
       (currentImageIndex - 1 + images.length) % images.length
     );
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    e.stopPropagation();
     setCurrentImageIndex((currentImageIndex + 1) % images.length);
   };
 
+  const handleViewerClick = (e) => {
+    e.stopPropagation();
+    onClose();
+  };
+
   return (
-    <div style={styles.viewer} onClick={onClose}>
+    <div style={styles.viewer} onClick={handleViewerClick}>
       <button
         style={{ ...styles.button, ...styles.closeButton }}
-        onClick={onClose}
+        onClick={handleViewerClick}
       >
         &times;
       </button>
       <button
         style={{ ...styles.button, ...styles.prevButton }}
-        onClick={(e) => {
-          e.stopPropagation();
-          handlePrev();
-        }}
+        onClick={handlePrev}
       >
-        &#8250;
+        &#8249;
       </button>
       <img
         src={images[currentImageIndex]}
@@ -86,12 +90,9 @@ function FullscreenImageViewer({ images, currentIndex, onClose }) {
       />
       <button
         style={{ ...styles.button, ...styles.nextButton }}
-        onClick={(e) => {
-          e.stopPropagation();
-          handleNext();
-        }}
+        onClick={handleNext}
       >
-        &#8249;
+        &#8250;
       </button>
     </div>
   );
