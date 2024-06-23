@@ -4,21 +4,21 @@ import { AppContext } from "./../../App";
 import terumotData from '../../data/terumotData';
 
 export default function Terumot() {
-  const { colors } = useContext(AppContext);
+  const { colors, isMobile } = useContext(AppContext);
 
   const styles = {
     mainContainer: {
       marginInline: "auto",
-      width: "50%",
+      width:  isMobile? "90%":"50%",
     },
     title: {
       color: colors.darkBlue,
-      fontSize: "3vw",
+      fontSize: isMobile? "5vw":"3vw",
       marginTop: 40,
     },
     description: {
-      fontSize: "1.3vw",
-      lineHeight: "1.7vw",
+      fontSize: isMobile? "4.5vw":"1.3vw",
+      lineHeight: isMobile? "6vw":"1.7vw",
       textAlign: "justify",
       marginTop: 30,
     },
@@ -37,8 +37,8 @@ export default function Terumot() {
       cursor: 'pointer',
     },
     img: {
-      height: "15vw",
-      width: "15vw",
+      height: isMobile ? "32vw":"15vw",
+      width: isMobile? "32vw":"15vw",
       transition: "transform 0.3s ease-in-out",
     },
     imgHover: {
@@ -46,7 +46,7 @@ export default function Terumot() {
     },
     text: {
       position: "absolute",
-      fontSize: "2.9vw",
+      fontSize: isMobile?"6vw":"2.9vw",
       fontWeight: 700,
       color: colors.white,
       zIndex: 30,
@@ -65,8 +65,8 @@ export default function Terumot() {
         subTitle={" ולהקדיש שיעור לזכות וברכה "}
         isSubscribe={false}
         titleColor={colors.white}
-        height={"60vmin"}
-        marginTop={75}
+        height={isMobile ? "80vmin": "60vmin"}
+        marginTop={isMobile ? 95:90}
         isButton={true}
         btnTitle={"לתרומה מהירה"}
       />

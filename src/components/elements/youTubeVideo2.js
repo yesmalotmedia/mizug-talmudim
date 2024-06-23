@@ -11,13 +11,12 @@ function YouTubeVideo2({ url, index }) {
   const styles = {
     container: {
       maxWidth: "100%",
-      height: 600,
+      height: isMobile? "30%": 600,
       boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
       backgroundColor: bgColors.white,
       padding: 20,
-
       margin: isMobile ? "10px 0" : 0,
-      borderRadius: "50px",
+      borderRadius: isMobile? "5px": "50px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -37,7 +36,7 @@ function YouTubeVideo2({ url, index }) {
     <div style={styles.container}>
       <iframe
         width={"100%"}
-        height={"85%"}
+        height={isMobile? "30%":"85%"}
         src={url}
         title="YouTube video player"
         frameBorder="0"
