@@ -13,7 +13,7 @@ import postsData from "./data/postsData";
 import useFetch from "./assets/useFetch";
 import getVideoData from "./assets/getVideoData";
 import extractYoutubeUrl from "./assets/extractYoutubeUrl";
-import extractPostsData from "./assets/extractPostsData";
+import ExtractPostsData from "./assets/ExtractPostsData";
 import getCategoriesByParent from "./assets/getCategoriesByParent";
 export const AppContext = React.createContext();
 
@@ -24,7 +24,7 @@ function App() {
     loading: loadingPosts,
     error: errorPosts,
   } = useFetch(
-    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts"
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=100&page=1"
   );
 
   // Fetch categories data
@@ -56,7 +56,7 @@ function App() {
   let categories = [];
 
   if (postsData) {
-    parsedData = extractPostsData(postsData);
+    parsedData = ExtractPostsData(postsData);
     videos = parsedData.filter((e) => e.contentType === "video");
   }
 

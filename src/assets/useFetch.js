@@ -52,12 +52,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function useFetch(url) {
+  const cacheBuster = new Date().getTime();
+
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
+
     axios
       .get(url)
       .then((response) => {

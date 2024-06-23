@@ -20,6 +20,7 @@ const LastLessons = () => {
   const { colors, isMobile, videos, lessonsType, setlessonsType, categories } =
     useContext(AppContext);
   const lastVideos = getLastVideos(videos);
+  console.log(videos);
   const styles = {
     container: {
       width: "80%",
@@ -38,15 +39,9 @@ const LastLessons = () => {
 
   //functions
   function getLastVideos(videos) {
-    const lastDafYomi = [...videos]
-      .reverse()
-      .find((video) => video.categories.includes(5));
-    const lastEiun = [...videos]
-      .reverse()
-      .find((video) => video.categories.includes(6));
-    const clalim = [...videos]
-      .reverse()
-      .find((video) => video.categories.includes(9));
+    const lastEiun = videos.find((video) => video.categories.includes(19));
+    const clalim = videos.find((video) => video.categories.includes(18));
+    const lastDafYomi = videos.find((video) => video.categories.includes(5));
 
     return [lastEiun, clalim, lastDafYomi];
   }
@@ -55,22 +50,30 @@ const LastLessons = () => {
     setlessonsType(getCategoryNameById(categoryId));
     navigate(`/BeitHamidrash`);
   };
+  console.log(lastVideos);
 
   const lastVideosElements = lastVideos?.map((video, index) => (
     <div key={index} style={{ margin: isMobile ? "10px" : "20px" }}>
-      <VideoCoverImage url={video?.url} videoId={video?.id} />
+      <VideoCoverImage
+        url={video?.url}
+        videoId={video?.id}
+        title={video?.title}
+      />
       <br></br>
+
       <Button
         color={colors.white}
         bgColor={index === 2 ? bgColors.azureGradient : bgColors.orangeGradient}
         hoveredBgColor={bgColors.darkBlueGradient}
-        title={`לכל שיעורי ${getCategoryNameById(video?.categories[1])}`}
+        title={`לכל שיעורי ${getCategoryNameById(video?.categories[video?.categories?.length - 1])}`}
         fontSize={20}
         fontWeight={500}
         borderRadius={50}
         width={"100%"}
         arrow={true}
-        onClick={() => handleClick(video?.categories[1])}
+        onClick={() =>
+          handleClick(video?.categories[video?.categories?.length - 1])
+        }
       />
     </div>
   ));

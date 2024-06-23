@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 import bgColors from "../../styles/bg-colors";
 import { Link } from "react-router-dom";
 
-function VideoCoverImage({ url, videoId }) {
+function VideoCoverImage({ url, videoId, title }) {
   //state
   const [isHovered, setIsHovered] = useState(false);
   // Context
@@ -58,10 +58,21 @@ function VideoCoverImage({ url, videoId }) {
       cursor: "pointer",
     },
     title: {
-      fontSize: 22,
-      color: colors.darkBlue,
+      fontSize: "1.6rem",
+      lineHeight: 1,
+      color: colors.white,
       fontWeight: 600,
       textAlign: "center",
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      width: "70%",
+      maxHeight: "60%",
+      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Add text shadow
+      border: "solid 1px white",
+      padding: 15,
+      margin: 10,
     },
   };
 
@@ -77,6 +88,7 @@ function VideoCoverImage({ url, videoId }) {
             alt="YouTube Video Thumbnail"
             style={styles.img}
           />
+          <div style={styles.title}>{title}</div>
           <Link style={styles.btn} to={`/BeitHamidrash/${videoId}`}>
             <img style={styles.playBtn} src="/play-button.png" />{" "}
           </Link>

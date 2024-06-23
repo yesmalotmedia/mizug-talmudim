@@ -8,7 +8,7 @@ import getCategoryIdByName from "../../../assets/geCategoryIdByName";
 
 const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
   const { isMobile, parsedData, videos } = useContext(AppContext);
-
+  console.log(lessonsType);
   // data
 
   // styles
@@ -53,8 +53,13 @@ const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
 
   // functions
   const filterLessonsByType = (lessonsType) => {
+    console.log(videos);
     const filteredLessons = videos.filter(
-      (video) => video.categories[1] == getCategoryIdByName(lessonsType)
+      (video) =>
+        video.categories[0] == getCategoryIdByName(lessonsType) ||
+        video.categories[1] == getCategoryIdByName(lessonsType) ||
+        video.categories[2] == getCategoryIdByName(lessonsType) ||
+        video.categories[3] == getCategoryIdByName(lessonsType)
     );
     return lessonsType === "כל השיעורים" ? videos : filteredLessons;
   };

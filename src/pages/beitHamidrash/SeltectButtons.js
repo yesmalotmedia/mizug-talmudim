@@ -13,6 +13,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
     categories,
     loadingCategories,
   } = useContext(AppContext);
+
   const navigate = useNavigate();
   // Styles
   const styles = {

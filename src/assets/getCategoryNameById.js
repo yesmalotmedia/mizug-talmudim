@@ -14,7 +14,7 @@ const getCategoryNameById = (id) => {
     case 1:
       name = "כללי";
       break;
-    case 9:
+    case 18:
       name = "כללים";
       break;
     case 4:
@@ -26,7 +26,7 @@ const getCategoryNameById = (id) => {
     case 11:
       name = "פרסומי הוצאה לאור";
       break;
-    case 6:
+    case 19:
       name = "עיון";
       break;
     default:

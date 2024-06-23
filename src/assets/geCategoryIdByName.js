@@ -5,7 +5,7 @@ const getCategoryIdByName = (name) => {
     case "בית מדרש":
       id = 3;
       break;
-    case "הדף היומי":
+    case "דף יומי בירושלמי":
       id = 5;
       break;
     case "התלמוד הממוזג":
@@ -15,7 +15,7 @@ const getCategoryIdByName = (name) => {
       id = 1;
       break;
     case "כללים":
-      id = 9;
+      id = 18;
       break;
     case "מה חדש":
       id = 4;
@@ -27,7 +27,7 @@ const getCategoryIdByName = (name) => {
       id = 11;
       break;
     case "עיון":
-      id = 6;
+      id = 19;
       break;
     default:
       id = -1; // Return -1 if the name doesn't match any category

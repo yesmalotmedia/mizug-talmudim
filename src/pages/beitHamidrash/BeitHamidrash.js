@@ -25,7 +25,6 @@ const BeitHamidrash = () => {
 
   // states
   const [lessonsFilter, setlessonsFilter] = useState({});
-  console.log(lessonsFilter);
   const { videoId } = useParams();
   // styles
   const styles = {
