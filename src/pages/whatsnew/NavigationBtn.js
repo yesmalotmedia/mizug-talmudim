@@ -1,19 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../App";
 
 const NavigationBtn = ({
   direction,
   postId,
   navigation,
-  colors,
-
   nextTitle,
   prevTitle,
   arrow,
 }) => {
   const navigate = useNavigate();
   const isNext = direction === "next";
-
+  const {colors, isMobile} = useContext(AppContext)
   const handleClick = () => {
     navigate(`/${navigation}/${postId}`);
   };
@@ -26,12 +25,12 @@ const NavigationBtn = ({
       background: "none",
       cursor: "pointer",
       color: colors.orange,
-      fontSize: "1.2vw",
+      fontSize: isMobile? "4vw": "1.2vw",
       fontWeight: 600,
 
     },
     btnImg: {
-      height: "0.8vw",
+      height: isMobile? "2vh": "0.8vw",
       margin: 15,
       transform: isNext ? "rotate(180deg)" : "none",
     },

@@ -57,7 +57,7 @@ const BeitHamidrash = () => {
     <>
       <HeroSection
         title={"בית המדרש"}
-        backgroundImage={"hero2.png"}
+        backgroundImage={"/hero2.png"}
         subTitle={"בחרו את הנושא שמעניין אתכם"}
         titleColor={colors.white}
         height={isMobile ? "75vmin" : "60vmin"}

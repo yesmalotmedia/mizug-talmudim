@@ -1,18 +1,18 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import { Link } from "react-router-dom";
-
+import whatsNewData from "../../data/whatsNewData";
 export default function PostSuggestion({
   currentPostId,
   UrlPageName,
   tarikImg,
   numPosts = 4,
 }) {
-  const { colors, postsData } = useContext(AppContext);
+  const { colors, isMobile } = useContext(AppContext);
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const currentIndex = postsData.findIndex((post) => post.id === currentPostId);
+  const currentIndex = whatsNewData.findIndex((post) => post.id === currentPostId);
 
   const circularIndex = (index, length) => {
     return (index + length) % length;
@@ -20,57 +20,45 @@ export default function PostSuggestion({
 
   const displayPosts = [];
   for (let i = 1; i <= numPosts; i++) {
-    const index = circularIndex(currentIndex + i, postsData.length);
-    displayPosts.push(postsData[index]);
+    const index = circularIndex(currentIndex + i, whatsNewData.length);
+    displayPosts.push(whatsNewData[index]);
   }
 
   const styles = {
-    container: {
-      height: "530px",
-      display: "flex",
-      justifyContent: "space-around",
-      flexWrap: "wrap",
-      padding: 10,
-      borderRadius: 20,
-      background: "#E7F9FF",
-    },
     suggestionBox: (isHovered) => ({
-      width: "23vw",
-      height: "15vw",
-      margin: 6,
-      borderRadius: 30,
-      position: "relative",
+      width: isMobile ? "95%" : "23vw",
+      height: isMobile ? "85vw" : "19vw",
+      margin: isMobile ? 9 : 6,
+      borderRadius: 20,
       boxShadow: isHovered
         ? "rgba(0, 0, 139, 0.6) 0px 8px 24px"
         : "rgba(149, 157, 165, 0.2) 0px 8px 24px",
       cursor: "pointer",
       transition: "box-shadow 0.3s ease-in-out",
-    }),
-    thumbnail: {
-      width: "23vw",
-      height: "200px",
-      borderRadius: 20,
-    },
-    titleAndTarik: {
       background: "#fff",
-      position: "absolute",
-      borderBottomLeftRadius: 30,
-      borderBottomRightRadius: 30,
-      top: 148,
-      width: "23vw",
-      height: "6vw",
-      right: 0,
-      paddingRight: 20,
+    }),
+    link: {
+      textDecoration: "none",
+    },
+    thumbnail: {
+      width: "100%",
+      height: "200px",
+      borderTopRightRadius: 20,
+      borderTopLeftRadius: 20,
     },
     title: {
       color: colors.darkBlue,
       fontWeight: 600,
-      fontSize: "1vw",
-      padding: '5px 0 6xp 0',
-      lineHeight: '1.3vw'
+      fontSize: isMobile ? "5vw" : "1vw",
+      lineHeight: isMobile ? "6vw" : "1.3vw",
+      overflow: "hidden",
+      display: "-webkit-box",
+      WebkitBoxOrient: "vertical",
+      WebkitLineClamp: 2,
+      padding: 8,
     },
     tarikImg: {
-      height: "1vw",
+      height: isMobile ? "5vw" : "1vw",
       paddingLeft: 10,
     },
     dateHe: {
@@ -84,34 +72,33 @@ export default function PostSuggestion({
     tarikContainer: {
       display: "flex",
       alignItems: "center",
+      marginRight: 10,
     },
   };
 
   return (
-    <div style={styles.container}>
+    <>
       {displayPosts.map((post, index) => (
-        <Link key={index} to={`/${UrlPageName}/${post.id}`}>
+        <Link style={styles.link} key={index} to={`/${UrlPageName}/${post.id}`}>
           <div
             style={styles.suggestionBox(index === hoveredIndex)}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            <div style={styles.titleAndTarik}>
-              <p style={styles.title}>{post.title}</p>
-              <div style={styles.tarikContainer}>
-                <img style={styles.tarikImg} src={tarikImg} alt="Tarik" />
-                <span style={styles.dateEn}>{post.dateEn}</span> |
-                <span style={styles.dateHe}>{post.dateHe}</span>
-              </div>
-            </div>
             <img
               style={styles.thumbnail}
               src={post.thumbnail}
               alt="Thumbnail"
             />
+            <p style={styles.title}>{post.title}</p>
+            <div style={styles.tarikContainer}>
+              <img style={styles.tarikImg} src={tarikImg} alt="Tarik" />
+              <span style={styles.dateEn}>{post.dateEn}</span> |
+              <span style={styles.dateHe}>{post.dateHe}</span>
+            </div>
           </div>
         </Link>
       ))}
-    </div>
+    </>
   );
 }

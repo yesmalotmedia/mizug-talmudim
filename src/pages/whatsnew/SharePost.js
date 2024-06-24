@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../App";
 
 export default function SharePost() {
+  const {isMobile} = useContext(AppContext)
   const styles = {
     container: {
       textAlign: "left",
     },
     img: {
-      height: "2vw",
+      height: isMobile? "13vw":"2vw",
       margin: "20px 10px 60px 0",
       cursor: "pointer",
     },

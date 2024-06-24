@@ -1,4 +1,4 @@
-const postsData = [
+const whatsNewData = [
   {
     id: 1,
     title: "מה זה, לורם איפסום? id 1",
@@ -363,4 +363,4 @@ const postsData = [
   },
 ];
 
-export default postsData;
+export default whatsNewData;
