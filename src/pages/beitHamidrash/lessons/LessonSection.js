@@ -22,7 +22,7 @@ export default function LessonSection({ videoId }) {
       width: "100%",
     },
     headerSection: {
-      width: "70%",
+      width: "100%",
     },
     breadscrumb: {
       color: "gray",
@@ -40,6 +40,7 @@ export default function LessonSection({ videoId }) {
       color: colors.darkBlue,
     },
     timeAndTimeContainer: {
+      width: isMobile? "100%": "",
       display: "flex",
       alignItems: "center",
       padding: "20px 0",
@@ -49,44 +50,47 @@ export default function LessonSection({ videoId }) {
       width: 20,
     },
     dateAndTimeText: {
+    
+      width: isMobile? "100%": "",
       padding: "0 10px",
       fontWeight: 400,
       color: "gray",
     },
     videoSection: {
-      width: "70%",
+      width: isMobile? "100%":"70%",
     },
     video: {
-      height: " 40%",
-      width: "70%",
+      height: isMobile? "30%": " 40%",
+      width:  isMobile? "100%":"70%",
       borderRadius: 10,
       border: `2px solid ${colors.darkBlue}`,
     },
     audioContainer: {
-      width: "70%",
+      width: isMobile? "100%":"70%",
       marginTop: 10,
       height: 60,
     },
     descriptionContainer: {
-      width: "70%",
+      marginTop: 20,
+      width: isMobile? "100%":"70%",
     },
     description: {
       textAlign: "justify",
-      padding: "15px 70px 10px 70px",
+      padding: isMobile? "20px 10px":"15px 70px 10px 70px",
       lineHeight: "1.9rem",
     },
     footerSection: {
-      width: "70%",
+      width: isMobile? "90%":"70%",
     },
     commentsTitle: {
       color: colors.azure,
-      padding: "30px 60px 10px 0",
+      padding: isMobile? "10px 10px": "30px 60px 10px 0",
     },
     input: {
-      width: "85%",
+      width: isMobile? "100%":"85%",
       outline: "none",
       padding: 10,
-      marginRight: 60,
+      marginRight:  isMobile? 10:60,
       borderRadius: 40,
       border: "1px solid black",
     },

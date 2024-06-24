@@ -54,11 +54,11 @@ const HeroSection = ({backgroundImage, title, subTitle, titleColor, btnTitle, is
             title={btnTitle}
             bgColor={bgColors.orangeGradient}
             hoveredBgColor={bgColors.azureGradient}
-            width={"27vw"}
-            height={"7vh"}
+            width={isMobile? "70vw":"27vw"}
+            height={isMobile? "10vw":"7vh"}
             borderRadius={30}
             arrow={true}
-            fontSize={'1.6vw'}
+            fontSize={isMobile? "6vw":'1.6vw'}
             fontWeight={600}
           />
         )}

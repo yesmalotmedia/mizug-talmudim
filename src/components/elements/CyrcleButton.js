@@ -10,8 +10,8 @@ const CyrcleButton = ({ imgSrc, title, smallImgButton }) => {
     ? {
         container: {
           position: "absolute",
-          height: isMobile? "25vw":"8vw",
-          width: isMobile? "25vw":"8vw",
+          height: isMobile? "26vw":"8vw",
+          width: isMobile? "26vw":"8vw",
           borderRadius: "50%",
           cursor: "pointer",
           border: `4px solid ${colors.darkBlue}`,
