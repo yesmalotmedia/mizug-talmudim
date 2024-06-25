@@ -17,10 +17,10 @@ export default function LessonPreviewBox({ video }) {
       padding: 15,
       display: "flex",
       flexDirection: "column",
-      justifyContent: "space-between",
+      justifyContent: "space-around",
       backgroundColor: colors.white,
-      maxWidth: 300,
-      height: 400,
+      minWidth: 300,
+      minHeight: 400,
     },
     thumbnail: {
       height: "50%",
@@ -78,8 +78,8 @@ export default function LessonPreviewBox({ video }) {
       cursor: "pointer",
     },
     icon: {
-      height: isMobile ? "3vmax" : "1vw",
-      width: isMobile ? "3vmax" : "1vw",
+      height: isMobile ? "3vmax" : "1.5vw",
+      width: isMobile ? "3vmax" : "1.5vw",
     },
   };
 
@@ -88,7 +88,12 @@ export default function LessonPreviewBox({ video }) {
   return (
     <div style={styles.container}>
       {/* <YouTubeVideo2 url={video.url} index={video.key} /> */}
-      <VideoCoverImage url={video.url} index={video.key} videoId={video.id} />
+      <VideoCoverImage
+        url={video.url}
+        index={video.key}
+        videoId={video.id}
+        title={video.title}
+      />
       <div style={styles.description}>
         <div style={{ width: "60%" }}>
           <h2 style={styles.title}> {video.title}</h2>
@@ -99,9 +104,15 @@ export default function LessonPreviewBox({ video }) {
       </div>
       <div style={styles.bottomSection}>
         <div style={styles.btnContainer}>
-          <img style={styles.icon} src="watch.png" alt="watch"></img>
-          <img style={styles.icon} src="listen.png" alt="listen"></img>
-          <img style={styles.icon} src="read.png" alt="read"></img>
+          {video.contentType.includes("video") && (
+            <img style={styles.icon} src="watch.png" alt="watch"></img>
+          )}
+          {video.contentType.includes("audio") && (
+            <img style={styles.icon} src="listen.png" alt="listen"></img>
+          )}
+          {video.contentType.includes("text") && (
+            <img style={styles.icon} src="read.png" alt="read"></img>
+          )}
         </div>
       </div>
     </div>
