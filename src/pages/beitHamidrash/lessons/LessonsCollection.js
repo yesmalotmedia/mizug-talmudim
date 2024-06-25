@@ -53,7 +53,6 @@ const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
 
   // functions
   const filterLessonsByType = (lessonsType) => {
-    console.log(videos);
     const filteredLessons = videos.filter(
       (video) =>
         video.categories[0] == getCategoryIdByName(lessonsType) ||

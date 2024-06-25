@@ -1,6 +1,6 @@
 const getCategoryNameById = (id) => {
   let name;
-
+  console.log(id);
   switch (id) {
     case 3:
       name = "בית מדרש";

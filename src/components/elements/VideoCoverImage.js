@@ -12,8 +12,8 @@ function VideoCoverImage({ url, videoId, title }) {
   // Function to extract YouTube video ID from the URL
   const getYouTubeVideoId = (url) => {
     try {
-      const urlParts = url.split("/");
-      const lastPart = urlParts[urlParts.length - 1];
+      const urlParts = url?.split("/");
+      const lastPart = urlParts[urlParts?.length - 1];
       const idWithParams = lastPart.split("?")[0];
       return idWithParams;
     } catch (error) {
@@ -24,9 +24,10 @@ function VideoCoverImage({ url, videoId, title }) {
 
   const youTubeVideoId = getYouTubeVideoId(url);
 
-  const thumbnailUrl = youTubeVideoId
-    ? `https://img.youtube.com/vi/${youTubeVideoId}/maxresdefault.jpg`
-    : "";
+  // const thumbnailUrl = youTubeVideoId
+  //   ? `https://img.youtube.com/vi/${youTubeVideoId}/maxresdefault.jpg`
+  //   : "/harav-ishay-lesson.jpg";
+  const thumbnailUrl = "/harav-ishay-lesson.png";
 
   const styles = {
     container: {
@@ -58,21 +59,19 @@ function VideoCoverImage({ url, videoId, title }) {
       cursor: "pointer",
     },
     title: {
-      fontSize: "1.6rem",
+      fontSize: isMobile ? "0.9rem" : "1.2rem",
       lineHeight: 1,
       color: colors.white,
       fontWeight: 600,
       textAlign: "center",
       position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      width: "70%",
+      top: "0",
+      right: "0",
+      width: "55%",
+      height: "40%",
       maxHeight: "60%",
       textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Add text shadow
-      border: "solid 1px white",
-      padding: 15,
-      margin: 10,
+      padding: 20,
     },
   };
 

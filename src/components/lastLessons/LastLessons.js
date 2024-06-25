@@ -20,7 +20,6 @@ const LastLessons = () => {
   const { colors, isMobile, videos, lessonsType, setlessonsType, categories } =
     useContext(AppContext);
   const lastVideos = getLastVideos(videos);
-  console.log(videos);
   const styles = {
     container: {
       width: "80%",
@@ -36,7 +35,7 @@ const LastLessons = () => {
       zIndex: 100,
     },
   };
-
+  console.log(videos);
   //functions
   function getLastVideos(videos) {
     const lastEiun = videos.find((video) => video.categories.includes(19));
@@ -47,6 +46,7 @@ const LastLessons = () => {
   }
 
   const handleClick = (categoryId) => {
+    console.log(categoryId, getCategoryNameById(categoryId));
     setlessonsType(getCategoryNameById(categoryId));
     navigate(`/BeitHamidrash`);
   };
@@ -65,15 +65,14 @@ const LastLessons = () => {
         color={colors.white}
         bgColor={index === 2 ? bgColors.azureGradient : bgColors.orangeGradient}
         hoveredBgColor={bgColors.darkBlueGradient}
-        title={`לכל שיעורי ${getCategoryNameById(video?.categories[video?.categories?.length - 1])}`}
+        // title={`לכל שיעורי ${getCategoryNameById(video?.categories[video?.categories?.length - 1])}`}
+        title={`לכל שיעורי ${getCategoryNameById(index == 0 ? 19 : index == 1 ? 18 : 5)}`}
         fontSize={20}
         fontWeight={500}
         borderRadius={50}
         width={"100%"}
         arrow={true}
-        onClick={() =>
-          handleClick(video?.categories[video?.categories?.length - 1])
-        }
+        onClick={() => handleClick(index == 0 ? 19 : index == 1 ? 18 : 5)}
       />
     </div>
   ));

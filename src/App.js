@@ -26,7 +26,7 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=100&page=1"
   );
-
+  console.log(postsData);
   // Fetch categories data
   const {
     data: categoriesData,
@@ -57,7 +57,10 @@ function App() {
 
   if (postsData) {
     parsedData = ExtractPostsData(postsData);
-    videos = parsedData.filter((e) => e.contentType === "video");
+    videos = parsedData.filter(
+      (e) => e.contentType.includes("video") || e.contentType.includes("וידאו")
+    );
+    console.log(videos);
   }
 
   if (categoriesData) {

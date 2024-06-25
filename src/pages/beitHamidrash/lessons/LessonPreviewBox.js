@@ -99,15 +99,9 @@ export default function LessonPreviewBox({ video }) {
       </div>
       <div style={styles.bottomSection}>
         <div style={styles.btnContainer}>
-          <Link style={styles.btn} to={`/BeitHamidrash/${video.id}`}>
-            <img style={styles.icon} src="watch.png" alt="watch"></img>לצפיה
-          </Link>
-          <button style={styles.btn}>
-            <img style={styles.icon} src="listen.png" alt="listen"></img>לשמיעה
-          </button>
-          <button style={styles.btn}>
-            <img style={styles.icon} src="read.png" alt="read"></img>לקריאה
-          </button>
+          <img style={styles.icon} src="watch.png" alt="watch"></img>
+          <img style={styles.icon} src="listen.png" alt="listen"></img>
+          <img style={styles.icon} src="read.png" alt="read"></img>
         </div>
       </div>
     </div>

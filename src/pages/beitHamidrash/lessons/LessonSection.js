@@ -6,6 +6,7 @@ import YouTubeVideo2 from "../../../components/elements/youTubeVideo2";
 import getCategoryNameById from "../../../assets/getCategoryNameById";
 import extractYoutubeCoverByVideoId from "../../../assets/extractYoutubeCoverByVideoId";
 import VideoCover from "../../../components/elements/VideoCover";
+import SpotifyPodcast from "../SpotifyPodcast";
 
 export default function LessonSection({ videoId }) {
   const { colors, bgColors, isMobile, videos } = useContext(AppContext);
@@ -40,7 +41,7 @@ export default function LessonSection({ videoId }) {
       color: colors.darkBlue,
     },
     timeAndTimeContainer: {
-      width: isMobile? "100%": "",
+      width: isMobile ? "100%" : "",
       display: "flex",
       alignItems: "center",
       padding: "20px 0",
@@ -50,47 +51,46 @@ export default function LessonSection({ videoId }) {
       width: 20,
     },
     dateAndTimeText: {
-    
-      width: isMobile? "100%": "",
+      width: isMobile ? "100%" : "",
       padding: "0 10px",
       fontWeight: 400,
       color: "gray",
     },
     videoSection: {
-      width: isMobile? "100%":"70%",
+      width: isMobile ? "100%" : "70%",
     },
     video: {
-      height: isMobile? "30%": " 40%",
-      width:  isMobile? "100%":"70%",
+      height: isMobile ? "30%" : " 40%",
+      width: isMobile ? "100%" : "70%",
       borderRadius: 10,
       border: `2px solid ${colors.darkBlue}`,
     },
     audioContainer: {
-      width: isMobile? "100%":"70%",
+      width: isMobile ? "100%" : "70%",
       marginTop: 10,
       height: 60,
     },
     descriptionContainer: {
       marginTop: 20,
-      width: isMobile? "100%":"70%",
+      width: isMobile ? "100%" : "70%",
     },
     description: {
       textAlign: "justify",
-      padding: isMobile? "20px 10px":"15px 70px 10px 70px",
+      padding: isMobile ? "20px 10px" : "15px 70px 10px 70px",
       lineHeight: "1.9rem",
     },
     footerSection: {
-      width: isMobile? "90%":"70%",
+      width: isMobile ? "90%" : "70%",
     },
     commentsTitle: {
       color: colors.azure,
-      padding: isMobile? "10px 10px": "30px 60px 10px 0",
+      padding: isMobile ? "10px 10px" : "30px 60px 10px 0",
     },
     input: {
-      width: isMobile? "100%":"85%",
+      width: isMobile ? "100%" : "85%",
       outline: "none",
       padding: 10,
-      marginRight:  isMobile? 10:60,
+      marginRight: isMobile ? 10 : 60,
       borderRadius: 40,
       border: "1px solid black",
     },
@@ -114,7 +114,12 @@ export default function LessonSection({ videoId }) {
         <YouTubeVideo2 url={video?.url} index={video?.key} />{" "}
       </div>
       <div style={styles.audioContainer}>
-        <AudioPlayer audioSrc="audioPlayer/testAudio.mp3" />
+        {/* <AudioPlayer audioSrc="audioPlayer/testAudio.mp3" /> */}
+        {/* <SpotifyPodcast
+          url={
+            "https://open.spotify.com/episode/46sE5WPVezUOmlHHxXoJ6H?si=3ed678aa92614671"
+          }
+        /> */}
       </div>
       <div style={styles.descriptionContainer}>
         <p style={styles.description}>
