@@ -17,7 +17,7 @@ const Footer = () => {
         : 'url("/footerImages/Union.png")',
       backgroundSize: "100% 100%",
       color: colors.white,
-      zIndex: 200,
+      zIndex: 2,
       position: "relative",
     },
     footerItemWrapper: {

@@ -18,6 +18,11 @@ export default function Filters() {
       scrollBehavior: "smooth",
       WebkitOverflowScrolling: "touch",
       maxWidth: "100%",
+      marginBottom: "-15px", // Compensate for scrollbar space
+    },
+    innerContainer: {
+      display: "flex",
+      paddingBottom: "15px", // Padding to hide scrollbar
     },
     btn: {
       border: "none",
@@ -42,90 +47,99 @@ export default function Filters() {
       background: colors.darkBlue,
       color: colors.white,
     },
+    hideScrollbar: {
+      scrollbarWidth: "none", /* Firefox */
+      "-ms-overflow-style": "none", /* IE and Edge */
+      "&::-webkit-scrollbar": {
+        display: "none", /* Chrome, Safari, and Opera */
+      },
+    },
   };
 
   return (
-    <div style={styles.container}>
-      <button
-        style={{
-          ...styles.btn,
-          ...(activeButton === "all" && styles.active),
-        }}
-        onClick={() => handleButtonClick("all")}
-      >
-        <span
+    <div style={{ ...styles.container, ...styles.hideScrollbar }}>
+      <div style={styles.innerContainer}>
+        <button
           style={{
-            ...styles.text,
+            ...styles.btn,
             ...(activeButton === "all" && styles.active),
           }}
+          onClick={() => handleButtonClick("all")}
         >
-          הכל
-        </span>
-      </button>
-      <button
-        style={{
-          ...styles.btn,
-          ...(activeButton === "button1" && styles.active),
-        }}
-        onClick={() => handleButtonClick("button1")}
-      >
-        <span
+          <span
+            style={{
+              ...styles.text,
+              ...(activeButton === "all" && styles.active),
+            }}
+          >
+            הכל
+          </span>
+        </button>
+        <button
           style={{
-            ...styles.text,
+            ...styles.btn,
             ...(activeButton === "button1" && styles.active),
           }}
+          onClick={() => handleButtonClick("button1")}
         >
-          הרב ????? ?????
-        </span>
-      </button>
-      <button
-        style={{
-          ...styles.btn,
-          ...(activeButton === "button2" && styles.active),
-        }}
-        onClick={() => handleButtonClick("button2")}
-      >
-        <span
+          <span
+            style={{
+              ...styles.text,
+              ...(activeButton === "button1" && styles.active),
+            }}
+          >
+            הרב ????? ?????
+          </span>
+        </button>
+        <button
           style={{
-            ...styles.text,
+            ...styles.btn,
             ...(activeButton === "button2" && styles.active),
           }}
+          onClick={() => handleButtonClick("button2")}
         >
-          הרב ????? ?????
-        </span>
-      </button>
-      <button
-        style={{
-          ...styles.btn,
-          ...(activeButton === "button3" && styles.active),
-        }}
-        onClick={() => handleButtonClick("button3")}
-      >
-        <span
+          <span
+            style={{
+              ...styles.text,
+              ...(activeButton === "button2" && styles.active),
+            }}
+          >
+            הרב ????? ?????
+          </span>
+        </button>
+        <button
           style={{
-            ...styles.text,
+            ...styles.btn,
             ...(activeButton === "button3" && styles.active),
           }}
+          onClick={() => handleButtonClick("button3")}
         >
-          ספרים לרכישה
-        </span>
-      </button>
-      <button
-        style={{
-          ...styles.btn,
-          ...(activeButton === "button4" && styles.active),
-        }}
-        onClick={() => handleButtonClick("button4")}
-      >
-        <span
+          <span
+            style={{
+              ...styles.text,
+              ...(activeButton === "button3" && styles.active),
+            }}
+          >
+            ספרים לרכישה
+          </span>
+        </button>
+        <button
           style={{
-            ...styles.text,
+            ...styles.btn,
             ...(activeButton === "button4" && styles.active),
           }}
+          onClick={() => handleButtonClick("button4")}
         >
-          ספרים בחינם
-        </span>
-      </button>
+          <span
+            style={{
+              ...styles.text,
+              ...(activeButton === "button4" && styles.active),
+            }}
+          >
+            ספרים בחינם
+          </span>
+        </button>
+      </div>
     </div>
   );
 }

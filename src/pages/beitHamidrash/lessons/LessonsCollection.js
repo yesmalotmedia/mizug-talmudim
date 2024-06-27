@@ -5,13 +5,33 @@ import SelectInput from "../sideBarSearch/SelectInput";
 import { AppContext } from "../../../App";
 import MobileFilter from "../MobileFilter";
 import getCategoryIdByName from "../../../assets/geCategoryIdByName";
+import LoadMore from "../../../components/elements/LoadMore";
 
 const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
   const { isMobile, parsedData, videos } = useContext(AppContext);
-  console.log(lessonsType);
-  // data
+  const [visiblePostCount, setVisiblePostCount] = useState(20); // State to manage visible posts
 
-  // styles
+  // Filter lessons based on type
+  const filterLessonsByType = (lessonsType) => {
+    const filteredLessons = videos.filter((video) =>
+      video.categories.includes(getCategoryIdByName(lessonsType))
+    );
+    return lessonsType === "כל השיעורים" ? videos : filteredLessons;
+  };
+
+  // Render lessons based on filtered type
+  const lessonsBoxesElements = filterLessonsByType(lessonsType)
+    .slice(0, visiblePostCount) // Slice to show only the visible posts
+    .map((video) => (
+      <LessonPreviewBox key={video.id} video={video} />
+    ));
+
+  // Function to load more posts
+  const loadMorePosts = () => {
+    setVisiblePostCount((prevCount) => prevCount + 20); // Increment by 20
+  };
+
+  // Styles
   const styles = {
     mainContainer: {
       display: "flex",
@@ -49,36 +69,18 @@ const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
       color: colors.azure,
       fontWeight: 500,
     },
+    loadMoreContainer: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      marginTop: "20px",
+    },
   };
-
-  // functions
-  const filterLessonsByType = (lessonsType) => {
-    const filteredLessons = videos.filter(
-      (video) =>
-        video.categories[0] == getCategoryIdByName(lessonsType) ||
-        video.categories[1] == getCategoryIdByName(lessonsType) ||
-        video.categories[2] == getCategoryIdByName(lessonsType) ||
-        video.categories[3] == getCategoryIdByName(lessonsType)
-    );
-    return lessonsType === "כל השיעורים" ? videos : filteredLessons;
-  };
-
-  const filterLessons = (lessonsFilter) => {
-    const filteredLessons = videos.filter(
-      (video) =>
-        video.categories[1] == getCategoryIdByName(lessonsType) || video.rab
-    );
-    return lessonsType === "כל השיעורים" ? videos : filteredLessons;
-  };
-  const lessonsBoxesElements = filterLessonsByType(lessonsType).map((video) => (
-    <LessonPreviewBox key={video.id} video={video} />
-  ));
 
   return (
     <div style={styles.mainContainer}>
       <div style={styles.titleSection}>
-        <div style={styles.title}> {lessonsType}</div>
-
+        <div style={styles.title}>{lessonsType}</div>
         {!isMobile && (
           <div style={styles.sortContainer}>
             <div style={styles.label}>מיין לפי</div>
@@ -93,7 +95,14 @@ const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
         )}
       </div>
       {isMobile && <MobileFilter />}
-      <div style={styles.lessonsContainer}>{lessonsBoxesElements}</div>
+      <div style={styles.lessonsContainer}>
+        {lessonsBoxesElements}
+        {visiblePostCount < filterLessonsByType(lessonsType).length && (
+          <div style={styles.loadMoreContainer}>
+            <LoadMore onClick={loadMorePosts} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

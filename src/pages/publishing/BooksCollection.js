@@ -13,6 +13,8 @@ const BooksCollection = () => {
   const styles = {
     gridContainer: {
       display: 'flex',
+
+      width: '100%',
       flexWrap: 'wrap',
       gap: "20px",
       alignItems: 'center',

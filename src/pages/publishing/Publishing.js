@@ -16,7 +16,6 @@ export default function Publishing() {
     },
     preview: {
       display: "flex",
-      
       gap: "20px",
     },
     filterBtn: {

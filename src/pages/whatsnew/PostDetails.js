@@ -14,7 +14,7 @@ const PostDetails = () => {
 
   const styles = {
     mainSection: {
-      width: isMobile ? "95%" : "50%",
+      width: isMobile ? "90%" : "50%",
       marginInline: "auto",
     },
     textSection: {
