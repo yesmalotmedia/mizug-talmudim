@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LessonPreviewBox from "./LessonPreviewBox";
 import colors from "../../../styles/colors";
 import SelectInput from "../sideBarSearch/SelectInput";
@@ -8,8 +8,9 @@ import getCategoryIdByName from "../../../assets/geCategoryIdByName";
 
 const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
   const { isMobile, parsedData, videos } = useContext(AppContext);
-  console.log(lessonsType);
-  // data
+  console.log("lessons filter:", lessonsFilter);
+  const [displayedLessons, setDisplayedLessons] = useState([]);
+  console.log(displayedLessons);
 
   // styles
   const styles = {
@@ -51,33 +52,26 @@ const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
     },
   };
 
-  // functions
-  const filterLessonsByType = (lessonsType) => {
-    const filteredLessons = videos.filter(
-      (video) =>
-        video.categories[0] == getCategoryIdByName(lessonsType) ||
-        video.categories[1] == getCategoryIdByName(lessonsType) ||
-        video.categories[2] == getCategoryIdByName(lessonsType) ||
-        video.categories[3] == getCategoryIdByName(lessonsType)
+  useEffect(() => {
+    setDisplayedLessons(
+      lessonsFilter.category === "כל השיעורים"
+        ? videos
+        : videos.filter((video) =>
+            video.categories?.includes(
+              getCategoryIdByName(lessonsFilter.category)
+            )
+          )
     );
-    return lessonsType === "כל השיעורים" ? videos : filteredLessons;
-  };
+  }, [lessonsFilter, videos]);
 
-  const filterLessons = (lessonsFilter) => {
-    const filteredLessons = videos.filter(
-      (video) =>
-        video.categories[1] == getCategoryIdByName(lessonsType) || video.rab
-    );
-    return lessonsType === "כל השיעורים" ? videos : filteredLessons;
-  };
-  const lessonsBoxesElements = filterLessonsByType(lessonsType).map((video) => (
+  const lessonsBoxesElements = displayedLessons.map((video) => (
     <LessonPreviewBox key={video.id} video={video} />
   ));
 
   return (
     <div style={styles.mainContainer}>
       <div style={styles.titleSection}>
-        <div style={styles.title}> {lessonsType}</div>
+        <div style={styles.title}>{lessonsFilter.category}</div>
 
         {!isMobile && (
           <div style={styles.sortContainer}>

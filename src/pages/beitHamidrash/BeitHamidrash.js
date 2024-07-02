@@ -20,11 +20,11 @@ const BeitHamidrash = () => {
     loadingCategories,
     lessonsType,
     setlessonsType,
+    setlessonsFilter,
+    lessonsFilter,
   } = useContext(AppContext);
   const screenWidth = window.innerWidth;
-
   // states
-  const [lessonsFilter, setlessonsFilter] = useState({});
   const { videoId } = useParams();
   // styles
   const styles = {

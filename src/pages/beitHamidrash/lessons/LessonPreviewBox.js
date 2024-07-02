@@ -101,6 +101,7 @@ export default function LessonPreviewBox({ video }) {
         </div>
 
         <h3 style={styles.date}>{video.date}</h3>
+        <h3 style={styles.date}>{video.heDate}</h3>
       </div>
       <div style={styles.bottomSection}>
         <div style={styles.btnContainer}>

@@ -110,6 +110,13 @@ const SideBarSearch = ({ setlessonsFilter }) => {
     setlessonsFilter(formData);
   };
 
+  const filterByFreeSearching = () => {
+    const formData = {
+      searchQuery,
+    };
+    setlessonsFilter(formData);
+  };
+
   const handleChange = (value) => {
     setSelectedValue(value);
   };
@@ -134,28 +141,36 @@ const SideBarSearch = ({ setlessonsFilter }) => {
         <img src={"/searchIcon.png"} alt="Search" style={styles.searchIcon} />{" "}
         {/* Search icon */}
       </div>
-      <div style={styles.lable}>הרבנים</div>
-      <SelectInput
-        options={rabbiesData}
-        value={selectedRabbi}
-        onChange={(e) => setSelectedRabbi(e.target.value)}
+      <Button
+        color={colors.white}
+        bgColor={bgColors.orangeGradient}
+        hoveredBgColor={bgColors.darkBlueGradient}
+        title={"בצע חיפוש"}
+        fontSize={20}
+        fontWeight={500}
+        borderRadius={50}
+        width={"90%"}
+        arrow={true}
+        onClick={filterByFreeSearching}
       />
+      <br></br>
       <div style={styles.lable}>הנושאים</div>
       <SelectInput
         options={getCategoriesByParent(categories, 3)}
         value={selectedTopic}
         onChange={(e) => setSelectedTopic(e.target.value)}
       />
-      <div style={styles.lable}>הכללים</div>
-      <SelectInput
-        value={selectedRule}
-        onChange={(e) => setSelectedRule(e.target.value)}
-      />
       <div style={styles.lable}>המסכת</div>
       <SelectInput
         options={yerushalmiMasectot}
         value={selectedMasechet}
         onChange={(e) => setSelectedMasechet(e.target.value)}
+      />
+      <div style={styles.lable}>הרבנים</div>
+      <SelectInput
+        options={rabbiesData}
+        value={selectedRabbi}
+        onChange={(e) => setSelectedRabbi(e.target.value)}
       />
       <div style={styles.lable}>סוג השיעור</div>
       <Checkbox
@@ -174,14 +189,14 @@ const SideBarSearch = ({ setlessonsFilter }) => {
         onChange={() => setTextChecked(!textChecked)}
       />
       <br />
-      <div style={styles.lable}>משך זמן השיעור</div>
+      {/* <div style={styles.lable}>משך זמן השיעור</div>
       <Slider
         min={1}
         max={120}
         step={1}
         onChange={handleChange}
         value={selectedValue}
-      />{" "}
+      />{" "} */}
       <Button
         color={colors.white}
         bgColor={bgColors.orangeGradient}

@@ -17,8 +17,15 @@ import { useNavigate } from "react-router-dom";
 const LastLessons = () => {
   const navigate = useNavigate();
   //context
-  const { colors, isMobile, videos, lessonsType, setlessonsType, categories } =
-    useContext(AppContext);
+  const {
+    colors,
+    isMobile,
+    videos,
+    lessonsType,
+    setlessonsType,
+    setlessonsFilter,
+    categories,
+  } = useContext(AppContext);
   const lastVideos = getLastVideos(videos);
   const styles = {
     container: {
@@ -48,9 +55,9 @@ const LastLessons = () => {
   const handleClick = (categoryId) => {
     console.log(categoryId, getCategoryNameById(categoryId));
     setlessonsType(getCategoryNameById(categoryId));
+    setlessonsFilter({ category: getCategoryNameById(categoryId) });
     navigate(`/BeitHamidrash`);
   };
-  console.log(lastVideos);
 
   const lastVideosElements = lastVideos?.map((video, index) => (
     <div key={index} style={{ margin: isMobile ? "10px" : "20px" }}>

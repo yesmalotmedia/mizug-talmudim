@@ -26,7 +26,6 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=100&page=1"
   );
-  console.log(postsData);
   // Fetch categories data
   const {
     data: categoriesData,
@@ -48,7 +47,11 @@ function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
-  const [lessonsType, setlessonsType] = useState("כל השיעורים");
+  const [lessonsType, setlessonsType] = useState("עיון");
+  const [lessonsFilter, setlessonsFilter] = useState({
+    category: "כל השיעורים",
+  });
+  console.log(lessonsFilter);
 
   // Parsing data
   let parsedData = [];
@@ -60,7 +63,6 @@ function App() {
     videos = parsedData.filter(
       (e) => e.contentType.includes("video") || e.contentType.includes("וידאו")
     );
-    console.log(videos);
   }
 
   if (categoriesData) {
@@ -93,9 +95,11 @@ function App() {
         lessonsType,
         rabbiesData,
         loadingRabbies,
+        lessonsFilter,
         setlessonsType,
         setIsMobileNavOpen,
         getCategoriesByParent,
+        setlessonsFilter,
       }}
     >
       <div className="App">
