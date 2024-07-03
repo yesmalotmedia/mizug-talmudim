@@ -14,8 +14,8 @@ const decodeHtmlEntities = (str) => {
 const ExtractPostsData = (data) => {
   return data.map((item) => ({
     id: item.id,
-    date: item.date.split("T")[0], // Extract only the date part
-    heDate: item.meta.heDate,
+    date: item?.date?.split("T")[0], // Extract only the date part
+    heDate: item?.meta?.heDate,
     title: decodeHtmlEntities(item.title.rendered), // Decode HTML entities in the title
     rabbiName: getRabbieNameById(item.rabbies[0]),
     contentType: item.acf.contentType,

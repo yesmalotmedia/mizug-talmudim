@@ -7,7 +7,7 @@ import Checkbox from "./Checkbox";
 import yerushalmiMasectot from "../../../data/yerushalmiMasectot";
 import { useNavigate } from "react-router-dom";
 
-const SideBarSearch = ({ setlessonsFilter }) => {
+const SideBarSearch = () => {
   // data
   const {
     colors,
@@ -18,6 +18,8 @@ const SideBarSearch = ({ setlessonsFilter }) => {
     categories,
     getCategoriesByParent,
     setlessonsType,
+    lessonsFilter,
+    setlessonsFilter,
   } = useContext(AppContext);
 
   const [selectedValue, setSelectedValue] = useState(500);
@@ -26,7 +28,6 @@ const SideBarSearch = ({ setlessonsFilter }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRabbi, setSelectedRabbi] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("");
-  const [selectedRule, setSelectedRule] = useState("");
   const [selectedMasechet, setSelectedMasechet] = useState("");
   const [videoChecked, setVideoChecked] = useState(false);
   const [audioChecked, setAudioChecked] = useState(false);
@@ -95,30 +96,21 @@ const SideBarSearch = ({ setlessonsFilter }) => {
   };
 
   //functions
-  const filterLessons = () => {
+  const filteringSearch = () => {
     const formData = {
-      searchQuery,
-      selectedRabbi,
-      selectedTopic,
-      selectedRule,
-      selectedMasechet,
-      videoChecked,
-      audioChecked,
-      textChecked,
-      lessonDuration: selectedValue,
+      category: selectedTopic,
+      masechet: selectedMasechet,
+      rabbiName: selectedRabbi,
     };
+
     setlessonsFilter(formData);
   };
 
-  const filterByFreeSearching = () => {
+  const freeSearch = () => {
     const formData = {
-      searchQuery,
+      freeQuery: searchQuery,
     };
     setlessonsFilter(formData);
-  };
-
-  const handleChange = (value) => {
-    setSelectedValue(value);
   };
 
   return (
@@ -151,7 +143,7 @@ const SideBarSearch = ({ setlessonsFilter }) => {
         borderRadius={50}
         width={"90%"}
         arrow={true}
-        onClick={filterByFreeSearching}
+        onClick={freeSearch}
       />
       <br></br>
       <div style={styles.lable}>הנושאים</div>
@@ -189,14 +181,6 @@ const SideBarSearch = ({ setlessonsFilter }) => {
         onChange={() => setTextChecked(!textChecked)}
       />
       <br />
-      {/* <div style={styles.lable}>משך זמן השיעור</div>
-      <Slider
-        min={1}
-        max={120}
-        step={1}
-        onChange={handleChange}
-        value={selectedValue}
-      />{" "} */}
       <Button
         color={colors.white}
         bgColor={bgColors.orangeGradient}
@@ -207,7 +191,7 @@ const SideBarSearch = ({ setlessonsFilter }) => {
         borderRadius={50}
         width={"90%"}
         arrow={true}
-        onClick={filterLessons}
+        onClick={filteringSearch}
       />{" "}
       <style>{`::placeholder {color: ${colors.darkBlue}`}</style>
     </form>

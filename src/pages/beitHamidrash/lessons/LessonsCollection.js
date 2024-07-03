@@ -5,12 +5,16 @@ import SelectInput from "../sideBarSearch/SelectInput";
 import { AppContext } from "../../../App";
 import MobileFilter from "../MobileFilter";
 import getCategoryIdByName from "../../../assets/geCategoryIdByName";
+import filterLessons from "../../../assets/dataTest/filterLessons";
 
-const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
+const LessonsCollection = ({
+  lessonsType,
+  setlessonsType,
+  lessonsFilter,
+  setlessonsFilter,
+}) => {
   const { isMobile, parsedData, videos } = useContext(AppContext);
-  console.log("lessons filter:", lessonsFilter);
-  const [displayedLessons, setDisplayedLessons] = useState([]);
-  console.log(displayedLessons);
+  const [displayedLessons, setDisplayedLessons] = useState(videos);
 
   // styles
   const styles = {
@@ -53,18 +57,13 @@ const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
   };
 
   useEffect(() => {
-    setDisplayedLessons(
-      lessonsFilter.category === "כל השיעורים"
-        ? videos
-        : videos.filter((video) =>
-            video.categories?.includes(
-              getCategoryIdByName(lessonsFilter.category)
-            )
-          )
-    );
+    console.log("useeffect runs");
+    if (videos) {
+      setDisplayedLessons(filterLessons(videos, lessonsFilter));
+    }
   }, [lessonsFilter, videos]);
 
-  const lessonsBoxesElements = displayedLessons.map((video) => (
+  const lessonsBoxesElements = displayedLessons?.map((video) => (
     <LessonPreviewBox key={video.id} video={video} />
   ));
 

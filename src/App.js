@@ -15,6 +15,7 @@ import getVideoData from "./assets/getVideoData";
 import extractYoutubeUrl from "./assets/extractYoutubeUrl";
 import ExtractPostsData from "./assets/ExtractPostsData";
 import getCategoriesByParent from "./assets/getCategoriesByParent";
+import DataTest from "./assets/dataTest/DataTest";
 export const AppContext = React.createContext();
 
 function App() {
@@ -51,7 +52,6 @@ function App() {
   const [lessonsFilter, setlessonsFilter] = useState({
     category: "כל השיעורים",
   });
-  console.log(lessonsFilter);
 
   // Parsing data
   let parsedData = [];
@@ -105,6 +105,7 @@ function App() {
       <div className="App">
         <RouterProvider router={routers} />
       </div>
+      {/* <DataTest /> */}
     </AppContext.Provider>
   );
 }
