@@ -1,11 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { AppContext } from "../../../App";
 import Button from "../../../components/elements/Button";
 import SelectInput from "./SelectInput";
-import Slider from "./Slider";
 import Checkbox from "./Checkbox";
 import yerushalmiMasectot from "../../../data/yerushalmiMasectot";
-import { useNavigate } from "react-router-dom";
 
 const SideBarSearch = () => {
   // data
@@ -14,17 +12,20 @@ const SideBarSearch = () => {
     bgColors,
     isMobile,
     rabbiesData,
-    loadingRabbies,
     categories,
     getCategoriesByParent,
-    setlessonsType,
-    lessonsFilter,
     setlessonsFilter,
   } = useContext(AppContext);
 
   const [selectedValue, setSelectedValue] = useState(500);
 
   // states for form inputs
+  const [categoriesOptions, setCategoriesOptions] = useState(
+    getCategoriesByParent(categories, 3)
+  );
+  const [masectotOptions, setMasectotOptions] = useState();
+  const [rabbiesOptions, setRabbiesOptions] = useState();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRabbi, setSelectedRabbi] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("");
@@ -32,6 +33,7 @@ const SideBarSearch = () => {
   const [videoChecked, setVideoChecked] = useState(false);
   const [audioChecked, setAudioChecked] = useState(false);
   const [textChecked, setTextChecked] = useState(false);
+
   // styles
   const styles = {
     container: {
@@ -96,22 +98,55 @@ const SideBarSearch = () => {
   };
 
   //functions
-  const filteringSearch = () => {
+  const filteringSearch = useCallback(() => {
     const formData = {
       category: selectedTopic,
       masechet: selectedMasechet,
       rabbiName: selectedRabbi,
+      type: {
+        video: videoChecked,
+        audio: audioChecked,
+        text: textChecked,
+      },
     };
 
     setlessonsFilter(formData);
-  };
+  }, [
+    selectedRabbi,
+    selectedTopic,
+    selectedMasechet,
+    videoChecked,
+    audioChecked,
+    textChecked,
+    setlessonsFilter,
+  ]);
 
-  const freeSearch = () => {
+  const freeSearch = useCallback(() => {
     const formData = {
       freeQuery: searchQuery,
     };
     setlessonsFilter(formData);
-  };
+  }, [searchQuery]);
+
+  useEffect(() => {
+    freeSearch();
+  }, [searchQuery, freeSearch]);
+
+  useEffect(() => {
+    filteringSearch();
+  }, [
+    selectedRabbi,
+    selectedTopic,
+    selectedMasechet,
+    videoChecked,
+    audioChecked,
+    textChecked,
+    filteringSearch,
+  ]);
+
+  useEffect(() => {
+    setlessonsFilter({});
+  }, [setlessonsFilter]);
 
   return (
     <form style={styles.container}>
@@ -133,7 +168,7 @@ const SideBarSearch = () => {
         <img src={"/searchIcon.png"} alt="Search" style={styles.searchIcon} />{" "}
         {/* Search icon */}
       </div>
-      <Button
+      {/* <Button
         color={colors.white}
         bgColor={bgColors.orangeGradient}
         hoveredBgColor={bgColors.darkBlueGradient}
@@ -144,11 +179,11 @@ const SideBarSearch = () => {
         width={"90%"}
         arrow={true}
         onClick={freeSearch}
-      />
+      /> */}
       <br></br>
       <div style={styles.lable}>הנושאים</div>
       <SelectInput
-        options={getCategoriesByParent(categories, 3)}
+        options={getCategoriesByParent(categories, 3) || categoriesOptions}
         value={selectedTopic}
         onChange={(e) => setSelectedTopic(e.target.value)}
       />

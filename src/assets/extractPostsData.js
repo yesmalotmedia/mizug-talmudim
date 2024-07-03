@@ -22,6 +22,12 @@ const ExtractPostsData = (data) => {
     url: extractYoutubeUrl(item.acf.url),
     // audioUrl: item.acf.audioUrl,
     categories: item.categories,
+    combinedValues: [
+      item?.date?.split("T")[0],
+      item?.meta?.heDate,
+      decodeHtmlEntities(item.title.rendered),
+      getRabbieNameById(item.rabbies[0]),
+    ],
   }));
 };
 

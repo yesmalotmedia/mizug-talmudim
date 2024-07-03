@@ -3,8 +3,9 @@ import getCategoryIdByName from "../geCategoryIdByName";
 function filterLessons(data, filter) {
   let filteredLessons = data;
   const { freeQuery, category, masechet, rabbiName } = filter;
+
   // Free searching
-  if (category === "כל השיעורים") {
+  if (category === "כל השיעורים" || freeQuery === "" || !freeQuery) {
     return data;
   } else if (freeQuery?.trim() === "" || freeQuery == undefined) {
     console.log("params");
