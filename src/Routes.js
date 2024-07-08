@@ -36,6 +36,10 @@ const routers = createBrowserRouter([
         element: <BeitHamidrash />,
       },
       {
+        path: "BeitHamidrash/:category",
+        element: <BeitHamidrash />,
+      },
+      {
         path: "BeitHamidrash/:lessonsType",
         element: <BeitHamidrash />,
       },

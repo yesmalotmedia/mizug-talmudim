@@ -7,13 +7,9 @@ import MobileFilter from "../MobileFilter";
 import getCategoryIdByName from "../../../assets/geCategoryIdByName";
 import filterLessons from "../../../assets/dataTest/filterLessons";
 
-const LessonsCollection = ({
-  lessonsType,
-  setlessonsType,
-  lessonsFilter,
-  setlessonsFilter,
-}) => {
-  const { isMobile, parsedData, videos } = useContext(AppContext);
+const LessonsCollection = ({ lessonsType, setlessonsType }) => {
+  const { isMobile, parsedData, videos, lessonsFilter, setlessonsFilter } =
+    useContext(AppContext);
   const [displayedLessons, setDisplayedLessons] = useState(videos);
 
   // styles
@@ -59,6 +55,7 @@ const LessonsCollection = ({
   useEffect(() => {
     console.log("useeffect runs");
     if (videos) {
+      console.log(lessonsFilter);
       setDisplayedLessons(filterLessons(videos, lessonsFilter));
     }
   }, [lessonsFilter, videos]);

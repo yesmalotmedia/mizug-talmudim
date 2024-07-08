@@ -52,7 +52,7 @@ function App() {
   const [lessonsFilter, setlessonsFilter] = useState({
     category: "כל השיעורים",
   });
-
+  console.log(lessonsFilter);
   // Parsing data
   let parsedData = [];
   let videos = [];

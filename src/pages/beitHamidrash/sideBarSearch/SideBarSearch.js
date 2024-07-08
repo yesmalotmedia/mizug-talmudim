@@ -15,6 +15,7 @@ const SideBarSearch = () => {
     categories,
     getCategoriesByParent,
     setlessonsFilter,
+    lessonsFilter,
   } = useContext(AppContext);
 
   const [selectedValue, setSelectedValue] = useState(500);
@@ -69,7 +70,7 @@ const SideBarSearch = () => {
       position: "absolute",
       left: 10, // Adjust the position of the icon as needed
       top: "50%", // Center vertically
-      transform: "translateY(-50%)", // Center vertically
+      //transform: "translateY(-50%)", // Center vertically
       width: 20, // Set the width of the icon
       height: 20, // Set the height of the icon
     },
@@ -145,7 +146,7 @@ const SideBarSearch = () => {
   ]);
 
   useEffect(() => {
-    setlessonsFilter({});
+    setlessonsFilter(lessonsFilter);
   }, [setlessonsFilter]);
 
   return (
@@ -159,9 +160,10 @@ const SideBarSearch = () => {
         </>
       )}
       <div style={styles.searchContainer}>
+        <div style={styles.lable}>חיפוש חופשי </div>
         <input
           style={styles.searchInput}
-          placeholder="הקלידו לחיפוש"
+          placeholder="הקלידו שם רב או נושא"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />

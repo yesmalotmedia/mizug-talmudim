@@ -25,6 +25,7 @@ const LastLessons = () => {
     setlessonsType,
     setlessonsFilter,
     categories,
+    lessonsFilter,
   } = useContext(AppContext);
   const lastVideos = getLastVideos(videos);
   const styles = {
@@ -53,9 +54,10 @@ const LastLessons = () => {
   }
 
   const handleClick = (categoryId) => {
+    const categoryName = getCategoryNameById(categoryId);
     console.log(categoryId, getCategoryNameById(categoryId));
-    setlessonsType(getCategoryNameById(categoryId));
-    setlessonsFilter({ category: getCategoryNameById(categoryId) });
+
+    setlessonsFilter({ category: categoryName });
     navigate(`/BeitHamidrash`);
   };
 

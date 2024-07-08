@@ -27,6 +27,7 @@ const ExtractPostsData = (data) => {
       item?.meta?.heDate,
       decodeHtmlEntities(item.title.rendered),
       getRabbieNameById(item.rabbies[0]),
+      ...item.categories,
     ],
   }));
 };

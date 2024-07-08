@@ -76,14 +76,12 @@ const BeitHamidrash = () => {
           <SideBarSearch
             lessonsType={lessonsType}
             setlessonsType={setlessonsType}
-            setlessonsFilter={setlessonsFilter}
           />
         )}
         {!videoId ? (
           <LessonsCollection
             lessonsType={lessonsType}
             setlessonsType={setlessonsType}
-            lessonsFilter={lessonsFilter}
           />
         ) : (
           <LessonsSection videoId={videoId} />
