@@ -1,20 +1,36 @@
 const FooterMenuData = [
   {
-    title: "1 שם הקישור ",
-    url:"#"
+    title: "בית המדרש",
+    url: "/BeitHamidrash",
   },
   {
-    title: "2 שם הקישור ",
-    url:"#"
+    title: "התלמוד הממוזג",
+    url: "/TalmudHaMemuzag",
   },
   {
-    title: "3 שם הקישור ",
-    url:"#"
+    title: "צרו קשר",
+    url: "/Contact",
   },
   {
-    title: "4 שם הקישור ",
-    url:"#"
+    title: "מה חדש?",
+    url: "WhatsNew",
+  },
+  {
+    title: "אודות",
+    url: "/About",
+  },
+  {
+    title: "הוצאה לאור",
+    url: "/Publishing",
+  },
+  {
+    title: "תרומות",
+    url: "/Terumot",
+  },
+  {
+    title: "עמוד הבית",
+    url: "Home",
   },
 ];
 
-export default FooterMenuData
+export default FooterMenuData;

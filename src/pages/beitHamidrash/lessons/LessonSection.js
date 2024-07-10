@@ -56,6 +56,10 @@ export default function LessonSection({ videoId }) {
       fontWeight: 400,
       color: "gray",
     },
+    dedicate: {
+      color: colors.azure,
+      marginBottom: 10,
+    },
     videoSection: {
       width: isMobile ? "100%" : "70%",
     },
@@ -111,6 +115,9 @@ export default function LessonSection({ videoId }) {
           <img style={styles.icon} src="/time.png"></img>
           <span style={styles.dateAndTimeText}> זמן קריאה: 8 דק’ </span>
         </div>
+        <div
+          style={styles.dedicate}
+        >{`השיעור מוקדש לעילוי נשמת פלוני בן אלמוני`}</div>
         <YouTubeVideo2 url={video?.url} index={video?.key} />{" "}
       </div>
       <div style={styles.audioContainer}>
@@ -165,14 +172,14 @@ export default function LessonSection({ videoId }) {
         </p>
       </div>
 
-      <div style={styles.footerSection}>
+      {/* <div style={styles.footerSection}>
         <h3 style={styles.commentsTitle}> תגובות </h3>
         <input
           style={styles.input}
           type="text"
           placeholder=" הוסיפו תגובה "
         ></input>
-      </div>
+      </div> */}
     </div>
   );
 }

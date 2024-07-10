@@ -10,14 +10,13 @@ export default function Contact() {
   const styles = {
     container: {
       display: "flex",
-      flexDirection: isMobile ?  'column-reverse':'',
-      alignItems: 'center',
-      
+      flexDirection: isMobile ? "column-reverse" : "",
+      alignItems: "center",
     },
 
     socialContainer: {
-      width: isMobile ? '90vmin': "22vw",
-      margin: isMobile ? "50px 0 0 0": "50px 60px 0 0",
+      width: isMobile ? "90vmin" : "22vw",
+      margin: isMobile ? "50px 0 0 0" : "50px 60px 0 0",
     },
     formContainer: {
       marginTop: "-10vmin",
@@ -30,8 +29,8 @@ export default function Contact() {
         title={"נשמח לדבר איתכם"}
         subTitle={" השאירו פרטים ונחזור אליכם בהקדם "}
         titleColor={colors.white}
-        height={isMobile ? "75vmin": "60vmin"}
-        marginTop={isMobile ? 95:90}
+        height={isMobile ? "75vmin" : "60vmin"}
+        marginTop={isMobile ? 95 : 90}
       />
       <div style={styles.container}>
         <div style={styles.socialContainer}>
