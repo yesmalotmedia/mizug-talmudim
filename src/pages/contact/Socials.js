@@ -26,11 +26,14 @@ export default function Socials() {
   const handleWhatsAppClick = () => {
     window.location.href = "https://wa.me/972526146659"; // WhatsApp link format
   };
+  const handleYoutubeClick = () => {
+    window.location.href = "https://www.youtube.com/@tsadkoyahdav"; // WhatsApp link format
+  };
   return (
     <>
       <div style={styles.wrapper} onClick={handleCallClick}>
         <img style={styles.img} src="footerImages/call.png" alt="Call" />
-        <p style={styles.label}>05-26146659</p>
+        <p style={styles.label}>052-6146659</p>
       </div>
       <div style={styles.wrapper} onClick={handleWhatsAppClick}>
         <img
@@ -38,19 +41,19 @@ export default function Socials() {
           src="footerImages/whatsapp.png"
           alt="WhatsApp"
         />
-        <p style={styles.label}>000-00000000</p>
+        <p style={styles.label}>052-6146659</p>
       </div>
-      <div style={styles.wrapper}>
+      {/* <div style={styles.wrapper}>
         <img style={styles.img} src="footerImages/facebook.png"></img>
         <p style={styles.label}> </p>
       </div>
       <div style={styles.wrapper}>
         <img style={styles.img} src="footerImages/instagram.png"></img>
         <p style={styles.label}> </p>
-      </div>
-      <div style={styles.wrapper}>
+      </div> */}
+      <div style={styles.wrapper} onClick={handleYoutubeClick}>
         <img style={styles.img} src="footerImages/youtube.png"></img>
-        <p style={styles.label}></p>
+        <p style={styles.label}>שיעורי צדקו יחדיו ביוטיוב</p>
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import React, { useRef, useState, useContext } from "react";
 import emailjs from "@emailjs/browser";
 import { AppContext } from "../../App";
 import LoaderAnimation from "./LoaderAnimation";
+import TanksMessage from "./TanksMessage";
 
 const Subscribe = () => {
   const form = useRef();
@@ -50,7 +51,7 @@ const Subscribe = () => {
     successMassage: {
       paddingBottom: 10,
       fontSize: isMobile ? "6vmin" : "",
-      color: colors.white,
+      color: colors.orange,
     },
   };
 
@@ -78,9 +79,9 @@ const Subscribe = () => {
   return (
     <div style={styles.subscribe}>
       {isSuccess ? (
-        <div style={styles.successMassage}>תודה על הרשמתך!</div>
+        <TanksMessage msg={"תודה שנרשמת"} color={colors.orange} />
       ) : isLoading ? (
-        <LoaderAnimation isLoading={isLoading} color={colors.white} />
+        <LoaderAnimation isLoading={isLoading} color={colors.orange} />
       ) : (
         <form style={styles.form} ref={form} onSubmit={sendEmail}>
           <input

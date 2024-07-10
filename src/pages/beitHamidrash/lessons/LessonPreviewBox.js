@@ -19,7 +19,7 @@ export default function LessonPreviewBox({ video }) {
       flexDirection: "column",
       justifyContent: "space-around",
       backgroundColor: colors.white,
-      minWidth: 300,
+      maxWidth: "30%",
       minHeight: 400,
     },
     thumbnail: {
