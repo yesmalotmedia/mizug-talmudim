@@ -48,6 +48,10 @@ const routers = createBrowserRouter([
         element: <TalmudHaMemuzag />,
       },
       {
+        path: "TalmudHaMemuzag/:articled",
+        element: <TalmudHaMemuzag />,
+      },
+      {
         path: "Contact",
         element: <Contact />,
       },

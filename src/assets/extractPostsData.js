@@ -21,7 +21,7 @@ const ExtractPostsData = (data) => {
     contentType: item.acf.contentType,
     url: extractYoutubeUrl(item.acf.url),
     dedicatedTo: item.acf.dedicatedTo,
-    // audioUrl: item.acf.audioUrl,
+    audioUrl: item.acf.audioUrl,
     categories: item.categories,
     combinedValues: [
       item?.date?.split("T")[0],
