@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import Spacer from "../elements/Spacer";
-
+import aboutUsSectionData from "../../data/aboutUsSectionData";
 const AboutSection = () => {
   const { colors, bgColors, pagesList, description, isMobile } =
     useContext(AppContext);
@@ -51,7 +51,7 @@ const AboutSection = () => {
       padding: "5vw",
       color: colors.darkBlue,
       fontWeight: 600,
-      fontSize: isMobile ? "2vmax" : "1.5vw",
+      fontSize: isMobile ? "1.8vmax" : "1.2vw",
       lineHeight: 1.5,
       maxWidth: 1000,
       zIndex: 3,
@@ -72,8 +72,7 @@ const AboutSection = () => {
     <div style={styles.title}>פה יהיה משפט מרגש שמבטא את התפיסה שלנו</div>
   ) : (
     <div style={styles.title}>
-      פה יהיה משפט <br /> מרגש שמבטא את
-      <br /> התפיסה שלנו
+      אין תורה <br /> כתורת ארץ ישראל
     </div>
   );
   return (
@@ -85,17 +84,7 @@ const AboutSection = () => {
         <br />
         {title}
       </div>
-      <div style={styles.description}>
-        לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית קולורס מונפרד
-        אדנדוםסילקוף, מרגשי ומרגשח. עמחליף נולום ארווס סאפיאן - פוסיליס קוויס,
-        אקווזמן קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון
-        בלרק - וענוף קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך
-        תצטריק לרטי. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת
-        אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור,
-        קראס אגת לקטוס וואל אאוגו וסטיבולום ריק לרטי. הועניב היושבב שערש שמחויט
-        - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת
-        יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.
-      </div>
+      <div style={styles.description}>{aboutUsSectionData}</div>
       <img style={styles.bgImg} src={bgImg} alt="bg-img" />
     </div>
   );

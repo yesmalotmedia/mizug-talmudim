@@ -27,6 +27,7 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=100&page=1"
   );
+  console.log(postsData);
   // Fetch categories data
   const {
     data: categoriesData,
@@ -44,6 +45,15 @@ function App() {
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/rabbies?_fields=id,description,name"
   );
 
+  //Fetch dedications data
+  const {
+    data: dedicationsData,
+    loading: loadingDedications,
+    error: errordedications,
+  } = useFetch(
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/dedications"
+  );
+  console.log(dedicationsData);
   // State for handling mobile view
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -52,7 +62,7 @@ function App() {
   const [lessonsFilter, setlessonsFilter] = useState({
     category: "כל השיעורים",
   });
-  console.log(lessonsFilter);
+
   // Parsing data
   let parsedData = [];
   let videos = [];
@@ -96,6 +106,9 @@ function App() {
         rabbiesData,
         loadingRabbies,
         lessonsFilter,
+        dedicationsData,
+        loadingDedications,
+        errordedications,
         setlessonsType,
         setIsMobileNavOpen,
         getCategoriesByParent,

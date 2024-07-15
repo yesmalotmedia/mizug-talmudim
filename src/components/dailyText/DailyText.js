@@ -27,6 +27,7 @@ const DailyText = () => {
       fontSize: isMobile ? "3vmax" : "3vw",
       fontWeight: 600,
       animation: "fadeInOut 10s infinite",
+      textAlign: "center",
     },
     textSource: {
       textAlign: "center",

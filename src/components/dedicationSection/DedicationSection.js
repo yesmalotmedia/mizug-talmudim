@@ -5,10 +5,14 @@ import Spacer from "../elements/Spacer";
 
 const DedicationSection = () => {
   // context
-  const { colors, bgColors, isMobile, dailyTextsData } = useContext(AppContext);
+  const { colors, bgColors, isMobile, dailyTextsData, dedicationsData } =
+    useContext(AppContext);
 
   // states
-  const text = "הלימוד היום מוקדש הלימוד היום מוקדש הלימוד היום מוקדש";
+  const text =
+    dedicationsData !== null
+      ? dedicationsData[0].title.rendered
+      : "הלימוד מוקדש לרפואת ";
   const textSource = "עין איה שם, שם";
   const screenWidth = window.innerWidth;
 
@@ -56,7 +60,7 @@ const DedicationSection = () => {
         alt="bgDedicationSection"
       />
 
-      <div style={styles.text}>{text}</div>
+      <div style={styles.text}>{`הלימוד מוקדש ${text}`}</div>
     </div>
   );
 };

@@ -59,7 +59,7 @@ function VideoCoverImage({ url, videoId, title }) {
       cursor: "pointer",
     },
     title: {
-      fontSize: isMobile ? "0.9rem" : "1.2rem",
+      fontSize: isMobile ? "0.9rem" : "0.9rem",
       lineHeight: 1,
       color: colors.white,
       fontWeight: 600,
@@ -71,7 +71,7 @@ function VideoCoverImage({ url, videoId, title }) {
       height: "40%",
       maxHeight: "60%",
       textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Add text shadow
-      padding: 20,
+      padding: 10,
     },
   };
 
