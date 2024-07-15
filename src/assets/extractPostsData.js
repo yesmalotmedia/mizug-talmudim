@@ -20,6 +20,7 @@ const ExtractPostsData = (data) => {
     rabbiName: getRabbieNameById(item.rabbies[0]),
     contentType: item.acf.contentType,
     url: extractYoutubeUrl(item.acf.url),
+    article: item.acf.articleContent,
     dedicatedTo: item.acf.dedicatedTo,
     audioUrl: item.acf.audioUrl,
     categories: item.categories,
