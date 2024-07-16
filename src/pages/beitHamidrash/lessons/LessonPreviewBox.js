@@ -88,12 +88,14 @@ export default function LessonPreviewBox({ video }) {
   return (
     <div style={styles.container}>
       {/* <YouTubeVideo2 url={video.url} index={video.key} /> */}
-      <VideoCoverImage
-        url={video.url}
-        index={video.key}
-        videoId={video.id}
-        title={video.title}
-      />
+      {
+        <VideoCoverImage
+          url={video.url}
+          index={video.key}
+          videoId={video.id}
+          title={video.title}
+        />
+      }
       <div style={styles.description}>
         <div style={{ width: "60%" }}>
           <h2 style={styles.title}> {video.title}</h2>

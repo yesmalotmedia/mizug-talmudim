@@ -97,6 +97,7 @@ function App() {
         description,
         dailyTextsData,
         postsData,
+        loadingPosts,
         isMobileNavOpen,
         parsedData,
         videos,

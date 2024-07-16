@@ -13,6 +13,7 @@ import VideoCoverImage from "../elements/VideoCoverImage";
 import Button from "../elements/Button";
 import getCategoryNameById from "../../assets/getCategoryNameById";
 import { useNavigate } from "react-router-dom";
+import LoaderAnimation from "../elements/LoaderAnimation";
 
 const LastLessons = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const LastLessons = () => {
     setlessonsFilter,
     categories,
     lessonsFilter,
+    loadingPosts,
   } = useContext(AppContext);
   const lastVideos = getLastVideos(videos);
   const styles = {
@@ -43,7 +45,7 @@ const LastLessons = () => {
       zIndex: 100,
     },
   };
-  console.log(videos);
+
   //functions
   function getLastVideos(videos) {
     const lastEiun = videos.find((video) => video.categories.includes(19));
@@ -55,33 +57,32 @@ const LastLessons = () => {
 
   const handleClick = (categoryId) => {
     const categoryName = getCategoryNameById(categoryId);
-    console.log(categoryId, getCategoryNameById(categoryId));
-
     setlessonsFilter({ category: categoryName });
     navigate(`/BeitHamidrash`);
   };
 
   const lastVideosElements = lastVideos?.map((video, index) => (
     <div key={index} style={{ margin: isMobile ? "10px" : "20px" }}>
-      <VideoCoverImage
-        url={video?.url}
-        videoId={video?.id}
-        title={video?.title}
-      />
-      <br></br>
-
+      {loadingPosts ? (
+        <LoaderAnimation isLoading={loadingPosts} color={colors.orange} />
+      ) : (
+        <VideoCoverImage
+          url={video?.url}
+          videoId={video?.id}
+          title={video?.title}
+        />
+      )}
       <Button
         color={colors.white}
         bgColor={index === 2 ? bgColors.azureGradient : bgColors.orangeGradient}
         hoveredBgColor={bgColors.darkBlueGradient}
-        // title={`לכל שיעורי ${getCategoryNameById(video?.categories[video?.categories?.length - 1])}`}
-        title={`לכל שיעורי ${getCategoryNameById(index == 0 ? 19 : index == 1 ? 18 : 5)}`}
+        title={`לכל שיעורי ${getCategoryNameById(index === 0 ? 19 : index === 1 ? 18 : 5)}`}
         fontSize={20}
         fontWeight={500}
         borderRadius={50}
         width={"100%"}
         arrow={true}
-        onClick={() => handleClick(index == 0 ? 19 : index == 1 ? 18 : 5)}
+        onClick={() => handleClick(index === 0 ? 19 : index === 1 ? 18 : 5)}
       />
     </div>
   ));

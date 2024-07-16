@@ -9,6 +9,7 @@ import LessonsSection from "./lessons/LessonSection";
 import HeroSection from "../../components/elements/HeroSection";
 import LessonsCollection from "./lessons/LessonsCollection";
 import { useParams } from "react-router-dom";
+import LoaderAnimation from "../../components/elements/LoaderAnimation";
 const BeitHamidrash = () => {
   // data
   const {
@@ -22,6 +23,7 @@ const BeitHamidrash = () => {
     setlessonsType,
     setlessonsFilter,
     lessonsFilter,
+    loadingPosts,
   } = useContext(AppContext);
   const screenWidth = window.innerWidth;
   // states
@@ -79,10 +81,14 @@ const BeitHamidrash = () => {
           />
         )}
         {!videoId ? (
-          <LessonsCollection
-            lessonsType={lessonsType}
-            setlessonsType={setlessonsType}
-          />
+          loadingPosts ? (
+            <LoaderAnimation isLoading={loadingPosts} color={colors.orange} />
+          ) : (
+            <LessonsCollection
+              lessonsType={lessonsType}
+              setlessonsType={setlessonsType}
+            />
+          )
         ) : (
           <LessonsSection videoId={videoId} />
         )}
