@@ -12,7 +12,7 @@ export default function LessonSection({ videoId }) {
   const { colors, bgColors, isMobile, videos } = useContext(AppContext);
   const video = videos?.find((video) => video?.id == videoId);
   const coverImage = extractYoutubeCoverByVideoId(video?.url);
-  console.log(coverImage);
+  console.log(video.dedicatedTo);
 
   const mainCategory = getCategoryNameById(video?.categories[0]);
   const subCategory = getCategoryNameById(video?.categories[1]);
@@ -115,9 +115,7 @@ export default function LessonSection({ videoId }) {
           <img style={styles.icon} src="/time.png"></img>
           <span style={styles.dateAndTimeText}> זמן קריאה: 8 דק’ </span>
         </div>
-        <div
-          style={styles.dedicate}
-        >{`השיעור מוקדש לעילוי נשמת פלוני בן אלמוני`}</div>
+        <div style={styles.dedicate}>{video?.dedicatedTo}</div>
         <YouTubeVideo2 url={video?.url} index={video?.key} />{" "}
       </div>
       <div style={styles.audioContainer}>

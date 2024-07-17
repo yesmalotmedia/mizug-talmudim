@@ -4,7 +4,7 @@ import HeroSection from "../../components/elements/HeroSection";
 import PostsCollection from "./PostsCollection";
 
 export default function WhatsNew() {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, isMobile, parsedNewsData } = useContext(AppContext);
 
   return (
     <>

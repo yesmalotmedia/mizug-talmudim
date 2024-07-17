@@ -4,22 +4,22 @@ import PostsPreviewBox from "./PostsPreviewBox";
 import LoadMore from "../../components/elements/LoadMore";
 import whatsNewData from "../../data/whatsNewData";
 const PostsCollection = () => {
-  
   const [visiblePostCount, setVisiblePostCount] = useState(10);
+  const { colors, isMobile, parsedNewsData, loadingNews } =
+    useContext(AppContext);
 
   const loadMorePosts = (increment) => {
     setVisiblePostCount((prevCount) => prevCount + increment);
   };
-
+  console.log(parsedNewsData);
   return (
     <>
-      {whatsNewData.slice(0, visiblePostCount).map((post) => (
+      {parsedNewsData?.slice(0, visiblePostCount).map((post) => (
         <PostsPreviewBox
           key={post.id}
           article={post.article}
           title={post.title}
-          dateEn={post.dateEn}
-          dateHe={post.dateHe}
+          date={post.date}
           thumbnail={post.thumbnail}
           postId={post.id}
         />

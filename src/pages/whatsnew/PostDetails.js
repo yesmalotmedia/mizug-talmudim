@@ -6,12 +6,11 @@ import PostSuggestion from "./PostSuggestion";
 import NextAndPreviousBtn from "./NextAndPreviousBtn";
 import SharePost from "./SharePost";
 import Gallery from "../../components/elements/Gallery";
-import whatsNewData from "../../data/whatsNewData";
 const PostDetails = () => {
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors, bgColors, isMobile, parsedNewsData } = useContext(AppContext);
   const { postId } = useParams();
-  const post = whatsNewData.find((p) => p.id.toString() === postId);
-
+  const post = parsedNewsData.find((p) => p.id.toString() === postId);
+  console.log(post);
   const styles = {
     mainSection: {
       width: isMobile ? "95%" : "50%",
@@ -43,16 +42,17 @@ const PostDetails = () => {
     },
     suggestionContainer: {
       marginInline: "auto",
-      padding: isMobile? "5px": "15px 0",
-  
+      padding: isMobile ? "5px" : "15px 0",
+
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "center",
       background: bgColors.lightAzure,
       borderRadius: 20,
-      gap: isMobile? 5: 10,
+      gap: isMobile ? 5 : 10,
     },
   };
+  console.log(post);
 
   return (
     <>
@@ -63,32 +63,35 @@ const PostDetails = () => {
           <div style={styles.tarikContainer}>
             <img style={styles.tarikImg} src="/tarik.png" alt="Tarik Logo" />
             <p style={styles.tarik}>
-              <span>{post.dateHe}</span> | <span>{post.dateEn}</span>
+              <span>{post.date}</span>
             </p>
           </div>
-          <article style={styles.article}>{post.article}</article>
+          <div
+            style={styles.article}
+            dangerouslySetInnerHTML={{ __html: post.article }}
+          />
 
           <Gallery data={post} />
 
           <NextAndPreviousBtn
-            data={whatsNewData}
+            data={parsedNewsData}
             currentId={post.id}
             UrlPageName={"WhatsNew"}
           />
           <div>
             <SharePost />
           </div>
-        </div> <div style={styles.suggestionContainer}>
-        <PostSuggestion
-          currentPostId={post.id}
-          tarikImg={"/tarik.png"}
-          UrlPageName={"WhatsNew"}
-          numPosts={4}
-          showPostsAfter={true}
-        />
+        </div>{" "}
+        <div style={styles.suggestionContainer}>
+          <PostSuggestion
+            currentPostId={post.id}
+            tarikImg={"/tarik.png"}
+            UrlPageName={"WhatsNew"}
+            numPosts={4}
+            showPostsAfter={true}
+          />
+        </div>
       </div>
-      </div>
-     
     </>
   );
 };
