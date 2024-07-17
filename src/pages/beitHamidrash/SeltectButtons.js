@@ -4,6 +4,7 @@ import CyrcleButton from "../../components/elements/CyrcleButton";
 import { useNavigate } from "react-router-dom";
 
 const SeltectButtons = ({ lessonsType, setlessonsType }) => {
+  
   // Context
   const {
     colors,
@@ -31,7 +32,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
           borderRadius: "5px",
           cursor: "pointer",
         }
-      : {},
+      : {  },
   };
 
   // Functions

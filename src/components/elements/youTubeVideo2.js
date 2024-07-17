@@ -6,17 +6,17 @@ import bgColors from "../../styles/bg-colors";
 
 function YouTubeVideo2({ url, index }) {
   //context
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, responsive } = useContext(AppContext);
 
   const styles = {
     container: {
       maxWidth: "100%",
-      height: isMobile? "30%": 600,
+      height: responsive(600,"30%","30%"),
       boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
       backgroundColor: bgColors.white,
       padding: 20,
-      margin: isMobile ? "10px 0" : 0,
-      borderRadius: isMobile? "5px": "50px",
+      margin: responsive(0,"10px 0","10px 0"),
+      borderRadius: responsive("50px","5px","5px"),
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -36,7 +36,7 @@ function YouTubeVideo2({ url, index }) {
     <div style={styles.container}>
       <iframe
         width={"100%"}
-        height={isMobile? "30%":"85%"}
+        height={"100%"}
         src={url}
         title="YouTube video player"
         frameBorder="0"

@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 import LoaderAnimation from "./LoaderAnimation";
 
 const LoadMore = ({ onClick }) => {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -31,8 +31,8 @@ const LoadMore = ({ onClick }) => {
 
   const styles = {
     readMore: {
-      height: isMobile ? "17vw" : "3.5vw", 
-      width: isMobile ? "32vw" : "11vw", 
+      height:40, 
+      width: 200, 
       borderRadius: 30,
       border: `2px solid ${colors.orange}`,
       textAlign: "center",
@@ -41,7 +41,7 @@ const LoadMore = ({ onClick }) => {
       justifyContent: "center",
       color: colors.darkBlue,
       fontWeight: 600,
-      fontSize: isMobile ? "7vw" : "1.5vw",
+      fontSize: "1.6rem",
       cursor: "pointer",
       margin: "20px auto",
       boxShadow: isHovered

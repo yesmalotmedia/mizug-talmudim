@@ -8,7 +8,7 @@ import getCategoryIdByName from "../../../assets/geCategoryIdByName";
 import LoadMore from "../../../components/elements/LoadMore";
 
 const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
-  const { isMobile, parsedData, videos } = useContext(AppContext);
+  const { isMobile, parsedData, videos ,responsive } = useContext(AppContext);
   const [visiblePostCount, setVisiblePostCount] = useState(20); // State to manage visible posts
 
   // Filter lessons based on type
@@ -39,7 +39,7 @@ const LessonsCollection = ({ lessonsType, setlessonsType, lessonsFilter }) => {
       alignItems: "center",
     },
     lessonsContainer: {
-      width: isMobile ? "100%" : "90%",
+      width: responsive("90%","100%","100%"),
       maxWidth: 1200,
       display: "flex",
       alignItems: "center",

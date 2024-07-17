@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import VideoCoverImage from "../../../components/elements/VideoCoverImage";
 
 export default function LessonPreviewBox({ video }) {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, responsive} = useContext(AppContext);
   const styles = {
     container: {
-      flex: isMobile ? "1 1 calc(48% - 20px)" : "1 1 calc(30% - 40px)",
+      flex: responsive("1 1 calc(30% - 40px)","1 1 calc(48% - 20px)","1 1 calc(48% - 20px)"),
       boxSizing: "border-box",
       margin: "10px",
       border: `1px solid ${colors.azure}`,
@@ -38,15 +38,15 @@ export default function LessonPreviewBox({ video }) {
       padding: 5,
     },
     title: {
-      fontSize: isMobile ? "2.4vmax" : "1.2vw",
+      fontSize: responsive("1.2vw","2.4vmax","2.4vmax"),
     },
     subTitle: {
-      fontSize: isMobile ? "2.5vmax" : "1vw",
+      fontSize: responsive("1vw","2.5vmax","2.5vmax"),
       padding: 5,
       fontWeight: 400,
     },
     date: {
-      fontSize: isMobile ? "1.9vmax" : "0.8vw",
+      fontSize: responsive("0.8vw","1.9vmax","1.9vmax"),
       fontWeight: 400,
       marginTop: 4,
     },
@@ -66,20 +66,20 @@ export default function LessonPreviewBox({ video }) {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: isMobile ? "1vmax 2vmax" : "0.5vw 0.9vw",
+      padding: responsive( "0.5vw 0.9vw","1vmax 2vmax","1vmax 2vmax" ),
       borderRadius: 20,
       outline: "none",
       border: `1px solid ${colors.azure}`,
       color: colors.azure,
       fontWeight: 500,
-      fontSize: isMobile ? "2vmax" : "0.9vw",
+      fontSize: responsive("0.9vw","2vmax" ,"2vmax" ),
       background: colors.white,
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       cursor: "pointer",
     },
     icon: {
-      height: isMobile ? "3vmax" : "1.5vw",
-      width: isMobile ? "3vmax" : "1.5vw",
+      height: responsive( "1.5vw", "3vmax", "3vmax" ),
+      width: responsive( "1.5vw", "3vmax" , "3vmax" ),
     },
   };
 

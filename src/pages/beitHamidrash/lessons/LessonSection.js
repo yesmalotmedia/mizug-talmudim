@@ -9,7 +9,8 @@ import VideoCover from "../../../components/elements/VideoCover";
 import SpotifyPodcast from "../SpotifyPodcast";
 
 export default function LessonSection({ videoId }) {
-  const { colors, bgColors, isMobile, videos } = useContext(AppContext);
+  const { colors, bgColors, isMobile, videos, responsive } =
+    useContext(AppContext);
   const video = videos?.find((video) => video?.id == videoId);
   const coverImage = extractYoutubeCoverByVideoId(video?.url);
   console.log(coverImage);
@@ -26,7 +27,7 @@ export default function LessonSection({ videoId }) {
       width: "100%",
     },
     breadscrumb: {
-      color: "gray",
+      color: colors.grey,
       fontWeight: 500,
       paddingBottom: 20,
     },
@@ -41,7 +42,7 @@ export default function LessonSection({ videoId }) {
       color: colors.darkBlue,
     },
     timeAndTimeContainer: {
-      width: isMobile ? "100%" : "",
+      width: responsive("100%", "100%", "100%"),
       display: "flex",
       alignItems: "center",
       padding: "20px 0",
@@ -51,46 +52,33 @@ export default function LessonSection({ videoId }) {
       width: 20,
     },
     dateAndTimeText: {
-      width: isMobile ? "100%" : "",
+      width: "100%",
       padding: "0 10px",
       fontWeight: 400,
-      color: "gray",
-    },
-    videoSection: {
-      width: isMobile ? "100%" : "70%",
-    },
-    video: {
-      height: isMobile ? "30%" : " 40%",
-      width: isMobile ? "100%" : "70%",
-      borderRadius: 10,
-      border: `2px solid ${colors.darkBlue}`,
-    },
-    audioContainer: {
-      width: isMobile ? "100%" : "70%",
-      marginTop: 10,
-      height: 60,
+      color: colors.grey,
     },
     descriptionContainer: {
       marginTop: 20,
-      width: isMobile ? "100%" : "70%",
+      width: responsive("100%", "70%", "90%"),
+      marginInline: "auto",
     },
     description: {
       textAlign: "justify",
-      padding: isMobile ? "20px 10px" : "15px 70px 10px 70px",
       lineHeight: "1.9rem",
+      width: "100%",
     },
     footerSection: {
-      width: isMobile ? "90%" : "70%",
+      width: responsive("100%", "70%", "90%"),
     },
     commentsTitle: {
       color: colors.azure,
-      padding: isMobile ? "10px 10px" : "30px 60px 10px 0",
+      padding: responsive("30px 60px 10px 0", "10px 110px 10px 0", "10px 10px"),
     },
     input: {
-      width: isMobile ? "100%" : "85%",
+      width: responsive("85%", "100%", "100%"),
       outline: "none",
       padding: 10,
-      marginRight: isMobile ? 10 : 60,
+      marginRight: responsive(60, 110, 10),
       borderRadius: 40,
       border: "1px solid black",
     },

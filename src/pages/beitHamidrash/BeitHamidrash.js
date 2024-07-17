@@ -20,6 +20,7 @@ const BeitHamidrash = () => {
     loadingCategories,
     lessonsType,
     setlessonsType,
+    responsive,
   } = useContext(AppContext);
   const screenWidth = window.innerWidth;
 
@@ -31,7 +32,7 @@ const BeitHamidrash = () => {
     mainSection: {
       padding: 15,
       display: "flex",
-      margin: isMobile ? 0 : 100,
+      margin: responsive(100,0,0),
       justifyContent: "center",
     },
     titleSection: {
@@ -60,8 +61,8 @@ const BeitHamidrash = () => {
         backgroundImage={"/hero2.png"}
         subTitle={"בחרו את הנושא שמעניין אתכם"}
         titleColor={colors.white}
-        height={isMobile ? "75vmin" : "60vmin"}
-        marginTop={isMobile ? 95 : 90}
+        height={responsive ("60vmin","50vmin", "75vmin") }
+        marginTop={95}
       />
 
       <div style={styles.selectionButtonContainer}>

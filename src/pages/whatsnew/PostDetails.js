@@ -8,50 +8,38 @@ import SharePost from "./SharePost";
 import Gallery from "../../components/elements/Gallery";
 import whatsNewData from "../../data/whatsNewData";
 const PostDetails = () => {
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors, responsive} = useContext(AppContext);
   const { postId } = useParams();
   const post = whatsNewData.find((p) => p.id.toString() === postId);
 
   const styles = {
     mainSection: {
-      width: isMobile ? "90%" : "50%",
+      maxWidth: responsive ("70vw","80%","90%"),
       marginInline: "auto",
-    },
-    textSection: {
-      lineHeight: "1.8vw",
+      marginTop: responsive(0,10,-40),
     },
 
     textTitle: {
       color: colors.darkBlue,
-      fontSize: isMobile ? "8vw" : "2.3vmax",
-      lineHeight: isMobile ? "9vw" : "3vw",
+      fontSize: responsive ("1.8rem","1.5rem","1.5rem"),
+      lineHeight: responsive ("2rem","2rem","2rem"),
     },
     tarikContainer: {
       display: "flex",
       alignItems: "center",
       padding: "30px 0",
-      color: "gray",
+      color: colors.grey,
     },
     tarikImg: {
       height: "2.5vh",
       marginLeft: 10,
     },
     article: {
-      fontSize: isMobile ? "5vw" : "1.2vmax",
+      fontSize: responsive ("1.3rem","1.2rem","1rem"),
       textAlign: "justify",
-      lineHeight: isMobile ? "8vw" : "",
+      lineHeight: responsive ("2rem","1.9rem","1.7rem"),
     },
-    suggestionContainer: {
-      marginInline: "auto",
-      padding: isMobile? "5px": "15px 0",
-  
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      background: bgColors.lightAzure,
-      borderRadius: 20,
-      gap: isMobile? 5: 10,
-    },
+    
   };
 
   return (
@@ -78,7 +66,9 @@ const PostDetails = () => {
           <div>
             <SharePost />
           </div>
-        </div> <div style={styles.suggestionContainer}>
+        </div> 
+        
+        <div >
         <PostSuggestion
           currentPostId={post.id}
           tarikImg={"/tarik.png"}

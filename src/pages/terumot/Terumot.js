@@ -3,22 +3,23 @@ import HeroSection from "../../components/elements/HeroSection";
 import { AppContext } from "./../../App";
 import terumotData from '../../data/terumotData';
 
+
 export default function Terumot() {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors,responsive } = useContext(AppContext);
 
   const styles = {
     mainContainer: {
       marginInline: "auto",
-      width:  isMobile? "90%":"50%",
+      width: responsive("60%", "80%", "90%"),
     },
     title: {
       color: colors.darkBlue,
-      fontSize: isMobile? "5vw":"3vw",
+      fontSize: responsive("2.5rem", "2rem", "1.6rem"),
       marginTop: 40,
     },
     description: {
-      fontSize: isMobile? "4.5vw":"1.3vw",
-      lineHeight: isMobile? "6vw":"1.7vw",
+      fontSize: responsive("1.3rem", "1.2rem", "1.2rem"),
+      lineHeight: responsive("2rem", "2rem", "1.7rem"),
       textAlign: "justify",
       marginTop: 30,
     },
@@ -26,8 +27,10 @@ export default function Terumot() {
       marginTop: 40,
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-around",
+      gap: 10,
       width: "100%",
+      flexWrap: 'wrap',
+      
     },
     btn: {
       position: "relative",
@@ -37,8 +40,8 @@ export default function Terumot() {
       cursor: 'pointer',
     },
     img: {
-      height: isMobile ? "32vw":"15vw",
-      width: isMobile? "32vw":"15vw",
+      height: responsive("13vmax", "16vmax", "18vmax"),
+      width: responsive("13vmax", "16vmax", "18vmax"),
       transition: "transform 0.3s ease-in-out",
     },
     imgHover: {
@@ -46,7 +49,7 @@ export default function Terumot() {
     },
     text: {
       position: "absolute",
-      fontSize: isMobile?"6vw":"2.9vw",
+      fontSize: responsive("2.5vmax", "3vmax", "3.6vmax"),
       fontWeight: 700,
       color: colors.white,
       zIndex: 30,
@@ -65,8 +68,8 @@ export default function Terumot() {
         subTitle={" ולהקדיש שיעור לזכות וברכה "}
         isSubscribe={false}
         titleColor={colors.white}
-        height={isMobile ? "80vmin": "60vmin"}
-        marginTop={isMobile ? 95:90}
+        height={responsive("60vmin", "60vmin", "70vmin")}
+        marginTop={responsive(90, 95, 120)}
         isButton={true}
         btnTitle={"לתרומה מהירה"}
       />

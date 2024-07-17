@@ -5,7 +5,7 @@ import Spacer from "../elements/Spacer";
 
 const DailyText = () => {
   // context
-  const { colors, bgColors, isMobile, dailyTextsData } = useContext(AppContext);
+  const { colors, responsive,bgColors, dailyTextsData } = useContext(AppContext);
 
   // states
   const text = "כאן יופיע טקסט מתחלף מהמקורות";
@@ -26,17 +26,17 @@ const DailyText = () => {
     },
     text: {
       color: colors.darkBlue,
-      fontSize: isMobile ? "3vmax" : "3vw",
+      fontSize: responsive("1.9rem","1.7rem","1.4rem"),
       fontWeight: 600,
     },
     textSource: {
       textAlign: "center",
       color: colors.darkBlue,
       fontWeight: 500,
-      fontSize: isMobile ? "3vmax" : "2vw",
+      fontSize: responsive("1.9rem","1.7rem","1.4rem"),
     },
     bgImg: {
-      width: isMobile ? "100%" : "70%",
+      width: responsive("70%","70%","100%"),
       position: "absolute",
       bottom: 0,
       left: 0,

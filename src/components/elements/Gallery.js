@@ -3,7 +3,7 @@ import FullscreenImageViewer from "./fullscreenImageViewer";
 import { AppContext } from "../../App";
 
 export default function Gallery({ data }) {
-  const { isMobile } = useContext(AppContext);
+  const {  responsive } = useContext(AppContext);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -55,7 +55,7 @@ export default function Gallery({ data }) {
       flex: "0 0 48%",
       height: "21.5vw",
       borderRadius: 20,
-      marginBottom: isMobile ? 60 : 20,
+      marginBottom: responsive(20,60,60),
     },
     fullWidthImage: {
       flex: "0 0 100%",

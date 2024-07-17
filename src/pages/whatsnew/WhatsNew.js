@@ -4,7 +4,7 @@ import HeroSection from "../../components/elements/HeroSection";
 import PostsCollection from "./PostsCollection";
 
 export default function WhatsNew() {
-  const { colors, isMobile} = useContext(AppContext);
+  const { colors, responsive} = useContext(AppContext);
 
   return (
     <>
@@ -13,8 +13,8 @@ export default function WhatsNew() {
         subTitle={"הרשמו לרשימת התפוצה ותשארו מעודכנים"}
         isSubscribe={true}
         titleColor={colors.darkBlue}
-        height={isMobile ? "75vmin": "60vmin"}
-        marginTop={isMobile ? 95:90}
+        height={responsive("60vmin", "60vmin", "70vmin")}
+        marginTop={responsive(90, 50, 170)}
       />
       <PostsCollection />
     </>

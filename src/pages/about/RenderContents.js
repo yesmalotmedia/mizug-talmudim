@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 import Gallery from "../../components/elements/Gallery";
 
 const RenderContents = ({ sectionData }) => {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, responsive } = useContext(AppContext);
 
   const styles = {
     container:{
@@ -11,17 +11,18 @@ marginBottom: 80,
     },
     title: {
       color: colors.darkBlue,
-      fontSize:isMobile? "8vw": "2vw",
+      fontSize: responsive("2rem", "2rem","2rem"),
       marginBottom: 25,
     },
     paragraph: {
       textAlign: "justify",
-      fontSize: isMobile? "5vw":"1.2vw",
-      lineHeight:isMobile? "8vw": "1.6vw",
+      fontSize: responsive("1.3rem","1.2rem","1.1rem"),
+      lineHeight:responsive("1.9rem","1.7rem","1.7rem"),
       marginBottom: 15,
     },
     img: {
-      width: isMobile? "100%":"60vw",
+      width: responsive("60vw","100%","100%"),
+      height: responsive("40vh","40vh","30vh"),
       borderRadius: 20,
       margin: "30px 0",
     },

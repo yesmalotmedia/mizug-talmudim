@@ -5,7 +5,7 @@ import colors from "../../styles/colors";
 import bgColors from "../../styles/bg-colors";
 const LessonPrevew = () => {
   // context
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors } = useContext(AppContext);
 
   // states
   // styles

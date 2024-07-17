@@ -18,6 +18,7 @@ const SideBarSearch = ({ setlessonsFilter }) => {
     categories,
     getCategoriesByParent,
     setlessonsType,
+    responsive,
   } = useContext(AppContext);
 
   const [selectedValue, setSelectedValue] = useState(500);
@@ -35,11 +36,11 @@ const SideBarSearch = ({ setlessonsFilter }) => {
   const styles = {
     container: {
       backgroundColor: bgColors.lightAzure,
-      borderRadius: isMobile ? 0 : 50,
+      borderRadius: responsive(50, 0,0),
       padding: 20,
-      width: isMobile ? "100%" : "40%",
-      maxWidth: isMobile ? "100%" : 300,
-      maxHeight: isMobile ? "100vh" : 700,
+      width: responsive("40%", "100%","100%"),
+      maxWidth: responsive(300, "100%","100%"),
+      maxHeight: responsive(700, "100vh", "100vh"),
       display: "flex",
       justifyContent: "space-around",
       alignItems: "center",
@@ -75,7 +76,7 @@ const SideBarSearch = ({ setlessonsFilter }) => {
       color: colors.azure,
       fontSize: 15,
       fontWeight: 500,
-      width: isMobile ? "50%" : "90%",
+      width: responsive("90%", "50%","50%"),
       marginBottom: 5,
       marginRight: 5,
     },

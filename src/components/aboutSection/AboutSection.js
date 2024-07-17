@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
-import Spacer from "../elements/Spacer";
 
 const AboutSection = () => {
-  const { colors, bgColors, pagesList, description, isMobile } =
+  const { colors, bgColors,responsive, pagesList, description, isMobile } =
     useContext(AppContext);
 
   const bgImg = isMobile
@@ -14,7 +13,7 @@ const AboutSection = () => {
       width: "100%",
       position: "relative",
       display: "flex",
-      flexDirection: isMobile ? "column" : "row",
+      flexDirection: responsive("row","column","column"),
       justifyContent: "space-around",
       alignItems: "center",
       paddingTop: "10vw",
@@ -22,7 +21,7 @@ const AboutSection = () => {
     },
     titleSection: {
       zIndex: 2,
-      width: isMobile ? "70%" : "30%",
+      width: responsive("30%","70%","70%"),
       textAlign: "center",
       display: "flex",
       justifyContent: "center",
@@ -38,20 +37,20 @@ const AboutSection = () => {
     },
     title: {
       color: colors.white,
-      fontSize: isMobile ? "4.5vmax" : "3vw",
+      fontSize: responsive("3rem","2.3rem","1.7rem"),
       fontWeight: 500,
       textAlign: "center",
       maxWidth: 400,
     },
     description: {
-      width: isMobile ? "80%" : "50%",
+      width: responsive("50%","80%","80%"),
       backgroundColor: bgColors.white,
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       borderRadius: 50,
       padding: "5vw",
       color: colors.darkBlue,
       fontWeight: 600,
-      fontSize: isMobile ? "2vmax" : "1.5vw",
+      fontSize: responsive("1.4rem","1.3rem","1rem"),
       lineHeight: 1.5,
       maxWidth: 1000,
       zIndex: 3,

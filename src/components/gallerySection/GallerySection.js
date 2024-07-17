@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 const GallerySection = () => {
   // context
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, isMobile, responsive } = useContext(AppContext);
 
   const containerStyle = {
     width: "100%",
@@ -11,7 +11,7 @@ const GallerySection = () => {
   };
 
   const subContainerStyle = {
-    width: isMobile ? "80%" : "60%",
+    width: responsive("60%", "60%","80%"),
     maxWidth: 600,
     height: 500,
     position: "relative",

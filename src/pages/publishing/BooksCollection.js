@@ -11,17 +11,19 @@ const BooksCollection = () => {
   };
 
   const styles = {
-    gridContainer: {
+    container: {
       display: 'flex',
-
-      width: '100%',
-      flexWrap: 'wrap',
+      flexDirection: "column",
+    },
+    gridContainer: {
+      display: "flex",
+      width: "100%",
+      flexWrap: "wrap",
       gap: "20px",
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: "center",
+      justifyContent: "center",
     },
     loadMoreContainer: {
-
       display: "flex",
       justifyContent: "center",
       marginTop: "20px",
@@ -29,17 +31,19 @@ const BooksCollection = () => {
   };
 
   return (
-    <div style={styles.gridContainer}>
-      {publishingData.slice(0, visiblePostCount).map((book) => (
-        <BookPreviewBox
-          key={book.title}
-          img={book.img}
-          title={book.title}
-          author={book.author}
-          price={book.price}
-          discountPrice={book.discountPrice}
-        />
-      ))}
+    <div style={styles.container}>
+      <div style={styles.gridContainer}>
+        {publishingData.slice(0, visiblePostCount).map((book) => (
+          <BookPreviewBox
+            key={book.title}
+            img={book.img}
+            title={book.title}
+            author={book.author}
+            price={book.price}
+            discountPrice={book.discountPrice}
+          />
+        ))}
+      </div>
       {visiblePostCount < publishingData.length && (
         <div style={styles.loadMoreContainer}>
           <LoadMore onClick={() => loadMorePosts(20)} />

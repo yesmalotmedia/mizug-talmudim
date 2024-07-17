@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
 export default function Socials() {
-    const { colors, isMobile } = useContext(AppContext);
+    const { colors, responsive } = useContext(AppContext);
   const styles = {
 
     
@@ -11,7 +11,7 @@ export default function Socials() {
         marginBottom: 20,
     },
     img: {
-        height: isMobile? "40px":"35px",
+        height:responsive("50px","50px","40px"),
       },
       label:{
         paddingRight: 30,
@@ -22,23 +22,23 @@ export default function Socials() {
   return (
     <>
       <div style={styles.wrapper}>
-        <img style={styles.img} src="footerImages/call.png"></img>
+        <img style={styles.img} src="/footerImages/call.png"></img>
         <p style={styles.label}> 000-00000000</p>
       </div>
       <div style={styles.wrapper}>
-        <img style={styles.img} src="footerImages/whatsapp.png"></img>
+        <img style={styles.img} src="/footerImages/whatsapp.png"></img>
         <p style={styles.label}> 000-00000000</p>
       </div>
       <div style={styles.wrapper}>
-        <img style={styles.img} src="footerImages/facebook.png"></img>
+        <img style={styles.img} src="/footerImages/facebook.png"></img>
         <p style={styles.label}> </p>
       </div>
       <div style={styles.wrapper}>
-        <img style={styles.img} src="footerImages/instagram.png"></img>
+        <img style={styles.img} src="/footerImages/instagram.png"></img>
         <p style={styles.label}> </p>
       </div>
       <div style={styles.wrapper}>
-        <img style={styles.img} src="footerImages/youtube.png"></img>
+        <img style={styles.img} src="/footerImages/youtube.png"></img>
         <p style={styles.label}></p>
       </div>
     </>

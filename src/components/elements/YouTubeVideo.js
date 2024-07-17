@@ -15,8 +15,7 @@ function YouTubeVideo({ url, index, title, category }) {
 
   const styles = {
     container: {
-      width: isMobile ? "100%" : "30%",
-
+      width:"100%",
       boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
       backgroundColor: bgColors.white,
       padding: 20,

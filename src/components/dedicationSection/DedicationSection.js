@@ -5,12 +5,12 @@ import Spacer from "../elements/Spacer";
 
 const DedicationSection = () => {
   // context
-  const { colors, bgColors, isMobile, dailyTextsData } = useContext(AppContext);
+  const { colors, bgColors, responsive,dailyTextsData } = useContext(AppContext);
 
   // states
   const text = "הלימוד היום מוקדש הלימוד היום מוקדש הלימוד היום מוקדש";
   const textSource = "עין איה שם, שם";
-  const screenWidth = window.innerWidth;
+
 
   // styles
 
@@ -23,17 +23,17 @@ const DedicationSection = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      transform: isMobile ? "translateY(-40vw)" : "translateY(-15.3vw)",
-      marginBottom: isMobile ? -260: 0,
+      transform: responsive("translateY(-15.3vw)","translateY(-40vw)","translateY(-40vw)" ),
+      marginBottom: responsive(0,-280,-280),
       padding: 8,
       textAlign: 'center',
     },
     text: {
-      position: isMobile? '': 'absolute',
+      position: 'absolute',
       color: colors.darkBlue,
-      fontSize: isMobile? "6vw":"2vw",
+      fontSize: responsive("2rem", "1.8rem", "1.3rem"),
       fontWeight: 600,
-      marginTop: screenWidth < 1400 ? "10px" : "50%",
+      marginBottom: responsive(-800,-300,0),
     },
     textSource: {
       textAlign: "center",
@@ -42,9 +42,9 @@ const DedicationSection = () => {
       fontSize: 20,
     },
     bgImg: {
-      width: screenWidth < 1400 ? "270%" : "100%",
+      width:responsive("100%","170%","300%"),
       position: "absolute",
-      bottom: isMobile?  0: -500,
+      bottom:responsive(-500,-200,-50),
       left: 0,
       zIndex: -2,
     },

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 
 export default function Button({ btnText, btnImg, background }) {
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors, responsive } = useContext(AppContext);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -42,12 +42,12 @@ export default function Button({ btnText, btnImg, background }) {
     text: {
       color: colors.white,
       fontWeight: 500,
-      fontSize: isMobile ? "5vw" : "0.9vw",
+      fontSize: responsive('0.9rem','1.2rem','1.2rem'),
       padding: 2,
     },
     img: {
       paddingRight: 4,
-      height: isMobile ? "4vw" : "0.8vw",
+      height: responsive('20px','1.2rem','1.2rem'),
     },
   };
 

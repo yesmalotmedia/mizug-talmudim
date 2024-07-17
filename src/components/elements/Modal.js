@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 import Button from "./Button";
 
 export default function Modal() {
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors, bgColors, isMobile, responsive } = useContext(AppContext);
   const [isVisible, setIsVisible] = useState(false); // State to manage visibility
   const [isShrink, setIsShrink] = useState(false); // State to manage shrink
 

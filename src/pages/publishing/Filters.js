@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 
 export default function Filters() {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors} = useContext(AppContext);
   const [activeButton, setActiveButton] = useState("all");
 
   const handleButtonClick = (buttonName) => {
@@ -39,7 +39,7 @@ export default function Filters() {
       textAlign: "center",
     },
     text: {
-      fontSize: isMobile ? "5vw" : "1vw",
+      fontSize: "1rem",
       padding: "0 10px",
       fontWeight: 500,
     },

@@ -9,7 +9,6 @@ const MobileNav = () => {
     pagesList,
     colors,
     bgColors,
-    isMobile,
     isMobileNavOpen,
     setIsMobileNavOpen,
   } = useContext(AppContext);
@@ -28,7 +27,7 @@ const MobileNav = () => {
       top: isMobileNavOpen ? -100 : -800,
       left: "50%",
       opacity: isMobileNavOpen ? 100 : 0,
-      transform: "translateX(-50%) ",
+      transform: "translateX(-50%)",
       transition:
         "all 1s cubic-bezier(0.25, 0.1, 0.25, 1), transform 1s cubic-bezier(0.25, 0.1, 0.25, 1)",
     },

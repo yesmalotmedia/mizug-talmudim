@@ -15,6 +15,7 @@ import getVideoData from "./assets/getVideoData";
 import extractYoutubeUrl from "./assets/extractYoutubeUrl";
 import ExtractPostsData from "./assets/extractPostsData";
 import getCategoriesByParent from "./assets/getCategoriesByParent";
+import useResponsive from "./Hooks/useResponsive";
 export const AppContext = React.createContext();
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const [lessonsType, setlessonsType] = useState("כל השיעורים");
-
+  const {responsive} = useResponsive()
   // Parsing data
   let parsedData = [];
   let videos = [];
@@ -96,6 +97,7 @@ function App() {
         setlessonsType,
         setIsMobileNavOpen,
         getCategoriesByParent,
+        responsive,
       }}
     >
       <div className="App">
