@@ -13,7 +13,7 @@ import postsData from "./data/whatsNewData";
 import useFetch from "./assets/useFetch";
 import getVideoData from "./assets/getVideoData";
 import extractYoutubeUrl from "./assets/extractYoutubeUrl";
-import ExtractPostsData from "./assets/ExtractPostsData";
+import ExtractPostsData from "./assets/extractPostsData";
 import getCategoriesByParent from "./assets/getCategoriesByParent";
 import DataTest from "./assets/dataTest/DataTest";
 import ExtractNewsData from "./assets/ExtractNewsData";
