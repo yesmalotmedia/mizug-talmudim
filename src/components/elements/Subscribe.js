@@ -6,7 +6,7 @@ import TanksMessage from "./TanksMessage";
 
 const Subscribe = () => {
   const form = useRef();
-  const { colors, responsive, isMobile } = useContext(AppContext);
+  const { colors, isMobile } = useContext(AppContext);
   const [isHovered, setIsHovered] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,14 +18,7 @@ const Subscribe = () => {
     input: {
       outline: "none",
       border: "none",
-      height: responsive("3vmax", "4.7vmax", "4vmax"),
-      width: responsive("30vmax", "80vmin", "80vmin"),
-      padding: responsive(
-        "15px 15px 15px 120px",
-        "15px 15px 15px 120px",
-        "20px 15px 20px 105px"
-      ),
-      fontSize: responsive(20, "3.6vmin", "3.6vmin"),
+
       fontWeight: 500,
       borderRadius: 30,
       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
@@ -47,10 +40,8 @@ const Subscribe = () => {
       cursor: "pointer",
     },
     arrow: {
-      height: responsive("1vw", "13px", "13px"),
       marginRight: "10px",
       position: "relative",
-      top: responsive(4, 2, -1),
     },
     successMassage: {
       paddingBottom: 10,

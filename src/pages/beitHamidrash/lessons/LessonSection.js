@@ -7,16 +7,16 @@ import getCategoryNameById from "../../../assets/getCategoryNameById";
 import extractYoutubeCoverByVideoId from "../../../assets/extractYoutubeCoverByVideoId";
 import VideoCover from "../../../components/elements/VideoCover";
 import SpotifyPodcast from "../SpotifyPodcast";
+import LoaderAnimation from "../../../components/elements/LoaderAnimation";
 
 export default function LessonSection({ videoId }) {
   const { colors, bgColors, isMobile, videos } = useContext(AppContext);
   const video = videos?.find((video) => video?.id == videoId);
-  const coverImage = extractYoutubeCoverByVideoId(video?.url);
-  console.log(video.dedicatedTo);
+  const coverImage = video ? extractYoutubeCoverByVideoId(video.url) : null;
 
-  const mainCategory = getCategoryNameById(video?.categories[0]);
-  const subCategory = getCategoryNameById(video?.categories[1]);
-  console.log(video);
+  const mainCategory = video ? getCategoryNameById(video.categories[0]) : "";
+  const subCategory = video ? getCategoryNameById(video.categories[1]) : "";
+
   const styles = {
     container: {
       textAlign: "right",
@@ -99,24 +99,29 @@ export default function LessonSection({ videoId }) {
       border: "1px solid black",
     },
   };
+
+  if (!video) {
+    return <LoaderAnimation isLoading={!video} color={colors.orange} />;
+  }
+
   return (
     <div style={styles.container}>
       <div style={styles.headerSection}>
         <p style={styles.breadscrumb}>
-          <span> {mainCategory}</span> / <span>{subCategory}</span>
+          <span>{mainCategory}</span> / <span>{subCategory}</span>
         </p>
-        <h2 style={styles.nameOfRav}> {video?.rabbiName} </h2>
-        <h1 style={styles.nameOfSiur}> {video?.title} </h1>
+        <h2 style={styles.nameOfRav}>{video.rabbiName}</h2>
+        <h1 style={styles.nameOfSiur}>{video.title}</h1>
       </div>
 
       <div style={styles.videoSection}>
         <div style={styles.timeAndTimeContainer}>
-          <span style={styles.dateAndTimeText}>{video?.date}</span>
-          <img style={styles.icon} src="/time.png"></img>
+          <span style={styles.dateAndTimeText}>{video.date}</span>
+          <img style={styles.icon} src="/time.png" alt="time icon" />
           <span style={styles.dateAndTimeText}> זמן קריאה: 8 דק’ </span>
         </div>
-        <div style={styles.dedicate}>{video?.dedicatedTo}</div>
-        <YouTubeVideo2 url={video?.url} index={video?.key} />{" "}
+        <div style={styles.dedicate}>{video.dedicatedTo}</div>
+        <YouTubeVideo2 url={video.url} index={video.key} />
       </div>
       <div style={styles.audioContainer}>
         {/* <AudioPlayer audioSrc="audioPlayer/testAudio.mp3" /> */}
@@ -129,7 +134,7 @@ export default function LessonSection({ videoId }) {
       <div style={styles.descriptionContainer}>
         <div
           style={styles.description}
-          dangerouslySetInnerHTML={{ __html: video?.article }}
+          dangerouslySetInnerHTML={{ __html: video.article }}
         />
       </div>
 
