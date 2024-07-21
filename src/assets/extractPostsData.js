@@ -12,18 +12,25 @@ const decodeHtmlEntities = (str) => {
 };
 
 const ExtractPostsData = (data) => {
-  console.log(data[0].acf.contentType);
-  console.log(data[1].acf.contentType);
-  console.log(data[2].acf.contentType);
   return data.map((item) => ({
     id: item.id,
-    date: item.date.split("T")[0], // Extract only the date part
+    date: item?.date?.split("T")[0], // Extract only the date part
+    heDate: item?.meta?.heDate,
     title: decodeHtmlEntities(item.title.rendered), // Decode HTML entities in the title
     rabbiName: getRabbieNameById(item.rabbies[0]),
     contentType: item.acf.contentType,
     url: extractYoutubeUrl(item.acf.url),
-    // audioUrl: item.acf.audioUrl,
+    article: item.acf.articleContent,
+    dedicatedTo: item.acf.dedicatedTo,
+    audioUrl: item.acf.audioUrl,
     categories: item.categories,
+    combinedValues: [
+      item?.date?.split("T")[0],
+      item?.meta?.heDate,
+      decodeHtmlEntities(item.title.rendered),
+      getRabbieNameById(item.rabbies[0]),
+      ...item.categories,
+    ],
   }));
 };
 

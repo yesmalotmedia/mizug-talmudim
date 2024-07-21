@@ -4,9 +4,8 @@ import bgColors from "../../styles/bg-colors";
 import { Link } from "react-router-dom";
 
 function VideoCoverImage({ url, videoId, title }) {
-  // State
+  //state
   const [isHovered, setIsHovered] = useState(false);
-
   // Context
   const { colors, responsive } = useContext(AppContext);
 
@@ -83,8 +82,6 @@ function VideoCoverImage({ url, videoId, title }) {
         <div
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          onTouchStart={() => setIsHovered(true)}
-          onTouchEnd={() => setIsHovered(false)}
         >
           <img
             src={thumbnailUrl}
@@ -93,7 +90,7 @@ function VideoCoverImage({ url, videoId, title }) {
           />
           <div style={styles.title}>{title}</div>
           <Link style={styles.btn} to={`/BeitHamidrash/${videoId}`}>
-            <img style={styles.playBtn} src="/play-button.png" alt="Play Button" />{" "}
+            <img style={styles.playBtn} src="/play-button.png" />{" "}
           </Link>
         </div>
       ) : (

@@ -12,7 +12,7 @@ const NavigationBtn = ({
 }) => {
   const navigate = useNavigate();
   const isNext = direction === "next";
-  const {colors, isMobile} = useContext(AppContext)
+  const {colors, responsive} = useContext(AppContext)
   const handleClick = () => {
     navigate(`/${navigation}/${postId}`);
   };
@@ -25,12 +25,12 @@ const NavigationBtn = ({
       background: "none",
       cursor: "pointer",
       color: colors.orange,
-      fontSize: isMobile? "4vw": "1.2vw",
+      fontSize: responsive("1.6rem","1.4rem","1.2rem"),
       fontWeight: 600,
 
     },
     btnImg: {
-      height: isMobile? "2vh": "0.8vw",
+      height:  responsive("1.3rem","1.3rem","1.2rem"),
       margin: 15,
       transform: isNext ? "rotate(180deg)" : "none",
     },

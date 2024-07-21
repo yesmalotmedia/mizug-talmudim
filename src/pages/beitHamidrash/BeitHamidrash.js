@@ -9,9 +9,11 @@ import LessonsSection from "./lessons/LessonSection";
 import HeroSection from "../../components/elements/HeroSection";
 import LessonsCollection from "./lessons/LessonsCollection";
 import { useParams } from "react-router-dom";
+import LoaderAnimation from "../../components/elements/LoaderAnimation";
 const BeitHamidrash = () => {
   // data
   const {
+    responsive,
     colors,
     bgColors,
     isMobile,
@@ -20,19 +22,19 @@ const BeitHamidrash = () => {
     loadingCategories,
     lessonsType,
     setlessonsType,
-    responsive,
+    setlessonsFilter,
+    lessonsFilter,
+    loadingPosts,
   } = useContext(AppContext);
   const screenWidth = window.innerWidth;
-
   // states
-  const [lessonsFilter, setlessonsFilter] = useState({});
   const { videoId } = useParams();
   // styles
   const styles = {
     mainSection: {
       padding: 15,
       display: "flex",
-      margin: responsive(100,0,0),
+      margin: isMobile ? 0 : 100,
       justifyContent: "center",
     },
     titleSection: {
@@ -56,7 +58,7 @@ const BeitHamidrash = () => {
 
   return (
     <>
-      <HeroSection
+    <HeroSection
         title={"בית המדרש"}
         backgroundImage={"/hero2.png"}
         subTitle={"בחרו את הנושא שמעניין אתכם"}
@@ -77,15 +79,17 @@ const BeitHamidrash = () => {
           <SideBarSearch
             lessonsType={lessonsType}
             setlessonsType={setlessonsType}
-            setlessonsFilter={setlessonsFilter}
           />
         )}
         {!videoId ? (
-          <LessonsCollection
-            lessonsType={lessonsType}
-            setlessonsType={setlessonsType}
-            lessonsFilter={lessonsFilter}
-          />
+          loadingPosts ? (
+            <LoaderAnimation isLoading={loadingPosts} color={colors.orange} />
+          ) : (
+            <LessonsCollection
+              lessonsType={lessonsType}
+              setlessonsType={setlessonsType}
+            />
+          )
         ) : (
           <LessonsSection videoId={videoId} />
         )}

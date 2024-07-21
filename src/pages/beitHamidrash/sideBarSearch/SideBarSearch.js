@@ -1,37 +1,41 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { AppContext } from "../../../App";
 import Button from "../../../components/elements/Button";
 import SelectInput from "./SelectInput";
-import Slider from "./Slider";
 import Checkbox from "./Checkbox";
 import yerushalmiMasectot from "../../../data/yerushalmiMasectot";
-import { useNavigate } from "react-router-dom";
 
-const SideBarSearch = ({ setlessonsFilter }) => {
+const SideBarSearch = () => {
   // data
   const {
+    responsive,
     colors,
     bgColors,
     isMobile,
     rabbiesData,
-    loadingRabbies,
     categories,
     getCategoriesByParent,
-    setlessonsType,
-    responsive,
+    setlessonsFilter,
+    lessonsFilter,
   } = useContext(AppContext);
 
   const [selectedValue, setSelectedValue] = useState(500);
 
   // states for form inputs
+  const [categoriesOptions, setCategoriesOptions] = useState(
+    getCategoriesByParent(categories, 3)
+  );
+  const [masectotOptions, setMasectotOptions] = useState();
+  const [rabbiesOptions, setRabbiesOptions] = useState();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRabbi, setSelectedRabbi] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("");
-  const [selectedRule, setSelectedRule] = useState("");
   const [selectedMasechet, setSelectedMasechet] = useState("");
   const [videoChecked, setVideoChecked] = useState(false);
   const [audioChecked, setAudioChecked] = useState(false);
   const [textChecked, setTextChecked] = useState(false);
+
   // styles
   const styles = {
     container: {
@@ -95,25 +99,57 @@ const SideBarSearch = ({ setlessonsFilter }) => {
     },
   };
 
+
   //functions
-  const filterLessons = () => {
+  const filteringSearch = useCallback(() => {
     const formData = {
-      searchQuery,
-      selectedRabbi,
-      selectedTopic,
-      selectedRule,
-      selectedMasechet,
-      videoChecked,
-      audioChecked,
-      textChecked,
-      lessonDuration: selectedValue,
+      category: selectedTopic,
+      masechet: selectedMasechet,
+      rabbiName: selectedRabbi,
+      type: {
+        video: videoChecked,
+        audio: audioChecked,
+        text: textChecked,
+      },
+    };
+
+    setlessonsFilter(formData);
+  }, [
+    selectedRabbi,
+    selectedTopic,
+    selectedMasechet,
+    videoChecked,
+    audioChecked,
+    textChecked,
+    setlessonsFilter,
+  ]);
+
+  const freeSearch = useCallback(() => {
+    const formData = {
+      freeQuery: searchQuery,
     };
     setlessonsFilter(formData);
-  };
+  }, [searchQuery]);
 
-  const handleChange = (value) => {
-    setSelectedValue(value);
-  };
+  useEffect(() => {
+    freeSearch();
+  }, [searchQuery, freeSearch]);
+
+  useEffect(() => {
+    filteringSearch();
+  }, [
+    selectedRabbi,
+    selectedTopic,
+    selectedMasechet,
+    videoChecked,
+    audioChecked,
+    textChecked,
+    filteringSearch,
+  ]);
+
+  useEffect(() => {
+    setlessonsFilter(lessonsFilter);
+  }, [setlessonsFilter]);
 
   return (
     <form style={styles.container}>
@@ -126,37 +162,46 @@ const SideBarSearch = ({ setlessonsFilter }) => {
         </>
       )}
       <div style={styles.searchContainer}>
+        <div style={styles.lable}>חיפוש חופשי </div>
         <input
           style={styles.searchInput}
-          placeholder="הקלידו לחיפוש"
+          placeholder="הקלידו שם רב או נושא"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <img src={"/searchIcon.png"} alt="Search" style={styles.searchIcon} />{" "}
         {/* Search icon */}
       </div>
-      <div style={styles.lable}>הרבנים</div>
-      <SelectInput
-        options={rabbiesData}
-        value={selectedRabbi}
-        onChange={(e) => setSelectedRabbi(e.target.value)}
-      />
+      {/* <Button
+        color={colors.white}
+        bgColor={bgColors.orangeGradient}
+        hoveredBgColor={bgColors.darkBlueGradient}
+        title={"בצע חיפוש"}
+        fontSize={20}
+        fontWeight={500}
+        borderRadius={50}
+        width={"90%"}
+        arrow={true}
+        onClick={freeSearch}
+      /> */}
+      <br></br>
       <div style={styles.lable}>הנושאים</div>
       <SelectInput
-        options={getCategoriesByParent(categories, 3)}
+        options={getCategoriesByParent(categories, 3) || categoriesOptions}
         value={selectedTopic}
         onChange={(e) => setSelectedTopic(e.target.value)}
-      />
-      <div style={styles.lable}>הכללים</div>
-      <SelectInput
-        value={selectedRule}
-        onChange={(e) => setSelectedRule(e.target.value)}
       />
       <div style={styles.lable}>המסכת</div>
       <SelectInput
         options={yerushalmiMasectot}
         value={selectedMasechet}
         onChange={(e) => setSelectedMasechet(e.target.value)}
+      />
+      <div style={styles.lable}>הרבנים</div>
+      <SelectInput
+        options={rabbiesData}
+        value={selectedRabbi}
+        onChange={(e) => setSelectedRabbi(e.target.value)}
       />
       <div style={styles.lable}>סוג השיעור</div>
       <Checkbox
@@ -175,14 +220,6 @@ const SideBarSearch = ({ setlessonsFilter }) => {
         onChange={() => setTextChecked(!textChecked)}
       />
       <br />
-      <div style={styles.lable}>משך זמן השיעור</div>
-      <Slider
-        min={1}
-        max={120}
-        step={1}
-        onChange={handleChange}
-        value={selectedValue}
-      />{" "}
       <Button
         color={colors.white}
         bgColor={bgColors.orangeGradient}
@@ -193,7 +230,7 @@ const SideBarSearch = ({ setlessonsFilter }) => {
         borderRadius={50}
         width={"90%"}
         arrow={true}
-        onClick={filterLessons}
+        onClick={filteringSearch}
       />{" "}
       <style>{`::placeholder {color: ${colors.darkBlue}`}</style>
     </form>

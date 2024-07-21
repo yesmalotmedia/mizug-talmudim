@@ -1,10 +1,52 @@
-import React, { useContext, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+import emailjs from "@emailjs/browser";
 import { AppContext } from "../../App";
+import TanksMessage from "../../components/elements/TanksMessage";
 
 export default function Form() {
-  const { colors, responsive } = useContext(AppContext);
+  const formRef = useRef();
+  const { colors, isMobile, responsive } = useContext(AppContext);
+  const [formState, setFormState] = useState({
+    user_name: "",
+    user_phone: "",
+    user_email: "",
+    message: "",
+  });
 
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    emailjs
+      .sendForm(
+        "service_oktpopo", // Your EmailJS service ID
+        "template_xaadncq", // Your EmailJS template ID
+        formRef.current,
+        "6nT-r6G4qY9-xawTb" // Your public key
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result.text);
+          setIsSuccess(true);
+          setIsLoading(false);
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  };
 
   const styles = {
     form: {
@@ -53,7 +95,7 @@ export default function Form() {
       backgroundColor: isFocused ? "#f0f8ff" : "white",
       transition: "background-color 0.3s ease",
     },
-    btn: {
+      btn: {
       outline: "none",
       background: colors.darkBlue,
       width: "170%",
@@ -74,47 +116,81 @@ export default function Form() {
       boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
      
     },
+    successMassage: {
+      padding: 100,
+      fontSize: responsive("1.2rem","1rem","0.9rem"),
+      color: colors.darkBlue,
+      textAlign: "center",
+    },
   };
-
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
-  const [isHovered, setIsHovered] = useState(false);
+ 
 
   return (
-    <>
-      <div style={styles.form}>
-        <div style={styles.inputWrapper}>
-          <label style={styles.label}> שם </label>
-          <input style={styles.input} type="text" />
-        </div>
-        <div style={styles.inputWrapper}>
-          <label style={styles.label}> טלפון </label>
-          <input style={styles.input} type="text" />
-        </div>
-        <div style={styles.inputWrapper}>
-          <label style={styles.label}> מייל </label>
-          <input style={styles.input} type="email" />
-        </div>
-        <div style={styles.inputWrapper}>
-          <label style={styles.label}> הודעה </label>
-          <textarea
-            style={styles.message}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          ></textarea>
-        </div>
-        <div style={styles.inputWrapper}>
-          <label style={styles.label}></label>
-          <button
-            style={{ ...styles.btn, ...(isHovered && styles.btnHover) }}
+    <div style={styles.form}>
+      {isSuccess ? (
+        <TanksMessage
+          msg={"תודה על פנייתך! נחזור אליך בהקדם"}
+          color={colors.darkBlue}
+        />
+      ) : (
+        <form ref={formRef} onSubmit={handleSubmit}>
+          <div style={styles.inputWrapper}>
+            <label style={styles.label}> שם </label>
+            <input
+              style={styles.input}
+              type="text"
+              name="user_name" // Name attribute should match the template field
+              value={formState.user_name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div style={styles.inputWrapper}>
+            <label style={styles.label}> טלפון </label>
+            <input
+              style={styles.input}
+              type="text"
+              name="user_phone" // Name attribute should match the template field
+              value={formState.user_phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div style={styles.inputWrapper}>
+            <label style={styles.label}> מייל </label>
+            <input
+              style={styles.input}
+              type="email"
+              name="user_email" // Name attribute should match the template field
+              value={formState.user_email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div style={styles.inputWrapper}>
+            <label style={styles.label}> הודעה </label>
+            <textarea
+              style={styles.message}
+              name="message" // Name attribute should match the template field
+              value={formState.message}
+              onChange={handleChange}
+              required
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            ></textarea>
+          </div>
+          <div style={styles.inputWrapper}>
+            <label style={styles.label}></label>
+            <button type="submit" style={{ ...styles.btn, ...(isHovered && styles.btnHover) }}
             onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            שלח
-          </button>
-        </div>
-      </div>
-     
-    </>
+            onMouseLeave={() => setIsHovered(false)}>
+              שלח
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
   );
 }

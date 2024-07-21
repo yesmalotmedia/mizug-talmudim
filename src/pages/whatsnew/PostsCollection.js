@@ -5,7 +5,8 @@ import LoadMore from "../../components/elements/LoadMore";
 import whatsNewData from "../../data/whatsNewData";
 const PostsCollection = () => {
   const [visiblePostCount, setVisiblePostCount] = useState(10);
-  const { responsive } = useContext(AppContext);
+  const { responsive, parsedNewsData, loadingNews } =
+    useContext(AppContext);
 
   const loadMorePosts = (increment) => {
     setVisiblePostCount((prevCount) => prevCount + increment);
@@ -15,15 +16,15 @@ const PostsCollection = () => {
       paddingTop: responsive(0, 0, 60),
     },
   };
+  console.log(parsedNewsData);
   return (
     <div style={styles.container}>
-      {whatsNewData.slice(0, visiblePostCount).map((post) => (
+      {parsedNewsData?.slice(0, visiblePostCount).map((post) => (
         <PostsPreviewBox
           key={post.id}
           article={post.article}
           title={post.title}
-          dateEn={post.dateEn}
-          dateHe={post.dateHe}
+          date={post.date}
           thumbnail={post.thumbnail}
           postId={post.id}
         />

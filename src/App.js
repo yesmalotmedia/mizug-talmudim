@@ -15,6 +15,8 @@ import getVideoData from "./assets/getVideoData";
 import extractYoutubeUrl from "./assets/extractYoutubeUrl";
 import ExtractPostsData from "./assets/extractPostsData";
 import getCategoriesByParent from "./assets/getCategoriesByParent";
+import DataTest from "./assets/dataTest/DataTest";
+import ExtractNewsData from "./assets/ExtractNewsData";
 import useResponsive from "./Hooks/useResponsive";
 export const AppContext = React.createContext();
 
@@ -27,7 +29,6 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=100&page=1"
   );
-  console.log(postsData);
   // Fetch categories data
   const {
     data: categoriesData,
@@ -45,23 +46,46 @@ function App() {
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/rabbies?_fields=id,description,name"
   );
 
+  //Fetch dedications data
+  const {
+    data: dedicationsData,
+    loading: loadingDedications,
+    error: errordedications,
+  } = useFetch(
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/dedications"
+  );
+  //Fetch news data
+  const {
+    data: newsData,
+    loading: loadingNews,
+    error: errorNews,
+  } = useFetch(
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/news"
+  );
+
   // State for handling mobile view
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
-  const [lessonsType, setlessonsType] = useState("כל השיעורים");
+  const [lessonsType, setlessonsType] = useState("עיון");
+  const [lessonsFilter, setlessonsFilter] = useState({
+    category: "כל השיעורים",
+  });
   const {responsive} = useResponsive()
   // Parsing data
-  let parsedData = [];
+  let parsedVideosData = [];
   let videos = [];
   let categories = [];
+  let parsedNewsData = [];
 
   if (postsData) {
-    parsedData = ExtractPostsData(postsData);
-    videos = parsedData.filter(
+    parsedVideosData = ExtractPostsData(postsData);
+    videos = parsedVideosData.filter(
       (e) => e.contentType.includes("video") || e.contentType.includes("וידאו")
     );
-    console.log(videos);
+  }
+  if (newsData) {
+    parsedNewsData = ExtractNewsData(newsData);
   }
 
   if (categoriesData) {
@@ -79,30 +103,39 @@ function App() {
   return (
     <AppContext.Provider
       value={{
-        colors,
+        colors,  
+        responsive,
         bgColors,
         pagesList,
         isMobile,
         description,
         dailyTextsData,
         postsData,
+        loadingPosts,
         isMobileNavOpen,
-        parsedData,
         videos,
         categories: categories || [], // Default to an empty array if categoriesData is undefined
         loadingCategories,
         lessonsType,
         rabbiesData,
         loadingRabbies,
+        lessonsFilter,
+        dedicationsData,
+        loadingDedications,
+        errordedications,
+        parsedNewsData,
+        loadingNews,
         setlessonsType,
         setIsMobileNavOpen,
         getCategoriesByParent,
-        responsive,
+        setlessonsFilter,
+      
       }}
     >
       <div className="App">
         <RouterProvider router={routers} />
       </div>
+      {/* <DataTest /> */}
     </AppContext.Provider>
   );
 }

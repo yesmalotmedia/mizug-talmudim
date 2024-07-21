@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
 export default function Socials() {
-    const { colors, responsive } = useContext(AppContext);
+  const { colors,responsive } = useContext(AppContext);
   const styles = {
 
     
@@ -19,27 +19,42 @@ export default function Socials() {
         fontSize: 20,
       },
   };
+
+  //functions
+  const handleCallClick = () => {
+    window.location.href = "tel:+972526146659"; // Correct phone number format
+  };
+  const handleWhatsAppClick = () => {
+    window.location.href = "https://wa.me/972526146659"; // WhatsApp link format
+  };
+  const handleYoutubeClick = () => {
+    window.location.href = "https://www.youtube.com/@tsadkoyahdav"; // WhatsApp link format
+  };
   return (
     <>
-      <div style={styles.wrapper}>
-        <img style={styles.img} src="/footerImages/call.png"></img>
-        <p style={styles.label}> 000-00000000</p>
+      <div style={styles.wrapper} onClick={handleCallClick}>
+        <img style={styles.img} src="footerImages/call.png" alt="Call" />
+        <p style={styles.label}>052-6146659</p>
       </div>
-      <div style={styles.wrapper}>
-        <img style={styles.img} src="/footerImages/whatsapp.png"></img>
-        <p style={styles.label}> 000-00000000</p>
+      <div style={styles.wrapper} onClick={handleWhatsAppClick}>
+        <img
+          style={styles.img}
+          src="footerImages/whatsapp.png"
+          alt="WhatsApp"
+        />
+        <p style={styles.label}>052-6146659</p>
       </div>
-      <div style={styles.wrapper}>
-        <img style={styles.img} src="/footerImages/facebook.png"></img>
+      {/* <div style={styles.wrapper}>
+        <img style={styles.img} src="footerImages/facebook.png"></img>
         <p style={styles.label}> </p>
       </div>
       <div style={styles.wrapper}>
-        <img style={styles.img} src="/footerImages/instagram.png"></img>
+        <img style={styles.img} src="footerImages/instagram.png"></img>
         <p style={styles.label}> </p>
-      </div>
-      <div style={styles.wrapper}>
-        <img style={styles.img} src="/footerImages/youtube.png"></img>
-        <p style={styles.label}></p>
+      </div> */}
+      <div style={styles.wrapper} onClick={handleYoutubeClick}>
+        <img style={styles.img} src="footerImages/youtube.png"></img>
+        <p style={styles.label}>שיעורי צדקו יחדיו ביוטיוב</p>
       </div>
     </>
   );

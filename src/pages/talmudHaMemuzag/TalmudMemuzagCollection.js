@@ -1,18 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import LessonPreviewBox from "./LessonPreviewBox";
-import colors from "../../../styles/colors";
-import SelectInput from "../sideBarSearch/SelectInput";
-import { AppContext } from "../../../App";
-import MobileFilter from "../MobileFilter";
-import getCategoryIdByName from "../../../assets/geCategoryIdByName";
-import filterLessons from "../../../assets/dataTest/filterLessons";
-import LoadMore from "../../../components/elements/LoadMore";
+import TalmudMemuzagPrevewBox from "./TalmudMemuzagPrevewBox";
+import colors from "../../styles/colors";
+import { AppContext } from "../../App";
+// import MobileFilter from "../MobileFilter";
+// import getCategoryIdByName from "../../../assets/geCategoryIdByName";
 
-const LessonsCollection = ({ lessonsType, setlessonsType }) => {
-  const { isMobile, parsedData, videos, lessonsFilter,responsive,setlessonsFilter } =
+const TalmudMemuzagCollection = ({ lessonsType, setlessonsType }) => {
+  const { isMobile, parsedData, videos, lessonsFilter, setlessonsFilter } =
     useContext(AppContext);
   const [displayedLessons, setDisplayedLessons] = useState(videos);
-  const [visiblePostCount, setVisiblePostCount] = useState(20);
+
   // styles
   const styles = {
     mainContainer: {
@@ -21,7 +18,7 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       alignItems: "center",
     },
     lessonsContainer: {
-      width: responsive("90%","100%","100%"),
+      width: isMobile ? "100%" : "90%",
       maxWidth: 1200,
       display: "flex",
       alignItems: "center",
@@ -51,19 +48,18 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       color: colors.azure,
       fontWeight: 500,
     },
-  
   };
 
-  useEffect(() => {
-    console.log("useeffect runs");
-    if (videos) {
-      console.log(lessonsFilter);
-      setDisplayedLessons(filterLessons(videos, lessonsFilter));
-    }
-  }, [lessonsFilter, videos]);
+  //   useEffect(() => {
+  //     console.log("useeffect runs");
+  //     if (videos) {
+  //       console.log(lessonsFilter);
+  //       setDisplayedLessons(filterLessons(videos, lessonsFilter));
+  //     }
+  //   }, [lessonsFilter, videos]);
 
   const lessonsBoxesElements = displayedLessons?.map((video) => (
-    <LessonPreviewBox key={video.id} video={video} />
+    <TalmudMemuzagPrevewBox key={video.id} video={video} />
   ));
 
   return (
@@ -74,20 +70,13 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
         {!isMobile && (
           <div style={styles.sortContainer}>
             <div style={styles.label}>מיין לפי</div>
-            <SelectInput
-              options={[
-                { name: "תאריך", value: "date" },
-                { name: "רב", value: "rabbi" },
-                { name: "נושא", value: "category" },
-              ]}
-            />
           </div>
         )}
       </div>
-      {isMobile && <MobileFilter />}
+      {/* {isMobile && <MobileFilter />} */}
       <div style={styles.lessonsContainer}>{lessonsBoxesElements}</div>
     </div>
   );
 };
 
-export default LessonsCollection;
+export default TalmudMemuzagCollection;

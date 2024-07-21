@@ -6,19 +6,18 @@ import PostSuggestion from "./PostSuggestion";
 import NextAndPreviousBtn from "./NextAndPreviousBtn";
 import SharePost from "./SharePost";
 import Gallery from "../../components/elements/Gallery";
-import whatsNewData from "../../data/whatsNewData";
 const PostDetails = () => {
-  const { colors, responsive} = useContext(AppContext);
+  const { colors, bgColors, responsive, parsedNewsData } = useContext(AppContext);
   const { postId } = useParams();
-  const post = whatsNewData.find((p) => p.id.toString() === postId);
-
+  const post = parsedNewsData.find((p) => p.id.toString() === postId);
+  console.log(post);
   const styles = {
     mainSection: {
       maxWidth: responsive ("70vw","80%","90%"),
       marginInline: "auto",
       marginTop: responsive(0,10,-40),
     },
-
+   
     textTitle: {
       color: colors.darkBlue,
       fontSize: responsive ("1.8rem","1.5rem","1.5rem"),
@@ -39,36 +38,39 @@ const PostDetails = () => {
       textAlign: "justify",
       lineHeight: responsive ("2rem","1.9rem","1.7rem"),
     },
-    
+   
   };
+  console.log(post);
 
   return (
     <>
       <Spacer height={170} />
       <div style={styles.mainSection}>
-        <div style={styles.textSection}>
+        <div>
           <h2 style={styles.textTitle}>{post.title}</h2>
           <div style={styles.tarikContainer}>
             <img style={styles.tarikImg} src="/tarik.png" alt="Tarik Logo" />
             <p style={styles.tarik}>
-              <span>{post.dateHe}</span> | <span>{post.dateEn}</span>
+              <span>{post.date}</span>
             </p>
           </div>
-          <article style={styles.article}>{post.article}</article>
+          <div
+            style={styles.article}
+            dangerouslySetInnerHTML={{ __html: post.article }}
+          />
 
           <Gallery data={post} />
 
           <NextAndPreviousBtn
-            data={whatsNewData}
+            data={parsedNewsData}
             currentId={post.id}
             UrlPageName={"WhatsNew"}
           />
           <div>
             <SharePost />
           </div>
-        </div> 
-        
-        <div >
+        </div>
+
         <PostSuggestion
           currentPostId={post.id}
           tarikImg={"/tarik.png"}
@@ -77,8 +79,6 @@ const PostDetails = () => {
           showPostsAfter={true}
         />
       </div>
-      </div>
-     
     </>
   );
 };

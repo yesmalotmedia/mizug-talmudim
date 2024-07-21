@@ -29,6 +29,9 @@ const getCategoryIdByName = (name) => {
     case "עיון":
       id = 19;
       break;
+    case "מועדים":
+      id = 20;
+      break;
     default:
       id = -1; // Return -1 if the name doesn't match any category
   }

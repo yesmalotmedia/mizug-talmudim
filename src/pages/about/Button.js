@@ -11,6 +11,7 @@ const Button = ({ imgSrc, title, isActive }) => {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
+      cursor: 'pointer',
     },
     ImgContainer: {
       position: "relative",

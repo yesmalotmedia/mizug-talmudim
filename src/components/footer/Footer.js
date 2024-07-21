@@ -17,7 +17,7 @@ const Footer = () => {
         : 'url("/footerImages/Union.png")',
       backgroundSize: "100% 100%",
       color: colors.white,
-      zIndex: 2,
+      zIndex: 200,
       position: "relative",
     },
     footerItemWrapper: {
@@ -37,8 +37,13 @@ const Footer = () => {
     },
     footerMenu: {
       display: "flex",
-      alignItems: isMobile ? "center" : "",
-      justifyContent: isMobile ? "center" : "",
+      flexWrap: "wrap",
+      gap: "10px",
+      maxWidth: isMobile ? "100%" : "38vmax",
+    },
+    footerMenuItem: {
+      flex: "1 1 calc(25% - 10px)",
+      boxSizing: "border-box",
     },
     copyRight: {
       textAlign: "center",
@@ -77,14 +82,7 @@ const Footer = () => {
         )}
 
         <div style={styles.footerMenu}>
-          {isMobile ? (
-            <FooterMenu data={FooterMenuData} />
-          ) : (
-            <>
-              <FooterMenu data={FooterMenuData} />
-              <FooterMenu data={FooterMenuData} />
-            </>
-          )}
+          <FooterMenu data={FooterMenuData} />
         </div>
         {isMobile && (
           <div style={styles.icon}>

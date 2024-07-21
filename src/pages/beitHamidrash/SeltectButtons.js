@@ -3,8 +3,7 @@ import { AppContext } from "../../App";
 import CyrcleButton from "../../components/elements/CyrcleButton";
 import { useNavigate } from "react-router-dom";
 
-const SeltectButtons = ({ lessonsType, setlessonsType }) => {
-  
+const SeltectButtons = ({ lessonsType, setlessonsType, setLessonsFilter }) => {
   // Context
   const {
     colors,
@@ -13,6 +12,8 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
     dailyTextsData,
     categories,
     loadingCategories,
+    setlessonsFilter,
+    lessonsFilter,
   } = useContext(AppContext);
 
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
           borderRadius: "5px",
           cursor: "pointer",
         }
-      : {  },
+      : {},
   };
 
   // Functions
@@ -46,6 +47,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType }) => {
   const handleClick = (btnTitle) => {
     navigate("/BeitHamidrash");
     setlessonsType(btnTitle);
+    setlessonsFilter({ category: btnTitle });
   };
 
   const selectedButtonsElements = getDisplyedCategories(categories)?.map(

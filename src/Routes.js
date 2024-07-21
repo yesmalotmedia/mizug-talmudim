@@ -36,11 +36,19 @@ const routers = createBrowserRouter([
         element: <BeitHamidrash />,
       },
       {
+        path: "BeitHamidrash/:category",
+        element: <BeitHamidrash />,
+      },
+      {
         path: "BeitHamidrash/:lessonsType",
         element: <BeitHamidrash />,
       },
       {
         path: "TalmudHaMemuzag",
+        element: <TalmudHaMemuzag />,
+      },
+      {
+        path: "TalmudHaMemuzag/:articled",
         element: <TalmudHaMemuzag />,
       },
       {

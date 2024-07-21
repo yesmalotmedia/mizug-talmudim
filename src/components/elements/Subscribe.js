@@ -1,10 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useRef, useState, useContext } from "react";
+import emailjs from "@emailjs/browser";
 import { AppContext } from "../../App";
+import LoaderAnimation from "./LoaderAnimation";
+import TanksMessage from "./TanksMessage";
 
-export default function Subscribe() {
+const Subscribe = () => {
+  const form = useRef();
   const { colors, responsive } = useContext(AppContext);
   const [isHovered, setIsHovered] = useState(false);
-
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const styles = {
     form: {
       position: "relative",
@@ -41,23 +46,58 @@ export default function Subscribe() {
       height: responsive("1vw","13px","13px"),
       marginRight: "10px",
       position: "relative",
-      top: responsive(4,2,-1),
+      top: responsive(1,0,-1),
     },
+  };
+
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    emailjs
+      .sendForm(
+        "service_oktpopo",
+        "template_6tsbbvb",
+        form.current,
+        "6nT-r6G4qY9-xawTb"
+      )
+      .then(
+        (result) => {
+          setIsSuccess(true);
+          setIsLoading(false);
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
   };
 
   return (
     <div style={styles.subscribe}>
-      <form style={styles.form}>
-        <input
-          style={styles.input}
-          type="text"
-          placeholder="נא למלא את כתובת המייל"
-        ></input>
-        <button style={styles.btn}>
-          שלח
-          <img style={styles.arrow} src="/arrow-to-left.png"></img>
-        </button>
-      </form>
+      {isSuccess ? (
+        <TanksMessage msg={"תודה שנרשמת"} color={colors.orange} />
+      ) : isLoading ? (
+        <LoaderAnimation isLoading={isLoading} color={colors.orange} />
+      ) : (
+        <form style={styles.form} ref={form} onSubmit={sendEmail}>
+          <input
+            style={styles.input}
+            type="email"
+            name="user_email"
+            placeholder="נא למלא את כתובת המייל"
+            required
+          ></input>
+          <button style={styles.btn} type="submit">
+            <img
+              style={styles.arrow}
+              src="/arrow-to-left.png"
+              alt="arrow"
+            ></img>
+          </button>
+        </form>
+      )}
     </div>
   );
-}
+};
+
+export default Subscribe;

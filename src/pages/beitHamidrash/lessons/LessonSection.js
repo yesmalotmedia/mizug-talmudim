@@ -7,17 +7,16 @@ import getCategoryNameById from "../../../assets/getCategoryNameById";
 import extractYoutubeCoverByVideoId from "../../../assets/extractYoutubeCoverByVideoId";
 import VideoCover from "../../../components/elements/VideoCover";
 import SpotifyPodcast from "../SpotifyPodcast";
+import LoaderAnimation from "../../../components/elements/LoaderAnimation";
 
 export default function LessonSection({ videoId }) {
-  const { colors, bgColors, isMobile, videos, responsive } =
-    useContext(AppContext);
+  const { colors, bgColors, responsive, videos } = useContext(AppContext);
   const video = videos?.find((video) => video?.id == videoId);
-  const coverImage = extractYoutubeCoverByVideoId(video?.url);
-  console.log(coverImage);
+  const coverImage = video ? extractYoutubeCoverByVideoId(video.url) : null;
 
-  const mainCategory = getCategoryNameById(video?.categories[0]);
-  const subCategory = getCategoryNameById(video?.categories[1]);
-  console.log(video);
+  const mainCategory = video ? getCategoryNameById(video.categories[0]) : "";
+  const subCategory = video ? getCategoryNameById(video.categories[1]) : "";
+
   const styles = {
     container: {
       textAlign: "right",
@@ -83,84 +82,53 @@ export default function LessonSection({ videoId }) {
       border: "1px solid black",
     },
   };
+
+  if (!video) {
+    return <LoaderAnimation isLoading={!video} color={colors.orange} />;
+  }
+
   return (
     <div style={styles.container}>
       <div style={styles.headerSection}>
         <p style={styles.breadscrumb}>
-          <span> {mainCategory}</span> / <span>{subCategory}</span>
+          <span>{mainCategory}</span> / <span>{subCategory}</span>
         </p>
-        <h2 style={styles.nameOfRav}> {video?.rabbiName} </h2>
-        <h1 style={styles.nameOfSiur}> {video?.title} </h1>
+        <h2 style={styles.nameOfRav}>{video.rabbiName}</h2>
+        <h1 style={styles.nameOfSiur}>{video.title}</h1>
       </div>
 
       <div style={styles.videoSection}>
         <div style={styles.timeAndTimeContainer}>
-          <span style={styles.dateAndTimeText}>{video?.date}</span>
-          <img style={styles.icon} src="/time.png"></img>
+          <span style={styles.dateAndTimeText}>{video.date}</span>
+          <img style={styles.icon} src="/time.png" alt="time icon" />
           <span style={styles.dateAndTimeText}> זמן קריאה: 8 דק’ </span>
         </div>
-        <YouTubeVideo2 url={video?.url} index={video?.key} />{" "}
+        <div style={styles.dedicate}>{video.dedicatedTo}</div>
+        <YouTubeVideo2 url={video.url} index={video.key} />
       </div>
       <div style={styles.audioContainer}>
         {/* <AudioPlayer audioSrc="audioPlayer/testAudio.mp3" /> */}
-        {/* <SpotifyPodcast
+        <SpotifyPodcast
           url={
-            "https://open.spotify.com/episode/46sE5WPVezUOmlHHxXoJ6H?si=3ed678aa92614671"
+            "https://open.spotify.com/embed/episode/0FBDu01bqovSZaBUgAoKuB?utm_source=generator"
           }
-        /> */}
+        />
       </div>
       <div style={styles.descriptionContainer}>
-        <p style={styles.description}>
-          ילקוף, מרגשי ומרגשח. עמחליף נולום ארווס סאפיאן - פוסיליס קוויס,
-          אקווזמן קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון
-          בלרק - וענוף קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך
-          תצטריק לרטי.  לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת
-          אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור,
-          קראס אגת לקטוס וואל אאוגו וסטיבולום ריק לרטי.
-          <br />  הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית
-          נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים
-          תוק, הדש שנרא התידם הכייר וק. ילקוף, מרגשי ומרגשח.
-          <br /> עמחליף נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קוואזי במר
-          מודוף.
-          <br />
-          <br /> אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף
-          קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.
-           לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי
-          נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת
-          לקטוס וואל אאוגו וסטיבולום ריק לרטי.  הועניב היושבב שערש שמחויט -
-          שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת
-          יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.ילקוף, מרגשי
-          ומרגשח. עמחליף נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קוואזי במר
-          מודוף.
-          <br /> אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף
-          קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.
-           לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי
-          נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת
-          לקטוס וואל אאוגו וסטיבולום ריק לרטי.  הועניב היושבב שערש שמחויט -
-          שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת
-          יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.ילקוף, מרגשי
-          ומרגשח. <br />
-          <br />
-          עמחליף נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קוואזי במר מודוף.
-          אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף קונדימנטום
-          קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.  לורם
-          איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון
-          ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס
-          וואל אאוגו וסטיבולום ריק לרטי.
-          <br />  הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית
-          נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים
-          תוק, הדש שנרא התידם הכייר וק.
-        </p>
+        <div
+          style={styles.description}
+          dangerouslySetInnerHTML={{ __html: video.article }}
+        />
       </div>
 
-      <div style={styles.footerSection}>
+      {/* <div style={styles.footerSection}>
         <h3 style={styles.commentsTitle}> תגובות </h3>
         <input
           style={styles.input}
           type="text"
           placeholder=" הוסיפו תגובה "
         ></input>
-      </div>
+      </div> */}
     </div>
   );
 }
