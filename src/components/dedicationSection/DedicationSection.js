@@ -5,7 +5,7 @@ import Spacer from "../elements/Spacer";
 
 const DedicationSection = () => {
   // context
-  const { colors, bgColors, isMobile, dailyTextsData, dedicationsData } =
+  const { colors, bgColors, responsive, dailyTextsData, dedicationsData } =
     useContext(AppContext);
 
   // states
@@ -22,19 +22,26 @@ const DedicationSection = () => {
     container: {
       position: "relative",
       width: "100%",
-      minHeight: 600,
+      minHeight: 300,
       backgroundColor: "transparent",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      transform: isMobile ? "translateY(-40vw)" : "translateY(-15.3vw)",
-      marginBottom: -600,
+      transform: responsive(
+        "translateY(-15.3vw)",
+        "translateY(-40vw)",
+        "translateY(-40vw)"
+      ),
+      marginBottom: responsive(0, -280, -280),
+      padding: 8,
+      textAlign: "center",
     },
     text: {
+      position: "absolute",
       color: colors.darkBlue,
-      fontSize: "2vw",
+      fontSize: responsive("2rem", "1.8rem", "1.3rem"),
       fontWeight: 600,
-      marginTop: screenWidth < 1400 ? "-20px" : "6%",
+      marginBottom: responsive(-800, -300, 0),
     },
     textSource: {
       textAlign: "center",
@@ -43,9 +50,9 @@ const DedicationSection = () => {
       fontSize: 20,
     },
     bgImg: {
-      width: screenWidth < 1400 ? "150%" : "105%",
+      width: responsive("100%", "170%", "300%"),
       position: "absolute",
-      bottom: 0,
+      bottom: responsive(-500, -200, -50),
       left: 0,
       zIndex: -2,
     },

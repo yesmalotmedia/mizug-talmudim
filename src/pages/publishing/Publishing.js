@@ -6,17 +6,16 @@ import { AppContext } from "../../App";
 import Filters from "./Filters";
 
 export default function Publishing() {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, isMobile, responsive } = useContext(AppContext);
 
   const styles = {
     mainContainer: {
-      width: isMobile? "100%":"70%",
+      width: '90%',
       marginTop: 30,
       marginInline: "auto",
     },
     preview: {
       display: "flex",
-      
       gap: "20px",
     },
     filterBtn: {
@@ -33,8 +32,8 @@ export default function Publishing() {
         backgroundImage={"/PublishingHeroImg.png"}
         subTitle={"כאן תמצאו את התכנים והספרים לקריאה "}
         titleColor={colors.white}
-        height={isMobile ? "75vmin": "60vmin"}
-        marginTop={isMobile ? 95:90}
+        height={responsive("60vmin", "60vmin", "85vmin")}
+        marginTop={responsive("50px", "90px", "90px")}
       />
       <div style={styles.mainContainer}>
         <div style={styles.filterBtn}>

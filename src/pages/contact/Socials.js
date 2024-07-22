@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
 export default function Socials() {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, responsive } = useContext(AppContext);
   const styles = {
     wrapper: {
       display: "flex",
@@ -10,7 +10,7 @@ export default function Socials() {
       cursor: "pointer",
     },
     img: {
-      height: isMobile ? "40px" : "35px",
+      height: responsive("50px", "50px", "40px"),
     },
     label: {
       paddingRight: 30,

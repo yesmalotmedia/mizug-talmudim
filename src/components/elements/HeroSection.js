@@ -5,7 +5,7 @@ import Subscribe from "./Subscribe";
 
 const HeroSection = ({backgroundImage, title, subTitle, titleColor, btnTitle, isButton, isSubscribe , height, marginTop}) => {
   // Context
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors, bgColors, responsive } = useContext(AppContext);
 
   // Styles
   const styles = {
@@ -26,13 +26,13 @@ const HeroSection = ({backgroundImage, title, subTitle, titleColor, btnTitle, is
     },
     title: {
       fontWeight: 600,
-      fontSize: isMobile? "9vmin" :"4vw",
+      fontSize: responsive("2.6rem","2.4rem","2.2rem"),
       textAlign: "center",
       color: titleColor,
     },
     subTitle: {
       fontWeight: 600,
-      fontSize: isMobile? '5vmin':"2vw",
+      fontSize: responsive("2rem","1.8rem","1.6rem"),
       textAlign: "center",
       color: colors.orange,
     },
@@ -54,11 +54,11 @@ const HeroSection = ({backgroundImage, title, subTitle, titleColor, btnTitle, is
             title={btnTitle}
             bgColor={bgColors.orangeGradient}
             hoveredBgColor={bgColors.azureGradient}
-            width={isMobile? "70vw":"27vw"}
-            height={isMobile? "10vw":"7vh"}
+            width={responsive("290px","280px","250px")}
+            height={responsive("50px","50px","40px")}
             borderRadius={30}
             arrow={true}
-            fontSize={isMobile? "6vw":'1.6vw'}
+            fontSize={responsive("2rem","1.8rem","1.6rem")}
             fontWeight={600}
           />
         )}

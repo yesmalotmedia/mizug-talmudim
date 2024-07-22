@@ -3,7 +3,7 @@ import { AppContext } from "../../../App";
 
 const Checkbox = ({ label, checked, onChange }) => {
   // data
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors } = useContext(AppContext);
 
   // styles
   const styles = {

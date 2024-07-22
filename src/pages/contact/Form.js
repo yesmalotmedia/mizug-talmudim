@@ -5,7 +5,7 @@ import TanksMessage from "../../components/elements/TanksMessage";
 
 export default function Form() {
   const formRef = useRef();
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, isMobile, responsive } = useContext(AppContext);
   const [formState, setFormState] = useState({
     user_name: "",
     user_phone: "",
@@ -15,6 +15,8 @@ export default function Form() {
 
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,51 +50,55 @@ export default function Form() {
 
   const styles = {
     form: {
-      width: isMobile ? "90vmin" : "45vw",
+      width: responsive("100vmin", "90vmin", "90vmin"),
       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       background: colors.white,
-      borderRadius: 30,
+      borderRadius: 20,
+      height: "auto",
+      marginInline: "auto",
     },
     inputWrapper: {
       display: "flex",
       alignItems: "center",
       paddingTop: 30,
       justifyContent: "center",
-      gap: isMobile ? "30px" : "",
+      gap: 20,
     },
     label: {
       fontWeight: 600,
-      width: "5vw",
-      fontSize: isMobile ? 16 : 20,
+      fontSize: responsive("1.3rem", "1.3rem", "1.1rem"),
       color: colors.darkBlue,
+      width: responsive("60px", "50px", "40px"),
     },
     input: {
       outline: "none",
       border: `2px solid ${colors.darkBlue}`,
-      width: isMobile ? "70vmin" : "35vw",
-      height: isMobile ? "40px" : "9vh",
+      width: responsive("80%", "80%", "75%"),
+      height: responsive("50px", "45px", "35px"),
       borderRadius: 30,
       fontWeight: 500,
-      fontSize: isMobile ? 17 : 20,
+      fontSize: responsive("1.2rem", "1rem", "0.9rem"),
       paddingRight: 20,
       resize: "none",
     },
     message: {
       outline: "none",
       border: `2px solid ${colors.darkBlue}`,
-      width: isMobile ? "70vmin" : "35vw",
-      height: "90px",
+      width: responsive("80%", "80%", "75%"),
+      height: 90,
       borderRadius: 30,
       fontWeight: 300,
       fontSize: 18,
       padding: "10px 20px 0 10px",
       resize: "none",
       overflow: "hidden",
+      backgroundColor: isFocused ? "#f0f8ff" : "white",
+      transition: "background-color 0.3s ease",
     },
     btn: {
       outline: "none",
       background: colors.darkBlue,
-      width: isMobile ? "70vmin" : "35vw",
+      width: "170%",
       padding: "15px 0",
       borderRadius: 30,
       fontWeight: 600,
@@ -101,14 +107,23 @@ export default function Form() {
       marginBottom: 20,
       cursor: "pointer",
       color: colors.white,
+      transition: "box-shadow 0.3s ease",
+      position: "relative",
+      left: 30,
+      border: "none",
+    },
+    btnHover: {
+      boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
     },
     successMassage: {
       padding: 100,
-      fontSize: isMobile ? "4vmin" : "30px",
+      fontSize: responsive("1.2rem", "1rem", "0.9rem"),
       color: colors.darkBlue,
       textAlign: "center",
     },
   };
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
 
   return (
     <div style={styles.form}>
@@ -160,13 +175,19 @@ export default function Form() {
               value={formState.message}
               onChange={handleChange}
               required
+              onFocus={handleFocus}
+              onBlur={handleBlur}
             ></textarea>
           </div>
           <div style={styles.inputWrapper}>
             <label style={styles.label}></label>
-            <button type="submit" style={styles.btn}>
-              {" "}
-              שלח{" "}
+            <button
+              type="submit"
+              style={{ ...styles.btn, ...(isHovered && styles.btnHover) }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              שלח
             </button>
           </div>
         </form>

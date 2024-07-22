@@ -7,49 +7,37 @@ import NextAndPreviousBtn from "./NextAndPreviousBtn";
 import SharePost from "./SharePost";
 import Gallery from "../../components/elements/Gallery";
 const PostDetails = () => {
-  const { colors, bgColors, isMobile, parsedNewsData } = useContext(AppContext);
+  const { colors, bgColors, responsive, parsedNewsData } =
+    useContext(AppContext);
   const { postId } = useParams();
   const post = parsedNewsData.find((p) => p.id.toString() === postId);
   console.log(post);
   const styles = {
     mainSection: {
-      width: isMobile ? "95%" : "50%",
+      maxWidth: responsive("70vw", "80%", "90%"),
       marginInline: "auto",
-    },
-    textSection: {
-      lineHeight: "1.8vw",
+      marginTop: responsive(0, 10, -40),
     },
 
     textTitle: {
       color: colors.darkBlue,
-      fontSize: isMobile ? "8vw" : "2.3vmax",
-      lineHeight: isMobile ? "9vw" : "3vw",
+      fontSize: responsive("1.8rem", "1.5rem", "1.5rem"),
+      lineHeight: responsive("2rem", "2rem", "2rem"),
     },
     tarikContainer: {
       display: "flex",
       alignItems: "center",
       padding: "30px 0",
-      color: "gray",
+      color: colors.grey,
     },
     tarikImg: {
       height: "2.5vh",
       marginLeft: 10,
     },
     article: {
-      fontSize: isMobile ? "5vw" : "1.2vmax",
+      fontSize: responsive("1.3rem", "1.2rem", "1rem"),
       textAlign: "justify",
-      lineHeight: isMobile ? "8vw" : "",
-    },
-    suggestionContainer: {
-      marginInline: "auto",
-      padding: isMobile ? "5px" : "15px 0",
-
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      background: bgColors.lightAzure,
-      borderRadius: 20,
-      gap: isMobile ? 5 : 10,
+      lineHeight: responsive("2rem", "1.9rem", "1.7rem"),
     },
   };
   console.log(post);
@@ -58,7 +46,7 @@ const PostDetails = () => {
     <>
       <Spacer height={170} />
       <div style={styles.mainSection}>
-        <div style={styles.textSection}>
+        <div>
           <h2 style={styles.textTitle}>{post.title}</h2>
           <div style={styles.tarikContainer}>
             <img style={styles.tarikImg} src="/tarik.png" alt="Tarik Logo" />
@@ -81,16 +69,15 @@ const PostDetails = () => {
           <div>
             <SharePost />
           </div>
-        </div>{" "}
-        <div style={styles.suggestionContainer}>
-          <PostSuggestion
-            currentPostId={post.id}
-            tarikImg={"/tarik.png"}
-            UrlPageName={"WhatsNew"}
-            numPosts={4}
-            showPostsAfter={true}
-          />
         </div>
+
+        <PostSuggestion
+          currentPostId={post.id}
+          tarikImg={"/tarik.png"}
+          UrlPageName={"WhatsNew"}
+          numPosts={4}
+          showPostsAfter={true}
+        />
       </div>
     </>
   );

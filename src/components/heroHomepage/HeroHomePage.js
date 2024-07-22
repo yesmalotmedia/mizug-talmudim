@@ -5,7 +5,7 @@ import colors from "../../styles/colors";
 const HeroHomePage = () => {
   // context
 
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, isMobile, responsive } = useContext(AppContext);
 
   // states
 
@@ -19,7 +19,7 @@ const HeroHomePage = () => {
     },
     img: {
       width: "100%", // Ensure the image fills the container width
-      height: isMobile ? "80%" : "80%", // Ensure the image fills the container height
+      height: "80%", // Ensure the image fills the container height
       objectFit: "cover", // Maintain aspect ratio and cover the entire container
       objectPosition: "30%", // Center the image within the container
       zIndex: -100,
@@ -28,10 +28,10 @@ const HeroHomePage = () => {
     },
     text: {
       position: "absolute",
-      bottom: isMobile ? "60%" : "30%",
-      right: isMobile ? 40 : 100,
+      bottom: responsive("30%","40%","60%"),
+      right: responsive(100,70,40),
       color: colors.white,
-      fontSize: isMobile ? "50px" : "5vw",
+      fontSize: responsive("4rem","4rem","3rem"),
       fontWeight: 700,
     },
     orangeText: {

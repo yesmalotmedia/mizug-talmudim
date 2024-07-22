@@ -13,6 +13,7 @@ import LoaderAnimation from "../../components/elements/LoaderAnimation";
 const BeitHamidrash = () => {
   // data
   const {
+    responsive,
     colors,
     bgColors,
     isMobile,
@@ -57,13 +58,13 @@ const BeitHamidrash = () => {
 
   return (
     <>
-      <HeroSection
+    <HeroSection
         title={"בית המדרש"}
         backgroundImage={"/hero2.png"}
         subTitle={"בחרו את הנושא שמעניין אתכם"}
         titleColor={colors.white}
-        height={isMobile ? "75vmin" : "60vmin"}
-        marginTop={isMobile ? 95 : 90}
+        height={responsive ("60vmin","50vmin", "75vmin") }
+        marginTop={95}
       />
 
       <div style={styles.selectionButtonContainer}>

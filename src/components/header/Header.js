@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import Nav from "./Nav";
-import MenuBtn from "../elements/MenuBtn";
 import Logo from "../elements/Logo";
 import Button from "../elements/Button";
 import { Link } from "react-router-dom";
@@ -9,12 +8,12 @@ import MobileNav from "./MobileNav";
 
 function Header() {
   //context
-  const { colors, bgColors, isMobile, isMobileNavOpen, setIsMobileNavOpen } =
+  const { colors, bgColors, isMobile,isMobileNavOpen, setIsMobileNavOpen, responsive} =
     useContext(AppContext);
   //styles
   const styles = {
     container: {
-      height: 100,
+      height: responsive(100, 90, 80),
       width: "100%",
       background: bgColors.white,
       display: "flex",
@@ -23,20 +22,21 @@ function Header() {
       alignItems: "center",
       zIndex: 100,
       position: "fixed",
-      padding: 10,
+      padding: responsive(10,10,7),
+
+
     },
     logo: {
-      height: isMobile ? "25vmin" : "10vw",
-      zIndex: 100,
-      marginRight: isMobile ? "1vw" : 50,
-      marginTop: isMobile ? "1vw" : 20,
+      height: responsive("130px","120px","90px"),
+      width: responsive("130px","120px","90px"),
+      zIndex: 100,   
     },
     vector: {
       position: "absolute",
       right: -20,
       top: -20,
-      width: isMobile ? "50vmin" : "25vw",
-      height: isMobile ? "50vmin" : 250,
+      width: responsive("350px","300px","200px"),
+      height:responsive("250px","200px","150px"),
     },
     terumot: {
       textDecoration: "none",
@@ -64,10 +64,10 @@ function Header() {
               hoveredBgColor={bgColors.darkBlueGradient}
               title={"לתרומות"}
               borderRadius={5}
-              fontSize={isMobile ? 15 : 30}
+              fontSize={responsive("1.5rem","1.3rem","1.3rem")}
               fontWeight={600}
-              width={isMobile ? "130px" : "280px"}
-              height={isMobile ? 30 : ""}
+              width={responsive(180,150,120)}
+              height={responsive(50,40,35)}
             />
           </Link>
           {isMobile && (

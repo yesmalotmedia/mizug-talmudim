@@ -1,61 +1,48 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import HeroSection from "../../components/elements/HeroSection";
-import CyrcleButton from "../../components/elements/CyrcleButton";
+import Button from "./Button";
 import aboutData from "../../data/aboutData";
 import RenderContents from "./RenderContents";
 
 export default function About() {
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors, bgColors, responsive } = useContext(AppContext);
   const [activeSection, setActiveSection] = useState("aboutUs");
 
   const styles = {
     container: {
       display: "flex",
-      width: isMobile? '100%': '',
-      flexDirection: isMobile? 'column': '',
-      alignItems: isMobile? 'center':"flex-start",
-      justifyContent: isMobile? 'center':'',
+      marginInline: "auto",
+      width: responsive("", "90%", "100%"),
+      flexDirection: responsive("", "column", "column"),
+      alignItems: responsive("flex-start", "center", "center"),
+      justifyContent: responsive("", "center", "center"),
       gap: 80,
     },
     sideBtnContainer: {
       background: bgColors.lightAzure,
-      width:isMobile? "90%": "15vw",
-      height: isMobile? '40vw': "100vh",
-      marginTop: "-40px",
+      width: responsive("20%", "90%", "90%"),
+      height: responsive("100vh", "160px", "140px"),
+      marginTop: responsive(-45,-45,50),
       borderTopLeftRadius: 20,
       borderBottomLeftRadius: 20,
-      borderRadius: isMobile? 20: '',
+      borderRadius: 20,
       boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
-      display:"flex",
-      alignItems: "center",
-      flexDirection: isMobile? "row":"column",
-      padding: isMobile? "5px 35px 25px 0":"30px 0 0 0",
-      gap: 45,
-     
-    },
-    link: (isActive) => ({
-      textDecoration: "none",
       display: "flex",
-      justifyContent: "center",
       alignItems: "center",
-      height: isMobile? "28vw":"8.2vw",
-      width:  isMobile? "28vw":"8.2vw",
-      borderRadius: "50%",
-      cursor: "pointer",
-      transition: "background-color 0.3s, color 0.3s",
-      border: isActive ? `6px solid ${colors.darkBlue}` : '',
-
-    }),
+      flexDirection: responsive("column", "row", "row"),
+      justifyContent: "center",
+      padding: responsive("0 0 35px 0 ", "0 0 20px 0 ", "0 0 20px 0 "),
+      gap: 45,
+    },
     description: {
-      width: isMobile? '90%':"60vw",
+      width: responsive("60vw", "90%", "90%"),
     },
   };
 
   const getActiveSectionData = () => {
     return aboutData.find((section) => section.dataId === activeSection);
   };
-console.log(getActiveSectionData());
 
   return (
     <>
@@ -64,29 +51,29 @@ console.log(getActiveSectionData());
         subTitle={"הכירו את בית המדרש לאיחוד התלמודים"}
         isSubscribe={false}
         titleColor={colors.darkBlue}
-        height={isMobile ? "80vmin": "60vmin"}
-        marginTop={isMobile ? 95:50}
+        height={responsive("60vmin","60vmin","60vmin")}
+        marginTop={responsive("30px","50px","120px")}
       />
       <div style={styles.container}>
         <div style={styles.sideBtnContainer}>
           <div
-            style={styles.link(activeSection === "aboutUs")}
+            style={styles.link}
             onClick={() => setActiveSection("aboutUs")}
           >
-            <CyrcleButton
+            <Button
               title={"מי אנחנו"}
               imgSrc={"/SideBtn-1.png"}
-              smallImgButton={true}
+              isActive={activeSection === "aboutUs"}
             />
           </div>
           <div
-            style={styles.link(activeSection === "team")}
+            style={styles.link}
             onClick={() => setActiveSection("team")}
           >
-            <CyrcleButton
+            <Button
               title={"צוות בית המדרש"}
-              smallImgButton={true}
               imgSrc={"/SideBtn-2.png"}
+              isActive={activeSection === "team"}
             />
           </div>
         </div>

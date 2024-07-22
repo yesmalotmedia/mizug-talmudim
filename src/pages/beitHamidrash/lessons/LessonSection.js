@@ -10,12 +10,24 @@ import SpotifyPodcast from "../SpotifyPodcast";
 import LoaderAnimation from "../../../components/elements/LoaderAnimation";
 
 export default function LessonSection({ videoId }) {
-  const { colors, bgColors, isMobile, videos } = useContext(AppContext);
-  const video = videos?.find((video) => video?.id == videoId);
-  const coverImage = video ? extractYoutubeCoverByVideoId(video.url) : null;
+  const { colors, responsive, videos } = useContext(AppContext);
 
-  const mainCategory = video ? getCategoryNameById(video.categories[0]) : "";
-  const subCategory = video ? getCategoryNameById(video.categories[1]) : "";
+  if (!videos) {
+    console.error("Videos not available in context");
+    return <LoaderAnimation isLoading={!videos} color={colors.orange} />;
+  }
+
+  const video = videos.find((video) => video.id == videoId);
+
+  if (!video) {
+    console.error(`No video found with id: ${videoId}`);
+    return <LoaderAnimation isLoading={!video} color={colors.orange} />;
+  }
+
+  const coverImage = extractYoutubeCoverByVideoId(video.url);
+
+  const mainCategory = getCategoryNameById(video.categories[0]);
+  const subCategory = getCategoryNameById(video.categories[1]);
 
   const styles = {
     container: {
@@ -25,23 +37,20 @@ export default function LessonSection({ videoId }) {
     headerSection: {
       width: "100%",
     },
-    breadscrumb: {
-      color: "gray",
+    breadcrumb: {
+      color: colors.grey,
       fontWeight: 500,
       paddingBottom: 20,
     },
     nameOfRav: {
       color: colors.azure,
     },
-    nameOfSiur: {
+    nameOfShiur: {
       color: colors.darkBlue,
       padding: "7px 0",
     },
-    nameOfTitle: {
-      color: colors.darkBlue,
-    },
     timeAndTimeContainer: {
-      width: isMobile ? "100%" : "",
+      width: responsive("100%", "100%", "100%"),
       display: "flex",
       alignItems: "center",
       padding: "20px 0",
@@ -51,67 +60,46 @@ export default function LessonSection({ videoId }) {
       width: 20,
     },
     dateAndTimeText: {
-      width: isMobile ? "100%" : "",
+      width: "100%",
       padding: "0 10px",
       fontWeight: 400,
-      color: "gray",
-    },
-    dedicate: {
-      color: colors.azure,
-      marginBottom: 10,
-    },
-    videoSection: {
-      width: isMobile ? "100%" : "70%",
-    },
-    video: {
-      height: isMobile ? "30%" : " 40%",
-      width: isMobile ? "100%" : "70%",
-      borderRadius: 10,
-      border: `2px solid ${colors.darkBlue}`,
-    },
-    audioContainer: {
-      width: isMobile ? "100%" : "70%",
-      marginTop: 10,
-      height: 60,
+      color: colors.grey,
     },
     descriptionContainer: {
       marginTop: 20,
-      width: isMobile ? "100%" : "70%",
+      width: responsive("100%", "70%", "90%"),
+      marginInline: "auto",
     },
     description: {
       textAlign: "justify",
-      padding: isMobile ? "20px 10px" : "15px 70px 10px 70px",
       lineHeight: "1.9rem",
+      width: "100%",
     },
     footerSection: {
-      width: isMobile ? "90%" : "70%",
+      width: responsive("100%", "70%", "90%"),
     },
     commentsTitle: {
       color: colors.azure,
-      padding: isMobile ? "10px 10px" : "30px 60px 10px 0",
+      padding: responsive("30px 60px 10px 0", "10px 110px 10px 0", "10px 10px"),
     },
     input: {
-      width: isMobile ? "100%" : "85%",
+      width: responsive("85%", "100%", "100%"),
       outline: "none",
       padding: 10,
-      marginRight: isMobile ? 10 : 60,
+      marginRight: responsive(60, 110, 10),
       borderRadius: 40,
       border: "1px solid black",
     },
   };
 
-  if (!video) {
-    return <LoaderAnimation isLoading={!video} color={colors.orange} />;
-  }
-
   return (
     <div style={styles.container}>
       <div style={styles.headerSection}>
-        <p style={styles.breadscrumb}>
+        <p style={styles.breadcrumb}>
           <span>{mainCategory}</span> / <span>{subCategory}</span>
         </p>
         <h2 style={styles.nameOfRav}>{video.rabbiName}</h2>
-        <h1 style={styles.nameOfSiur}>{video.title}</h1>
+        <h1 style={styles.nameOfShiur}>{video.title}</h1>
       </div>
 
       <div style={styles.videoSection}>
@@ -124,7 +112,6 @@ export default function LessonSection({ videoId }) {
         <YouTubeVideo2 url={video.url} index={video.key} />
       </div>
       <div style={styles.audioContainer}>
-        {/* <AudioPlayer audioSrc="audioPlayer/testAudio.mp3" /> */}
         <SpotifyPodcast
           url={
             "https://open.spotify.com/embed/episode/0FBDu01bqovSZaBUgAoKuB?utm_source=generator"
@@ -138,6 +125,7 @@ export default function LessonSection({ videoId }) {
         />
       </div>
 
+      {/* Uncomment this section if you need the comments feature */}
       {/* <div style={styles.footerSection}>
         <h3 style={styles.commentsTitle}> תגובות </h3>
         <input

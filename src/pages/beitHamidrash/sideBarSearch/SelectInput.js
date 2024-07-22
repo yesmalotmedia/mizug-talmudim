@@ -3,7 +3,7 @@ import { AppContext } from "../../../App";
 import teachers from "../../../data/teachers";
 const SelectInput = ({ options, onChange, value }) => {
   // data
-  const { colors, bgColors, isMobile } = useContext(AppContext);
+  const { colors} = useContext(AppContext);
   // styles
   const styles = {
     input: {

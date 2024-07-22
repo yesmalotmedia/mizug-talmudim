@@ -7,7 +7,7 @@ function VideoCoverImage({ url, videoId, title }) {
   //state
   const [isHovered, setIsHovered] = useState(false);
   // Context
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, responsive } = useContext(AppContext);
 
   // Function to extract YouTube video ID from the URL
   const getYouTubeVideoId = (url) => {
@@ -31,17 +31,18 @@ function VideoCoverImage({ url, videoId, title }) {
 
   const styles = {
     container: {
-      maxWidth: "100%",
+      width: "100%",
       height: "auto",
       boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
       backgroundColor: bgColors.white,
-      margin: isMobile ? "10px 0" : 0,
+
       borderRadius: "50px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "space-around",
       position: "relative",
+      flexWrap: "wrap",
     },
     img: {
       width: "100%",
@@ -59,7 +60,7 @@ function VideoCoverImage({ url, videoId, title }) {
       cursor: "pointer",
     },
     title: {
-      fontSize: isMobile ? "0.9rem" : "0.9rem",
+      fontSize: responsive("1.2rem", "0.9rem", "0.9rem"),
       lineHeight: 1,
       color: colors.white,
       fontWeight: 600,

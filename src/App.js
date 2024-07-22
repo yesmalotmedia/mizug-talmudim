@@ -17,6 +17,7 @@ import ExtractPostsData from "./assets/extractPostsData";
 import getCategoriesByParent from "./assets/getCategoriesByParent";
 import DataTest from "./assets/dataTest/DataTest";
 import ExtractNewsData from "./assets/ExtractNewsData";
+import useResponsive from "./Hooks/useResponsive";
 export const AppContext = React.createContext();
 
 function App() {
@@ -70,7 +71,7 @@ function App() {
   const [lessonsFilter, setlessonsFilter] = useState({
     category: "כל השיעורים",
   });
-
+  const { responsive } = useResponsive();
   // Parsing data
   let parsedVideosData = [];
   let videos = [];
@@ -103,6 +104,7 @@ function App() {
     <AppContext.Provider
       value={{
         colors,
+        responsive,
         bgColors,
         pagesList,
         isMobile,

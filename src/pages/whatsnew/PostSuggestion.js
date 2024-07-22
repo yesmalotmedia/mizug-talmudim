@@ -8,11 +8,13 @@ export default function PostSuggestion({
   tarikImg,
   numPosts = 4,
 }) {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors,bgColors, responsive } = useContext(AppContext);
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const currentIndex = whatsNewData.findIndex((post) => post.id === currentPostId);
+  const currentIndex = whatsNewData.findIndex(
+    (post) => post.id === currentPostId
+  );
 
   const circularIndex = (index, length) => {
     return (index + length) % length;
@@ -25,10 +27,21 @@ export default function PostSuggestion({
   }
 
   const styles = {
+    container: {
+      display: "flex",
+      alignItems: "center",
+      flexWrap: "wrap",
+      background: bgColors.lightAzure,
+      justifyContent: 'center',
+      width: '100%',  
+      padding: 10,
+  
+      borderRadius: 20,
+    },
     suggestionBox: (isHovered) => ({
-      width: isMobile ? "95%" : "23vw",
-      height: isMobile ? "85vw" : "19vw",
-      margin: isMobile ? 9 : 6,
+      width: responsive("32vw","36vw","80vw"),
+      height: 300,
+     margin: responsive('10px 10px','10px 10px','10px 0'),
       borderRadius: 20,
       boxShadow: isHovered
         ? "rgba(0, 0, 139, 0.6) 0px 8px 24px"
@@ -36,6 +49,7 @@ export default function PostSuggestion({
       cursor: "pointer",
       transition: "box-shadow 0.3s ease-in-out",
       background: "#fff",
+
     }),
     link: {
       textDecoration: "none",
@@ -49,8 +63,8 @@ export default function PostSuggestion({
     title: {
       color: colors.darkBlue,
       fontWeight: 600,
-      fontSize: isMobile ? "5vw" : "1vw",
-      lineHeight: isMobile ? "6vw" : "1.3vw",
+      fontSize:responsive ("1rem","1rem","1rem"),
+      lineHeight: responsive ("1.2rem","1.3rem","1.5rem"),
       overflow: "hidden",
       display: "-webkit-box",
       WebkitBoxOrient: "vertical",
@@ -58,7 +72,7 @@ export default function PostSuggestion({
       padding: 8,
     },
     tarikImg: {
-      height: isMobile ? "5vw" : "1vw",
+      height: responsive ("18px","18px","15px"),
       paddingLeft: 10,
     },
     dateHe: {
@@ -73,11 +87,12 @@ export default function PostSuggestion({
       display: "flex",
       alignItems: "center",
       marginRight: 10,
+      fontSize:responsive ("1rem","1rem","0.8rem"),
     },
   };
 
   return (
-    <>
+    <div style={styles.container}>
       {displayPosts.map((post, index) => (
         <Link style={styles.link} key={index} to={`/${UrlPageName}/${post.id}`}>
           <div
@@ -99,6 +114,6 @@ export default function PostSuggestion({
           </div>
         </Link>
       ))}
-    </>
+    </div>
   );
 }

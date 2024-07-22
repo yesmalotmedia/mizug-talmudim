@@ -6,12 +6,19 @@ import { AppContext } from "../../../App";
 import MobileFilter from "../MobileFilter";
 import getCategoryIdByName from "../../../assets/geCategoryIdByName";
 import filterLessons from "../../../assets/dataTest/filterLessons";
+import LoadMore from "../../../components/elements/LoadMore";
 
 const LessonsCollection = ({ lessonsType, setlessonsType }) => {
-  const { isMobile, parsedData, videos, lessonsFilter, setlessonsFilter } =
-    useContext(AppContext);
+  const {
+    isMobile,
+    parsedData,
+    videos,
+    lessonsFilter,
+    responsive,
+    setlessonsFilter,
+  } = useContext(AppContext);
   const [displayedLessons, setDisplayedLessons] = useState(videos);
-
+  const [visiblePostCount, setVisiblePostCount] = useState(20);
   // styles
   const styles = {
     mainContainer: {
@@ -20,7 +27,7 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       alignItems: "center",
     },
     lessonsContainer: {
-      width: isMobile ? "100%" : "90%",
+      width: responsive("90%", "100%", "100%"),
       maxWidth: 1200,
       display: "flex",
       alignItems: "center",

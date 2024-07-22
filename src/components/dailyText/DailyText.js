@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 
 const DailyText = () => {
   // context
-  const { colors, isMobile, dailyTextsData } = useContext(AppContext);
+  const { colors, responsive, dailyTextsData } = useContext(AppContext);
 
   // states
   const [currentText, setCurrentText] = useState(0);
@@ -24,7 +24,7 @@ const DailyText = () => {
     textContainer: { padding: 100 },
     text: {
       color: colors.darkBlue,
-      fontSize: isMobile ? "3vmax" : "3vw",
+      fontSize: responsive("1.9rem", "1.7rem", "1.4rem"),
       fontWeight: 600,
       animation: "fadeInOut 10s infinite",
       textAlign: "center",
@@ -32,12 +32,11 @@ const DailyText = () => {
     textSource: {
       textAlign: "center",
       color: colors.darkBlue,
-      fontWeight: 300,
-      fontSize: isMobile ? "3vmax" : "2vw",
-      animation: "fadeInOut 10s infinite",
+      fontWeight: 500,
+      fontSize: responsive("1.9rem", "1.7rem", "1.4rem"),
     },
     bgImg: {
-      width: isMobile ? "100%" : "70%",
+      width: responsive("70%", "70%", "100%"),
       position: "absolute",
       bottom: 0,
       left: 0,
