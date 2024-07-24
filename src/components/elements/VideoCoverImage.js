@@ -78,24 +78,24 @@ function VideoCoverImage({ url, videoId, title }) {
 
   return (
     <div style={styles.container}>
-      {youTubeVideoId ? (
-        <div
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <img
-            src={thumbnailUrl}
-            alt="YouTube Video Thumbnail"
-            style={styles.img}
-          />
-          <div style={styles.title}>{title}</div>
-          <Link style={styles.btn} to={`/BeitHamidrash/${videoId}`}>
-            <img style={styles.playBtn} src="/play-button.png" />{" "}
-          </Link>
-        </div>
-      ) : (
+      {/* {youTubeVideoId ? ( */}
+      <div
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <img
+          src={thumbnailUrl}
+          alt="YouTube Video Thumbnail"
+          style={styles.img}
+        />
+        <div style={styles.title}>{title}</div>
+        <Link style={styles.btn} to={`/BeitHamidrash/${videoId}`}>
+          <img style={styles.playBtn} src="/play-button.png" />{" "}
+        </Link>
+      </div>
+      {/* ) : (
         <p style={{ color: colors.red }}>הקישור לא תקין...</p>
-      )}
+      )} */}
     </div>
   );
 }

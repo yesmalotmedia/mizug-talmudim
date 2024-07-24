@@ -5,7 +5,7 @@ import SelectInput from "./SelectInput";
 import Checkbox from "./Checkbox";
 import yerushalmiMasectot from "../../../data/yerushalmiMasectot";
 
-const SideBarSearch = () => {
+const SideBarSearch = ({ selectedTopic, setSelectedTopic }) => {
   // data
   const {
     responsive,
@@ -30,20 +30,20 @@ const SideBarSearch = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRabbi, setSelectedRabbi] = useState("");
-  const [selectedTopic, setSelectedTopic] = useState("");
+
   const [selectedMasechet, setSelectedMasechet] = useState("");
-  const [videoChecked, setVideoChecked] = useState(false);
-  const [audioChecked, setAudioChecked] = useState(false);
-  const [textChecked, setTextChecked] = useState(false);
+  const [videoChecked, setVideoChecked] = useState(true);
+  const [audioChecked, setAudioChecked] = useState(true);
+  const [textChecked, setTextChecked] = useState(true);
 
   // styles
   const styles = {
     container: {
       backgroundColor: bgColors.lightAzure,
-      borderRadius: responsive(50, 0,0),
+      borderRadius: responsive(50, 0, 0),
       padding: 20,
-      width: responsive("40%", "100%","100%"),
-      maxWidth: responsive(300, "100%","100%"),
+      width: responsive("40%", "100%", "100%"),
+      maxWidth: responsive(300, "100%", "100%"),
       maxHeight: responsive(700, "100vh", "100vh"),
       display: "flex",
       justifyContent: "space-around",
@@ -80,7 +80,7 @@ const SideBarSearch = () => {
       color: colors.azure,
       fontSize: 15,
       fontWeight: 500,
-      width: responsive("90%", "50%","50%"),
+      width: responsive("90%", "50%", "50%"),
       marginBottom: 5,
       marginRight: 5,
     },
@@ -99,10 +99,10 @@ const SideBarSearch = () => {
     },
   };
 
-
   //functions
   const filteringSearch = useCallback(() => {
     const formData = {
+      freeQuery: searchQuery,
       category: selectedTopic,
       masechet: selectedMasechet,
       rabbiName: selectedRabbi,

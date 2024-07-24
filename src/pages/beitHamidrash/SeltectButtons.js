@@ -3,18 +3,15 @@ import { AppContext } from "../../App";
 import CyrcleButton from "../../components/elements/CyrcleButton";
 import { useNavigate } from "react-router-dom";
 
-const SeltectButtons = ({ lessonsType, setlessonsType, setLessonsFilter }) => {
+const SeltectButtons = ({
+  lessonsType,
+  setlessonsType,
+  selectedTopic,
+  setSelectedTopic,
+}) => {
   // Context
-  const {
-    colors,
-    bgColors,
-    isMobile,
-    dailyTextsData,
-    categories,
-    loadingCategories,
-    setlessonsFilter,
-    lessonsFilter,
-  } = useContext(AppContext);
+  const { colors, bgColors, isMobile, categories, setlessonsFilter } =
+    useContext(AppContext);
 
   const navigate = useNavigate();
   // Styles
@@ -37,7 +34,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType, setLessonsFilter }) => {
   };
 
   // Functions
-  useEffect(() => {}, [loadingCategories]);
+  //  useEffect(() => {}, [loadingCategories]);
   const getDisplyedCategories = (categories) => {
     return categories
       .filter((cat) => cat.parent == 3)
@@ -46,6 +43,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType, setLessonsFilter }) => {
 
   const handleClick = (btnTitle) => {
     navigate("/BeitHamidrash");
+    setSelectedTopic(btnTitle);
     setlessonsType(btnTitle);
     setlessonsFilter({ category: btnTitle });
   };

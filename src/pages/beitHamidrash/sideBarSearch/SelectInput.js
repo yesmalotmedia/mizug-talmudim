@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../../App";
-import teachers from "../../../data/teachers";
+
 const SelectInput = ({ options, onChange, value }) => {
   // data
-  const { colors} = useContext(AppContext);
+  const { colors } = useContext(AppContext);
   // styles
   const styles = {
     input: {
@@ -29,7 +29,7 @@ const SelectInput = ({ options, onChange, value }) => {
     </option>
   ));
   return (
-    <select onChange={onChange} style={styles.input}>
+    <select onChange={onChange} style={styles.input} value={value}>
       {optionsElements}
     </select>
   );

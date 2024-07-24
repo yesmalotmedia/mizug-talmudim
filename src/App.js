@@ -20,6 +20,12 @@ import ExtractNewsData from "./assets/ExtractNewsData";
 import useResponsive from "./Hooks/useResponsive";
 export const AppContext = React.createContext();
 
+/*
+ 1.LessonSection- added condition to for displaing lessons video audio and text
+ 2. App- added audio and text to video extracting
+ 3. filterLessons - added checkbox filtering
+ 4. BeitHamidrash+SideBarSearch+SelectInput - set matching betwing all these components when topic cahnges
+*/
 function App() {
   // Fetch posts data
   const {
@@ -29,6 +35,7 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=100&page=1"
   );
+
   // Fetch categories data
   const {
     data: categoriesData,
@@ -81,9 +88,15 @@ function App() {
   if (postsData) {
     parsedVideosData = ExtractPostsData(postsData);
     videos = parsedVideosData.filter(
-      (e) => e.contentType.includes("video") || e.contentType.includes("וידאו")
+      (e) =>
+        e.contentType.includes("video") ||
+        e.contentType.includes("וידאו") ||
+        e.contentType.includes("audio") ||
+        e.contentType.includes("text")
     );
+    console.log(videos);
   }
+
   if (newsData) {
     parsedNewsData = ExtractNewsData(newsData);
   }

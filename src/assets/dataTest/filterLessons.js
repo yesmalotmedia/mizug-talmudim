@@ -1,40 +1,39 @@
 import getCategoryIdByName from "../geCategoryIdByName";
 
 function filterLessons(data, filter) {
-  console.log(filter);
   let filteredLessons = data;
   const { freeQuery, category, masechet, rabbiName } = filter;
+  console.log(freeQuery);
 
-  //selectButtonsfFiltering
-
+  // Select Buttons Filtering
   if (category && category !== "כל השיעורים") {
     const categoryId = getCategoryIdByName(category);
-    console.log(categoryId);
     filteredLessons = data.filter((video) =>
       video.categories.includes(categoryId)
     );
-  }
-  // Free searching
-  else if (category === "כל השיעורים" || freeQuery === "" || !freeQuery) {
-    return data;
-  } else if (freeQuery?.trim() === "" || freeQuery == undefined) {
-    console.log("params");
-
-    filteredLessons = data.filter(
-      (video) =>
-        video.categories.includes(getCategoryIdByName(category)) &&
-        video.rabbiName === rabbiName
-    );
-  }
-  // Parameters searching
-  else {
-    console.log(getCategoryIdByName(freeQuery?.trim()));
-
+  } else if (freeQuery?.trim() !== "" && freeQuery !== undefined) {
+    // Parameters searching
+    console.log(1);
     filteredLessons = data.filter(
       (video) =>
         video.rabbiName.includes(freeQuery?.trim()) ||
         video.title.includes(freeQuery?.trim()) ||
         video.categories.includes(getCategoryIdByName(freeQuery?.trim()))
+    );
+  }
+
+  // CheckBox Filtering
+
+  // Collect all checked types
+  const selectedTypes = [];
+  if (filter?.type?.audio) selectedTypes.push("audio");
+  if (filter?.type?.video) selectedTypes.push("video");
+  if (filter?.type?.text) selectedTypes.push("text");
+
+  // If any type is checked, filter by those types
+  if (selectedTypes.length > 0) {
+    filteredLessons = filteredLessons.filter((lesson) =>
+      selectedTypes.some((type) => lesson.contentType.includes(type))
     );
   }
   return filteredLessons;

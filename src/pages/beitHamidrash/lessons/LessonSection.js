@@ -18,7 +18,9 @@ export default function LessonSection({ videoId }) {
   }
 
   const video = videos.find((video) => video.id == videoId);
-
+  const isVideo = video?.contentType.includes("video");
+  const isAudio = video?.contentType.includes("audio");
+  const isText = video?.contentType.includes("text");
   if (!video) {
     console.error(`No video found with id: ${videoId}`);
     return <LoaderAnimation isLoading={!video} color={colors.orange} />;
@@ -109,21 +111,25 @@ export default function LessonSection({ videoId }) {
           <span style={styles.dateAndTimeText}> זמן קריאה: 8 דק’ </span>
         </div>
         <div style={styles.dedicate}>{video.dedicatedTo}</div>
-        <YouTubeVideo2 url={video.url} index={video.key} />
+        {isVideo && <YouTubeVideo2 url={video.url} index={video.key} />}
       </div>
-      <div style={styles.audioContainer}>
-        <SpotifyPodcast
-          url={
-            "https://open.spotify.com/embed/episode/0FBDu01bqovSZaBUgAoKuB?utm_source=generator"
-          }
-        />
-      </div>
-      <div style={styles.descriptionContainer}>
-        <div
-          style={styles.description}
-          dangerouslySetInnerHTML={{ __html: video.article }}
-        />
-      </div>
+      {isAudio && (
+        <div style={styles.audioContainer}>
+          <SpotifyPodcast
+            url={
+              "https://open.spotify.com/embed/episode/0FBDu01bqovSZaBUgAoKuB?utm_source=generator"
+            }
+          />
+        </div>
+      )}
+      {isText && (
+        <div style={styles.descriptionContainer}>
+          <div
+            style={styles.description}
+            dangerouslySetInnerHTML={{ __html: video.article }}
+          />
+        </div>
+      )}
 
       {/* Uncomment this section if you need the comments feature */}
       {/* <div style={styles.footerSection}>

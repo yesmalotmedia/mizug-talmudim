@@ -10,6 +10,7 @@ import HeroSection from "../../components/elements/HeroSection";
 import LessonsCollection from "./lessons/LessonsCollection";
 import { useParams } from "react-router-dom";
 import LoaderAnimation from "../../components/elements/LoaderAnimation";
+
 const BeitHamidrash = () => {
   // data
   const {
@@ -26,6 +27,9 @@ const BeitHamidrash = () => {
     lessonsFilter,
     loadingPosts,
   } = useContext(AppContext);
+
+  const [selectedTopic, setSelectedTopic] = useState("");
+
   const screenWidth = window.innerWidth;
   // states
   const { videoId } = useParams();
@@ -43,7 +47,6 @@ const BeitHamidrash = () => {
       justifyContent: "space-between",
       // margin: "auto",
     },
-
     selectionButtonContainer: isMobile
       ? {
           overflowY: "auto",
@@ -58,12 +61,12 @@ const BeitHamidrash = () => {
 
   return (
     <>
-    <HeroSection
+      <HeroSection
         title={"בית המדרש"}
         backgroundImage={"/hero2.png"}
         subTitle={"בחרו את הנושא שמעניין אתכם"}
         titleColor={colors.white}
-        height={responsive ("60vmin","50vmin", "75vmin") }
+        height={responsive("60vmin", "50vmin", "75vmin")}
         marginTop={95}
       />
 
@@ -71,6 +74,8 @@ const BeitHamidrash = () => {
         <SeltectButtons
           lessonsType={lessonsType}
           setlessonsType={setlessonsType}
+          selectedTopic={selectedTopic}
+          setSelectedTopic={setSelectedTopic}
         />
       </div>
 
@@ -79,6 +84,8 @@ const BeitHamidrash = () => {
           <SideBarSearch
             lessonsType={lessonsType}
             setlessonsType={setlessonsType}
+            selectedTopic={selectedTopic}
+            setSelectedTopic={setSelectedTopic}
           />
         )}
         {!videoId ? (
