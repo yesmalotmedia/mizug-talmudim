@@ -22,8 +22,8 @@ const ExtractNewsData = (data) => {
   console.log(data);
   return data.map((post) => ({
     thumbnail: post.acf.image.url,
-    postId: post.id,
-    id: post.id,
+    postId: post?.id,
+    id: post?.id,
     date: convertDateFormat(post?.date?.split("T")[0]), // Extract only the date part
     title: decodeHtmlEntities(post.title.rendered), // Decode HTML entities in the title
     article: post?.content?.rendered,

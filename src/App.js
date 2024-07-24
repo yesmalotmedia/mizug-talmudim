@@ -21,11 +21,8 @@ import useResponsive from "./Hooks/useResponsive";
 export const AppContext = React.createContext();
 
 /*
- 1.LessonSection- added condition to for displaing lessons video audio and text
- 2. App- added audio and text to video extracting
- 3. filterLessons - added checkbox filtering
- 4. BeitHamidrash+SideBarSearch+SelectInput - set matching betwing all these components when topic cahnges
-*/
+1/ WhatsNew: 1. loader animation 2. connecet do database
+1*/
 function App() {
   // Fetch posts data
   const {

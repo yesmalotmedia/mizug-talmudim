@@ -9,7 +9,7 @@ export default function PostsPreviewBox({
   article,
   postId,
 }) {
-  const { colors, responsive } = useContext(AppContext);
+  const { colors, responsive, parsedNewsData } = useContext(AppContext);
   const [hover, setHover] = useState(false);
 
   const styles = {
@@ -116,9 +116,10 @@ export default function PostsPreviewBox({
             <span>{date}</span>
           </p>
         </div>
-        <div style={styles.article}>
-          <p>{article}</p>
-        </div>
+        <div
+          style={styles.article}
+          dangerouslySetInnerHTML={{ __html: article }}
+        />
         <Link style={styles.btn} to={`/WhatsNew/${postId}`}>
           <span>להמשך קריאה</span>
           <img

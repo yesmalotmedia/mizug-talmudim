@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import HeroSection from "../../components/elements/HeroSection";
 import PostsCollection from "./PostsCollection";
+import LoaderAnimation from "../../components/elements/LoaderAnimation";
 
 export default function WhatsNew() {
-  const { colors, responsive } = useContext(AppContext);
+  const { colors, responsive, loadingNews } = useContext(AppContext);
 
   return (
     <>
@@ -16,7 +17,11 @@ export default function WhatsNew() {
         height={responsive("60vmin", "60vmin", "70vmin")}
         marginTop={responsive(90, 50, 170)}
       />
-      <PostsCollection />
+      {loadingNews ? (
+        <LoaderAnimation isLoading={loadingNews} color={colors.orange} />
+      ) : (
+        <PostsCollection />
+      )}
     </>
   );
 }

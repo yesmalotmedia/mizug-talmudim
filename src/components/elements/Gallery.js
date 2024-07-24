@@ -3,12 +3,10 @@ import FullscreenImageViewer from "./fullscreenImageViewer";
 import { AppContext } from "../../App";
 
 export default function Gallery({ data }) {
-  const {  responsive } = useContext(AppContext);
+  const { responsive } = useContext(AppContext);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  console.log(data.images); // Debugging: Check the images data
 
   if (!data || !Array.isArray(data.images)) {
     return <div>No images available</div>;
@@ -55,7 +53,7 @@ export default function Gallery({ data }) {
       flex: "0 0 48%",
       height: "21.5vw",
       borderRadius: 20,
-      marginBottom: responsive(20,60,60),
+      marginBottom: responsive(20, 60, 60),
     },
     fullWidthImage: {
       flex: "0 0 100%",

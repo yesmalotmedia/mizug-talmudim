@@ -6,11 +6,12 @@ import PostSuggestion from "./PostSuggestion";
 import NextAndPreviousBtn from "./NextAndPreviousBtn";
 import SharePost from "./SharePost";
 import Gallery from "../../components/elements/Gallery";
+import LoaderAnimation from "../../components/elements/LoaderAnimation";
 const PostDetails = () => {
-  const { colors, bgColors, responsive, parsedNewsData } =
+  const { colors, bgColors, responsive, parsedNewsData, loadingNews } =
     useContext(AppContext);
   const { postId } = useParams();
-  const post = parsedNewsData.find((p) => p.id.toString() === postId);
+  const post = parsedNewsData.find((p) => p?.id.toString() === postId);
   console.log(post);
   const styles = {
     mainSection: {
@@ -47,23 +48,23 @@ const PostDetails = () => {
       <Spacer height={170} />
       <div style={styles.mainSection}>
         <div>
-          <h2 style={styles.textTitle}>{post.title}</h2>
+          <h2 style={styles.textTitle}>{post?.title}</h2>
           <div style={styles.tarikContainer}>
             <img style={styles.tarikImg} src="/tarik.png" alt="Tarik Logo" />
             <p style={styles.tarik}>
-              <span>{post.date}</span>
+              <span>{post?.date}</span>
             </p>
           </div>
           <div
             style={styles.article}
-            dangerouslySetInnerHTML={{ __html: post.article }}
+            dangerouslySetInnerHTML={{ __html: post?.article }}
           />
 
           <Gallery data={post} />
 
           <NextAndPreviousBtn
             data={parsedNewsData}
-            currentId={post.id}
+            currentId={post?.id}
             UrlPageName={"WhatsNew"}
           />
           <div>
@@ -71,13 +72,17 @@ const PostDetails = () => {
           </div>
         </div>
 
-        <PostSuggestion
-          currentPostId={post.id}
-          tarikImg={"/tarik.png"}
-          UrlPageName={"WhatsNew"}
-          numPosts={4}
-          showPostsAfter={true}
-        />
+        {loadingNews ? (
+          <LoaderAnimation isLoading={loadingNews} color={colors.orange} />
+        ) : (
+          <PostSuggestion
+            currentPostId={post?.id}
+            tarikImg={"/tarik.png"}
+            UrlPageName={"WhatsNew"}
+            numPosts={4}
+            showPostsAfter={true}
+          />
+        )}
       </div>
     </>
   );
