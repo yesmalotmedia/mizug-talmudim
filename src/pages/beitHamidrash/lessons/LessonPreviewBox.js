@@ -8,7 +8,6 @@ export default function LessonPreviewBox({ video }) {
   const { colors, responsive} = useContext(AppContext);
   const styles = {
     container: {
-      flex: responsive("1 1 calc(30% - 40px)","1 1 calc(48% - 20px)","1 1 calc(48% - 20px)"),
       boxSizing: "border-box",
       margin: "10px",
       border: `1px solid ${colors.azure}`,
@@ -19,8 +18,8 @@ export default function LessonPreviewBox({ video }) {
       flexDirection: "column",
       justifyContent: "space-around",
       backgroundColor: colors.white,
-      maxWidth: "30%",
-      minHeight: 400,
+      width: responsive(260, 350, 300),
+      height: "auto",
     },
     thumbnail: {
       height: "50%",
@@ -32,23 +31,23 @@ export default function LessonPreviewBox({ video }) {
     },
     description: {
       display: "flex",
-      alignItems: "start",
+      flexDirection: "column",
       justifyContent: "space-between",
       color: colors.darkBlue,
-      padding: 5,
     },
     title: {
-      fontSize: responsive("1.2vw","2.4vmax","2.4vmax"),
+      fontSize: responsive("1rem","1.6rem","1.3rem"),
+      paddingTop:5,
     },
     subTitle: {
-      fontSize: responsive("1vw","2.5vmax","2.5vmax"),
-      padding: 5,
+      fontSize: responsive("1vw","1.5rem","1.3rem"),
+      padding: 10,
       fontWeight: 400,
     },
     date: {
-      fontSize: responsive("0.8vw","1.9vmax","1.9vmax"),
+      fontSize: responsive("0.8rem","1.2rem","1rem"),
       fontWeight: 400,
-      marginTop: 4,
+      
     },
     bottomSection: {
       textAlign: "right",
@@ -72,7 +71,7 @@ export default function LessonPreviewBox({ video }) {
       border: `1px solid ${colors.azure}`,
       color: colors.azure,
       fontWeight: 500,
-      fontSize: responsive("0.9vw","2vmax" ,"2vmax" ),
+      fontSize: responsive("0.9vw","1rem" ,"2vmax" ),
       background: colors.white,
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       cursor: "pointer",
@@ -81,6 +80,14 @@ export default function LessonPreviewBox({ video }) {
       height: responsive( "1.5vw", "3vmax", "3vmax" ),
       width: responsive( "1.5vw", "3vmax" , "3vmax" ),
     },
+    dateContainer:{
+      display: "flex",
+      paddingTop: 5,
+      color: colors.grey,
+      alignItems: "center",
+      justifyContent: "space-between",
+
+    }
   };
 
   //functions
@@ -96,15 +103,16 @@ export default function LessonPreviewBox({ video }) {
           title={video.title}
         />
       }
+
       <div style={styles.description}>
-        <div style={{ width: "60%" }}>
+          <div style={styles.dateContainer}>
+            <h3 style={styles.date}>{video.date}</h3>
+            <h3 style={styles.date}>{video.heDate}</h3>
+            </div>
           <h2 style={styles.title}> {video.title}</h2>
           <h2 style={styles.subTitle}> {video.rabbiName}</h2>
-        </div>
-
-        <h3 style={styles.date}>{video.date}</h3>
-        <h3 style={styles.date}>{video.heDate}</h3>
       </div>
+
       <div style={styles.bottomSection}>
         <div style={styles.btnContainer}>
           {video.contentType.includes("video") && (

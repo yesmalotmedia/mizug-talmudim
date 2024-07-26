@@ -16,8 +16,8 @@ export default function Contact() {
       width: "100%",
     },
     socialContainer: {
-      width: responsive("40vmin", "70vmin", "90vmin"),
-      margin: responsive("50px 30px 0 0", "50px -120px 0 0", "50px 10px 0 0"),
+      width: responsive("70vmin", "70vmin", "90vmin"),
+      margin: responsive("50px 30px 0 0", "50px -100px 0 0", "50px 10px 0 0"),
     },
     formContainer: {
       marginTop: "-10vmin",

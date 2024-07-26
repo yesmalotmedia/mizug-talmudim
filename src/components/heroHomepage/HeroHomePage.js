@@ -23,15 +23,16 @@ const HeroHomePage = () => {
       objectFit: "cover", // Maintain aspect ratio and cover the entire container
       objectPosition: "30%", // Center the image within the container
       zIndex: -100,
-      borderBottomLeftRadius: "50px", // Adjust the value as needed
-      borderBottomRightRadius: "50px", // Adjust the value as needed
+      borderBottomLeftRadius: "30px", // Adjust the value as needed
+      borderBottomRightRadius: "30px", // Adjust the value as needed
     },
     text: {
       position: "absolute",
       bottom: responsive("30%","40%","60%"),
       right: responsive(100,70,40),
+      top: responsive(190,200,170),
       color: colors.white,
-      fontSize: responsive("4rem","4rem","3rem"),
+      fontSize: responsive("4rem","5rem","3rem"),
       fontWeight: 700,
     },
     orangeText: {

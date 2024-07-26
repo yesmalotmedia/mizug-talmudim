@@ -4,7 +4,7 @@ import { AppContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 
 export default function LogoAndSocialIcon() {
-  const { colors, isMobile } = useContext(AppContext);
+  const {responsive } = useContext(AppContext);
   const navigate = useNavigate();
 
   const styles = {
@@ -24,16 +24,16 @@ export default function LogoAndSocialIcon() {
       gap: 9,
     },
     socialLogoImage: {
-      height: isMobile ? "5vmax" : "35px",
-      width: isMobile ? "5vmax" : "35px",
+      height: responsive( "35px","5vmax","5vmax" ),
+      width: responsive( "35px","5vmax","5vmax" ),
       cursor: "pointer",
-      margin: isMobile ? "30px 10px" : "",
+      margin: responsive('',"30px 10px","30px 10px")
     },
   };
-
+const showLogo = responsive(true,false,false)
   return (
     <div style={styles.footerColumn}>
-      {!isMobile && (
+      {showLogo && (
         <img
           style={styles.logoWhite}
           src="/footerImages/logo-white.png"

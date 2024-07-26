@@ -39,9 +39,9 @@ const DedicationSection = () => {
     text: {
       position: "absolute",
       color: colors.darkBlue,
-      fontSize: responsive("2rem", "1.8rem", "1.3rem"),
+      fontSize: responsive("2rem", "2rem", "1.3rem"),
       fontWeight: 600,
-      marginBottom: responsive(-800, -300, 0),
+      marginBottom: responsive("-50vw", "-50vw", "-5vw"),
     },
     textSource: {
       textAlign: "center",
@@ -50,9 +50,10 @@ const DedicationSection = () => {
       fontSize: 20,
     },
     bgImg: {
-      width: responsive("100%", "170%", "300%"),
+      width:responsive("150%","150%","200%"),
+      height: responsive("160vh","80vh","70vh"),
       position: "absolute",
-      bottom: responsive(-500, -200, -50),
+      bottom: responsive("-50vw", "-60vw", "-30vw"),
       left: 0,
       zIndex: -2,
     },

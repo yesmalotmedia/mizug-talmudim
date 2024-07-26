@@ -49,13 +49,13 @@ export default function Gallery({ data }) {
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "space-between",
-      marginTop: 30,
+      marginTop:30,
     },
     imageRow: {
       flex: "0 0 48%",
       height: "21.5vw",
       borderRadius: 20,
-      marginBottom: responsive(20,60,60),
+      marginBottom: responsive(20,90,60),
     },
     fullWidthImage: {
       flex: "0 0 100%",

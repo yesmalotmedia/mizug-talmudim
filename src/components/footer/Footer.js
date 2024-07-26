@@ -7,28 +7,27 @@ import FooterMenuData from "./FooterMenuData";
 import Subscribe from "../elements/Subscribe";
 
 const Footer = () => {
-  const { colors, isMobile } = useContext(AppContext);
+  const { colors, responsive } = useContext(AppContext);
   //styles
   const styles = {
     container: {
       minWidth: "100%",
-      backgroundImage: isMobile
-        ? 'url("/mobileFooterImg.png")'
-        : 'url("/footerImages/Union.png")',
+      backgroundImage: responsive('url("/footerImages/Union.png")', 'url("/mobileFooterImg.png")', 'url("/mobileFooterImg.png")'),
       backgroundSize: "100% 100%",
       color: colors.white,
       zIndex: 200,
       position: "relative",
     },
     footerItemWrapper: {
-      paddingTop: isMobile ? "20vh" : "50vh",
+      paddingTop: responsive("50vh","20vh","30vh"),
       maxWidth: "80%",
       display: "flex",
       justifyContent: "center",
       gap: "6%",
+      alignItems: responsive("","center","") ,
       marginInline: "auto",
       position: "relative",
-      flexDirection: isMobile ? "column-reverse" : "",
+      flexDirection: responsive("row","column-reverse","column-reverse"),
     },
     footerMenuWrapper: {
       display: "flex",
@@ -39,7 +38,8 @@ const Footer = () => {
       display: "flex",
       flexWrap: "wrap",
       gap: "10px",
-      maxWidth: isMobile ? "100%" : "38vmax",
+      width: responsive(600,"100%","100%"),
+    
     },
     footerMenuItem: {
       flex: "1 1 calc(25% - 10px)",
@@ -57,25 +57,25 @@ const Footer = () => {
       textAlign: "center",
       position: "relative",
       top: -4,
-      width: isMobile ? "100%" : "",
+      width: responsive("","100%","100%"),
     },
     icon: {
       position: "relative",
       display: "flex",
-      alignItems: isMobile ? "center" : "",
-      justifyContent: isMobile ? "center" : "",
+      alignItems: responsive("","center","center"),
+      justifyContent: responsive("","center","center"),
       top: 8,
     },
     text: {
       paddingBottom: 10,
-      fontSize: isMobile ? "6vmin" : "",
+      fontSize: responsive("2.4rem","3rem","2rem"),
     },
   };
-
+const show = responsive (true,false,false)
   return (
     <div style={styles.container}>
       <div style={styles.footerItemWrapper}>
-        {!isMobile && (
+        {show && (
           <div style={styles.icon}>
             <LogoAndSocialIcon />
           </div>
@@ -84,7 +84,7 @@ const Footer = () => {
         <div style={styles.footerMenu}>
           <FooterMenu data={FooterMenuData} />
         </div>
-        {isMobile && (
+        {!show && (
           <div style={styles.icon}>
             <LogoAndSocialIcon />
           </div>

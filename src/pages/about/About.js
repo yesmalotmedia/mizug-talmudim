@@ -22,7 +22,7 @@ export default function About() {
     sideBtnContainer: {
       background: bgColors.lightAzure,
       width: responsive("20%", "90%", "90%"),
-      height: responsive("100vh", "160px", "140px"),
+      height: responsive("100vh", "200px", "140px"),
       marginTop: responsive(-45,-45,50),
       borderTopLeftRadius: 20,
       borderBottomLeftRadius: 20,

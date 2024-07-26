@@ -28,7 +28,7 @@ export default function PostsPreviewBox({
       borderTopRightRadius: responsive("20px", "10px", "8px"),
       borderBottomRightRadius: responsive("20px", "10px", "8px"),
       height: responsive("300px", "210px", "170px"),
-      width: responsive("60%", "70%", "70%"),
+      width: responsive("50%", "60%", "60%"),
       background: colors.white,
       boxShadow: hover
         ? "rgba(0, 0, 0, 0.3) 0px 6px 15px"
@@ -41,7 +41,7 @@ export default function PostsPreviewBox({
       width: "100%",
       height: "100%",
       height: responsive("300px", "210px", "170px"),
-      width: responsive("60%", "70%", "40%"),
+      width: responsive("50%", "40%", "40%"),
       borderTopLeftRadius: responsive("20px", "10px", "8px"),
       borderBottomLeftRadius: responsive("20px", "10px", "8px"),
       boxShadow: hover
@@ -78,7 +78,10 @@ export default function PostsPreviewBox({
       display: "-webkit-box",
       WebkitBoxOrient: "vertical",
       WebkitLineClamp: responsive(6, 4, 3),
+      wordWrap: "break-word",
+      overflowWrap: "break-word",
     },
+
     btn: {
       marginTop: responsive("0", "10px", "10px"),
       color: colors.orange,
@@ -116,9 +119,10 @@ export default function PostsPreviewBox({
             <span>{date}</span>
           </p>
         </div>
-        <div style={styles.article}>
-          <p>{article}</p>
-        </div>
+        <div
+            style={styles.article}
+            dangerouslySetInnerHTML={{ __html: article }}
+          />
         <Link style={styles.btn} to={`/WhatsNew/${postId}`}>
           <span>להמשך קריאה</span>
           <img

@@ -9,6 +9,7 @@ const SeltectButtons = ({ lessonsType, setlessonsType, setLessonsFilter }) => {
     colors,
     bgColors,
     isMobile,
+    responsive,
     dailyTextsData,
     categories,
     loadingCategories,
@@ -22,18 +23,11 @@ const SeltectButtons = ({ lessonsType, setlessonsType, setLessonsFilter }) => {
     container: {
       transform: "translateY(-70%)",
       display: "flex",
-      width: "45vw",
-      justifyContent: isMobile ? "center" : "space-around",
-      marginInline: "auto",
+      gap: 20,
+      width: responsive("100%","90%", "105%"),
+      justifyContent: "center",
     },
-    btn: isMobile
-      ? {
-          padding: "0 10px",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }
-      : {},
+   
   };
 
   // Functions

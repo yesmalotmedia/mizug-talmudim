@@ -1,18 +1,18 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import { Link } from "react-router-dom";
-import whatsNewData from "../../data/whatsNewData";
+
 export default function PostSuggestion({
   currentPostId,
   UrlPageName,
   tarikImg,
   numPosts = 4,
 }) {
-  const { colors,bgColors, responsive } = useContext(AppContext);
+  const { colors, bgColors, responsive, parsedNewsData } = useContext(AppContext);
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const currentIndex = whatsNewData.findIndex(
+  const currentIndex = parsedNewsData.findIndex(
     (post) => post.id === currentPostId
   );
 
@@ -22,8 +22,8 @@ export default function PostSuggestion({
 
   const displayPosts = [];
   for (let i = 1; i <= numPosts; i++) {
-    const index = circularIndex(currentIndex + i, whatsNewData.length);
-    displayPosts.push(whatsNewData[index]);
+    const index = circularIndex(currentIndex + i, parsedNewsData.length);
+    displayPosts.push(parsedNewsData[index]);
   }
 
   const styles = {
@@ -33,15 +33,14 @@ export default function PostSuggestion({
       flexWrap: "wrap",
       background: bgColors.lightAzure,
       justifyContent: 'center',
-      width: '100%',  
+      width: '100%',
       padding: 10,
-  
       borderRadius: 20,
     },
     suggestionBox: (isHovered) => ({
-      width: responsive("32vw","36vw","80vw"),
+      width: responsive("32vw", "36vw", "80vw"),
       height: 300,
-     margin: responsive('10px 10px','10px 10px','10px 0'),
+      margin: responsive('10px 10px', '10px 10px', '10px 0'),
       borderRadius: 20,
       boxShadow: isHovered
         ? "rgba(0, 0, 139, 0.6) 0px 8px 24px"
@@ -49,7 +48,6 @@ export default function PostSuggestion({
       cursor: "pointer",
       transition: "box-shadow 0.3s ease-in-out",
       background: "#fff",
-
     }),
     link: {
       textDecoration: "none",
@@ -63,8 +61,8 @@ export default function PostSuggestion({
     title: {
       color: colors.darkBlue,
       fontWeight: 600,
-      fontSize:responsive ("1rem","1rem","1rem"),
-      lineHeight: responsive ("1.2rem","1.3rem","1.5rem"),
+      fontSize: responsive("1rem", "1rem", "1rem"),
+      lineHeight: responsive("1.2rem", "1.3rem", "1.5rem"),
       overflow: "hidden",
       display: "-webkit-box",
       WebkitBoxOrient: "vertical",
@@ -72,7 +70,7 @@ export default function PostSuggestion({
       padding: 8,
     },
     tarikImg: {
-      height: responsive ("18px","18px","15px"),
+      height: responsive("18px", "18px", "15px"),
       paddingLeft: 10,
     },
     dateHe: {
@@ -87,7 +85,7 @@ export default function PostSuggestion({
       display: "flex",
       alignItems: "center",
       marginRight: 10,
-      fontSize:responsive ("1rem","1rem","0.8rem"),
+      fontSize: responsive("1rem", "1rem", "0.8rem"),
     },
   };
 
@@ -99,6 +97,8 @@ export default function PostSuggestion({
             style={styles.suggestionBox(index === hoveredIndex)}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
+            onTouchStart={() => setHoveredIndex(index)}
+            onTouchEnd={() => setHoveredIndex(null)}
           >
             <img
               style={styles.thumbnail}
@@ -108,8 +108,8 @@ export default function PostSuggestion({
             <p style={styles.title}>{post.title}</p>
             <div style={styles.tarikContainer}>
               <img style={styles.tarikImg} src={tarikImg} alt="Tarik" />
-              <span style={styles.dateEn}>{post.dateEn}</span> |
-              <span style={styles.dateHe}>{post.dateHe}</span>
+              <span style={styles.dateEn}>{post.date}</span>
+            
             </div>
           </div>
         </Link>
