@@ -6,23 +6,23 @@ const RenderContents = ({ sectionData }) => {
   const { colors, responsive } = useContext(AppContext);
 
   const styles = {
-    container:{
-marginBottom: 80,
+    container: {
+      marginBottom: 80,
     },
     title: {
       color: colors.darkBlue,
-      fontSize: responsive("2rem", "2rem","2rem"),
+      fontSize: responsive("2rem", "2rem", "2rem"),
       marginBottom: 25,
     },
     paragraph: {
       textAlign: "justify",
-      fontSize: responsive("1.3rem","1.2rem","1.1rem"),
-      lineHeight:responsive("1.9rem","1.7rem","1.7rem"),
+      fontSize: responsive("1.3rem", "1.2rem", "1.1rem"),
+      lineHeight: responsive("1.9rem", "1.7rem", "1.7rem"),
       marginBottom: 15,
     },
     img: {
-      width: responsive("60vw","100%","100%"),
-      height: responsive("40vh","40vh","30vh"),
+      width: responsive("60vw", "100%", "100%"),
+      height: responsive("40vh", "40vh", "30vh"),
       borderRadius: 20,
       margin: "30px 0",
     },
@@ -39,7 +39,7 @@ marginBottom: 80,
 
       <p style={styles.paragraph}>{sectionData.secondParagraph}</p>
 
-      <Gallery data={sectionData} />
+      {/* <Gallery data={sectionData} /> */}
     </div>
   );
 };

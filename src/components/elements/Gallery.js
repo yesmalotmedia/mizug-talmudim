@@ -3,17 +3,17 @@ import FullscreenImageViewer from "./fullscreenImageViewer";
 import { AppContext } from "../../App";
 
 export default function Gallery({ data }) {
-  const { responsive } = useContext(AppContext);
+  const { responsive, newsData } = useContext(AppContext);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  if (!data || !Array.isArray(data.images)) {
-    return <div>No images available</div>;
-  }
+  // if (!newsData || !Array.isArray(data.images)) {
+  //   return <div>No images available</div>;
+  // }
 
-  const images = data.images.map((image) => `${image}`);
-
+  const images = data?.thumbnail?.map((image) => `${image}`);
+  console.log(images);
   const openViewer = (index) => {
     setCurrentIndex(index);
     setIsViewerOpen(true);
@@ -64,7 +64,7 @@ export default function Gallery({ data }) {
 
   return (
     <div style={styles.imageRowContainer}>
-      {images.map((img, index) => {
+      {images?.map((img, index) => {
         const isLastImageAlone =
           images.length % 2 !== 0 && index === images.length - 1;
         return (
@@ -76,7 +76,7 @@ export default function Gallery({ data }) {
           >
             <img
               src={img}
-              alt={`Image ${index}`}
+              alt={"תמונת"}
               style={getImgStyle(index)}
               onClick={() => openViewer(index)}
             />

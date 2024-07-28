@@ -1,9 +1,25 @@
 import React, { useContext, useState } from "react";
+import { AppContext } from "../../App";
 import LoadMore from "../../components/elements/LoadMore";
 import BookPreviewBox from "./BookPreviewBox";
-import publishingData from "../../data/publishingData";
 
 const BooksCollection = () => {
+  const {
+    responsive,
+    colors,
+    bgColors,
+    isMobile,
+    videos,
+    categories,
+    loadingCategories,
+    lessonsType,
+    setlessonsType,
+    setlessonsFilter,
+    lessonsFilter,
+    loadingPosts,
+    parsedPublishData,
+  } = useContext(AppContext);
+  console.log(parsedPublishData);
   const [visiblePostCount, setVisiblePostCount] = useState(20);
 
   const loadMorePosts = (increment) => {
@@ -12,7 +28,7 @@ const BooksCollection = () => {
 
   const styles = {
     container: {
-      display: 'flex',
+      display: "flex",
       flexDirection: "column",
     },
     gridContainer: {
@@ -33,18 +49,19 @@ const BooksCollection = () => {
   return (
     <div style={styles.container}>
       <div style={styles.gridContainer}>
-        {publishingData.slice(0, visiblePostCount).map((book) => (
+        {parsedPublishData?.slice(0, visiblePostCount).map((book) => (
           <BookPreviewBox
             key={book.title}
-            img={book.img}
+            image={book.image}
             title={book.title}
             author={book.author}
             price={book.price}
             discountPrice={book.discountPrice}
+            pdfFile={book.pdfFile}
           />
         ))}
       </div>
-      {visiblePostCount < publishingData.length && (
+      {visiblePostCount < parsedPublishData?.length && (
         <div style={styles.loadMoreContainer}>
           <LoadMore onClick={() => loadMorePosts(20)} />
         </div>

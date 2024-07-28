@@ -1,3 +1,4 @@
+import { act } from "react";
 import extractYoutubeUrl from "./extractYoutubeUrl";
 import getRabbieNameById from "./getRabbieNameById";
 
@@ -18,16 +19,19 @@ function convertDateFormat(dateStr) {
   return formattedDate;
 }
 
-const ExtractNewsData = (data) => {
+const ExtractPublishData = (data) => {
   console.log(data);
   return data.map((post) => ({
-    thumbnail: [post.acf.image.url],
-    postId: post?.id,
+    image: post?.acf?.image,
     id: post?.id,
     date: convertDateFormat(post?.date?.split("T")[0]), // Extract only the date part
     title: decodeHtmlEntities(post.title.rendered), // Decode HTML entities in the title
     article: post?.content?.rendered,
+    pdfFile: post.acf.pdfFile,
+    author: post.acf.author,
+    price: post.acf.price,
+    discountPrice: post.acf.discountPrice,
   }));
 };
 
-export default ExtractNewsData;
+export default ExtractPublishData;

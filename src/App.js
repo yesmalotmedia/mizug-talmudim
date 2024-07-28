@@ -18,10 +18,11 @@ import getCategoriesByParent from "./assets/getCategoriesByParent";
 import DataTest from "./assets/dataTest/DataTest";
 import ExtractNewsData from "./assets/ExtractNewsData";
 import useResponsive from "./Hooks/useResponsive";
+import ExtractPublishData from "./assets/ExtractPublishData";
 export const AppContext = React.createContext();
 
 /*
-1/ WhatsNew: 1. loader animation 2. connecet do database
+1/ WhatsNew: 1. loader animation 2. connecet do database 2.connect post gallary do database
 1*/
 function App() {
   // Fetch posts data
@@ -67,6 +68,15 @@ function App() {
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/news"
   );
 
+  //Fetch news data
+  const {
+    data: publishData,
+    loading: loadingPublish,
+    error: errorPublish,
+  } = useFetch(
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/publish"
+  );
+
   // State for handling mobile view
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -81,6 +91,7 @@ function App() {
   let videos = [];
   let categories = [];
   let parsedNewsData = [];
+  let parsedPublishData = [];
 
   if (postsData) {
     parsedVideosData = ExtractPostsData(postsData);
@@ -100,6 +111,10 @@ function App() {
 
   if (categoriesData) {
     categories = categoriesData; // Ensure categoriesData is assigned correctly
+  }
+
+  if (publishData) {
+    parsedPublishData = ExtractPublishData(publishData);
   }
   useEffect(() => {
     const handleResize = () => {
@@ -135,6 +150,7 @@ function App() {
         errordedications,
         parsedNewsData,
         loadingNews,
+        parsedPublishData,
         setlessonsType,
         setIsMobileNavOpen,
         getCategoriesByParent,

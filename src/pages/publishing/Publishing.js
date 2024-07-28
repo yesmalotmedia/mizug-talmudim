@@ -6,11 +6,12 @@ import { AppContext } from "../../App";
 import Filters from "./Filters";
 
 export default function Publishing() {
-  const { colors, isMobile, responsive } = useContext(AppContext);
+  const { colors, isMobile, responsive, parsedPublishData } =
+    useContext(AppContext);
 
   const styles = {
     mainContainer: {
-      width: '90%',
+      width: "90%",
       marginTop: 30,
       marginInline: "auto",
     },
