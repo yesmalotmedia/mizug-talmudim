@@ -12,7 +12,7 @@ const PostDetails = () => {
     useContext(AppContext);
   const { postId } = useParams();
   const post = parsedNewsData.find((p) => p?.id.toString() === postId);
-  console.log(post);
+
   const styles = {
     mainSection: {
       maxWidth: responsive("70vw", "80%", "90%"),
@@ -32,7 +32,7 @@ const PostDetails = () => {
       color: colors.grey,
     },
     tarikImg: {
-      height: "2.5vh",
+      height: responsive(20, 20, 10),
       marginLeft: 10,
     },
     article: {

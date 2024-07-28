@@ -2,38 +2,43 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import Spacer from "../elements/Spacer";
 import aboutUsSectionData from "../../data/aboutUsSectionData";
+
 const AboutSection = () => {
-  const { colors, bgColors, pagesList, responsive, description, isMobile } =
+  const { colors, bgColors, pagesList, responsive, description, } =
     useContext(AppContext);
 
-  const bgImg = isMobile
-    ? "mobile-bg-img-homepage-1.png"
-    : "bg-img-homepage-1.png";
+  const bgImg = responsive(
+    "bg-img-homepage-1.png",
+    "mobile-bg-img-homepage-1.png",
+    "mobile-bg-img-homepage-1.png"
+  );
+
   const styles = {
     container: {
       width: "100%",
       position: "relative",
       display: "flex",
       flexDirection: responsive("row", "column", "column"),
-      justifyContent: "space-around",
-      alignItems: "center",
-      paddingTop: "10vw",
+      justifyContent: "center",
       zIndex: -1,
+      alignItems:"center",
+      gap: "10vw", 
     },
     titleSection: {
+      position: "relative",
+      top: responsive("-1vw"),
       zIndex: 2,
-      width: responsive("30%", "70%", "70%"),
+      width: responsive("30%", "40%", "70%"),
       textAlign: "center",
       display: "flex",
       justifyContent: "center",
       flexDirection: "column",
       alignItems: "center",
-      transform: isMobile
-        ? "translateY(-20vw) translateX(0vw)"
-        : "translateY(-1vw) translateX(-10vw)",
+      whiteSpace: responsive("nowrap","","")
+     
     },
     bookIcon: {
-      width: "30%",
+      width: "40%",
       marginRight: 30,
     },
     title: {
@@ -44,47 +49,52 @@ const AboutSection = () => {
       maxWidth: 400,
     },
     description: {
-      width: responsive("50%", "80%", "80%"),
+      width: responsive("50%", "80%", "90%"),
       backgroundColor: bgColors.white,
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
-      borderRadius: 50,
+      borderRadius: responsive(50,30,20),
       padding: "5vw",
       color: colors.darkBlue,
       fontWeight: 600,
-      fontSize: responsive("1.4rem", "1.3rem", "1rem"),
+      fontSize: responsive("1.2rem", "1.3rem", "1rem"),
       lineHeight: 1.5,
       maxWidth: 1000,
       zIndex: 3,
-      transform: "translateY(-8vw)",
+      textAlign: "justify",
     },
     bgImg: {
       position: "absolute",
-      top: 0,
+      top: responsive(0, 130,90),
       left: 0,
-      zIndex: 0, // Place the background image behind all other elements
-      transform: isMobile ? "translateY(-110vw)" : "translateY(-30vw)",
+      zIndex: 0, 
+      transform: responsive("translateY(-30vw)","translateY(-90vw)","translateY(-190vw)" ),
       width: "100%",
-      height: "auto",
+      height: responsive("auto","auto","190vh"),
     },
   };
 
-  const title = isMobile ? (
-    <div style={styles.title}>פה יהיה משפט מרגש שמבטא את התפיסה שלנו</div>
-  ) : (
-    <div style={styles.title}>
+  const title = responsive(
+ <div style={styles.title}>
       אין תורה <br /> כתורת ארץ ישראל
-    </div>
-  );
+    </div>,
+     <div style={styles.title}>פה יהיה משפט מרגש שמבטא את התפיסה שלנו</div>,
+     <div style={styles.title}>פה יהיה משפט מרגש שמבטא את התפיסה שלנו</div>
+  ) 
+const bookImg = responsive(
+  <img src={"book-img.png"} style={styles.bookIcon} alt="book-img" />,
+  "",
+  ""
+)
   return (
     <div style={styles.container}>
       <div style={styles.titleSection}>
-        {!isMobile && (
-          <img src={"book-img.png"} style={styles.bookIcon} alt="book-img" />
-        )}
+        {bookImg}
         <br />
         {title}
       </div>
+
       <div style={styles.description}>{aboutUsSectionData}</div>
+
       <img style={styles.bgImg} src={bgImg} alt="bg-img" />
     </div>
   );

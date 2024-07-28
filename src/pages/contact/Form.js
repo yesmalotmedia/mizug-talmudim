@@ -50,7 +50,7 @@ export default function Form() {
 
   const styles = {
     form: {
-      width: responsive("100vmin", "90vmin", "90vmin"),
+      width: responsive("100vmin", "80vmin", "90vmin"),
       boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       background: colors.white,
       borderRadius: 20,

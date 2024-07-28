@@ -17,8 +17,13 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
     responsive,
     setlessonsFilter,
   } = useContext(AppContext);
-  const [displayedLessons, setDisplayedLessons] = useState(videos);
+  const [displayedLessons, setDisplayedLessons] = useState([]);
   const [visiblePostCount, setVisiblePostCount] = useState(20);
+
+  const loadMorePosts = (increment) => {
+    setVisiblePostCount((prevCount) => prevCount + increment);
+  };
+
   // styles
   const styles = {
     mainContainer: {
@@ -27,7 +32,7 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       alignItems: "center",
     },
     lessonsContainer: {
-      width: responsive("90%", "100%", "100%"),
+      width: "100%",
       maxWidth: 1200,
       display: "flex",
       alignItems: "center",
@@ -57,15 +62,17 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       color: colors.azure,
       fontWeight: 500,
     },
+    loadMoreContainer: {
+      margin: "20px 0",
+    },
   };
 
   useEffect(() => {
-    console.log("useeffect runs");
     if (videos) {
-      console.log(lessonsFilter);
-      setDisplayedLessons(filterLessons(videos, lessonsFilter));
+      const filteredLessons = filterLessons(videos, lessonsFilter);
+      setDisplayedLessons(filteredLessons.slice(0, visiblePostCount));
     }
-  }, [lessonsFilter, videos]);
+  }, [lessonsFilter, videos, visiblePostCount]);
 
   const lessonsBoxesElements = displayedLessons?.map((video) => (
     <LessonPreviewBox key={video.id} video={video} />
@@ -91,6 +98,9 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       </div>
       {isMobile && <MobileFilter />}
       <div style={styles.lessonsContainer}>{lessonsBoxesElements}</div>
+      <div style={styles.loadMoreContainer}>
+        <LoadMore onClick={() => loadMorePosts(20)} />
+      </div>
     </div>
   );
 };

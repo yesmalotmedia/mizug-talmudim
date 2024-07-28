@@ -50,6 +50,7 @@ const SideBarSearch = ({ selectedTopic, setSelectedTopic }) => {
       alignItems: "center",
       flexDirection: "column",
       marginLeft: 20,
+      height: "95vh"
     },
     searchContainer: {
       position: "relative",

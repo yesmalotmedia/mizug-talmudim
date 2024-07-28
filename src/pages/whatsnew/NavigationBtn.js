@@ -25,12 +25,12 @@ const NavigationBtn = ({
       background: "none",
       cursor: "pointer",
       color: colors.orange,
-      fontSize: responsive("1.6rem","1.4rem","1.2rem"),
+      fontSize: responsive("1.6rem","1.4rem","1rem"),
       fontWeight: 600,
 
     },
     btnImg: {
-      height:  responsive("1.3rem","1.3rem","1.2rem"),
+      height:  responsive("1.3rem","1.3rem","1rem"),
       margin: 15,
       transform: isNext ? "rotate(180deg)" : "none",
     },

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import { Link } from "react-router-dom";
 
@@ -11,7 +11,9 @@ function chunkArray(array, size) {
 }
 
 export default function FooterMenu({ data }) {
-  const { isMobile, colors } = useContext(AppContext);
+  const {colors, responsive } = useContext(AppContext);
+  const [hoveredLink, setHoveredLink] = useState(null);
+
   const styles = {
     menuContainer: {
       width: "100%",
@@ -25,14 +27,16 @@ export default function FooterMenu({ data }) {
       display: "flex",
       flexWrap: "wrap",
       gap: "10px",
-      width: "100%",
+      width: responsive("100%","100%","350px"),
+      paddingRight: responsive("",130,20)
+  
     },
     menuColumn: {
-      flex: "1 1 25%", // Each column takes up 25% of the width
+      flex: "1 1 26%", 
       minWidth: "16%",
     },
     arrow: {
-      height: isMobile ? "13px" : "1vw",
+      height: responsive("0.8rem", "1rem", "0.6rem"),
       marginLeft: "10px",
     },
     footerMenu: {
@@ -41,19 +45,20 @@ export default function FooterMenu({ data }) {
       justifyContent: "start",
       paddingTop: "5px",
       fontSize: 20,
-      fontWwight: "medium",
+      fontWeight: "medium",
     },
     menu: {
       cursor: "pointer",
     },
     MenuTitle: {
-      fontSize: isMobile ? "7vmin" : "1.8vw",
+      textAlign:responsive("right"),
+      fontSize: responsive("2rem", "2.2rem","1.4rem"),
     },
-    links: {
-      fontSize: isMobile ? "4vmin" : "1.2vw",
+    links: (isHovered) => ({
+      fontSize: responsive("1.2rem","1.7rem","1.1rem"),
       textDecoration: "none",
-      color: colors.white,
-    },
+      color: isHovered ? colors.orange : colors.white,
+    }),
   };
 
   const chunkedData = chunkArray(data, 4);
@@ -72,8 +77,13 @@ export default function FooterMenu({ data }) {
                   style={styles.arrow}
                   src="/arrow-to-left.png"
                   alt="Arrow"
-                ></img>
-                <Link to={item.url} style={styles.links}>
+                />
+                <Link
+                  to={item.url}
+                  style={styles.links(hoveredLink === item.url)}
+                  onMouseEnter={() => setHoveredLink(item.url)}
+                  onMouseLeave={() => setHoveredLink(null)}
+                >
                   {item.title}
                 </Link>
               </div>

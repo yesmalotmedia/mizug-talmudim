@@ -21,9 +21,6 @@ import useResponsive from "./Hooks/useResponsive";
 import ExtractPublishData from "./assets/ExtractPublishData";
 export const AppContext = React.createContext();
 
-/*
-1/ WhatsNew: 1. loader animation 2. connecet do database 2.connect post gallary do database
-1*/
 function App() {
   // Fetch posts data
   const {

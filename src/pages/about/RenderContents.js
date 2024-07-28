@@ -7,7 +7,7 @@ const RenderContents = ({ sectionData }) => {
 
   const styles = {
     container: {
-      marginBottom: 80,
+      marginBottom: 200,
     },
     title: {
       color: colors.darkBlue,
@@ -16,8 +16,8 @@ const RenderContents = ({ sectionData }) => {
     },
     paragraph: {
       textAlign: "justify",
-      fontSize: responsive("1.3rem", "1.2rem", "1.1rem"),
-      lineHeight: responsive("1.9rem", "1.7rem", "1.7rem"),
+      fontSize: responsive("1.3rem", "1.4rem", "1.1rem"),
+      lineHeight: responsive("1.9rem", "1.8rem", "1.7rem"),
       marginBottom: 15,
     },
     img: {

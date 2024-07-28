@@ -18,6 +18,7 @@ export default function NextAndPreviousBtn({ currentId, data, UrlPageName }) {
       marginTop: 50,
       display: "flex",
       alignItems: "center",
+   
       justifyContent: hasPreviousPost ?  "space-between" : "flex-end" ,
     },
   };

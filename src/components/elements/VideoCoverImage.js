@@ -4,7 +4,7 @@ import bgColors from "../../styles/bg-colors";
 import { Link } from "react-router-dom";
 
 function VideoCoverImage({ url, videoId, title }) {
-  //state
+  // State
   const [isHovered, setIsHovered] = useState(false);
   // Context
   const { colors, responsive } = useContext(AppContext);
@@ -35,8 +35,7 @@ function VideoCoverImage({ url, videoId, title }) {
       height: "auto",
       boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
       backgroundColor: bgColors.white,
-
-      borderRadius: "50px",
+      borderRadius: responsive(50, 30, 20),
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -60,7 +59,7 @@ function VideoCoverImage({ url, videoId, title }) {
       cursor: "pointer",
     },
     title: {
-      fontSize: responsive("1.2rem", "0.9rem", "0.9rem"),
+      fontSize: responsive("1.1rem", "1.6rem", "1rem"),
       lineHeight: 1,
       color: colors.white,
       fontWeight: 600,

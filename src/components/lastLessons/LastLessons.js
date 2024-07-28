@@ -20,7 +20,7 @@ const LastLessons = () => {
   //context
   const {
     colors,
-    isMobile,
+    responsive,
     videos,
     lessonsType,
     setlessonsType,
@@ -32,18 +32,21 @@ const LastLessons = () => {
   const lastVideos = getLastVideos(videos);
   const styles = {
     container: {
-      width: "80%",
-      maxWidth: isMobile ? 700 : 1400,
+      width: responsive("80%","80%","90%"),
+      maxWidth:responsive(1400,900,600),
       margin: "auto",
       backgroundColor: bgColors.lightAzure,
       borderRadius: 50,
-      transform: "translateY(-200px)",
+      transform: responsive("translateY(-200px)","translateY(-400px)","translateY(-200px)"),
       display: "flex",
-      flexDirection: isMobile ? "column" : "row",
+      flexDirection: responsive("row","column","column"),
       padding: 20,
       justifyContent: "space-between",
       zIndex: 100,
     },
+    img:{
+      margin:responsive (20,10,10),
+    }
   };
 
   //functions
@@ -62,7 +65,7 @@ const LastLessons = () => {
   };
 
   const lastVideosElements = lastVideos?.map((video, index) => (
-    <div key={index} style={{ margin: isMobile ? "10px" : "20px" }}>
+    <div key={index} style={styles.img}>
       {loadingPosts ? (
         <LoaderAnimation isLoading={loadingPosts} color={colors.orange} />
       ) : (
@@ -77,7 +80,7 @@ const LastLessons = () => {
         bgColor={index === 2 ? bgColors.azureGradient : bgColors.orangeGradient}
         hoveredBgColor={bgColors.darkBlueGradient}
         title={`לכל שיעורי ${getCategoryNameById(index === 0 ? 19 : index === 1 ? 18 : 5)}`}
-        fontSize={20}
+        fontSize={responsive("1.2rem", "1.4rem","1rem")}
         fontWeight={500}
         borderRadius={50}
         width={"100%"}

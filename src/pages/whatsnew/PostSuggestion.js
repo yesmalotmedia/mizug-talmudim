@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import { Link } from "react-router-dom";
+
 export default function PostSuggestion({
   currentPostId,
   UrlPageName,
   tarikImg,
   numPosts = 4,
 }) {
-  const { colors, bgColors, responsive, parsedNewsData, loadingNews } =
+  const { colors, bgColors, responsive, parsedNewsData } =
     useContext(AppContext);
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -35,7 +36,6 @@ export default function PostSuggestion({
       justifyContent: "center",
       width: "100%",
       padding: 10,
-
       borderRadius: 20,
     },
     suggestionBox: (isHovered) => ({
@@ -102,6 +102,8 @@ export default function PostSuggestion({
             style={styles.suggestionBox(index === hoveredIndex)}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
+            onTouchStart={() => setHoveredIndex(index)}
+            onTouchEnd={() => setHoveredIndex(null)}
           >
             <img
               style={styles.thumbnail}

@@ -21,8 +21,9 @@ const DailyText = () => {
       alignItems: "center",
       transform: screenWidth < 1400 ? "translateY(-150px)" : "translateY(50px)",
     },
-    textContainer: { padding: 100 },
+    textContainer: { padding: responsive(300,60,20) },
     text: {
+      marginTop: 50,
       color: colors.darkBlue,
       fontSize: responsive("1.9rem", "1.7rem", "1.4rem"),
       fontWeight: 600,
