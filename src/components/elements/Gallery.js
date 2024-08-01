@@ -32,7 +32,7 @@ export default function Gallery({ data }) {
   };
 
   const getImgStyle = (index) => ({
-    width: "100%",
+    width: responsive( "60%","70%", "80%"),
     borderRadius: 20,
     cursor: "pointer",
     boxShadow:
