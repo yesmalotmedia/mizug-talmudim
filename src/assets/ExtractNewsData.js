@@ -21,7 +21,7 @@ function convertDateFormat(dateStr) {
 const ExtractNewsData = (data) => {
   console.log(data);
   return data.map((post) => ({
-    thumbnail: [post.acf.image.url],
+    thumbnail: [post?.acf?.image?.url],
     postId: post?.id,
     id: post?.id,
     date: convertDateFormat(post?.date?.split("T")[0]), // Extract only the date part

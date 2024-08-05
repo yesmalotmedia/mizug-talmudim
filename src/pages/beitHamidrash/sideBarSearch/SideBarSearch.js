@@ -46,11 +46,10 @@ const SideBarSearch = ({ selectedTopic, setSelectedTopic }) => {
       maxWidth: responsive(300, "100%", "100%"),
       maxHeight: responsive(700, "100vh", "100vh"),
       display: "flex",
-      justifyContent: "space-around",
       alignItems: "center",
       flexDirection: "column",
       marginLeft: 20,
-      height: "95vh"
+      height: "vh",
     },
     searchContainer: {
       position: "relative",
@@ -192,18 +191,18 @@ const SideBarSearch = ({ selectedTopic, setSelectedTopic }) => {
         value={selectedTopic}
         onChange={(e) => setSelectedTopic(e.target.value)}
       />
-      <div style={styles.lable}>המסכת</div>
+      {/* <div style={styles.lable}>המסכת</div>
       <SelectInput
         options={yerushalmiMasectot}
         value={selectedMasechet}
         onChange={(e) => setSelectedMasechet(e.target.value)}
-      />
-      <div style={styles.lable}>הרבנים</div>
+      /> */}
+      {/* <div style={styles.lable}>הרבנים</div>
       <SelectInput
         options={rabbiesData}
         value={selectedRabbi}
         onChange={(e) => setSelectedRabbi(e.target.value)}
-      />
+      /> */}
       <div style={styles.lable}>סוג השיעור</div>
       <Checkbox
         label={"שיעורי וידאו"}

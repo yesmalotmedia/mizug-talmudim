@@ -19,7 +19,7 @@ const ExtractPostsData = (data) => {
     title: decodeHtmlEntities(item.title.rendered), // Decode HTML entities in the title
     rabbiName: getRabbieNameById(item.rabbies[0]),
     contentType: item.acf.contentType,
-    url: extractYoutubeUrl(item.acf.url),
+    url: extractYoutubeUrl(item?.acf?.url),
     article: item.acf.articleContent,
     dedicatedTo: item.acf.dedicatedTo,
     audioUrl: item.acf.audioUrl,

@@ -26,7 +26,7 @@ export default function LessonSection({ videoId }) {
     return <LoaderAnimation isLoading={!video} color={colors.orange} />;
   }
 
-  const coverImage = extractYoutubeCoverByVideoId(video.url);
+  const coverImage = extractYoutubeCoverByVideoId(video?.url);
 
   const mainCategory = getCategoryNameById(video.categories[0]);
   const subCategory = getCategoryNameById(video.categories[1]);
@@ -111,7 +111,7 @@ export default function LessonSection({ videoId }) {
           <span style={styles.dateAndTimeText}> זמן קריאה: 8 דק’ </span>
         </div>
         <div style={styles.dedicate}>{video.dedicatedTo}</div>
-        {isVideo && <YouTubeVideo2 url={video.url} index={video.key} />}
+        {isVideo && <YouTubeVideo2 url={video?.url} index={video.key} />}
       </div>
       {isAudio && (
         <div style={styles.audioContainer}>

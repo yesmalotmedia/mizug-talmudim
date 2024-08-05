@@ -4,27 +4,53 @@ import colors from "../../../styles/colors";
 import SelectInput from "../sideBarSearch/SelectInput";
 import { AppContext } from "../../../App";
 import MobileFilter from "../MobileFilter";
-import getCategoryIdByName from "../../../assets/geCategoryIdByName";
-import filterLessons from "../../../assets/dataTest/filterLessons";
 import LoadMore from "../../../components/elements/LoadMore";
 
 const LessonsCollection = ({ lessonsType, setlessonsType }) => {
-  const {
-    isMobile,
-    parsedData,
-    videos,
-    lessonsFilter,
-    responsive,
-    setlessonsFilter,
-  } = useContext(AppContext);
+  const { isMobile, videos, lessonsFilter } = useContext(AppContext);
+
   const [displayedLessons, setDisplayedLessons] = useState([]);
   const [visiblePostCount, setVisiblePostCount] = useState(20);
-
+  const [orderParam, setOrderParam] = useState("date");
+  console.log(displayedLessons);
   const loadMorePosts = (increment) => {
     setVisiblePostCount((prevCount) => prevCount + increment);
   };
 
-  // styles
+  useEffect(() => {
+    if (videos) {
+      const sortedVideos = [...videos].sort((a, b) => {
+        if (orderParam === "date") {
+          // מיין לפי תאריך - מהחדש לישן
+          return new Date(b.date) - new Date(a.date);
+        } else if (orderParam === "rabbi") {
+          // מיין לפי שם הרב
+          const rabbiComparison = a.rabbiName.localeCompare(b.rabbiName);
+          if (rabbiComparison !== 0) return rabbiComparison; // אם השמות שונים, החזר את התוצאה
+          // אם השמות זהים, מיין לפי תאריך - מהחדש לישן
+          return new Date(b.date) - new Date(a.date);
+        }
+        return 0; // ברירת מחדל
+      });
+
+      const filteredLessons = sortedVideos.filter((video) => {
+        // לוגיקת הסינון על פי lessonsFilter
+        return true; // החלף לוגיקה זו בלוגיקה האמיתית שלך
+      });
+
+      setDisplayedLessons(filteredLessons.slice(0, visiblePostCount));
+    }
+  }, [lessonsFilter, videos, visiblePostCount, orderParam]);
+
+  const handleOrderChange = (event) => {
+    const selectValue = event.target.value; // קבלת הערך הנבחר מהסלקט
+    setOrderParam(selectValue);
+  };
+
+  const lessonsBoxesElements = displayedLessons.map((video) => (
+    <LessonPreviewBox key={video.id} video={video} />
+  ));
+
   const styles = {
     mainContainer: {
       display: "flex",
@@ -54,6 +80,7 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
     },
     sortContainer: {
       width: "40%",
+      minWidth: 200,
       display: "flex",
     },
     label: {
@@ -67,30 +94,21 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
     },
   };
 
-  useEffect(() => {
-    if (videos) {
-      const filteredLessons = filterLessons(videos, lessonsFilter);
-      setDisplayedLessons(filteredLessons.slice(0, visiblePostCount));
-    }
-  }, [lessonsFilter, videos, visiblePostCount]);
-
-  const lessonsBoxesElements = displayedLessons?.map((video) => (
-    <LessonPreviewBox key={video.id} video={video} />
-  ));
-
   return (
     <div style={styles.mainContainer}>
       <div style={styles.titleSection}>
-        <div style={styles.title}>{lessonsFilter.category}</div>
-
+        <div style={styles.title}>
+          {lessonsFilter.category || "All Lessons"}
+        </div>
         {!isMobile && (
           <div style={styles.sortContainer}>
             <div style={styles.label}>מיין לפי</div>
             <SelectInput
+              value={orderParam}
+              onChange={handleOrderChange}
               options={[
                 { name: "תאריך", value: "date" },
                 { name: "רב", value: "rabbi" },
-                { name: "נושא", value: "category" },
               ]}
             />
           </div>

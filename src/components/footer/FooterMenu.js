@@ -11,7 +11,7 @@ function chunkArray(array, size) {
 }
 
 export default function FooterMenu({ data }) {
-  const {colors, responsive } = useContext(AppContext);
+  const { colors, responsive } = useContext(AppContext);
   const [hoveredLink, setHoveredLink] = useState(null);
 
   const styles = {
@@ -27,12 +27,11 @@ export default function FooterMenu({ data }) {
       display: "flex",
       flexWrap: "wrap",
       gap: "10px",
-      width: responsive("100%","100%","350px"),
-      paddingRight: responsive("",130,20)
-  
+      width: responsive("100%", "100%", "350px"),
+      paddingRight: responsive("", 130, 20),
     },
     menuColumn: {
-      flex: "1 1 26%", 
+      flex: "1 1 26%",
       minWidth: "16%",
     },
     arrow: {
@@ -51,11 +50,11 @@ export default function FooterMenu({ data }) {
       cursor: "pointer",
     },
     MenuTitle: {
-      textAlign:responsive("right"),
-      fontSize: responsive("2rem", "2.2rem","1.4rem"),
+      textAlign: responsive("right"),
+      fontSize: responsive("2rem", "2.2rem", "1.4rem"),
     },
     links: (isHovered) => ({
-      fontSize: responsive("1.2rem","1.7rem","1.1rem"),
+      fontSize: responsive("1.2rem", "1.7rem", "1.1rem"),
       textDecoration: "none",
       color: isHovered ? colors.orange : colors.white,
     }),
@@ -80,8 +79,8 @@ export default function FooterMenu({ data }) {
                 />
                 <Link
                   to={item.url}
-                  style={styles.links(hoveredLink === item.url)}
-                  onMouseEnter={() => setHoveredLink(item.url)}
+                  style={styles.links(hoveredLink === item?.url)}
+                  onMouseEnter={() => setHoveredLink(item?.url)}
                   onMouseLeave={() => setHoveredLink(null)}
                 >
                   {item.title}

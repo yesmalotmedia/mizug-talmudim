@@ -21,6 +21,10 @@ import useResponsive from "./Hooks/useResponsive";
 import ExtractPublishData from "./assets/ExtractPublishData";
 export const AppContext = React.createContext();
 
+/*
+1. about - added text.
+1. lessons collection - ?
+*/
 function App() {
   // Fetch posts data
   const {

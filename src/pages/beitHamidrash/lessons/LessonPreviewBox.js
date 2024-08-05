@@ -95,7 +95,7 @@ export default function LessonPreviewBox({ video }) {
       {/* <YouTubeVideo2 url={video.url} index={video.key} /> */}
       {
         <VideoCoverImage
-          url={video.url}
+          url={video?.url}
           index={video.key}
           videoId={video.id}
           title={video.title}
