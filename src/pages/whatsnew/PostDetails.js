@@ -15,7 +15,7 @@ const PostDetails = () => {
 
   const styles = {
     mainSection: {
-      maxWidth: responsive("70vw", "80%", "90%"),
+      maxWidth: responsive("60%", "80%", "90%"),
       marginInline: "auto",
       marginTop: responsive(0, 10, -40),
     },

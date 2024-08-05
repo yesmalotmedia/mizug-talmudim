@@ -39,7 +39,7 @@ export default function PostSuggestion({
       borderRadius: 20,
     },
     suggestionBox: (isHovered) => ({
-      width: responsive("32vw", "36vw", "80vw"),
+      width: responsive("26vw", "35vw", "80vw"),
       height: 300,
       margin: responsive("10px 10px", "10px 10px", "10px 0"),
       borderRadius: 20,
@@ -113,8 +113,7 @@ export default function PostSuggestion({
             <p style={styles.title}>{post?.title}</p>
             <div style={styles.tarikContainer}>
               <img style={styles.tarikImg} src={tarikImg} alt="Tarik" />
-              <span style={styles.dateEn}>{post?.dateEn}</span> |
-              <span style={styles.dateHe}>{post?.dateHe}</span>
+              <span style={styles.dateEn}>{post?.date}</span> 
             </div>
           </div>
         </Link>

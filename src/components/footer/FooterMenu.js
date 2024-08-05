@@ -26,9 +26,9 @@ export default function FooterMenu({ data }) {
     menuColumnContainer: {
       display: "flex",
       flexWrap: "wrap",
-      gap: "10px",
-      width: responsive("100%", "100%", "350px"),
-      paddingRight: responsive("", 130, 20),
+      gap: "30px",
+      width: responsive("100%", "100%", "300px"),
+      paddingRight: responsive(0, 130, 0),
     },
     menuColumn: {
       flex: "1 1 26%",
@@ -50,7 +50,8 @@ export default function FooterMenu({ data }) {
       cursor: "pointer",
     },
     MenuTitle: {
-      textAlign: responsive("right"),
+      textAlign: responsive("right", "center", "center"),
+      width: "300px",
       fontSize: responsive("2rem", "2.2rem", "1.4rem"),
     },
     links: (isHovered) => ({

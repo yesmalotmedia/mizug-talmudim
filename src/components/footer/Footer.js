@@ -15,7 +15,7 @@ const Footer = () => {
       backgroundImage: responsive('url("/footerImages/Union.png")', 'url("/mobileFooterImg.png")', 'url("/mobileFooterImg.png")'),
       backgroundSize: "100% 100%",
       color: colors.white,
-      zIndex: 200,
+      zIndex: 20,
       position: "relative",
     },
     footerItemWrapper: {
@@ -38,7 +38,7 @@ const Footer = () => {
       display: "flex",
       flexWrap: "wrap",
       gap: "10px",
-      width: responsive(600,"100%","100%"),
+      width: responsive(600,"100%","10%"),
     
     },
     footerMenuItem: {
