@@ -95,22 +95,23 @@ export default function LessonPreviewBox({ video }) {
       {/* <YouTubeVideo2 url={video.url} index={video.key} /> */}
       {
         <VideoCoverImage
-          url={video?.url}
+          url={video.url}
           index={video.key}
           videoId={video.id}
           title={video.title}
         />
       }
-
       <div style={styles.description}>
-        <div style={styles.dateContainer}>
+        <div style={{ width: "60%" }}>
+          <h2 style={styles.title}> {video.title}</h2>
+          <h2 style={styles.subTitle}> {video.rabbiName}</h2>
+        </div>
+        <div>
+          {" "}
           <h3 style={styles.date}>{video.date}</h3>
           <h3 style={styles.date}>{video.heDate}</h3>
         </div>
-        <h2 style={styles.title}> {video.title}</h2>
-        <h2 style={styles.subTitle}> {video.rabbiName}</h2>
       </div>
-
       <div style={styles.bottomSection}>
         <div style={styles.btnContainer}>
           {video.contentType.includes("video") && (

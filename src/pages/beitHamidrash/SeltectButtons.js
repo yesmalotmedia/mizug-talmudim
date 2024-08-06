@@ -10,17 +10,8 @@ const SeltectButtons = ({
   setSelectedTopic,
 }) => {
   // Context
-  const {
-    colors,
-    bgColors,
-    isMobile,
-    responsive,
-    dailyTextsData,
-    categories,
-    loadingCategories,
-    setlessonsFilter,
-    lessonsFilter,
-  } = useContext(AppContext);
+  const { colors, bgColors, isMobile, categories, setlessonsFilter } =
+    useContext(AppContext);
 
   const navigate = useNavigate();
   // Styles
@@ -28,10 +19,18 @@ const SeltectButtons = ({
     container: {
       transform: "translateY(-70%)",
       display: "flex",
-      gap: 20,
-      width: responsive("100%", "90%", "105%"),
-      justifyContent: "center",
+      width: "45vw",
+      justifyContent: isMobile ? "center" : "space-around",
+      marginInline: "auto",
     },
+    btn: isMobile
+      ? {
+          padding: "0 10px",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }
+      : {},
   };
 
   // Functions
