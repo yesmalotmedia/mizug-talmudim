@@ -34,9 +34,9 @@ export default function PostSuggestion({
       flexWrap: "wrap",
       background: bgColors.lightAzure,
       justifyContent: "center",
-      width: "100%",
       padding: 10,
       borderRadius: 20,
+
     },
     suggestionBox: (isHovered) => ({
       width: responsive("26vw", "35vw", "80vw"),

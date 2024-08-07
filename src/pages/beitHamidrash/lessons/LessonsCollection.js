@@ -68,12 +68,11 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
   };
 
   useEffect(() => {
-    console.log("useeffect runs");
     if (videos) {
-      console.log(lessonsFilter);
-      setDisplayedLessons(filterLessons(videos, lessonsFilter));
+      const filteredLessons = filterLessons(videos, lessonsFilter);
+      setDisplayedLessons(filteredLessons.slice(0, visiblePostCount));
     }
-  }, [lessonsFilter, videos]);
+  }, [lessonsFilter, videos, visiblePostCount]);
 
   const lessonsBoxesElements = displayedLessons?.map((video) => (
     <LessonPreviewBox key={video.id} video={video} />
@@ -99,6 +98,9 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       </div>
       {isMobile && <MobileFilter />}
       <div style={styles.lessonsContainer}>{lessonsBoxesElements}</div>
+      <div style={styles.loadMoreContainer}>
+        <LoadMore onClick={() => loadMorePosts(20)} />
+      </div>
     </div>
   );
 };

@@ -59,7 +59,7 @@ function VideoCoverImage({ url, videoId, title }) {
       cursor: "pointer",
     },
     title: {
-      fontSize: responsive("1.1rem", "1.6rem", "1rem"),
+      fontSize: responsive("1rem", "1.6rem", "1rem"),
       lineHeight: 1,
       color: colors.white,
       fontWeight: 600,

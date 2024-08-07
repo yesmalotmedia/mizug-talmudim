@@ -50,7 +50,7 @@ export default function FooterMenu({ data }) {
       cursor: "pointer",
     },
     MenuTitle: {
-      textAlign: responsive("right", "center", "center"),
+      textAlign: "center",
       width: "300px",
       fontSize: responsive("2rem", "2.2rem", "1.4rem"),
     },
