@@ -15,7 +15,6 @@ export default function BookPreviewBox({
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
-
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
@@ -96,6 +95,12 @@ export default function BookPreviewBox({
     },
   };
 
+  //function
+
+  const handleClick = () => {
+    window.location.href = pdfFile;
+  };
+
   return (
     <div
       style={styles.mainContainer}
@@ -105,7 +110,11 @@ export default function BookPreviewBox({
       onTouchEnd={handleTouchEnd}
     >
       <div style={styles.bookimageContainer}>
-        <img style={styles.bookimage} src={image} alt="Book Cover" />
+        <img
+          style={styles.bookimage}
+          src={image ? image : "/SideBtn-1.png"}
+          alt="Book Cover"
+        />
       </div>
       <p style={styles.title}>{title}</p>
       <p style={styles.author}>{author}</p>
@@ -120,12 +129,13 @@ export default function BookPreviewBox({
         )}
       </div>
       <div style={styles.btnContainer}>
-        <Button
+        {/* <Button
           background={bgColors.azureGradient}
           btnImg={"/addToCart.png"}
           btnText={"הוספה לסל"}
-        />
+        /> */}
         <Button
+          onClick={handleClick}
           background={bgColors.orangeGradient}
           btnImg={"/download.png"}
           btnText={"להורדה"}

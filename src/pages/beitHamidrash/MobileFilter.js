@@ -147,7 +147,7 @@ export default function MobileFilter() {
             ×
           </span>
         </div>
-        <SideBarSearch />
+        <SideBarSearch handleToggle={handleToggle} />
       </div>
       {isDropdown && <div style={styles.filterDate}></div>}
       <div style={styles.container}>

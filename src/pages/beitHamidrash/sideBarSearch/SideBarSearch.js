@@ -5,7 +5,7 @@ import SelectInput from "./SelectInput";
 import Checkbox from "./Checkbox";
 import yerushalmiMasectot from "../../../data/yerushalmiMasectot";
 
-const SideBarSearch = ({ selectedTopic, setSelectedTopic }) => {
+const SideBarSearch = ({ selectedTopic, setSelectedTopic, handleToggle }) => {
   // data
   const {
     responsive,
@@ -230,7 +230,7 @@ const SideBarSearch = ({ selectedTopic, setSelectedTopic }) => {
         borderRadius={50}
         width={"90%"}
         arrow={true}
-        onClick={filteringSearch}
+        onClick={handleToggle}
       />{" "}
       <style>{`::placeholder {color: ${colors.darkBlue}`}</style>
     </form>
