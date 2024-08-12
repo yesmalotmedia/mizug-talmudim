@@ -37,9 +37,7 @@ export default function PostsPreviewBox({
       fontSize: "1vmax",
     },
     image: {
-      objectFit: "cover",
-      width: "100%",
-      height: "100%",
+      objectFit: "fill",
       height: responsive("300px", "210px", "170px"),
       width: responsive("50%", "40%", "40%"),
       borderTopLeftRadius: responsive("20px", "10px", "8px"),
