@@ -5,8 +5,14 @@ import SelectInput from "./SelectInput";
 import Checkbox from "./Checkbox";
 import yerushalmiMasectot from "../../../data/yerushalmiMasectot";
 
-const SideBarSearch = ({ selectedTopic, setSelectedTopic, handleToggle }) => {
-  // data
+const SideBarSearch = ({
+  selectedTopic,
+  setSelectedTopic,
+  setSelectedRabbi,
+  handleToggle,
+  selectedRabbi,
+}) => {
+  //data
   const {
     responsive,
     colors,
@@ -29,7 +35,6 @@ const SideBarSearch = ({ selectedTopic, setSelectedTopic, handleToggle }) => {
   const [rabbiesOptions, setRabbiesOptions] = useState();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedRabbi, setSelectedRabbi] = useState("");
 
   const [selectedMasechet, setSelectedMasechet] = useState("");
   const [videoChecked, setVideoChecked] = useState(true);
@@ -191,12 +196,12 @@ const SideBarSearch = ({ selectedTopic, setSelectedTopic, handleToggle }) => {
         value={selectedTopic}
         onChange={(e) => setSelectedTopic(e.target.value)}
       />
-      <div style={styles.lable}>המסכת</div>
+      {/* <div style={styles.lable}>המסכת</div>
       <SelectInput
         options={yerushalmiMasectot}
         value={selectedMasechet}
         onChange={(e) => setSelectedMasechet(e.target.value)}
-      />
+      /> */}
       <div style={styles.lable}>הרבנים</div>
       <SelectInput
         options={rabbiesData}

@@ -29,6 +29,7 @@ const BeitHamidrash = () => {
   } = useContext(AppContext);
 
   const [selectedTopic, setSelectedTopic] = useState("");
+  const [selectedRabbi, setSelectedRabbi] = useState("");
 
   const screenWidth = window.innerWidth;
   // states
@@ -86,6 +87,8 @@ const BeitHamidrash = () => {
             setlessonsType={setlessonsType}
             selectedTopic={selectedTopic}
             setSelectedTopic={setSelectedTopic}
+            selectedRabbi={selectedRabbi}
+            setSelectedRabbi={setSelectedRabbi}
           />
         )}
         {!videoId ? (
