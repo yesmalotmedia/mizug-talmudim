@@ -6,8 +6,14 @@ import { AppContext } from "../../App";
 // import getCategoryIdByName from "../../../assets/geCategoryIdByName";
 
 const TalmudMemuzagCollection = ({ lessonsType, setlessonsType }) => {
-  const { isMobile, parsedData, videos, lessonsFilter, setlessonsFilter } =
-    useContext(AppContext);
+  const {
+    isMobile,
+    parsedData,
+    videos,
+    lessonsFilter,
+    setlessonsFilter,
+    parsedMemuzagData,
+  } = useContext(AppContext);
   const [displayedLessons, setDisplayedLessons] = useState(videos);
 
   // styles
@@ -58,8 +64,8 @@ const TalmudMemuzagCollection = ({ lessonsType, setlessonsType }) => {
   //     }
   //   }, [lessonsFilter, videos]);
 
-  const lessonsBoxesElements = displayedLessons?.map((video) => (
-    <TalmudMemuzagPrevewBox key={video.id} video={video} />
+  const lessonsBoxesElements = parsedMemuzagData?.map((post) => (
+    <TalmudMemuzagPrevewBox key={post.id} post={post} />
   ));
 
   return (

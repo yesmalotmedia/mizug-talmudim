@@ -48,7 +48,7 @@ const routers = createBrowserRouter([
         element: <TalmudHaMemuzag />,
       },
       {
-        path: "TalmudHaMemuzag/:articled",
+        path: "TalmudHaMemuzag/:articleId",
         element: <TalmudHaMemuzag />,
       },
       {

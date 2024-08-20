@@ -1,0 +1,34 @@
+import extractYoutubeUrl from "./extractYoutubeUrl";
+import getRabbieNameById from "./getRabbieNameById";
+
+// Function to decode HTML entities
+const decodeHtmlEntities = (str) => {
+  var txt = document.createElement("textarea");
+  txt.innerHTML = str;
+  return txt.value;
+};
+
+function convertDateFormat(dateStr) {
+  // Split the input date string by '-'
+  const parts = dateStr.split("-");
+
+  // Rearrange the parts to match the desired format "DD-MM-YYYY"
+  const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+  return formattedDate;
+}
+
+const ExtractTalmudMemuzagData = (data) => {
+  console.log(data);
+  return data.map((post) => ({
+    talmud: post?.acf?.talmud,
+    masecet: post?.acf?.masecet,
+    id: post?.id,
+    perek: post?.acf?.perek,
+    daf: post?.acf?.daf,
+    page: post?.acf?.page,
+    body: post?.acf?.body,
+  }));
+};
+
+export default ExtractTalmudMemuzagData;

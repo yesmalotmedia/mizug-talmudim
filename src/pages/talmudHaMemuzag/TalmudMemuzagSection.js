@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 
-function TalmudMemuzagSection(props) {
+function TalmudMemuzagSection() {
   const {
     colors,
     bgColors,

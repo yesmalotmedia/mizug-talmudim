@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import { Link } from "react-router-dom";
 
-export default function LessonPreviewBox({ video }) {
+export default function LessonPreviewBox({ post }) {
+  const { talmudm, masecet, perek, daf, page, body, id } = post;
   const { colors, isMobile } = useContext(AppContext);
   const styles = {
     container: {
@@ -68,13 +69,16 @@ export default function LessonPreviewBox({ video }) {
       <img style={styles.mainImg} src="/talmudMemuzag1.png" />
       <div>
         {" "}
-        <div style={styles.masecet}>שבת</div>
-        <div style={styles.location}>פרק א/ דף ב' / ע"א </div>
+        <div style={styles.masecet}>{masecet}</div>
+        <div style={styles.location}>
+          {" "}
+          {`פרק ${perek} דף ${daf} עמוד ${page} `}
+        </div>
       </div>
 
-      <Link style={{ textDecoration: "none" }} to={`/TalmudHaMemuzag/${1}`}>
+      <Link style={{ textDecoration: "none" }} to={`/TalmudHaMemuzag/${id}`}>
         <div style={styles.btn}>
-          <img style={styles.btnImage} src="read.png" />
+          <img style={styles.btnImage} src="/read.png" />
           <div style={styles.btnText}>לעיון</div>
         </div>
       </Link>

@@ -19,11 +19,12 @@ import DataTest from "./assets/dataTest/DataTest";
 import ExtractNewsData from "./assets/ExtractNewsData";
 import useResponsive from "./Hooks/useResponsive";
 import ExtractPublishData from "./assets/ExtractPublishData";
+import ExtractTalmudMemuzagData from "./assets/ExtractTalmudMemuzagData";
 export const AppContext = React.createContext();
 
 /*
-1. about - added text.
-1. lessons collection - ?
+1. memuzag - connect to database 1
+2. 
 */
 function App() {
   // Fetch posts data
@@ -78,6 +79,15 @@ function App() {
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/publish"
   );
 
+  //Fetch talmud memuzag data
+  const {
+    data: memuzagData,
+    loading: loadingMemuzag,
+    error: errorMemuzag,
+  } = useFetch(
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/memuzag"
+  );
+
   // State for handling mobile view
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -93,6 +103,7 @@ function App() {
   let categories = [];
   let parsedNewsData = [];
   let parsedPublishData = [];
+  let parsedMemuzagData = [];
 
   if (postsData) {
     parsedVideosData = ExtractPostsData(postsData);
@@ -116,6 +127,9 @@ function App() {
 
   if (publishData) {
     parsedPublishData = ExtractPublishData(publishData);
+  }
+  if (memuzagData) {
+    parsedMemuzagData = ExtractTalmudMemuzagData(memuzagData);
   }
   useEffect(() => {
     const handleResize = () => {
@@ -152,6 +166,7 @@ function App() {
         parsedNewsData,
         loadingNews,
         parsedPublishData,
+        parsedMemuzagData,
         setlessonsType,
         setIsMobileNavOpen,
         getCategoriesByParent,
