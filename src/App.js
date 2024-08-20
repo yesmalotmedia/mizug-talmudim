@@ -24,7 +24,7 @@ export const AppContext = React.createContext();
 
 /*
 1. memuzag - connect to database 1
-2. 
+2. memuzag - connect prevew box to section
 */
 function App() {
   // Fetch posts data

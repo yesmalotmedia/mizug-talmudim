@@ -20,7 +20,7 @@ export default function FooterMenu({ data }) {
     },
     titleContainer: {
       width: "100%",
-      textAlign: "center",
+      textAlign: responsive("", "center", "center"),
       marginBottom: "20px",
     },
     menuColumnContainer: {

@@ -95,8 +95,9 @@ export default function MobileFilter() {
     filterDropdown: {
       position: "fixed",
       bottom: 0,
+      top: 0,
       width: "100%",
-      height: "100%",
+      height: "100vh",
       transition: "transform 0.5s ease-in-out",
       transform: isToggle ? "translateY(0)" : "translateY(100%)",
       zIndex: 1000,
@@ -147,6 +148,7 @@ export default function MobileFilter() {
             ×
           </span>
         </div>
+
         <SideBarSearch handleToggle={handleToggle} />
       </div>
       {isDropdown && <div style={styles.filterDate}></div>}

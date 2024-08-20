@@ -12,22 +12,27 @@ const Footer = () => {
   const styles = {
     container: {
       minWidth: "100%",
-      backgroundImage: responsive('url("/footerImages/Union.png")', 'url("/mobileFooterImg.png")', 'url("/mobileFooterImg.png")'),
+      backgroundImage: responsive(
+        'url("/footerImages/Union.png")',
+        'url("/mobileFooterImg.png")',
+        'url("/mobileFooterImg.png")'
+      ),
       backgroundSize: "100% 100%",
       color: colors.white,
       zIndex: 20,
       position: "relative",
     },
     footerItemWrapper: {
-      paddingTop: responsive("50vh","20vh","30vh"),
+      paddingTop: responsive("50vh", "20vh", "30vh"),
       maxWidth: "80%",
       display: "flex",
       justifyContent: "center",
       gap: "6%",
-      alignItems: responsive("","center","") ,
+      alignContent: "stretch",
+      alignItems: responsive("", "center", ""),
       marginInline: "auto",
       position: "relative",
-      flexDirection: responsive("row","column-reverse","column-reverse"),
+      flexDirection: responsive("row", "column-reverse", "column-reverse"),
     },
     footerMenuWrapper: {
       display: "flex",
@@ -38,8 +43,7 @@ const Footer = () => {
       display: "flex",
       flexWrap: "wrap",
       gap: "10px",
-      width: responsive(600,"100%","10%"),
-    
+      width: responsive(600, "100%", "10%"),
     },
     footerMenuItem: {
       flex: "1 1 calc(25% - 10px)",
@@ -57,21 +61,21 @@ const Footer = () => {
       textAlign: "center",
       position: "relative",
       top: -4,
-      width: responsive("","100%","100%"),
+      width: responsive("", "100%", "100%"),
     },
     icon: {
       position: "relative",
       display: "flex",
-      alignItems: responsive("","center","center"),
-      justifyContent: responsive("","center","center"),
+      alignItems: responsive("", "center", "center"),
+      justifyContent: responsive("", "center", "center"),
       top: 8,
     },
     text: {
       paddingBottom: 10,
-      fontSize: responsive("2.4rem","3rem","2rem"),
+      fontSize: responsive("2.4rem", "3rem", "2rem"),
     },
   };
-const show = responsive (true,false,false)
+  const show = responsive(true, false, false);
   return (
     <div style={styles.container}>
       <div style={styles.footerItemWrapper}>

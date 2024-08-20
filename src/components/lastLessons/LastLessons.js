@@ -32,21 +32,25 @@ const LastLessons = () => {
   const lastVideos = getLastVideos(videos);
   const styles = {
     container: {
-      width: responsive("80%","80%","90%"),
-      maxWidth:responsive(1400,900,600),
+      width: responsive("80%", "80%", "90%"),
+      maxWidth: responsive(1400, 900, 600),
       margin: "auto",
       backgroundColor: bgColors.lightAzure,
       borderRadius: 50,
-      transform: responsive("translateY(-200px)","translateY(-400px)","translateY(-200px)"),
+      transform: responsive(
+        "translateY(-200px)",
+        "translateY(-400px)",
+        "translateY(-200px)"
+      ),
       display: "flex",
-      flexDirection: responsive("row","column","column"),
+      flexDirection: responsive("row", "column", "column"),
       padding: 20,
       justifyContent: "space-between",
       zIndex: 100,
     },
-    img:{
-      margin:responsive (20,10,10),
-    }
+    img: {
+      margin: responsive(20, 10, 10),
+    },
   };
 
   //functions
@@ -80,11 +84,12 @@ const LastLessons = () => {
         bgColor={index === 2 ? bgColors.azureGradient : bgColors.orangeGradient}
         hoveredBgColor={bgColors.darkBlueGradient}
         title={`לכל שיעורי ${getCategoryNameById(index === 0 ? 19 : index === 1 ? 18 : 5)}`}
-        fontSize={responsive("1.2rem", "1.4rem","1rem")}
+        fontSize={responsive("1.2rem", "1.4rem", "1rem")}
         fontWeight={500}
         borderRadius={50}
         width={"100%"}
         arrow={true}
+        margin={"10px 0 0 0"}
         onClick={() => handleClick(index === 0 ? 19 : index === 1 ? 18 : 5)}
       />
     </div>

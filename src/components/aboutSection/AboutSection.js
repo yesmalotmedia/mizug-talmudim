@@ -4,7 +4,7 @@ import Spacer from "../elements/Spacer";
 import aboutUsSectionData from "../../data/aboutUsSectionData";
 
 const AboutSection = () => {
-  const { colors, bgColors, pagesList, responsive, description, } =
+  const { colors, bgColors, pagesList, responsive, description } =
     useContext(AppContext);
 
   const bgImg = responsive(
@@ -21,8 +21,8 @@ const AboutSection = () => {
       flexDirection: responsive("row", "column", "column"),
       justifyContent: "center",
       zIndex: -1,
-      alignItems:"center",
-      gap: "10vw", 
+      alignItems: "center",
+      gap: "10vw",
     },
     titleSection: {
       position: "relative",
@@ -34,12 +34,12 @@ const AboutSection = () => {
       justifyContent: "center",
       flexDirection: "column",
       alignItems: "center",
-      whiteSpace: responsive("nowrap","","")
-     
+      whiteSpace: responsive("nowrap", "", ""),
     },
     bookIcon: {
       width: "40%",
       marginRight: 30,
+      marginTop: 100,
     },
     title: {
       color: colors.white,
@@ -52,7 +52,7 @@ const AboutSection = () => {
       width: responsive("50%", "80%", "90%"),
       backgroundColor: bgColors.white,
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
-      borderRadius: responsive(50,30,20),
+      borderRadius: responsive(50, 30, 20),
       padding: "5vw",
       color: colors.darkBlue,
       fontWeight: 600,
@@ -64,27 +64,31 @@ const AboutSection = () => {
     },
     bgImg: {
       position: "absolute",
-      top: responsive(0, 130,90),
+      top: responsive(0, 130, 90),
       left: 0,
-      zIndex: 0, 
-      transform: responsive("translateY(-30vw)","translateY(-90vw)","translateY(-190vw)" ),
+      zIndex: 0,
+      transform: responsive(
+        "translateY(-30vw)",
+        "translateY(-90vw)",
+        "translateY(-190vw)"
+      ),
       width: "100%",
-      height: responsive("auto","auto","190vh"),
+      height: responsive("auto", "auto", "190vh"),
     },
   };
 
   const title = responsive(
- <div style={styles.title}>
+    <div style={styles.title}>
       אין תורה <br /> כתורת ארץ ישראל
     </div>,
-     <div style={styles.title}>פה יהיה משפט מרגש שמבטא את התפיסה שלנו</div>,
-     <div style={styles.title}>פה יהיה משפט מרגש שמבטא את התפיסה שלנו</div>
-  ) 
-const bookImg = responsive(
-  <img src={"book-img.png"} style={styles.bookIcon} alt="book-img" />,
-  "",
-  ""
-)
+    <div style={styles.title}>פה יהיה משפט מרגש שמבטא את התפיסה שלנו</div>,
+    <div style={styles.title}>פה יהיה משפט מרגש שמבטא את התפיסה שלנו</div>
+  );
+  const bookImg = responsive(
+    <img src={"book-img.png"} style={styles.bookIcon} alt="book-img" />,
+    "",
+    ""
+  );
   return (
     <div style={styles.container}>
       <div style={styles.titleSection}>

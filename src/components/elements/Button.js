@@ -14,6 +14,8 @@ const Button = ({
   arrow,
   height,
   onClick,
+  padding,
+  margin,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -23,6 +25,7 @@ const Button = ({
       width: 280,
       height: 50,
       padding: 10,
+      margin,
       backgroundImage: isHovered ? hoveredBgColor : bgColor,
       display: "flex",
       justifyContent: "center",

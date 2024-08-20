@@ -46,10 +46,11 @@ const SideBarSearch = ({
     container: {
       backgroundColor: bgColors.lightAzure,
       borderRadius: responsive(50, 0, 0),
-      padding: 20,
+      paddingBottom: 100,
+      paddingTop: 30,
       width: responsive("40%", "100%", "100%"),
       maxWidth: responsive(300, "100%", "100%"),
-      maxHeight: responsive(700, "100vh", "100vh"),
+      maxHeight: responsive(700, "100vh", "100%"),
       display: "flex",
       justifyContent: "space-around",
       alignItems: "center",
@@ -101,6 +102,12 @@ const SideBarSearch = ({
       fontSize: 17,
       fontWeight: 500,
       margin: "0 170px 20px 0",
+    },
+    btnContainer: {
+      width: "100%",
+      margin: responsive("", "", "50% 0 0px 0"),
+      display: "flex",
+      justifyContent: "center",
     },
   };
 
@@ -225,18 +232,21 @@ const SideBarSearch = ({
         onChange={() => setTextChecked(!textChecked)}
       />
       <br />
-      <Button
-        color={colors.white}
-        bgColor={bgColors.orangeGradient}
-        hoveredBgColor={bgColors.darkBlueGradient}
-        title={"סנן"}
-        fontSize={20}
-        fontWeight={500}
-        borderRadius={50}
-        width={"90%"}
-        arrow={true}
-        onClick={handleToggle}
-      />{" "}
+      <div style={styles.btnContainer}>
+        <Button
+          color={colors.white}
+          bgColor={bgColors.orangeGradient}
+          hoveredBgColor={bgColors.darkBlueGradient}
+          title={"סנן"}
+          fontSize={20}
+          fontWeight={500}
+          borderRadius={50}
+          width={"90%"}
+          arrow={true}
+          onClick={handleToggle}
+        />{" "}
+      </div>
+
       <style>{`::placeholder {color: ${colors.darkBlue}`}</style>
     </form>
   );
