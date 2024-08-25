@@ -3,7 +3,24 @@ import { AppContext } from "../../App";
 import SideBarSearch from "./sideBarSearch/SideBarSearch";
 
 export default function MobileFilter() {
-  const { colors, bgColors } = useContext(AppContext);
+  const {
+    responsive,
+    colors,
+    bgColors,
+    isMobile,
+    videos,
+    categories,
+    loadingCategories,
+    lessonsType,
+    setlessonsType,
+    setlessonsFilter,
+    lessonsFilter,
+    loadingPosts,
+    selectedTopic,
+    setSelectedTopic,
+    selectedRabbi,
+    setSelectedRabbi,
+  } = useContext(AppContext);
   const [isToggle, setIsToggle] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
 
@@ -149,7 +166,15 @@ export default function MobileFilter() {
           </span>
         </div>
 
-        <SideBarSearch handleToggle={handleToggle} />
+        <SideBarSearch
+          handleToggle={handleToggle}
+          lessonsType={lessonsType}
+          setlessonsType={setlessonsType}
+          selectedTopic={selectedTopic}
+          setSelectedTopic={setSelectedTopic}
+          selectedRabbi={selectedRabbi}
+          setSelectedRabbi={setSelectedRabbi}
+        />
       </div>
       {isDropdown && <div style={styles.filterDate}></div>}
       <div style={styles.container}>

@@ -7,7 +7,7 @@ function VideoCoverImage({ url, videoId, title }) {
   // State
   const [isHovered, setIsHovered] = useState(false);
   // Context
-  const { colors, responsive } = useContext(AppContext);
+  const { colors, responsive, isMobile } = useContext(AppContext);
 
   // Function to extract YouTube video ID from the URL
   const getYouTubeVideoId = (url) => {
@@ -50,7 +50,7 @@ function VideoCoverImage({ url, videoId, title }) {
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
-      opacity: isHovered ? 1 : 0,
+      opacity: !isHovered && !isMobile ? 0 : 1,
       transition: "0.3s all",
       cursor: "pointer",
     },

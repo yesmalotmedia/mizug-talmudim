@@ -38,7 +38,7 @@ export default function TalmudHaMemuzag() {
   return (
     <div>
       <HeroSection
-        backgroundImage={"heroTalmudMemuzag.png"}
+        backgroundImage={"/heroTalmudMemuzag.png"}
         title={" התלמוד הממוזג "}
         subTitle={"עד שילך עמנו אור הבבלי ויתאחד עם התלמוד הירושלמי"}
         titleColor={colors.white}
@@ -47,7 +47,11 @@ export default function TalmudHaMemuzag() {
       />
       <section style={styles.mainSection}>
         {!isMobile && <MemuzagSideBarSearch />}
-        {articleId ? <TalmudMemuzagSection /> : <TalmudMemuzagCollection />}
+        {articleId ? (
+          <TalmudMemuzagSection id={articleId} />
+        ) : (
+          <TalmudMemuzagCollection />
+        )}
       </section>
     </div>
   );

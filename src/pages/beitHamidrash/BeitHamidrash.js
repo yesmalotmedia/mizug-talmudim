@@ -26,10 +26,11 @@ const BeitHamidrash = () => {
     setlessonsFilter,
     lessonsFilter,
     loadingPosts,
+    selectedTopic,
+    setSelectedTopic,
+    selectedRabbi,
+    setSelectedRabbi,
   } = useContext(AppContext);
-
-  const [selectedTopic, setSelectedTopic] = useState("");
-  const [selectedRabbi, setSelectedRabbi] = useState("");
 
   const screenWidth = window.innerWidth;
   // states

@@ -23,10 +23,13 @@ import ExtractTalmudMemuzagData from "./assets/ExtractTalmudMemuzagData";
 export const AppContext = React.createContext();
 
 /*
-1. memuzag - connect to database 1
-2. memuzag - connect prevew box to section
+1. removed sort by button
+2. set all rabbies to be first
+3. add play icon in mobile
 */
 function App() {
+  const [selectedTopic, setSelectedTopic] = useState("");
+  const [selectedRabbi, setSelectedRabbi] = useState("");
   // Fetch posts data
   const {
     data: postsData,
@@ -50,7 +53,7 @@ function App() {
     loading: loadingRabbies,
     error: errorRabbies,
   } = useFetch(
-    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/rabbies?_fields=id,description,name"
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/rabbies?_fields=id,description,name&orderby=id&order=desc"
   );
 
   //Fetch dedications data
@@ -171,6 +174,10 @@ function App() {
         setIsMobileNavOpen,
         getCategoriesByParent,
         setlessonsFilter,
+        selectedTopic,
+        setSelectedTopic,
+        selectedRabbi,
+        setSelectedRabbi,
       }}
     >
       <div className="App">

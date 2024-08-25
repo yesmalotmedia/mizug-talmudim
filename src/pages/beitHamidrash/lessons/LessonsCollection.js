@@ -83,18 +83,17 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       <div style={styles.titleSection}>
         <div style={styles.title}>{lessonsFilter.category}</div>
 
-        {!isMobile && (
+        {/* {!isMobile && (
           <div style={styles.sortContainer}>
             <div style={styles.label}>מיין לפי</div>
             <SelectInput
               options={[
                 { name: "תאריך", value: "date" },
                 { name: "רב", value: "rabbi" },
-                { name: "נושא", value: "category" },
               ]}
             />
           </div>
-        )}
+        )} */}
       </div>
       {isMobile && <MobileFilter />}
       <div style={styles.lessonsContainer}>{lessonsBoxesElements}</div>

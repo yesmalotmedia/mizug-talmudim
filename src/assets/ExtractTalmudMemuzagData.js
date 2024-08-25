@@ -8,6 +8,13 @@ const decodeHtmlEntities = (str) => {
   return txt.value;
 };
 
+// Function to strip HTML tags using a temporary DOM element
+const stripHtmlTags = (htmlString) => {
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = htmlString;
+  return tempDiv.textContent || tempDiv.innerText || "";
+};
+
 function convertDateFormat(dateStr) {
   // Split the input date string by '-'
   const parts = dateStr.split("-");

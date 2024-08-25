@@ -12,6 +12,8 @@ const SideBarSearch = ({
   handleToggle,
   selectedRabbi,
 }) => {
+  console.log("seclected", setSelectedRabbi);
+
   //data
   const {
     responsive,
@@ -213,7 +215,10 @@ const SideBarSearch = ({
       <SelectInput
         options={rabbiesData}
         value={selectedRabbi}
-        onChange={(e) => setSelectedRabbi(e.target.value)}
+        onChange={(e) => {
+          console.log("Selected Rabbi:", e.target.value);
+          setSelectedRabbi(e.target.value); // This is the setter function
+        }}
       />
       <div style={styles.lable}>סוג השיעור</div>
       <Checkbox
