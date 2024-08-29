@@ -49,6 +49,13 @@ const Footer = () => {
       flex: "1 1 calc(25% - 10px)",
       boxSizing: "border-box",
     },
+    dedicate: {
+      textAlign: "center",
+      color: "#93F5FF",
+      fontWeight: 500,
+      marginTop: "40px",
+      fontSize: responsive("1.4rem", "1.1rem", "1rem"),
+    },
     copyRight: {
       textAlign: "center",
       marginTop: "30px",
@@ -98,7 +105,11 @@ const Footer = () => {
           <Subscribe />
         </div>
       </div>
-
+      <div style={styles.dedicate}>
+        האתר הוקם לזכרו של יואל בר-און ז"ל
+        <br />
+        <span style={{ fontWeight: 700 }}>גדל בהושעיה, למד בישיבת מעלות</span>
+      </div>
       <div style={styles.copyRight}>
         © כל הזכויות שמורות לצדקו יחדיו - בית מדרש לאיחוד התלמודים | האתר נבנה
         ב-❤ ע"י bms סטודיו לפיתוח תוכנה ובניית אתרים | עיצוב - closeApp
