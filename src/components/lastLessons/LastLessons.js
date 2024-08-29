@@ -28,8 +28,17 @@ const LastLessons = () => {
     categories,
     lessonsFilter,
     loadingPosts,
+    lastEiun,
+    loadingLastEiun,
+    lastDafYomi,
+    loadinglastDafYomi,
+    lastClalim,
+    loadingLastClalim,
+    parsedLastVideos,
   } = useContext(AppContext);
-  const lastVideos = getLastVideos(videos);
+  // const lastVideos = [lastEiun, lastDafYomi, lastClalim];
+  const loadingLastLessons =
+    loadingLastClalim && loadinglastDafYomi && loadingLastEiun;
   const styles = {
     container: {
       width: responsive("80%", "80%", "90%"),
@@ -68,9 +77,12 @@ const LastLessons = () => {
     navigate(`/BeitHamidrash`);
   };
 
-  const lastVideosElements = lastVideos?.map((video, index) => (
+  const lastVideos = getLastVideos(videos);
+  console.log(lastVideos);
+
+  const lastVideosElements = parsedLastVideos?.map((video, index) => (
     <div key={index} style={styles.img}>
-      {loadingPosts ? (
+      {loadingLastLessons ? (
         <LoaderAnimation isLoading={loadingPosts} color={colors.orange} />
       ) : (
         <VideoCoverImage

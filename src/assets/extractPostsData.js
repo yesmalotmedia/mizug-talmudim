@@ -12,11 +12,15 @@ const decodeHtmlEntities = (str) => {
 };
 
 const ExtractPostsData = (data) => {
+  console.log(1111111111);
+
+  console.log(data);
+
   return data.map((item) => ({
     id: item?.id,
     date: item?.date?.split("T")[0], // Extract only the date part
     heDate: item?.meta?.heDate,
-    title: decodeHtmlEntities(item.title.rendered), // Decode HTML entities in the title
+    title: decodeHtmlEntities(item?.title?.rendered), // Decode HTML entities in the title
     rabbiName: getRabbieNameById(item.rabbies[0]),
     contentType: item.acf.contentType,
     url: extractYoutubeUrl(item?.acf?.url),
@@ -27,7 +31,7 @@ const ExtractPostsData = (data) => {
     combinedValues: [
       item?.date?.split("T")[0],
       item?.meta?.heDate,
-      decodeHtmlEntities(item.title.rendered),
+      decodeHtmlEntities(item?.title?.rendered),
       getRabbieNameById(item.rabbies[0]),
       ...item.categories,
     ],

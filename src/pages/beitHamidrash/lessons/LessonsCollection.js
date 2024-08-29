@@ -18,7 +18,7 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
     setlessonsFilter,
   } = useContext(AppContext);
   const [displayedLessons, setDisplayedLessons] = useState([]);
-  const [visiblePostCount, setVisiblePostCount] = useState(20);
+  const [visiblePostCount, setVisiblePostCount] = useState(10);
 
   const loadMorePosts = (increment) => {
     setVisiblePostCount((prevCount) => prevCount + increment);
@@ -98,7 +98,7 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       {isMobile && <MobileFilter />}
       <div style={styles.lessonsContainer}>{lessonsBoxesElements}</div>
       <div style={styles.loadMoreContainer}>
-        <LoadMore onClick={() => loadMorePosts(20)} />
+        <LoadMore onClick={() => loadMorePosts(10)} />
       </div>
     </div>
   );

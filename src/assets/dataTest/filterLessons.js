@@ -3,7 +3,7 @@ import getCategoryIdByName from "../geCategoryIdByName";
 function filterLessons(data, filter) {
   let filteredLessons = data;
   const { freeQuery, category, masechet, rabbiName } = filter;
-  console.log(category);
+  console.log(filter);
 
   // Select Buttons Filtering
   if (category && category !== "כל השיעורים") {
@@ -14,18 +14,18 @@ function filterLessons(data, filter) {
   }
 
   // Rabbi Name Filtering
-  if (rabbiName && rabbiName?.trim() !== "") {
+  if (rabbiName && rabbiName !== "כל הרבנים" && rabbiName.trim() !== "") {
     filteredLessons = filteredLessons.filter((video) =>
-      video.rabbiName.includes(rabbiName?.trim())
+      video.rabbiName.includes(rabbiName.trim())
     );
   } else if (freeQuery?.trim() !== "" && freeQuery !== undefined) {
     // Parameters searching
     console.log(1);
     filteredLessons = data.filter(
       (video) =>
-        video.rabbiName.includes(freeQuery?.trim()) ||
-        video.title.includes(freeQuery?.trim()) ||
-        video.categories.includes(getCategoryIdByName(freeQuery?.trim()))
+        video.rabbiName.includes(freeQuery.trim()) ||
+        video.title.includes(freeQuery.trim()) ||
+        video.categories.includes(getCategoryIdByName(freeQuery.trim()))
     );
   }
 
