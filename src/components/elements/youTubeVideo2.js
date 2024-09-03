@@ -1,48 +1,64 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
-import Button from "./Button";
 import colors from "../../styles/colors";
 import bgColors from "../../styles/bg-colors";
 
-function YouTubeVideo2({ url, index }) {
-  //context
-  const { colors, isMobile } = useContext(AppContext);
+function YouTubeVideo2({ url }) {
+  // Context
+  const { colors } = useContext(AppContext);
 
   const styles = {
     container: {
       maxWidth: "100%",
-      height: isMobile ? "30%" : 600,
-      boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
-      backgroundColor: bgColors.white,
       padding: 20,
-      margin: isMobile ? "10px 0" : 0,
-      borderRadius: isMobile ? "5px" : "50px",
+      margin: "10px 0",
+      borderRadius: "5px",
+      backgroundColor: bgColors.white,
+      boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around",
+      justifyContent: "center",
     },
 
-    img: {},
+    videoWrapper: {
+      position: "relative",
+      width: "100%",
+      paddingTop: "56.25%", // 16:9 aspect ratio
+      height: 0,
+      overflow: "hidden",
+      borderRadius: "5px",
+    },
+
+    iframe: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+    },
+
     title: {
       fontSize: 22,
       color: colors.darkBlue,
       fontWeight: 600,
       textAlign: "center",
+      marginTop: 10,
     },
   };
 
   return (
     <div style={styles.container}>
-      <iframe
-        width={"100%"}
-        height={isMobile ? "30%" : "85%"}
-        src={url}
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
+      <div style={styles.videoWrapper}>
+        <iframe
+          style={styles.iframe}
+          src={url}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
     </div>
   );
 }
