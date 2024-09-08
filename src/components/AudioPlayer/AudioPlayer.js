@@ -138,10 +138,25 @@ const AudioPlayer = ({ audioUrl, shouldPlay, playerVars = {} }) => {
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value;
     setVolume(newVolume);
+  
     if (isPlayerReady && playerRef.current) {
       playerRef.current.setVolume(newVolume);
     }
+  
+  
+    if (newVolume == 0) {
+      setIsMuted(true);
+      if (isPlayerReady && playerRef.current) {
+        playerRef.current.mute();
+      }
+    } else {
+      setIsMuted(false);
+      if (isPlayerReady && playerRef.current) {
+        playerRef.current.unMute();
+      }
+    }
   };
+  
 
   const handleMuteUnmute = () => {
     if (isPlayerReady && playerRef.current) {
