@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../App";
-import AudioPlayer from "../../../components/elements/AudioPlayer";
+import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
+import playerVars from "../../../components/AudioPlayer/PlayerVars";
 import { useParams } from "react-router-dom";
 import YouTubeVideo2 from "../../../components/elements/youTubeVideo2";
 import getCategoryNameById from "../../../assets/getCategoryNameById";
@@ -11,7 +12,7 @@ import LoaderAnimation from "../../../components/elements/LoaderAnimation";
 
 export default function LessonSection({ videoId }) {
   const { colors, responsive, videos } = useContext(AppContext);
-
+  const audioUrl = "KWX8lzzzrzA";
   if (!videos) {
     console.error("Videos not available in context");
     return <LoaderAnimation isLoading={!videos} color={colors.orange} />;
@@ -92,6 +93,36 @@ export default function LessonSection({ videoId }) {
       borderRadius: 40,
       border: "1px solid black",
     },
+    audioContainer: {
+      border: "1px solid #ccc",
+      borderRadius: 20,
+      marginTop: 20,
+      display: "flex",
+      flexDirection: responsive("row", "column-reverse", "column-reverse"),
+      alignItems: "center",
+      justifyContent: responsive("flex-end", "center", "center"),
+      width: "100%",
+    },
+    playerContainer: {
+      display: "flex",
+      flexDirection: "column",
+      padding: "10px 20px",
+    },
+    audioThumbnail: {
+      height: 120,
+      width: 120,
+      borderRadius: 20,
+      marginLeft: 7,
+    },
+    topText: {
+      marginRight: 0,
+    },
+    title: {
+      width: "100%",
+    },
+    date: {
+      fontWeight: 500,
+    },
   };
 
   return (
@@ -114,13 +145,29 @@ export default function LessonSection({ videoId }) {
         {isVideo && <YouTubeVideo2 url={video.url} index={video.key} />}
       </div>
       {isAudio && (
-        <div style={styles.audioContainer}>
-          <SpotifyPodcast
-            url={
-              "https://open.spotify.com/embed/episode/0FBDu01bqovSZaBUgAoKuB?utm_source=generator"
-            }
-          />
-        </div>
+        <>
+          <div style={styles.audioContainer}>
+            <div style={styles.playerContainer}>
+              <div style={styles.topText}>
+                <p style={styles.title}>
+                  {" "}
+                  לורם איפסום הוא כינוי לטקסט חסר משמעות לחלוטין - הנקרא לפעמים
+                  גם דמי טקסט או{" "}
+                </p>
+                <p style={styles.date}> 21 july</p>
+              </div>
+
+              <AudioPlayer
+                key={audioUrl}
+                audioUrl={audioUrl}
+                shouldPlay={false}
+                playerVars={playerVars}
+              />
+            </div>
+
+            <img style={styles.audioThumbnail} src="../sky.png" />
+          </div>
+        </>
       )}
       {isText && (
         <div style={styles.descriptionContainer}>
