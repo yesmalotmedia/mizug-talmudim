@@ -12,7 +12,7 @@ import LoaderAnimation from "../../../components/elements/LoaderAnimation";
 
 export default function LessonSection({ videoId }) {
   const { colors, responsive, videos } = useContext(AppContext);
-  const audioUrl = "KWX8lzzzrzA";
+ 
   if (!videos) {
     console.error("Videos not available in context");
     return <LoaderAnimation isLoading={!videos} color={colors.orange} />;
@@ -150,16 +150,13 @@ export default function LessonSection({ videoId }) {
             <div style={styles.playerContainer}>
               <div style={styles.topText}>
                 <p style={styles.title}>
-                  {" "}
-                  לורם איפסום הוא כינוי לטקסט חסר משמעות לחלוטין - הנקרא לפעמים
-                  גם דמי טקסט או{" "}
+                 {video.title}
                 </p>
-                <p style={styles.date}> 21 july</p>
+                <p style={styles.date}> {video.date}</p>
               </div>
-
               <AudioPlayer
-                key={audioUrl}
-                audioUrl={audioUrl}
+                key={video.url}
+                audioUrl={video.url}
                 shouldPlay={false}
                 playerVars={playerVars}
               />

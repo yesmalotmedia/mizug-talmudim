@@ -16,6 +16,13 @@ const styles = {
   }
 };
 
+// Function to extract video ID from YouTube URL or return ID if already provided
+const getVideoIdFromUrl = (url) => {
+  const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+  const match = url.match(regex);
+  return match ? match[1] : url; // If it's a URL, return the video ID, otherwise return the input
+};
+
 const AudioPlayer = ({ audioUrl, shouldPlay, playerVars = {} }) => {
   const { isMobile } = useContext(AppContext);
   const playerRef = useRef(null);
@@ -29,6 +36,8 @@ const AudioPlayer = ({ audioUrl, shouldPlay, playerVars = {} }) => {
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
+    const videoId = getVideoIdFromUrl(audioUrl); // Extract the video ID
+
     const onPlayerReady = () => {
       setIsPlayerReady(true);
       setDuration(playerRef.current.getDuration());
@@ -60,7 +69,7 @@ const AudioPlayer = ({ audioUrl, shouldPlay, playerVars = {} }) => {
 
     const createPlayer = () => {
       playerRef.current = new window.YT.Player('youtube-player', {
-        videoId: audioUrl,
+        videoId: videoId, // Use extracted video ID here
         playerVars: {
           autoplay: 0,
           controls: 0,
