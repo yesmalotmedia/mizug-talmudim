@@ -4,6 +4,7 @@ import HeroSection from "../../components/elements/HeroSection";
 import Button from "./Button";
 import aboutData from "../../data/aboutData";
 import RenderContents from "./RenderContents";
+import LastLessons from "../../components/lastLessons/LastLessons";
 
 export default function About() {
   const { colors, bgColors, responsive } = useContext(AppContext);
@@ -23,7 +24,7 @@ export default function About() {
       background: bgColors.lightAzure,
       width: responsive("20%", "90%", "90%"),
       height: responsive("100vh", "200px", "140px"),
-      marginTop: responsive(-45,-45,50),
+      marginTop: responsive(-45, -45, 50),
       borderTopLeftRadius: 20,
       borderBottomLeftRadius: 20,
       borderRadius: 20,
@@ -51,25 +52,19 @@ export default function About() {
         subTitle={"הכירו את בית המדרש לאיחוד התלמודים"}
         isSubscribe={false}
         titleColor={colors.darkBlue}
-        height={responsive("60vmin","60vmin","60vmin")}
-        marginTop={responsive("30px","50px","120px")}
+        height={responsive("60vmin", "60vmin", "60vmin")}
+        marginTop={responsive("30px", "50px", "120px")}
       />
       <div style={styles.container}>
         <div style={styles.sideBtnContainer}>
-          <div
-            style={styles.link}
-            onClick={() => setActiveSection("aboutUs")}
-          >
+          <div style={styles.link} onClick={() => setActiveSection("aboutUs")}>
             <Button
               title={"מי אנחנו"}
               imgSrc={"/SideBtn-1.png"}
               isActive={activeSection === "aboutUs"}
             />
           </div>
-          <div
-            style={styles.link}
-            onClick={() => setActiveSection("team")}
-          >
+          <div style={styles.link} onClick={() => setActiveSection("team")}>
             <Button
               title={"צוות בית המדרש"}
               imgSrc={"/SideBtn-2.png"}
@@ -81,6 +76,7 @@ export default function About() {
           <RenderContents sectionData={getActiveSectionData()} />
         </div>
       </div>
+      <LastLessons />
     </>
   );
 }
