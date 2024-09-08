@@ -2,12 +2,9 @@ import React, { useContext } from "react";
 import { AppContext } from "../../../App";
 import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
 import playerVars from "../../../components/AudioPlayer/PlayerVars";
-import { useParams } from "react-router-dom";
 import YouTubeVideo2 from "../../../components/elements/youTubeVideo2";
 import getCategoryNameById from "../../../assets/getCategoryNameById";
 import extractYoutubeCoverByVideoId from "../../../assets/extractYoutubeCoverByVideoId";
-import VideoCover from "../../../components/elements/VideoCover";
-import SpotifyPodcast from "../SpotifyPodcast";
 import LoaderAnimation from "../../../components/elements/LoaderAnimation";
 
 export default function LessonSection({ videoId }) {
@@ -22,105 +19,106 @@ export default function LessonSection({ videoId }) {
   const isVideo = video?.contentType.includes("video");
   const isAudio = video?.contentType.includes("audio");
   const isText = video?.contentType.includes("text");
+
   if (!video) {
     console.error(`No video found with id: ${videoId}`);
     return <LoaderAnimation isLoading={!video} color={colors.orange} />;
   }
 
-  const coverImage = extractYoutubeCoverByVideoId(video.url);
-
   const mainCategory = getCategoryNameById(video.categories[0]);
   const subCategory = getCategoryNameById(video.categories[1]);
 
   const styles = {
-    container: {
+    container: { 
       textAlign: "right",
-      width: "100%",
+      width: "100%" 
     },
-    headerSection: {
-      width: "100%",
+    headerSection: { 
+      width: "100%" 
     },
-    breadcrumb: {
-      color: colors.grey,
+    breadcrumb: { 
+      color: colors.grey, 
       fontWeight: 500,
       paddingBottom: 20,
     },
-    nameOfRav: {
-      color: colors.azure,
+    nameOfRav: { 
+      color: colors.azure 
     },
-    nameOfShiur: {
-      color: colors.darkBlue,
-      padding: "7px 0",
+    nameOfShiur: { 
+      color: colors.darkBlue, 
+      padding: "7px 0" 
     },
-    timeAndTimeContainer: {
+    timeAndTimeContainer: { 
       width: responsive("100%", "100%", "100%"),
-      display: "flex",
-      alignItems: "center",
-      padding: "20px 0",
+      display: "flex", 
+      alignItems: "center", 
+      padding: "20px 0" 
     },
-    icon: {
+    icon: { 
       height: 20,
-      width: 20,
+      width: 20 
     },
     dateAndTimeText: {
       width: "100%",
       padding: "0 10px",
-      fontWeight: 400,
-      color: colors.grey,
+      fontWeight: 400, 
+      color: colors.grey 
     },
-    descriptionContainer: {
+    descriptionContainer: { 
       marginTop: 20,
-      width: responsive("100%", "70%", "90%"),
+      width: responsive("100%", "70%", "90%"), 
       marginInline: "auto",
     },
-    description: {
-      textAlign: "justify",
+    description: { 
+      textAlign: "justify", 
       lineHeight: "1.9rem",
-      width: "100%",
+      width: "100%"
     },
-    footerSection: {
-      width: responsive("100%", "70%", "90%"),
-    },
-    commentsTitle: {
-      color: colors.azure,
-      padding: responsive("30px 60px 10px 0", "10px 110px 10px 0", "10px 10px"),
-    },
-    input: {
-      width: responsive("85%", "100%", "100%"),
-      outline: "none",
-      padding: 10,
-      marginRight: responsive(60, 110, 10),
-      borderRadius: 40,
-      border: "1px solid black",
-    },
-    audioContainer: {
-      border: "1px solid #ccc",
-      borderRadius: 20,
-      marginTop: 20,
+    audioContainer: { 
+      border: "1px solid #ccc", 
+      borderRadius: 20, 
+      marginTop: 20, 
       display: "flex",
-      flexDirection: responsive("row", "column-reverse", "column-reverse"),
-      alignItems: "center",
-      justifyContent: responsive("flex-end", "center", "center"),
-      width: "100%",
+      flexDirection: responsive("row", "column-reverse", "column-reverse"), 
+      alignItems: "center", 
+      justifyContent: responsive("flex-end", "center", "center"), 
+      width: "100%"
     },
-    playerContainer: {
-      display: "flex",
+    playerContainer: { 
+      display: "flex", 
       flexDirection: "column",
-      padding: "10px 20px",
+      padding: "10px 20px" 
+    },
+    thumbContainer:{
+      marginTop: responsive(0,10,10),
+      marginLeft:  responsive(20,0,0),
+      height: 120, 
+      width: 120, 
+      borderRadius: 20,
+      overflow: "hidden" 
     },
     audioThumbnail: {
-      height: 120,
-      width: 120,
-      borderRadius: 20,
-      marginLeft: 7,
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
     },
     topText: {
       marginRight: 0,
+      display: "flex", 
+      flexDirection: "column",
+      alignItems: responsive("flex-start", "center", "center"), 
+      justifyContent: responsive("flex-start", "center", "center"),
+      marginBottom: 10
     },
-    title: {
-      width: "100%",
+    title: { 
+      width: "100%", 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: responsive("flex-start", "center", "center"), 
+      justifyContent: responsive("flex-start", "center", "center") 
     },
-    date: {
+    date: { 
+      color: colors.grey, 
       fontWeight: 500,
     },
   };
@@ -144,28 +142,31 @@ export default function LessonSection({ videoId }) {
         <div style={styles.dedicate}>{video.dedicatedTo}</div>
         {isVideo && <YouTubeVideo2 url={video.url} index={video.key} />}
       </div>
-      {isAudio && (
-        <>
-          <div style={styles.audioContainer}>
-            <div style={styles.playerContainer}>
-              <div style={styles.topText}>
-                <p style={styles.title}>
-                 {video.title}
-                </p>
-                <p style={styles.date}> {video.date}</p>
-              </div>
-              <AudioPlayer
-                key={video.url}
-                audioUrl={video.url}
-                shouldPlay={false}
-                playerVars={playerVars}
-              />
-            </div>
 
-            <img style={styles.audioThumbnail} src="../sky.png" />
+      {isAudio && (
+        <div style={styles.audioContainer}>
+          <div style={styles.playerContainer}>
+            <div style={styles.topText}>
+              <p style={styles.title}>{video.title}</p>
+              <p style={styles.date}>{video.date}</p>
+            </div>
+            <AudioPlayer
+              key={video.url}
+              audioUrl={video.url}
+              shouldPlay={false}
+              playerVars={playerVars}
+            />
           </div>
-        </>
+          <div style={styles.thumbContainer}> 
+            <img
+              style={styles.audioThumbnail}
+              src={extractYoutubeCoverByVideoId(video.url)} 
+              alt="Audio Thumbnail"
+            />
+          </div>
+        </div>
       )}
+
       {isText && (
         <div style={styles.descriptionContainer}>
           <div
@@ -174,16 +175,6 @@ export default function LessonSection({ videoId }) {
           />
         </div>
       )}
-
-      {/* Uncomment this section if you need the comments feature */}
-      {/* <div style={styles.footerSection}>
-        <h3 style={styles.commentsTitle}> תגובות </h3>
-        <input
-          style={styles.input}
-          type="text"
-          placeholder=" הוסיפו תגובה "
-        ></input>
-      </div> */}
     </div>
   );
 }
