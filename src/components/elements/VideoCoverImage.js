@@ -46,16 +46,7 @@ function VideoCoverImage({ url, videoId, title }) {
       borderRadius: "20px",
       boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
     },
-    playBtn: {
-      position: "absolute",
-      width: "20%",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      opacity: !isHovered && !isMobile ? 0 : 1,
-      transition: "0.3s all",
-      cursor: "pointer",
-    },
+
     title: {
       fontSize: responsive("1rem", "1.6rem", "1rem"),
       lineHeight: 1,
@@ -75,26 +66,21 @@ function VideoCoverImage({ url, videoId, title }) {
 
   return (
     <div style={styles.container}>
-      <div
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onTouchStart={() => setIsHovered(true)}
-        onTouchEnd={() => setIsHovered(false)}
-      >
-        <img
-          src={thumbnailUrl}
-          alt="YouTube Video Thumbnail"
-          style={styles.img}
-        />
-        <div style={styles.title}>{title}</div>
-        <Link style={styles.btn} to={`/BeitHamidrash/${videoId}`}>
+      <Link style={styles.btn} to={`/BeitHamidrash/${videoId}`}>
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={() => setIsHovered(true)}
+          onTouchEnd={() => setIsHovered(false)}
+        >
           <img
-            style={styles.playBtn}
-            src="/play-button.png"
-            alt="Play Button"
+            src={thumbnailUrl}
+            alt="YouTube Video Thumbnail"
+            style={styles.img}
           />
-        </Link>
-      </div>
+          <div style={styles.title}>{title}</div>
+        </div>
+      </Link>
     </div>
   );
 }

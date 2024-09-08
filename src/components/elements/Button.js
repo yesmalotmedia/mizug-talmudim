@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { AppContext } from "../../App";
-import bgColors from "../../styles/bg-colors";
 
 const Button = ({
   color,
@@ -35,6 +33,7 @@ const Button = ({
       borderRadius,
       width,
       height,
+      transition: "all 0.3s ease", // Smooth transition for background and color
     },
     text: {
       color,

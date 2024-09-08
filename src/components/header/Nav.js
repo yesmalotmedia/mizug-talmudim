@@ -10,7 +10,7 @@ const Nav = () => {
   const styles = {
     container: {
       color: colors.white,
-      width: 'auto',
+      width: "auto",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
@@ -23,9 +23,10 @@ const Nav = () => {
       fontWeight: 500,
       padding: "10px 10px",
       display: "inline-block",
-      width: 'auto',
+      width: "auto",
       borderRadius: 10,
       marginRight: 10,
+      transition: "background-color 0.5s ease, color 0.5s ease", // Added transition for smooth changes
     },
     li: {
       listStyle: "none",
@@ -35,16 +36,21 @@ const Nav = () => {
       color: colors.white,
       borderRadius: 10,
       marginRight: 10,
+      transition: "background-color 0.5s ease, color 0.5s ease", // Ensure hover has a smooth transition
     },
     activeMenu: {
       background: colors.darkBlue,
       color: colors.white,
       borderRadius: 10,
+      transition: "background-color 0.5s ease, color 0.5s ease", // Smooth transition for active state
     },
   };
 
   const isActive = (path) => {
-    return location.pathname === path || matchPath({ path: `${path}/*`, end: false }, location.pathname);
+    return (
+      location.pathname === path ||
+      matchPath({ path: `${path}/*`, end: false }, location.pathname)
+    );
   };
 
   return (
@@ -56,11 +62,11 @@ const Nav = () => {
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            <NavLink 
+            <NavLink
               style={{
                 ...styles.menu,
                 ...(index === hoveredIndex && styles.hoverMenu),
-                ...(isActive(item.path) && styles.activeMenu)
+                ...(isActive(item.path) && styles.activeMenu),
               }}
               to={item.path}
               activeClassName="active"

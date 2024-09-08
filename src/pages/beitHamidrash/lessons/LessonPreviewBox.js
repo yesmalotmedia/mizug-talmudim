@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../../../App";
 import YouTubeVideo2 from "../../../components/elements/youTubeVideo2";
 import { Link } from "react-router-dom";
@@ -6,6 +6,8 @@ import VideoCoverImage from "../../../components/elements/VideoCoverImage";
 
 export default function LessonPreviewBox({ video }) {
   const { colors, responsive } = useContext(AppContext);
+  const [isHovered, setIsHovered] = useState(false);
+
   const styles = {
     container: {
       boxSizing: "border-box",
@@ -20,6 +22,9 @@ export default function LessonPreviewBox({ video }) {
       backgroundColor: colors.white,
       width: responsive(260, 350, 300),
       height: "auto",
+      transform: isHovered ? "translateY(-10px)" : "translateY(0)", // Move up on hover
+      transition: "transform 0.3s ease-out", // Smooth transition
+      cursor: "pointer",
     },
     thumbnail: {
       height: "50%",
@@ -73,7 +78,6 @@ export default function LessonPreviewBox({ video }) {
       fontSize: responsive("0.9vw", "1rem", "2vmax"),
       background: colors.white,
       boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
-      cursor: "pointer",
     },
     icon: {
       height: responsive("1.5vw", "3vmax", "3vmax"),
@@ -86,45 +90,54 @@ export default function LessonPreviewBox({ video }) {
       alignItems: "center",
       justifyContent: "space-between",
     },
+    btn: {
+      border: "none",
+    },
   };
 
   //functions
 
   return (
-    <div style={styles.container}>
-      {/* <YouTubeVideo2 url={video.url} index={video.key} /> */}
-      {
-        <VideoCoverImage
-          url={video.url}
-          index={video.key}
-          videoId={video.id}
-          title={video.title}
-        />
-      }
-      <div style={styles.description}>
-        <div style={{ width: "60%" }}>
-          <h2 style={styles.title}> {video.title}</h2>
-          <h2 style={styles.subTitle}> {video.rabbiName}</h2>
+    <Link style={styles.btn} to={`/BeitHamidrash/${video.id}`}>
+      <div
+        style={styles.container}
+        onMouseEnter={() => setIsHovered(true)} // Trigger hover state
+        onMouseLeave={() => setIsHovered(false)} // Reset hover state
+      >
+        {/* <YouTubeVideo2 url={video.url} index={video.key} /> */}
+        {
+          <VideoCoverImage
+            url={video.url}
+            index={video.key}
+            videoId={video.id}
+            title={video.title}
+          />
+        }
+        <div style={styles.description}>
+          <div style={{ width: "60%" }}>
+            <h2 style={styles.title}> {video.title}</h2>
+            <h2 style={styles.subTitle}> {video.rabbiName}</h2>
+          </div>
+          <div>
+            {" "}
+            <h3 style={styles.date}>{video.date}</h3>
+            <h3 style={styles.date}>{video.heDate}</h3>
+          </div>
         </div>
-        <div>
-          {" "}
-          <h3 style={styles.date}>{video.date}</h3>
-          <h3 style={styles.date}>{video.heDate}</h3>
+        <div style={styles.bottomSection}>
+          <div style={styles.btnContainer}>
+            {video.contentType.includes("video") && (
+              <img style={styles.icon} src="watch.png" alt="watch"></img>
+            )}
+            {video.contentType.includes("audio") && (
+              <img style={styles.icon} src="listen.png" alt="listen"></img>
+            )}
+            {video.contentType.includes("text") && (
+              <img style={styles.icon} src="read.png" alt="read"></img>
+            )}
+          </div>
         </div>
       </div>
-      <div style={styles.bottomSection}>
-        <div style={styles.btnContainer}>
-          {video.contentType.includes("video") && (
-            <img style={styles.icon} src="watch.png" alt="watch"></img>
-          )}
-          {video.contentType.includes("audio") && (
-            <img style={styles.icon} src="listen.png" alt="listen"></img>
-          )}
-          {video.contentType.includes("text") && (
-            <img style={styles.icon} src="read.png" alt="read"></img>
-          )}
-        </div>
-      </div>
-    </div>
+    </Link>
   );
 }

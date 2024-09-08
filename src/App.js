@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { RouterProvider } from "react-router-dom";
 import colors from "./styles/colors";
 import bgColors from "./styles/bg-colors";
+import animations from "./styles/animations";
 import pagesList from "./pages/pagesList";
 import description from "./data/description";
 import dailyTextsData from "./data/dailyTextsData";
@@ -189,6 +190,7 @@ function App() {
         colors,
         responsive,
         bgColors,
+        animations,
         pagesList,
         isMobile,
         description,
