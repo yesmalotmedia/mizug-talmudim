@@ -26,6 +26,8 @@ export const AppContext = React.createContext();
 /*
 1. fixed all rabbies in the filter
 2. add Lazy load of lessons (load first 10). make shure it works also at the home page. so that the 3 lessons in the home page will hav quick loading
+3. added more rabbies
+4. added children categories to sidebarsearch
 
 
 */

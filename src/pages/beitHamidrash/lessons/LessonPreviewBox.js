@@ -46,7 +46,7 @@ export default function LessonPreviewBox({ video }) {
     },
     subTitle: {
       fontSize: responsive("1vw", "1.5rem", "1.3rem"),
-      padding: 10,
+      paddingBottom: 10,
       fontWeight: 400,
     },
     date: {
@@ -92,6 +92,7 @@ export default function LessonPreviewBox({ video }) {
     },
     btn: {
       border: "none",
+      textDecoration: "none",
     },
   };
 

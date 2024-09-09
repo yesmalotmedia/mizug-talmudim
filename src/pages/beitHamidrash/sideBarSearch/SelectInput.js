@@ -3,6 +3,8 @@ import { AppContext } from "../../../App";
 
 const SelectInput = ({ options, onChange, value }) => {
   // data
+  console.log(options);
+
   const { colors } = useContext(AppContext);
   // styles
   const styles = {
@@ -24,10 +26,22 @@ const SelectInput = ({ options, onChange, value }) => {
   //functions
 
   const optionsElements = options?.map((option, index) => (
-    <option key={index} value={option.name}>
-      {option.name}
-    </option>
+    <React.Fragment key={index}>
+      <option key={option.id} value={option.name}>
+        {option.name}
+      </option>
+      {option.children?.map((child) => (
+        <option
+          key={child.id}
+          value={child.name}
+          style={{ paddingRight: "10px" }}
+        >
+          &nbsp;&nbsp;{child.name}
+        </option>
+      ))}
+    </React.Fragment>
   ));
+
   return (
     <select onChange={onChange} style={styles.input} value={value}>
       {optionsElements}

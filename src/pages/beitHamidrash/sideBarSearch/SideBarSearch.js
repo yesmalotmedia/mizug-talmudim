@@ -4,7 +4,7 @@ import Button from "../../../components/elements/Button";
 import SelectInput from "./SelectInput";
 import Checkbox from "./Checkbox";
 import yerushalmiMasectot from "../../../data/yerushalmiMasectot";
-
+import getMainCategories from "../../../assets/getMainCategories";
 const SideBarSearch = ({
   selectedTopic,
   setSelectedTopic,
@@ -42,7 +42,7 @@ const SideBarSearch = ({
   const [videoChecked, setVideoChecked] = useState(true);
   const [audioChecked, setAudioChecked] = useState(true);
   const [textChecked, setTextChecked] = useState(true);
-
+  console.log(getMainCategories(categories, 3));
   // styles
   const styles = {
     container: {
@@ -201,7 +201,7 @@ const SideBarSearch = ({
       <br></br>
       <div style={styles.lable}>הנושאים</div>
       <SelectInput
-        options={getCategoriesByParent(categories, 3) || categoriesOptions}
+        options={getMainCategories(categories, 3) || categoriesOptions}
         value={selectedTopic}
         onChange={(e) => setSelectedTopic(e.target.value)}
       />

@@ -29,7 +29,7 @@ const HeroSection = ({
     heroSection: {
       backgroundImage: `url("${backgroundImage}")`,
       backgroundPosition: "center",
-      backgroundSize: isVisible ? "110%" : "100%",
+      backgroundSize: isVisible ? "110% 110%" : "100% 100%",
       transition: "background-size 3s ease-out", // Smooth zoom transition
       backgroundRepeat: "no-repeat",
       width: "100%",
@@ -53,7 +53,7 @@ const HeroSection = ({
     },
     subTitle: {
       fontWeight: 600,
-      fontSize: responsive("2rem", "1.8rem", "1.6rem"),
+      fontSize: responsive("2rem", "1.8rem", "1.2rem"),
       textAlign: "center",
       color: colors.orange,
       transform: isVisible ? "translateY(0)" : "translateY(20px)", // Apply the slide-up effect
