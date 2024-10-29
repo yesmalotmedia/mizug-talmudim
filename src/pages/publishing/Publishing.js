@@ -4,6 +4,7 @@ import BooksCollection from "./BooksCollection";
 
 import { AppContext } from "../../App";
 import Filters from "./Filters";
+import ComingSoon from "../ComingSoon";
 
 export default function Publishing() {
   const { colors, isMobile, responsive, parsedPublishData } =
@@ -37,12 +38,13 @@ export default function Publishing() {
         marginTop={responsive("50px", "90px", "90px")}
       />
       <div style={styles.mainContainer}>
-        <div style={styles.filterBtn}>
+        {/* <div style={styles.filterBtn}>
           <Filters />
         </div>
         <div style={styles.preview}>
           <BooksCollection />
-        </div>
+        </div> */}
+        <ComingSoon />
       </div>
     </>
   );

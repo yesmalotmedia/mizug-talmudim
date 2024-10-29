@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import VideoCoverImage from "../../../components/elements/VideoCoverImage";
 
 export default function LessonPreviewBox({ video }) {
+  console.log(video);
+
   const { colors, responsive } = useContext(AppContext);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -112,6 +114,7 @@ export default function LessonPreviewBox({ video }) {
             index={video.key}
             videoId={video.id}
             title={video.title}
+            rabbiName={video.rabbiName}
           />
         }
         <div style={styles.description}>

@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 import bgColors from "../../styles/bg-colors";
 import { Link } from "react-router-dom";
 
-function VideoCoverImage({ url, videoId, title }) {
+function VideoCoverImage({ url, videoId, title, rabbiName }) {
   console.log(videoId);
 
   // State
@@ -26,7 +26,10 @@ function VideoCoverImage({ url, videoId, title }) {
 
   const youTubeVideoId = getYouTubeVideoId(url);
 
-  const thumbnailUrl = "/harav-ishay-lesson.png";
+  const thumbnailUrl =
+    rabbiName === "הרב ישי ויצמן"
+      ? "/harav-ishay-lesson.png"
+      : "/main-youtube-cover.png";
 
   const styles = {
     container: {

@@ -53,9 +53,18 @@ const LastLessons = () => {
       ),
       display: "flex",
       flexDirection: responsive("row", "column", "column"),
-      padding: 20,
+      padding: 41,
       justifyContent: "space-between",
       zIndex: 100,
+    },
+    title: {
+      position: "absolute",
+      left: "50%",
+      top: 10,
+      transform: "translateX(-50%)",
+      color: colors.darkBlue,
+      fontWeight: 600,
+      fontSize: responsive("1.8rem", "1.4rem", "1.3rem"),
     },
     img: {
       margin: responsive(20, 10, 10),
@@ -107,7 +116,12 @@ const LastLessons = () => {
     </div>
   ));
 
-  return <div style={styles.container}>{lastVideosElements}</div>;
+  return (
+    <div style={styles.container}>
+      <div style={styles.title}>שיעורים אחרונים באתר</div>
+      {lastVideosElements}
+    </div>
+  );
 };
 
 export default LastLessons;
