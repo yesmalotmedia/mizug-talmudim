@@ -4,7 +4,7 @@ import bgColors from "../../styles/bg-colors";
 import { Link } from "react-router-dom";
 
 function VideoCoverImage({ url, videoId, title, rabbiName }) {
-  console.log(videoId);
+  console.log(title);
 
   // State
   const [isHovered, setIsHovered] = useState(false);

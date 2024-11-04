@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 
 export default function Filters() {
-  const { colors} = useContext(AppContext);
+  const { colors } = useContext(AppContext);
   const [activeButton, setActiveButton] = useState("all");
 
   const handleButtonClick = (buttonName) => {
@@ -48,10 +48,10 @@ export default function Filters() {
       color: colors.white,
     },
     hideScrollbar: {
-      scrollbarWidth: "none", /* Firefox */
-      "-ms-overflow-style": "none", /* IE and Edge */
+      scrollbarWidth: "none" /* Firefox */,
+      "-ms-overflow-style": "none" /* IE and Edge */,
       "&::-webkit-scrollbar": {
-        display: "none", /* Chrome, Safari, and Opera */
+        display: "none" /* Chrome, Safari, and Opera */,
       },
     },
   };

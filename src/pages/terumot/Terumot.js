@@ -45,7 +45,7 @@ export default function Terumot() {
     },
     text: {
       position: "absolute",
-      fontSize: responsive("2.5vmax", "3vmax", "2.5vmax"),
+      fontSize: responsive("1.2vmax", "3vmax", "2.5vmax"),
       fontWeight: 700,
       color: colors.white,
       zIndex: 30,
@@ -91,18 +91,29 @@ export default function Terumot() {
         <p style={styles.description}>{data.description}</p>
         <h2 style={styles.title}>{data.btnTitle}</h2>
         <div style={styles.imgContainer}>
-          {data.images.map((image, index) => (
-            <div
-              style={styles.btn}
+          {data.options.map((option, index) => (
+            <a
+              href={option.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
               key={index}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
             >
-              <img style={styles.img} src={image} alt={`image-${index}`} />
-              <span style={styles.text}>{data.btnText[index]}</span>
-            </div>
+              <div
+                style={styles.btn}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              >
+                <img
+                  style={styles.img}
+                  src={option.image}
+                  alt={`image-${index}`}
+                />
+                <span style={styles.text}>{option.text}</span>
+              </div>
+            </a>
           ))}
         </div>
       </div>

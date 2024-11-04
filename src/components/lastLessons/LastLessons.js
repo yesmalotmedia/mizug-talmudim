@@ -98,6 +98,7 @@ const LastLessons = () => {
           url={video?.url}
           videoId={video?.id}
           title={video?.title}
+          rabbiName={video?.rabbiName}
         />
       )}
       <Button

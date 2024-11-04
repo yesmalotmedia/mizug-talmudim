@@ -38,13 +38,11 @@ export default function Publishing() {
         marginTop={responsive("50px", "90px", "90px")}
       />
       <div style={styles.mainContainer}>
-        {/* <div style={styles.filterBtn}>
-          <Filters />
-        </div>
+        <div style={styles.filterBtn}>{/* <Filters /> */}</div>
         <div style={styles.preview}>
           <BooksCollection />
-        </div> */}
-        <ComingSoon />
+        </div>
+        {/* <ComingSoon /> */}
       </div>
     </>
   );
