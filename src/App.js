@@ -25,8 +25,7 @@ export const AppContext = React.createContext();
 
 /*
 1. sort talmud memuzaf by daf
-2.
-
+2. add line space in talmud memuzag section
 
 */
 function App() {

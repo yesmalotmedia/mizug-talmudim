@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../App";
 import Button from "./Button";
 import Subscribe from "./Subscribe";
-import { useState } from "react";
 
 const HeroSection = ({
   backgroundImage,
@@ -24,6 +23,7 @@ const HeroSection = ({
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
   // Styles
   const styles = {
     heroSection: {
@@ -72,18 +72,25 @@ const HeroSection = ({
       </div>
       <div style={styles.button}>
         {isButton && (
-          <Button
-            color={colors.white}
-            title={btnTitle}
-            bgColor={bgColors.orangeGradient}
-            hoveredBgColor={bgColors.azureGradient}
-            width={responsive("290px", "280px", "250px")}
-            height={responsive("50px", "50px", "40px")}
-            borderRadius={30}
-            arrow={true}
-            fontSize={responsive("2rem", "1.8rem", "1.6rem")}
-            fontWeight={600}
-          />
+          <a
+            href="https://www.trumot.net/Form/1564?media=wa"
+            target="_blank" // Open link in a new tab
+            rel="noopener noreferrer" // Security measure for external links
+            style={{ textDecoration: "none" }} // Remove underline
+          >
+            <Button
+              color={colors.white}
+              title={btnTitle}
+              bgColor={bgColors.orangeGradient}
+              hoveredBgColor={bgColors.azureGradient}
+              width={responsive("290px", "280px", "250px")}
+              height={responsive("50px", "50px", "40px")}
+              borderRadius={30}
+              arrow={true}
+              fontSize={responsive("2rem", "1.8rem", "1.6rem")}
+              fontWeight={600}
+            />
+          </a>
         )}
         {isSubscribe && <Subscribe />}
       </div>
