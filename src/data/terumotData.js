@@ -8,7 +8,7 @@ const terumotData = [
       {
         image: "/candle.png",
         text: "רוצים שנחזור אליכם? שלחו לנו הודעה",
-        link: "https://wa.me/0545236455", // WhatsApp link with phone number
+        link: "https://wa.me/972545236455", // WhatsApp link with phone number
       },
       {
         image: "/book.png",
@@ -18,7 +18,7 @@ const terumotData = [
       {
         image: "/sky.png",
         text: "לתרומה טלפונית",
-        link: "tel:+0545236455", // Telephone link for direct calling
+        link: "tel:+972545236455", // Telephone link for direct calling
       },
     ],
   },

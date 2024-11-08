@@ -24,8 +24,8 @@ import ExtractTalmudMemuzagData from "./assets/ExtractTalmudMemuzagData";
 export const AppContext = React.createContext();
 
 /*
-1. add image for shiurim of others rabbies
-2. add title for last lessons component
+1. sort talmud memuzaf by daf
+2.
 
 
 */

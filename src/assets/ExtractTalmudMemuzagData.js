@@ -27,15 +27,17 @@ function convertDateFormat(dateStr) {
 
 const ExtractTalmudMemuzagData = (data) => {
   console.log(data);
-  return data.map((post) => ({
-    talmud: post?.acf?.talmud,
-    masecet: post?.acf?.masecet,
-    id: post?.id,
-    perek: post?.acf?.perek,
-    daf: post?.acf?.daf,
-    page: post?.acf?.page,
-    body: post?.acf?.body,
-  }));
+  return data
+    .map((post) => ({
+      talmud: post?.acf?.talmud,
+      masecet: post?.acf?.masecet,
+      id: post?.id,
+      perek: post?.acf?.perek,
+      daf: post?.acf?.daf,
+      page: post?.acf?.page,
+      body: post?.acf?.body,
+    }))
+    .sort((a, b) => (a.daf > b.daf ? 1 : -1)); // Sorts data by 'daf' in ascending order
 };
 
 export default ExtractTalmudMemuzagData;

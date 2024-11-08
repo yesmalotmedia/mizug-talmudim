@@ -84,6 +84,11 @@ function TalmudMemuzagSection({ id }) {
       borderRadius: 40,
       border: "1px solid black",
     },
+    article: {
+      fontSize: responsive("1.3rem", "1.2rem", "1rem"),
+      textAlign: "justify",
+      lineHeight: responsive("2rem", "1.9rem", "1.7rem"),
+    },
   };
 
   return (
@@ -99,10 +104,9 @@ function TalmudMemuzagSection({ id }) {
           <span>{`דף ${daf}`}</span> <span>{`עמוד ${page}`}</span>
         </div>
       </div>
-
-      <div>articles nav</div>
-      <div dangerouslySetInnerHTML={{ __html: body }} />
-      <div>comments</div>
+      {/* <div>articles nav</div> */}
+      <div style={styles.article} dangerouslySetInnerHTML={{ __html: body }} />
+      {/* <div>comments</div> */}
     </div>
   );
 }

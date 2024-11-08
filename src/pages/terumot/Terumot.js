@@ -45,7 +45,7 @@ export default function Terumot() {
     },
     text: {
       position: "absolute",
-      fontSize: responsive("1.2vmax", "3vmax", "2.5vmax"),
+      fontSize: responsive("1.2vmax", "1.7vmax", "2vmax"),
       fontWeight: 700,
       color: colors.white,
       zIndex: 30,

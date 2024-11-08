@@ -56,14 +56,6 @@ const TalmudMemuzagCollection = ({ lessonsType, setlessonsType }) => {
     },
   };
 
-  //   useEffect(() => {
-  //     console.log("useeffect runs");
-  //     if (videos) {
-  //       console.log(lessonsFilter);
-  //       setDisplayedLessons(filterLessons(videos, lessonsFilter));
-  //     }
-  //   }, [lessonsFilter, videos]);
-
   const lessonsBoxesElements = parsedMemuzagData?.map((post) => (
     <TalmudMemuzagPrevewBox key={post.id} post={post} />
   ));

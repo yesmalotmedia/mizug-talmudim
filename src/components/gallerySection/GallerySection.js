@@ -11,7 +11,7 @@ const GallerySection = () => {
   };
 
   const subContainerStyle = {
-    width: responsive("60%", "60%","80%"),
+    width: responsive("60%", "60%", "80%"),
     maxWidth: 600,
     height: 500,
     position: "relative",
@@ -44,7 +44,7 @@ const GallerySection = () => {
   const images = isMobile
     ? [
         {
-          src: "gallerSecImg1.png",
+          src: "/gallery1.jpg",
           style: {
             ...imageCommonStyle,
             width: "100%",
@@ -54,7 +54,8 @@ const GallerySection = () => {
           },
         },
         {
-          src: "gallerSecImg1.png",
+          src: "/gallery3.png",
+
           style: {
             ...imageCommonStyle,
             width: "40%",
@@ -64,7 +65,8 @@ const GallerySection = () => {
           },
         },
         {
-          src: "gallerSecImg1.png",
+          src: "/gallery2.jpg",
+
           style: {
             ...imageCommonStyle,
             width: "60%",
@@ -74,7 +76,7 @@ const GallerySection = () => {
           },
         },
         {
-          src: "gallerSecImg1.png",
+          src: "/gallery4.jpeg",
           style: {
             ...imageCommonStyle,
             width: "60%",
@@ -86,7 +88,7 @@ const GallerySection = () => {
       ]
     : [
         {
-          src: "gallerSecImg1.png",
+          src: "/gallery1.jpg",
           style: {
             ...imageCommonStyle,
             width: "20%",
@@ -96,7 +98,7 @@ const GallerySection = () => {
           },
         },
         {
-          src: "gallerSecImg1.png",
+          src: "/gallery3.png",
           style: {
             ...imageCommonStyle,
             width: "22%",
@@ -106,7 +108,7 @@ const GallerySection = () => {
           },
         },
         {
-          src: "gallerSecImg1.png",
+          src: "/gallery2.jpg",
           style: {
             ...imageCommonStyle,
             width: "50%",
@@ -116,7 +118,7 @@ const GallerySection = () => {
           },
         },
         {
-          src: "gallerSecImg1.png",
+          src: "/gallery4.jpeg",
           style: {
             ...imageCommonStyle,
             width: "22%",
