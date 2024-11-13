@@ -26,7 +26,6 @@ const AboutSection = () => {
     },
     titleSection: {
       position: "relative",
-      top: responsive("-1vw"),
       zIndex: 2,
       width: responsive("30%", "40%", "70%"),
       textAlign: "center",
@@ -35,18 +34,25 @@ const AboutSection = () => {
       flexDirection: "column",
       alignItems: "center",
       whiteSpace: responsive("nowrap", "", ""),
+      backgroundColor: "yellow",
+      height: "600px",
+      top: responsive("calc( 12vw - 300px)", "3vw", "8vw"),
     },
     bookIcon: {
       width: "40%",
       marginRight: 30,
-      marginTop: 100,
+      marginTop: -100,
+      position: "absolute",
+      top: responsive("370px", "-10px", "20%"),
     },
     title: {
       color: colors.white,
       fontSize: responsive("3rem", "2.3rem", "1.7rem"),
+      position: "absolute",
       fontWeight: 500,
       textAlign: "center",
       maxWidth: 400,
+      top: responsive("380px", "-15px", "100px"),
     },
     description: {
       width: responsive("50%", "80%", "90%"),
@@ -69,26 +75,24 @@ const AboutSection = () => {
       zIndex: 0,
       transform: responsive(
         "translateY(-30vw)",
-        "translateY(-90vw)",
-        "translateY(-190vw)"
+        "translateY(-60vw)",
+        "translateY(-100vw)"
       ),
       width: "100%",
-      height: responsive("auto", "auto", "190vh"),
+      height: responsive("auto", "auto", "150vh"),
     },
   };
 
-  const title = responsive(
+  const title = (
     <div style={styles.title}>
       אין תורה <br /> כתורת ארץ ישראל
-    </div>,
-    <div style={styles.title}>פה יהיה משפט מרגש שמבטא את התפיסה שלנו</div>,
-    <div style={styles.title}>פה יהיה משפט מרגש שמבטא את התפיסה שלנו</div>
+    </div>
   );
-  const bookImg = responsive(
-    <img src={"book-img.png"} style={styles.bookIcon} alt="book-img" />,
-    "",
-    ""
+
+  const bookImg = (
+    <img src={"book-img.png"} style={styles.bookIcon} alt="book-img" />
   );
+
   return (
     <div style={styles.container}>
       <div style={styles.titleSection}>

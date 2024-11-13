@@ -24,8 +24,8 @@ import ExtractTalmudMemuzagData from "./assets/ExtractTalmudMemuzagData";
 export const AppContext = React.createContext();
 
 /*
-1. sort talmud memuzaf by daf
-2. add line space in talmud memuzag section
+1. remove trumot btn from terumot page
+2. add link to btn in the page 
 
 */
 function App() {
@@ -116,9 +116,8 @@ function App() {
     loading: loadingMemuzag,
     error: errorMemuzag,
   } = useFetch(
-    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/memuzag"
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/memuzag?per_page=100"
   );
-
   // State for handling mobile view
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
