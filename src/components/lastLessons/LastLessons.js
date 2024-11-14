@@ -67,7 +67,7 @@ const LastLessons = () => {
       fontSize: responsive("1.8rem", "1.4rem", "1.3rem"),
     },
     img: {
-      margin: responsive(20, 10, 10),
+      margin: responsive(20, 10, 2),
     },
   };
 
@@ -119,7 +119,7 @@ const LastLessons = () => {
 
   return (
     <div style={styles.container}>
-      <div style={styles.title}>שיעורים אחרונים באתר</div>
+      <div style={styles.title}>שיעורים אחרונים </div>
       {lastVideosElements}
     </div>
   );

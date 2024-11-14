@@ -34,25 +34,26 @@ const AboutSection = () => {
       flexDirection: "column",
       alignItems: "center",
       whiteSpace: responsive("nowrap", "", ""),
-      backgroundColor: "yellow",
       height: "600px",
-      top: responsive("calc( 12vw - 300px)", "3vw", "8vw"),
+      top: responsive("calc( 12vw - 300px)", "3vw", "-150px"),
     },
     bookIcon: {
-      width: "40%",
-      marginRight: 30,
+      width: responsive("180px", "150px", "50%"),
+      marginRight: 0,
       marginTop: -100,
       position: "absolute",
-      top: responsive("370px", "-10px", "20%"),
+      top: responsive("380px", "-160px", "250px"),
     },
     title: {
       color: colors.white,
-      fontSize: responsive("3rem", "2.3rem", "1.7rem"),
+      fontSize: responsive("3rem", "2.5rem", "2rem"),
       position: "absolute",
       fontWeight: 500,
       textAlign: "center",
       maxWidth: 400,
-      top: responsive("380px", "-15px", "100px"),
+      marginTop: -5,
+
+      top: responsive("380px", "-150px", "250px"),
     },
     description: {
       width: responsive("50%", "80%", "90%"),
@@ -67,19 +68,20 @@ const AboutSection = () => {
       maxWidth: 1000,
       zIndex: 3,
       textAlign: "justify",
+      marginTop: responsive(0, 0, -350),
     },
     bgImg: {
       position: "absolute",
-      top: responsive(0, 130, 90),
+      top: responsive(0, 130, 0),
       left: 0,
       zIndex: 0,
       transform: responsive(
         "translateY(-30vw)",
-        "translateY(-60vw)",
-        "translateY(-100vw)"
+        "translateY(-100vw)",
+        "translateY(-90vw)"
       ),
       width: "100%",
-      height: responsive("auto", "auto", "150vh"),
+      height: responsive("auto", "1000px", "100vh"),
     },
   };
 
