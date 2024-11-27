@@ -68,11 +68,13 @@ export default function TalmudHaMemuzag() {
       />
       <section style={styles.mainSection}>
         {!isMobile ? (
-          <MemuzagSideBarSearch
-            options={options}
-            filter={filter}
-            onFilterChange={handleFilterChange}
-          />
+          !articleId && (
+            <MemuzagSideBarSearch
+              options={options}
+              filter={filter}
+              onFilterChange={handleFilterChange}
+            />
+          )
         ) : (
           <MemuzagMobileFilter
             options={options}

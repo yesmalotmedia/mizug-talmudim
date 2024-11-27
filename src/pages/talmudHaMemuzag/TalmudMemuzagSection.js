@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
+import NextAndPreviousBtn from "../../pages/whatsnew/NextAndPreviousBtn";
 
 function TalmudMemuzagSection({ id }) {
   const { isMobile, parsedMemuzagData, colors, responsive } =
@@ -107,6 +108,11 @@ function TalmudMemuzagSection({ id }) {
       {/* <div>articles nav</div> */}
       <div style={styles.article} dangerouslySetInnerHTML={{ __html: body }} />
       {/* <div>comments</div> */}
+      <NextAndPreviousBtn
+        data={parsedMemuzagData}
+        currentId={article?.id}
+        UrlPageName={"TalmudHaMemuzag"}
+      />
     </div>
   );
 }
