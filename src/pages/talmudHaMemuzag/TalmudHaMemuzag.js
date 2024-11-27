@@ -1,15 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../../App";
 import HeroSection from "../../components/elements/HeroSection";
-import LessonsSection from "../beitHamidrash/lessons/LessonSection";
 import TalmudMemuzagCollection from "./TalmudMemuzagCollection";
 import { useParams } from "react-router-dom";
 import TalmudMemuzagSection from "./TalmudMemuzagSection";
 import MemuzagSideBarSearch from "./MemuzagSideBarSearch";
+import getTalmudMemuzagCategories from "../../assets/getTalmudMemuzagCategories";
 
 export default function TalmudHaMemuzag() {
-  const { colors, responsive, isMobile } = useContext(AppContext);
+  const { parsedMemuzagData, colors, responsive, isMobile, mempa } = useContext(AppContext);
   const { articleId } = useParams();
+
+  // Manage the filter as a state in the parent component
+  const [filter, setFilter] = useState({
+    selectedTalmud: "בבלי",  // Start with "בבלי" as the default
+    selectedMasechet: "הכל",
+    selectedPerek: "הכל",
+    selectedDaf: "הכל",
+  });
+
+  const [options, setOptions] = useState(getTalmudMemuzagCategories(parsedMemuzagData, filter));
+
+  // Update options when the filter changes
+  useEffect(() => {
+    setOptions(getTalmudMemuzagCategories(parsedMemuzagData, filter));
+  }, [filter, parsedMemuzagData]);  // Update options whenever filter or data changes
+
+  // Function to update the filter state
+  const handleFilterChange = (updatedFilter) => {
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      ...updatedFilter,
+    }));
+  };
 
   // styles
   const styles = {
@@ -18,23 +41,15 @@ export default function TalmudHaMemuzag() {
       display: "flex",
       margin: isMobile ? 0 : 100,
       justifyContent: "center",
+      flexDirection: isMobile ? "column" : "row", // added flex direction for mobile
     },
     titleSection: {
       display: "flex",
       width: "60%",
       justifyContent: "space-between",
-      // margin: "auto",
     },
-    selectionButtonContainer: isMobile
-      ? {
-          overflowY: "auto",
-          margin: "-50px 0 20px 0",
-          paddingTop: 100,
-          scrollbarWidth: "none",
-          paddingRight: 70,
-        }
-      : {},
   };
+
   return (
     <div>
       <HeroSection
@@ -46,7 +61,9 @@ export default function TalmudHaMemuzag() {
         marginTop={responsive("40px", "90px", "90px")}
       />
       <section style={styles.mainSection}>
-        {!isMobile && <MemuzagSideBarSearch />}
+        {!isMobile && (
+          <MemuzagSideBarSearch options={options} filter={filter} onFilterChange={handleFilterChange} />
+        )}
         {articleId ? (
           <TalmudMemuzagSection id={articleId} />
         ) : (

@@ -1,45 +1,21 @@
-import React, { useContext, useEffect, useState, useCallback } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../App";
 import Button from "../../components/elements/Button";
 import SelectInput from "../../pages/beitHamidrash/sideBarSearch/SelectInput";
-import Checkbox from "../../pages/beitHamidrash/sideBarSearch/Checkbox";
-import yerushalmiMasectot from "../../data/yerushalmiMasectot";
 
-const MemuzagSideBarSearch = ({
-  selectedTopic,
-  setSelectedTopic,
-  setSelectedRabbi,
-  handleToggle,
-  selectedRabbi,
-}) => {
-  //data
+const MemuzagSideBarSearch = ({ options, filter, onFilterChange }) => {
   const {
     responsive,
     colors,
     bgColors,
     isMobile,
     rabbiesData,
-    categories,
-    getCategoriesByParent,
-    setlessonsFilter,
-    lessonsFilter,
   } = useContext(AppContext);
 
-  const [selectedValue, setSelectedValue] = useState(500);
-
-  // states for form inputs
-  const [categoriesOptions, setCategoriesOptions] = useState(
-    getCategoriesByParent(categories, 3)
-  );
-  const [masectotOptions, setMasectotOptions] = useState();
-  const [rabbiesOptions, setRabbiesOptions] = useState();
-
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const [selectedMasechet, setSelectedMasechet] = useState("");
-  const [videoChecked, setVideoChecked] = useState(true);
-  const [audioChecked, setAudioChecked] = useState(true);
-  const [textChecked, setTextChecked] = useState(true);
+  const { talmuds, masecets, perakim, dapim } = options;
+  const { selectedTalmud, selectedMasechet, selectedPerek, selectedDaf } = filter;
+console.log(filter);
+console.log(options);
 
   // styles
   const styles = {
@@ -56,31 +32,7 @@ const MemuzagSideBarSearch = ({
       flexDirection: "column",
       marginLeft: 20,
     },
-    searchContainer: {
-      position: "relative",
-      width: "90%",
-      marginBottom: 20,
-    },
-    searchInput: {
-      padding: "10px 12px",
-      borderRadius: 50,
-      width: "100%",
-      outline: "none",
-      border: "solid 1px" + colors.darkBlue,
-      color: colors.darkBlue,
-      fontWeight: 500,
-      paddingRight: 10, // Adjust padding to accommodate the icon
-      fontSize: 17,
-    },
-    searchIcon: {
-      position: "absolute",
-      left: 10, // Adjust the position of the icon as needed
-      top: "50%", // Center vertically
-      //transform: "translateY(-50%)", // Center vertically
-      width: 20, // Set the width of the icon
-      height: 20, // Set the height of the icon
-    },
-    lable: {
+    label: {
       textAlign: "right",
       color: colors.azure,
       fontSize: 15,
@@ -89,142 +41,81 @@ const MemuzagSideBarSearch = ({
       marginBottom: 5,
       marginRight: 5,
     },
-    clearAll: {
-      border: `1px solid ${colors.darkBlue}`,
-      borderRadius: 20,
-      padding: "7px 14px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      gap: 10,
-      color: colors.darkBlue,
-      fontSize: 17,
-      fontWeight: 500,
-      margin: "0 170px 20px 0",
-    },
   };
 
-  //functions
-  const filteringSearch = useCallback(() => {
-    const formData = {
-      freeQuery: searchQuery,
-      category: selectedTopic,
-      masechet: selectedMasechet,
-      rabbiName: selectedRabbi,
-      type: {
-        video: videoChecked,
-        audio: audioChecked,
-        text: textChecked,
-      },
-    };
+  // עדכון הערכים של filter עם שינוי בערכי ה-SelectInput
+  const handleTalmudChange = (selectedValue) => {
+    if (selectedValue !== selectedTalmud) {
+      onFilterChange({ selectedTalmud: selectedValue });
+    }
+  };
 
-    setlessonsFilter(formData);
-  }, [
-    selectedRabbi,
-    selectedTopic,
-    selectedMasechet,
-    videoChecked,
-    audioChecked,
-    textChecked,
-    setlessonsFilter,
-  ]);
+  const handleMasechetChange = (selectedValue) => {
+    if (selectedValue !== selectedMasechet) {
+      onFilterChange({ selectedMasechet: selectedValue });
+    }
+  };
 
-  const freeSearch = useCallback(() => {
-    const formData = {
-      freeQuery: searchQuery,
-    };
-    setlessonsFilter(formData);
-  }, [searchQuery]);
+  const handlePerekChange = (selectedValue) => {
+    if (selectedValue !== selectedPerek) {
+      onFilterChange({ selectedPerek: selectedValue });
+    }
+  };
 
+  const handleDafChange = (selectedValue) => {
+    if (selectedValue !== selectedDaf) {
+      onFilterChange({ selectedDaf: selectedValue });
+    }
+  };
+
+  // עדכון האפשרויות בהתאם לתלמוד הנבחר
   useEffect(() => {
-    freeSearch();
-  }, [searchQuery, freeSearch]);
+    // אם יש רק מסכת אחת בתלמוד שנבחר, בחר אותה אוטומטית
+    if (masecets.length === 1 && selectedMasechet !== masecets[0].value) {
+      onFilterChange({ selectedMasechet: masecets[0].value });
+    }
 
-  useEffect(() => {
-    filteringSearch();
-  }, [
-    selectedRabbi,
-    selectedTopic,
-    selectedMasechet,
-    videoChecked,
-    audioChecked,
-    textChecked,
-    filteringSearch,
-  ]);
+    // אם יש רק פרק אחד במסכת הנבחרת, בחר אותו אוטומטית
+    if (perakim.length === 1 && selectedPerek !== perakim[0].value) {
+      onFilterChange({ selectedPerek: perakim[0].value });
+    }
 
-  useEffect(() => {
-    setlessonsFilter(lessonsFilter);
-  }, [setlessonsFilter]);
+    // אם יש רק דף אחד בפרק הנבחר, בחר אותו אוטומטית
+    if (dapim.length === 1 && selectedDaf !== dapim[0].value) {
+      onFilterChange({ selectedDaf: dapim[0].value });
+    }
+  }, [masecets, perakim, dapim, selectedMasechet, selectedPerek, selectedDaf, onFilterChange]);
 
   return (
     <form style={styles.container}>
-      {isMobile && (
-        <>
-          <div style={styles.clearAll}>
-            <img src="/clearAll.svg" />
-            <span>נקה הכל</span>
-          </div>
-        </>
-      )}
-      <div style={styles.searchContainer}>
-        <div style={styles.lable}>חיפוש חופשי </div>
-        <input
-          style={styles.searchInput}
-          placeholder="הקלידו שם רב או נושא"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <img src={"/searchIcon.png"} alt="Search" style={styles.searchIcon} />{" "}
-        {/* Search icon */}
-      </div>
-      {/* <Button
-        color={colors.white}
-        bgColor={bgColors.orangeGradient}
-        hoveredBgColor={bgColors.darkBlueGradient}
-        title={"בצע חיפוש"}
-        fontSize={20}
-        fontWeight={500}
-        borderRadius={50}
-        width={"90%"}
-        arrow={true}
-        onClick={freeSearch}
-      /> */}
-      <br></br>
-      <div style={styles.lable}>הנושאים</div>
+      <div style={styles.label}>תלמוד</div>
       <SelectInput
-        options={getCategoriesByParent(categories, 3) || categoriesOptions}
-        value={selectedTopic}
-        onChange={(e) => setSelectedTopic(e.target.value)}
+        options={talmuds}
+        value={selectedTalmud}
+        onChange={(e) => handleTalmudChange(e.target.value)}
       />
-      {/* <div style={styles.lable}>המסכת</div>
+
+      <div style={styles.label}>מסכת</div>
       <SelectInput
-        options={yerushalmiMasectot}
+        options={masecets}
         value={selectedMasechet}
-        onChange={(e) => setSelectedMasechet(e.target.value)}
-      /> */}
-      <div style={styles.lable}>הרבנים</div>
+        onChange={(e) => handleMasechetChange(e.target.value)}
+      />
+
+      <div style={styles.label}>פרק</div>
       <SelectInput
-        options={rabbiesData}
-        value={selectedRabbi}
-        onChange={(e) => setSelectedRabbi(e.target.value)}
+        options={perakim}
+        value={selectedPerek}
+        onChange={(e) => handlePerekChange(e.target.value)}
       />
-      <div style={styles.lable}>סוג השיעור</div>
-      <Checkbox
-        label={"שיעורי וידאו"}
-        checked={videoChecked}
-        onChange={() => setVideoChecked(!videoChecked)}
+
+      <div style={styles.label}>דף</div>
+      <SelectInput
+        options={dapim}
+        value={selectedDaf}
+        onChange={(e) => handleDafChange(e.target.value)}
       />
-      <Checkbox
-        label={"שיעורי שמע"}
-        checked={audioChecked}
-        onChange={() => setAudioChecked(!audioChecked)}
-      />
-      <Checkbox
-        label={"שיעורי טקסט"}
-        checked={textChecked}
-        onChange={() => setTextChecked(!textChecked)}
-      />
-      <br />
+
       <Button
         color={colors.white}
         bgColor={bgColors.orangeGradient}
@@ -235,9 +126,7 @@ const MemuzagSideBarSearch = ({
         borderRadius={50}
         width={"90%"}
         arrow={true}
-        onClick={handleToggle}
-      />{" "}
-      <style>{`::placeholder {color: ${colors.darkBlue}`}</style>
+      />
     </form>
   );
 };

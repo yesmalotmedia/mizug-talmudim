@@ -3,7 +3,6 @@ import { AppContext } from "../../App";
 const GallerySection = () => {
   // context
   const { colors, isMobile, responsive } = useContext(AppContext);
-
   const containerStyle = {
     width: "100%",
     position: "relative",
@@ -39,6 +38,7 @@ const GallerySection = () => {
     borderRadius: 50,
     backgroundSize: "cover",
     border: "2px solid white",
+    objectFit: "cover", // Added to maintain aspect ratio
   };
 
   const images = isMobile
@@ -95,6 +95,7 @@ const GallerySection = () => {
             height: "100%",
             top: 0,
             right: 0,
+            objectPosition: "40%",
           },
         },
         {
@@ -128,7 +129,7 @@ const GallerySection = () => {
           },
         },
         {
-          src: "gallerSecImg1.png",
+          src: "/gallery4.jpeg",
           style: {
             ...imageCommonStyle,
             width: "50%",

@@ -19,7 +19,7 @@ export default function LessonPreviewBox({ post }) {
       justifyContent: "space-around",
       backgroundColor: colors.white,
       maxWidth: "300px",
-      minHeight: 400,
+      minHeight: 230,
     },
 
     masecet: {
