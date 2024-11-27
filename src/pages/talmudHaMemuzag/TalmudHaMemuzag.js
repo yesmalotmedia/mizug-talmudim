@@ -67,21 +67,21 @@ export default function TalmudHaMemuzag() {
         marginTop={responsive("40px", "90px", "90px")}
       />
       <section style={styles.mainSection}>
-        {!isMobile ? (
-          !articleId && (
-            <MemuzagSideBarSearch
-              options={options}
-              filter={filter}
-              onFilterChange={handleFilterChange}
-            />
-          )
-        ) : (
-          <MemuzagMobileFilter
-            options={options}
-            filter={filter}
-            onFilterChange={handleFilterChange}
-          />
-        )}
+        {!isMobile
+          ? !articleId && (
+              <MemuzagSideBarSearch
+                options={options}
+                filter={filter}
+                onFilterChange={handleFilterChange}
+              />
+            )
+          : !articleId && (
+              <MemuzagMobileFilter
+                options={options}
+                filter={filter}
+                onFilterChange={handleFilterChange}
+              />
+            )}
         {articleId ? (
           <TalmudMemuzagSection id={articleId} />
         ) : (
