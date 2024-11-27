@@ -4,18 +4,12 @@ import Button from "../../components/elements/Button";
 import SelectInput from "../../pages/beitHamidrash/sideBarSearch/SelectInput";
 
 const MemuzagSideBarSearch = ({ options, filter, onFilterChange }) => {
-  const {
-    responsive,
-    colors,
-    bgColors,
-    isMobile,
-    rabbiesData,
-  } = useContext(AppContext);
+  const { responsive, colors, bgColors, isMobile, rabbiesData } =
+    useContext(AppContext);
 
   const { talmuds, masecets, perakim, dapim } = options;
-  const { selectedTalmud, selectedMasechet, selectedPerek, selectedDaf } = filter;
-console.log(filter);
-console.log(options);
+  const { selectedTalmud, selectedMasechet, selectedPerek, selectedDaf } =
+    filter;
 
   // styles
   const styles = {
@@ -25,9 +19,9 @@ console.log(options);
       padding: 20,
       width: responsive("40%", "100%", "100%"),
       maxWidth: responsive(300, "100%", "100%"),
-      maxHeight: responsive(700, "100vh", "100vh"),
+      maxHeight: responsive(500, "100vh", "100vh"),
       display: "flex",
-      justifyContent: "space-around",
+      justifyContent: "flex-start",
       alignItems: "center",
       flexDirection: "column",
       marginLeft: 20,
@@ -84,7 +78,15 @@ console.log(options);
     if (dapim.length === 1 && selectedDaf !== dapim[0].value) {
       onFilterChange({ selectedDaf: dapim[0].value });
     }
-  }, [masecets, perakim, dapim, selectedMasechet, selectedPerek, selectedDaf, onFilterChange]);
+  }, [
+    masecets,
+    perakim,
+    dapim,
+    selectedMasechet,
+    selectedPerek,
+    selectedDaf,
+    onFilterChange,
+  ]);
 
   return (
     <form style={styles.container}>
@@ -114,18 +116,6 @@ console.log(options);
         options={dapim}
         value={selectedDaf}
         onChange={(e) => handleDafChange(e.target.value)}
-      />
-
-      <Button
-        color={colors.white}
-        bgColor={bgColors.orangeGradient}
-        hoveredBgColor={bgColors.darkBlueGradient}
-        title={"סנן"}
-        fontSize={20}
-        fontWeight={500}
-        borderRadius={50}
-        width={"90%"}
-        arrow={true}
       />
     </form>
   );

@@ -8,31 +8,36 @@ import MemuzagSideBarSearch from "./MemuzagSideBarSearch";
 import getTalmudMemuzagCategories from "../../assets/getTalmudMemuzagCategories";
 
 export default function TalmudHaMemuzag() {
-  const { parsedMemuzagData, colors, responsive, isMobile, mempa } = useContext(AppContext);
+  const { parsedMemuzagData, colors, responsive, isMobile, mempa } =
+    useContext(AppContext);
   const { articleId } = useParams();
 
   // Manage the filter as a state in the parent component
   const [filter, setFilter] = useState({
-    selectedTalmud: "בבלי",  // Start with "בבלי" as the default
+    selectedTalmud: "בבלי", // Start with "בבלי" as the default
     selectedMasechet: "הכל",
     selectedPerek: "הכל",
     selectedDaf: "הכל",
   });
 
-  const [options, setOptions] = useState(getTalmudMemuzagCategories(parsedMemuzagData, filter));
+  const [options, setOptions] = useState(
+    getTalmudMemuzagCategories(parsedMemuzagData, filter)
+  );
 
   // Update options when the filter changes
   useEffect(() => {
     setOptions(getTalmudMemuzagCategories(parsedMemuzagData, filter));
-  }, [filter, parsedMemuzagData]);  // Update options whenever filter or data changes
+  }, [filter, parsedMemuzagData]); // Update options whenever filter or data changes
 
-  // Function to update the filter state
   const handleFilterChange = (updatedFilter) => {
     setFilter((prevFilter) => ({
       ...prevFilter,
       ...updatedFilter,
     }));
   };
+
+  // הדפסה של הערכים המעודכנים של הפילטר
+  useEffect(() => {}, [filter]);
 
   // styles
   const styles = {
@@ -62,12 +67,16 @@ export default function TalmudHaMemuzag() {
       />
       <section style={styles.mainSection}>
         {!isMobile && (
-          <MemuzagSideBarSearch options={options} filter={filter} onFilterChange={handleFilterChange} />
+          <MemuzagSideBarSearch
+            options={options}
+            filter={filter}
+            onFilterChange={handleFilterChange}
+          />
         )}
         {articleId ? (
           <TalmudMemuzagSection id={articleId} />
         ) : (
-          <TalmudMemuzagCollection />
+          <TalmudMemuzagCollection filter={filter} />
         )}
       </section>
     </div>
