@@ -3,9 +3,14 @@ import { AppContext } from "../../App";
 import Button from "../../components/elements/Button";
 import SelectInput from "../../pages/beitHamidrash/sideBarSearch/SelectInput";
 
-const MemuzagSideBarSearch = ({ options, filter, onFilterChange }) => {
-  const { responsive, colors, bgColors, isMobile, rabbiesData } =
-    useContext(AppContext);
+const MemuzagSideBarSearch = ({
+  options,
+  filter,
+  onFilterChange,
+  onSubmit,
+  handleToggle,
+}) => {
+  const { responsive, colors, bgColors, isMobile } = useContext(AppContext);
 
   const { talmuds, masecets, perakim, dapim } = options;
   const { selectedTalmud, selectedMasechet, selectedPerek, selectedDaf } =
@@ -35,46 +40,22 @@ const MemuzagSideBarSearch = ({ options, filter, onFilterChange }) => {
       marginBottom: 5,
       marginRight: 5,
     },
-  };
-
-  // עדכון הערכים של filter עם שינוי בערכי ה-SelectInput
-  const handleTalmudChange = (selectedValue) => {
-    if (selectedValue !== selectedTalmud) {
-      onFilterChange({ selectedTalmud: selectedValue });
-    }
-  };
-
-  const handleMasechetChange = (selectedValue) => {
-    if (selectedValue !== selectedMasechet) {
-      onFilterChange({ selectedMasechet: selectedValue });
-    }
-  };
-
-  const handlePerekChange = (selectedValue) => {
-    if (selectedValue !== selectedPerek) {
-      onFilterChange({ selectedPerek: selectedValue });
-    }
-  };
-
-  const handleDafChange = (selectedValue) => {
-    if (selectedValue !== selectedDaf) {
-      onFilterChange({ selectedDaf: selectedValue });
-    }
+    buttonContainer: {
+      marginTop: 20,
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+    },
   };
 
   // עדכון האפשרויות בהתאם לתלמוד הנבחר
   useEffect(() => {
-    // אם יש רק מסכת אחת בתלמוד שנבחר, בחר אותה אוטומטית
     if (masecets.length === 1 && selectedMasechet !== masecets[0].value) {
       onFilterChange({ selectedMasechet: masecets[0].value });
     }
-
-    // אם יש רק פרק אחד במסכת הנבחרת, בחר אותו אוטומטית
     if (perakim.length === 1 && selectedPerek !== perakim[0].value) {
       onFilterChange({ selectedPerek: perakim[0].value });
     }
-
-    // אם יש רק דף אחד בפרק הנבחר, בחר אותו אוטומטית
     if (dapim.length === 1 && selectedDaf !== dapim[0].value) {
       onFilterChange({ selectedDaf: dapim[0].value });
     }
@@ -94,29 +75,49 @@ const MemuzagSideBarSearch = ({ options, filter, onFilterChange }) => {
       <SelectInput
         options={talmuds}
         value={selectedTalmud}
-        onChange={(e) => handleTalmudChange(e.target.value)}
+        onChange={(e) => onFilterChange({ selectedTalmud: e.target.value })}
       />
-
       <div style={styles.label}>מסכת</div>
       <SelectInput
         options={masecets}
         value={selectedMasechet}
-        onChange={(e) => handleMasechetChange(e.target.value)}
+        onChange={(e) => onFilterChange({ selectedMasechet: e.target.value })}
       />
-
       <div style={styles.label}>פרק</div>
       <SelectInput
         options={perakim}
         value={selectedPerek}
-        onChange={(e) => handlePerekChange(e.target.value)}
+        onChange={(e) => onFilterChange({ selectedPerek: e.target.value })}
       />
-
       <div style={styles.label}>דף</div>
       <SelectInput
         options={dapim}
         value={selectedDaf}
-        onChange={(e) => handleDafChange(e.target.value)}
+        onChange={(e) => onFilterChange({ selectedDaf: e.target.value })}
       />
+      <div style={styles.buttonContainer}>
+        <Button
+          text="חפש"
+          onClick={(e) => {
+            e.preventDefault(); // מונע רענון דף
+            onSubmit(); // פעולה שתגדיר
+          }}
+          color={colors.azure}
+          bgColor={bgColors.white}
+        />
+      </div>
+      <Button
+        color={colors.white}
+        bgColor={bgColors.orangeGradient}
+        hoveredBgColor={bgColors.darkBlueGradient}
+        title={"סנן"}
+        fontSize={20}
+        fontWeight={500}
+        borderRadius={50}
+        width={"90%"}
+        arrow={true}
+        onClick={handleToggle}
+      />{" "}
     </form>
   );
 };

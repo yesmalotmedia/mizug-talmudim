@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import TalmudMemuzagSection from "./TalmudMemuzagSection";
 import MemuzagSideBarSearch from "./MemuzagSideBarSearch";
 import getTalmudMemuzagCategories from "../../assets/getTalmudMemuzagCategories";
+import MemuzagMobileFilter from "./MemuzagMobileFilter";
 
 export default function TalmudHaMemuzag() {
   const { parsedMemuzagData, colors, responsive, isMobile, mempa } =
@@ -66,8 +67,14 @@ export default function TalmudHaMemuzag() {
         marginTop={responsive("40px", "90px", "90px")}
       />
       <section style={styles.mainSection}>
-        {!isMobile && (
+        {!isMobile ? (
           <MemuzagSideBarSearch
+            options={options}
+            filter={filter}
+            onFilterChange={handleFilterChange}
+          />
+        ) : (
+          <MemuzagMobileFilter
             options={options}
             filter={filter}
             onFilterChange={handleFilterChange}

@@ -51,6 +51,7 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
       color: colors.darkBlue,
       fontWeight: 700,
       fontSize: 22,
+      marginBottom: 10,
     },
     sortContainer: {
       width: "40%",
@@ -82,18 +83,6 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
     <div style={styles.mainContainer}>
       <div style={styles.titleSection}>
         <div style={styles.title}>{lessonsFilter.category}</div>
-
-        {/* {!isMobile && (
-          <div style={styles.sortContainer}>
-            <div style={styles.label}>מיין לפי</div>
-            <SelectInput
-              options={[
-                { name: "תאריך", value: "date" },
-                { name: "רב", value: "rabbi" },
-              ]}
-            />
-          </div>
-        )} */}
       </div>
       {isMobile && <MobileFilter />}
       <div style={styles.lessonsContainer}>{lessonsBoxesElements}</div>

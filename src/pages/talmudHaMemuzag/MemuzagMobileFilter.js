@@ -1,8 +1,13 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
-import SideBarSearch from "./sideBarSearch/SideBarSearch";
+import MemuzagSideBarSearch from "./MemuzagSideBarSearch";
 
-export default function MobileFilter() {
+export default function MemuzagMobileFilter({
+  options,
+  filter,
+  onFilterChange,
+  onSubmit,
+}) {
   const {
     responsive,
     colors,
@@ -111,13 +116,17 @@ export default function MobileFilter() {
     },
     filterDropdown: {
       position: "fixed",
-      bottom: 0,
       top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
       width: "100%",
       height: "100vh",
+      backgroundColor: bgColors.lightAzure, // צבע רקע
       transition: "transform 0.5s ease-in-out",
       transform: isToggle ? "translateY(0)" : "translateY(100%)",
       zIndex: 1000,
+      overflow: "auto", // תמיכה בגלילה במידה שהתוכן ארוך
     },
     filterTop: {
       display: "flex",
@@ -165,15 +174,11 @@ export default function MobileFilter() {
             ×
           </span>
         </div>
-
-        <SideBarSearch
+        <MemuzagSideBarSearch
+          options={options}
+          filter={filter}
+          onFilterChange={onFilterChange}
           handleToggle={handleToggle}
-          lessonsType={lessonsType}
-          setlessonsType={setlessonsType}
-          selectedTopic={selectedTopic}
-          setSelectedTopic={setSelectedTopic}
-          selectedRabbi={selectedRabbi}
-          setSelectedRabbi={setSelectedRabbi}
         />
       </div>
       {isDropdown && <div style={styles.filterDate}></div>}
