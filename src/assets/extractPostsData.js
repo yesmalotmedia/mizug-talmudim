@@ -12,8 +12,6 @@ const decodeHtmlEntities = (str) => {
 };
 
 const ExtractPostsData = (data) => {
-  console.log(1111111111);
-
   console.log(data);
 
   return data.map((item) => ({

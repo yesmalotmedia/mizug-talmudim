@@ -44,6 +44,9 @@ function filterLessons(data, filter) {
     );
   }
 
+  // Sort filtered lessons by title alphabetically
+  filteredLessons.sort((a, b) => a.title.localeCompare(b.title));
+
   return filteredLessons;
 }
 
