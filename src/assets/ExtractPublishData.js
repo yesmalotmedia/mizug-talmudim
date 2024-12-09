@@ -20,7 +20,6 @@ function convertDateFormat(dateStr) {
 }
 
 const ExtractPublishData = (data) => {
-  console.log(data);
   return data.map((post) => ({
     image: post?.acf?.image,
     id: post?.id,

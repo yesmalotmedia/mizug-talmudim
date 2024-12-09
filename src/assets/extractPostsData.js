@@ -12,8 +12,6 @@ const decodeHtmlEntities = (str) => {
 };
 
 const ExtractPostsData = (data) => {
-  console.log(data);
-
   return data.map((item) => ({
     id: item?.id,
     date: item?.date?.split("T")[0], // Extract only the date part

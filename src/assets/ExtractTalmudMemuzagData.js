@@ -26,7 +26,6 @@ function convertDateFormat(dateStr) {
 }
 
 const ExtractTalmudMemuzagData = (data) => {
-  console.log(data);
   return data
     .map((post) => ({
       talmud: post?.acf?.talmud,

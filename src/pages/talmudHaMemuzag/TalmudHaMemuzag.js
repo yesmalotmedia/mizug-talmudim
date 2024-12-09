@@ -9,7 +9,7 @@ import getTalmudMemuzagCategories from "../../assets/getTalmudMemuzagCategories"
 import MemuzagMobileFilter from "./MemuzagMobileFilter";
 
 export default function TalmudHaMemuzag() {
-  const { parsedMemuzagData, colors, responsive, isMobile, mempa } =
+  const { parsedMemuzagData, colors, responsive, isMobile } =
     useContext(AppContext);
   const { articleId } = useParams();
 
@@ -38,7 +38,9 @@ export default function TalmudHaMemuzag() {
   };
 
   // הדפסה של הערכים המעודכנים של הפילטר
-  useEffect(() => {}, [filter]);
+  useEffect(() => {
+    console.log(filter);
+  }, [filter]);
 
   // styles
   const styles = {

@@ -19,7 +19,6 @@ function convertDateFormat(dateStr) {
 }
 
 const ExtractNewsData = (data) => {
-  console.log(data);
   return data.map((post) => ({
     thumbnail: [post?.acf?.image],
     postId: post?.id,

@@ -10,13 +10,47 @@ const MemuzagSideBarSearch = ({
   onSubmit,
   handleToggle,
 }) => {
-  const { responsive, colors, bgColors, isMobile } = useContext(AppContext);
+  const { responsive, colors, bgColors } = useContext(AppContext);
 
   const { talmuds, masecets, perakim, dapim } = options;
+
   const { selectedTalmud, selectedMasechet, selectedPerek, selectedDaf } =
     filter;
 
-  // styles
+  // ערכי ברירת מחדל
+  const defaultFilter = {
+    selectedTalmud: "הכל",
+    selectedMasechet: "הכל",
+    selectedPerek: "הכל",
+    selectedDaf: "הכל",
+  };
+
+  // הגדרת אפשרויות ברירת מחדל בעת טעינה
+  useEffect(() => {
+    if (!selectedTalmud && talmuds.length > 0) {
+      onFilterChange({ selectedTalmud: defaultFilter.selectedTalmud });
+    }
+    if (!selectedMasechet && masecets.length > 0) {
+      onFilterChange({ selectedMasechet: defaultFilter.selectedMasechet });
+    }
+    if (!selectedPerek && perakim.length > 0) {
+      onFilterChange({ selectedPerek: defaultFilter.selectedPerek });
+    }
+    if (!selectedDaf && dapim.length > 0) {
+      onFilterChange({ selectedDaf: defaultFilter.selectedDaf });
+    }
+  }, [
+    talmuds,
+    masecets,
+    perakim,
+    dapim,
+    selectedTalmud,
+    selectedMasechet,
+    selectedPerek,
+    selectedDaf,
+    onFilterChange,
+  ]);
+
   const styles = {
     container: {
       backgroundColor: bgColors.lightAzure,
@@ -48,51 +82,37 @@ const MemuzagSideBarSearch = ({
     },
   };
 
-  // עדכון האפשרויות בהתאם לתלמוד הנבחר
-  useEffect(() => {
-    if (masecets.length === 1 && selectedMasechet !== masecets[0].value) {
-      onFilterChange({ selectedMasechet: masecets[0].value });
-    }
-    if (perakim.length === 1 && selectedPerek !== perakim[0].value) {
-      onFilterChange({ selectedPerek: perakim[0].value });
-    }
-    if (dapim.length === 1 && selectedDaf !== dapim[0].value) {
-      onFilterChange({ selectedDaf: dapim[0].value });
-    }
-  }, [
-    masecets,
-    perakim,
-    dapim,
-    selectedMasechet,
-    selectedPerek,
-    selectedDaf,
-    onFilterChange,
-  ]);
+  // פילטר לשמירה על ערכים חוקיים בלבד
+  const filterOptions = (options) => {
+    return options.filter(
+      (option) => option.value && option.value.trim() !== ""
+    );
+  };
 
   return (
     <form style={styles.container}>
       <div style={styles.label}>תלמוד</div>
       <SelectInput
-        options={talmuds}
-        value={selectedTalmud}
+        options={filterOptions(talmuds)}
+        value={selectedTalmud || "הכל"}
         onChange={(e) => onFilterChange({ selectedTalmud: e.target.value })}
       />
       <div style={styles.label}>מסכת</div>
       <SelectInput
-        options={masecets}
-        value={selectedMasechet}
+        options={filterOptions(masecets)}
+        value={selectedMasechet || "הכל"}
         onChange={(e) => onFilterChange({ selectedMasechet: e.target.value })}
       />
       <div style={styles.label}>פרק</div>
       <SelectInput
-        options={perakim}
-        value={selectedPerek}
+        options={filterOptions(perakim)}
+        value={selectedPerek || "הכל"}
         onChange={(e) => onFilterChange({ selectedPerek: e.target.value })}
       />
       <div style={styles.label}>דף</div>
       <SelectInput
-        options={dapim}
-        value={selectedDaf}
+        options={filterOptions(dapim)}
+        value={selectedDaf || "הכל"}
         onChange={(e) => onFilterChange({ selectedDaf: e.target.value })}
       />
       <div style={styles.buttonContainer}>
@@ -100,7 +120,7 @@ const MemuzagSideBarSearch = ({
           text="חפש"
           onClick={(e) => {
             e.preventDefault(); // מונע רענון דף
-            onSubmit(); // פעולה שתגדיר
+            onSubmit();
           }}
           color={colors.azure}
           bgColor={bgColors.white}
@@ -117,7 +137,7 @@ const MemuzagSideBarSearch = ({
         width={"90%"}
         arrow={true}
         onClick={handleToggle}
-      />{" "}
+      />
     </form>
   );
 };

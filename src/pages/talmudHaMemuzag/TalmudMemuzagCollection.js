@@ -26,14 +26,6 @@ const TalmudMemuzagCollection = ({ filter }) => {
       const matchesDaf =
         filter.selectedDaf === "הכל" || lesson.daf === filter.selectedDaf;
 
-      // הדפסת חוסר התאמה
-      if (!matchesMasechet) {
-        console.log("No match for masechet:", {
-          filter: filter.selectedMasechet,
-          lesson: lesson.masechet,
-        });
-      }
-
       return matchesTalmud && matchesMasechet && matchesPerek && matchesDaf;
     });
 

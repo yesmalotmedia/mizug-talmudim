@@ -116,7 +116,7 @@ function App() {
     loading: loadingMemuzag,
     error: errorMemuzag,
   } = useFetch(
-    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/memuzag?per_page=100"
+    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/memuzag?per_page=100&page=1"
   );
   // State for handling mobile view
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
@@ -145,7 +145,6 @@ function App() {
         e.contentType.includes("audio") ||
         e.contentType.includes("text")
     );
-    console.log(videos);
   }
 
   if (
@@ -236,5 +235,3 @@ function App() {
 }
 
 export default App;
-
-
