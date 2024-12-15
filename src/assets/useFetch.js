@@ -6,37 +6,57 @@ function useFetch(url) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchData = async (urlWithCacheBuster) => {
+  const fetchData = async (urlWithCacheBuster, isMounted) => {
     setLoading(true);
     let allData = [];
-    let page = 1;
-    let hasNextPage = true;
-
     try {
-      while (hasNextPage) {
-        const response = await axios.get(`${urlWithCacheBuster}&page=${page}`);
-        allData = [...allData, ...response.data];
+      // Fetch the first page to get total pages
+      const firstPageResponse = await axios.get(`${urlWithCacheBuster}&page=1`);
+      allData = [...firstPageResponse.data];
+      const totalPages = parseInt(
+        firstPageResponse.headers["x-wp-totalpages"] || "1",
+        10
+      );
 
-        // Assuming the response contains pagination info to check if there are more pages
-        hasNextPage = response.headers["x-wp-totalpages"] > page;
-        page++;
+      // Fetch remaining pages in parallel
+      const requests = [];
+      for (let page = 2; page <= totalPages; page++) {
+        requests.push(axios.get(`${urlWithCacheBuster}&page=${page}`));
       }
-      setData(allData);
+
+      const responses = await Promise.all(requests);
+      responses.forEach((response) => {
+        allData = [...allData, ...response.data];
+      });
+
+      if (isMounted()) {
+        setData(allData);
+      }
     } catch (err) {
-      setError(err);
+      if (isMounted()) {
+        setError(err);
+      }
     } finally {
-      setLoading(false);
+      if (isMounted()) {
+        setLoading(false);
+      }
     }
   };
 
   useEffect(() => {
+    let isMounted = true; // Ensure fetch only runs when component is mounted
     const urlWithCacheBuster = `${url}${url.includes("?") ? "&" : "?"}cacheBuster=${new Date().getTime()}`;
-    fetchData(urlWithCacheBuster);
+
+    fetchData(urlWithCacheBuster, () => isMounted);
+
+    return () => {
+      isMounted = false; // Cleanup on component unmount
+    };
   }, [url]);
 
   const refetch = () => {
     const urlWithCacheBuster = `${url}${url.includes("?") ? "&" : "?"}cacheBuster=${new Date().getTime()}`;
-    fetchData(urlWithCacheBuster);
+    fetchData(urlWithCacheBuster, () => true); // Pass always-true for manual refetch
   };
 
   return { data, loading, error, refetch };

@@ -38,7 +38,7 @@ const LastLessons = () => {
   } = useContext(AppContext);
   // const lastVideos = [lastEiun, lastDafYomi, lastClalim];
   const loadingLastLessons =
-    loadingLastClalim && loadinglastDafYomi && loadingLastEiun;
+    loadingLastClalim || loadinglastDafYomi || loadingLastEiun;
   const styles = {
     container: {
       width: responsive("80%", "80%", "90%"),
@@ -120,7 +120,11 @@ const LastLessons = () => {
   return (
     <div style={styles.container}>
       <div style={styles.title}>שיעורים אחרונים </div>
-      {lastVideosElements}
+      {loadingLastLessons ? (
+        <LoaderAnimation isLoading={loadingLastLessons} color={colors.orange} />
+      ) : (
+        lastVideosElements
+      )}
     </div>
   );
 };
