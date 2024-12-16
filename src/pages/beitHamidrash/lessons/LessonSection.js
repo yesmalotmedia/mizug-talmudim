@@ -8,8 +8,10 @@ import extractYoutubeCoverByVideoId from "../../../assets/extractYoutubeCoverByV
 import LoaderAnimation from "../../../components/elements/LoaderAnimation";
 
 export default function LessonSection({ videoId }) {
-  const { colors, responsive, videos } = useContext(AppContext);
- 
+  const { colors, responsive, videos, useCategoryNameById } =
+    useContext(AppContext);
+  const mainCategory = useCategoryNameById(video.categories[0]);
+  const subCategory = useCategoryNameById(video.categories[1]);
   if (!videos) {
     console.error("Videos not available in context");
     return <LoaderAnimation isLoading={!videos} color={colors.orange} />;
@@ -25,77 +27,77 @@ export default function LessonSection({ videoId }) {
     return <LoaderAnimation isLoading={!video} color={colors.orange} />;
   }
 
-  const mainCategory = getCategoryNameById(video.categories[0]);
-  const subCategory = getCategoryNameById(video.categories[1]);
+  // const mainCategory = getCategoryNameById(video.categories[0]);
+  // const subCategory = getCategoryNameById(video.categories[1]);
 
   const styles = {
-    container: { 
+    container: {
       textAlign: "right",
-      width: "100%" 
+      width: "100%",
     },
-    headerSection: { 
-      width: "100%" 
+    headerSection: {
+      width: "100%",
     },
-    breadcrumb: { 
-      color: colors.grey, 
+    breadcrumb: {
+      color: colors.grey,
       fontWeight: 500,
       paddingBottom: 20,
     },
-    nameOfRav: { 
-      color: colors.azure 
+    nameOfRav: {
+      color: colors.azure,
     },
-    nameOfShiur: { 
-      color: colors.darkBlue, 
-      padding: "7px 0" 
+    nameOfShiur: {
+      color: colors.darkBlue,
+      padding: "7px 0",
     },
-    timeAndTimeContainer: { 
+    timeAndTimeContainer: {
       width: responsive("100%", "100%", "100%"),
-      display: "flex", 
-      alignItems: "center", 
-      padding: "20px 0" 
+      display: "flex",
+      alignItems: "center",
+      padding: "20px 0",
     },
-    icon: { 
+    icon: {
       height: 20,
-      width: 20 
+      width: 20,
     },
     dateAndTimeText: {
       width: "100%",
       padding: "0 10px",
-      fontWeight: 400, 
-      color: colors.grey 
+      fontWeight: 400,
+      color: colors.grey,
     },
-    descriptionContainer: { 
+    descriptionContainer: {
       marginTop: 20,
-      width: responsive("100%", "70%", "90%"), 
+      width: responsive("100%", "70%", "90%"),
       marginInline: "auto",
     },
-    description: { 
-      textAlign: "justify", 
+    description: {
+      textAlign: "justify",
       lineHeight: "1.9rem",
-      width: "100%"
+      width: "100%",
     },
-    audioContainer: { 
-      border: "1px solid #ccc", 
-      borderRadius: 20, 
-      marginTop: 20, 
-      display: "flex",
-      flexDirection: responsive("row", "column-reverse", "column-reverse"), 
-      alignItems: "center", 
-      justifyContent: responsive("flex-end", "center", "center"), 
-      width: "100%"
-    },
-    playerContainer: { 
-      display: "flex", 
-      flexDirection: "column",
-      padding: "10px 20px" 
-    },
-    thumbContainer:{
-      marginTop: responsive(0,10,10),
-      marginLeft:  responsive(20,0,0),
-      height: 120, 
-      width: 120, 
+    audioContainer: {
+      border: "1px solid #ccc",
       borderRadius: 20,
-      overflow: "hidden" 
+      marginTop: 20,
+      display: "flex",
+      flexDirection: responsive("row", "column-reverse", "column-reverse"),
+      alignItems: "center",
+      justifyContent: responsive("flex-end", "center", "center"),
+      width: "100%",
+    },
+    playerContainer: {
+      display: "flex",
+      flexDirection: "column",
+      padding: "10px 20px",
+    },
+    thumbContainer: {
+      marginTop: responsive(0, 10, 10),
+      marginLeft: responsive(20, 0, 0),
+      height: 120,
+      width: 120,
+      borderRadius: 20,
+      overflow: "hidden",
     },
     audioThumbnail: {
       width: "100%",
@@ -104,21 +106,21 @@ export default function LessonSection({ videoId }) {
     },
     topText: {
       marginRight: 0,
-      display: "flex", 
+      display: "flex",
       flexDirection: "column",
-      alignItems: responsive("flex-start", "center", "center"), 
+      alignItems: responsive("flex-start", "center", "center"),
       justifyContent: responsive("flex-start", "center", "center"),
-      marginBottom: 10
+      marginBottom: 10,
     },
-    title: { 
-      width: "100%", 
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: responsive("flex-start", "center", "center"), 
-      justifyContent: responsive("flex-start", "center", "center") 
+    title: {
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: responsive("flex-start", "center", "center"),
+      justifyContent: responsive("flex-start", "center", "center"),
     },
-    date: { 
-      color: colors.grey, 
+    date: {
+      color: colors.grey,
       fontWeight: 500,
     },
   };
@@ -157,10 +159,10 @@ export default function LessonSection({ videoId }) {
               playerVars={playerVars}
             />
           </div>
-          <div style={styles.thumbContainer}> 
+          <div style={styles.thumbContainer}>
             <img
               style={styles.audioThumbnail}
-              src={extractYoutubeCoverByVideoId(video.url)} 
+              src={extractYoutubeCoverByVideoId(video.url)}
               alt="Audio Thumbnail"
             />
           </div>

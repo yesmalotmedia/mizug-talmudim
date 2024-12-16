@@ -4,8 +4,7 @@ import colors from "../../../styles/colors";
 import SelectInput from "../sideBarSearch/SelectInput";
 import { AppContext } from "../../../App";
 import MobileFilter from "../MobileFilter";
-import getCategoryIdByName from "../../../assets/geCategoryIdByName";
-import filterLessons from "../../../assets/dataTest/filterLessons";
+import usefilterLessons from "../../../assets/dataTest/useFilteredLessons";
 import LoadMore from "../../../components/elements/LoadMore";
 
 const LessonsCollection = ({ lessonsType, setlessonsType }) => {
@@ -68,12 +67,14 @@ const LessonsCollection = ({ lessonsType, setlessonsType }) => {
     },
   };
 
+  // חישוב הלקחים הממוינים בעזרת ה-hook
+  const filteredLessons = usefilterLessons(videos, lessonsFilter);
+
   useEffect(() => {
-    if (videos) {
-      const filteredLessons = filterLessons(videos, lessonsFilter);
+    if (filteredLessons) {
       setDisplayedLessons(filteredLessons.slice(0, visiblePostCount));
     }
-  }, [lessonsFilter, videos, visiblePostCount]);
+  }, [filteredLessons, visiblePostCount]);
 
   const lessonsBoxesElements = displayedLessons?.map((video) => (
     <LessonPreviewBox key={video.id} video={video} />

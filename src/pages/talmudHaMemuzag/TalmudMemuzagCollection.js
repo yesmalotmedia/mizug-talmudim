@@ -65,7 +65,7 @@ const TalmudMemuzagCollection = ({ filter }) => {
   return (
     <div style={styles.mainContainer}>
       <div style={styles.titleSection}>
-        <div style={styles.title}>שיעורים מסוננים</div>
+        <div style={styles.title}>שיעורים </div>
       </div>
       <div style={styles.lessonsContainer}>
         {filteredLessons.map((post) => (

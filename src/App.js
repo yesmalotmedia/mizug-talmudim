@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { RouterProvider } from "react-router-dom";
+import {
+  useCategoryIdByName,
+  useCategoryNameById,
+} from "./assets/useCategories";
 import colors from "./styles/colors";
 import bgColors from "./styles/bg-colors";
 import animations from "./styles/animations";
@@ -224,6 +228,8 @@ function App() {
         setSelectedTopic,
         selectedRabbi,
         setSelectedRabbi,
+        useCategoryIdByName,
+        useCategoryNameById,
       }}
     >
       <div className="App">

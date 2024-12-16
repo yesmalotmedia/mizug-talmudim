@@ -1,50 +1,41 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
-import lastLessons from "../../data/lastLessons";
-import videoUrls from "../../data/videoUrls";
-import LessonLinkImg from "../elements/LessonLinkImg";
-import YouTubeVideo from "../elements/YouTubeVideo";
-import { sectionAzure, sectionCream } from "../../styles/sectionsStyle";
-import colors from "../../styles/colors";
-import Spacer from "../elements/Spacer";
-import bgColors from "../../styles/bg-colors";
-import YouTubeVideo2 from "../elements/youTubeVideo2";
 import VideoCoverImage from "../elements/VideoCoverImage";
 import Button from "../elements/Button";
-import getCategoryNameById from "../../assets/getCategoryNameById";
 import { useNavigate } from "react-router-dom";
+import { useCategoryNameById } from "../../assets/useCategories";
 import LoaderAnimation from "../elements/LoaderAnimation";
 
 const LastLessons = () => {
   const navigate = useNavigate();
-  //context
+
   const {
-    colors,
     responsive,
     videos,
-    lessonsType,
-    setlessonsType,
     setlessonsFilter,
-    categories,
-    lessonsFilter,
-    loadingPosts,
-    lastEiun,
-    loadingLastEiun,
-    lastDafYomi,
-    loadinglastDafYomi,
-    lastClalim,
+    colors,
     loadingLastClalim,
+    loadinglastDafYomi,
+    loadingLastEiun,
     parsedLastVideos,
   } = useContext(AppContext);
-  // const lastVideos = [lastEiun, lastDafYomi, lastClalim];
+
   const loadingLastLessons =
     loadingLastClalim || loadinglastDafYomi || loadingLastEiun;
+
+  // Retrieve category names outside of callbacks or loops
+  const categoryNames = {
+    19: useCategoryNameById(19),
+    18: useCategoryNameById(18),
+    5: useCategoryNameById(5),
+  };
+
   const styles = {
     container: {
       width: responsive("80%", "80%", "90%"),
       maxWidth: responsive(1400, 900, 600),
       margin: "auto",
-      backgroundColor: bgColors.lightAzure,
+      backgroundColor: "#f0f8ff", // Example bg-color
       borderRadius: 50,
       transform: responsive(
         "translateY(-200px)",
@@ -71,28 +62,16 @@ const LastLessons = () => {
     },
   };
 
-  //functions
-  function getLastVideos(videos) {
-    const lastEiun = videos.find((video) => video.categories.includes(19));
-    const clalim = videos.find((video) => video.categories.includes(18));
-    const lastDafYomi = videos.find((video) => video.categories.includes(5));
-
-    return [lastEiun, clalim, lastDafYomi];
-  }
-
   const handleClick = (categoryId) => {
-    const categoryName = getCategoryNameById(categoryId);
+    const categoryName = categoryNames[categoryId];
     setlessonsFilter({ category: categoryName });
     navigate(`/BeitHamidrash`);
   };
 
-  const lastVideos = getLastVideos(videos);
-  console.log(lastVideos);
-
   const lastVideosElements = parsedLastVideos?.map((video, index) => (
     <div key={index} style={styles.img}>
       {loadingLastLessons ? (
-        <LoaderAnimation isLoading={loadingPosts} color={colors.orange} />
+        <LoaderAnimation isLoading={loadingLastLessons} color={colors.orange} />
       ) : (
         <VideoCoverImage
           url={video?.url}
@@ -103,9 +82,11 @@ const LastLessons = () => {
       )}
       <Button
         color={colors.white}
-        bgColor={index === 2 ? bgColors.azureGradient : bgColors.orangeGradient}
-        hoveredBgColor={bgColors.darkBlueGradient}
-        title={`לכל שיעורי ${getCategoryNameById(index === 0 ? 19 : index === 1 ? 18 : 5)}`}
+        bgColor={index === 2 ? "#007bff" : "#f4a261"} // Example gradients
+        hoveredBgColor="#003f88" // Example gradient
+        title={`לכל שיעורי ${
+          categoryNames[index === 0 ? 19 : index === 1 ? 18 : 5]
+        }`}
         fontSize={responsive("1.2rem", "1.4rem", "1rem")}
         fontWeight={500}
         borderRadius={50}
@@ -119,7 +100,7 @@ const LastLessons = () => {
 
   return (
     <div style={styles.container}>
-      <div style={styles.title}>שיעורים אחרונים </div>
+      <div style={styles.title}>שיעורים אחרונים</div>
       {loadingLastLessons ? (
         <LoaderAnimation isLoading={loadingLastLessons} color={colors.orange} />
       ) : (
