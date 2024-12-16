@@ -10,14 +10,14 @@ import LoaderAnimation from "../../../components/elements/LoaderAnimation";
 export default function LessonSection({ videoId }) {
   const { colors, responsive, videos, useCategoryNameById } =
     useContext(AppContext);
-  const mainCategory = useCategoryNameById(video.categories[0]);
-  const subCategory = useCategoryNameById(video.categories[1]);
+  const video = videos?.find((video) => video?.id == videoId);
+  const mainCategory = useCategoryNameById(video?.categories[0]);
+  const subCategory = useCategoryNameById(video?.categories[1]);
   if (!videos) {
     console.error("Videos not available in context");
     return <LoaderAnimation isLoading={!videos} color={colors.orange} />;
   }
 
-  const video = videos.find((video) => video.id == videoId);
   const isVideo = video?.contentType.includes("video");
   const isAudio = video?.contentType.includes("audio");
   const isText = video?.contentType.includes("text");

@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import { useCategoryIdByName } from "../useCategories"; // ייבוא ההוק
 
 function useFilteredLessons(data, filter) {
+  console.log(filter);
+
   const categoryIdByName = useCategoryIdByName; // שימוש בהוק כמוסבר
 
   // חישוב קטגוריות מחוץ ל-useMemo
