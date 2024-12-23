@@ -3,14 +3,15 @@ import emailjs from "@emailjs/browser";
 import { AppContext } from "../../App";
 import TanksMessage from "../../components/elements/TanksMessage";
 
-export default function Form() {
+export default function Form({ lesson_name }) {
   const formRef = useRef();
   const { colors, isMobile, responsive } = useContext(AppContext);
   const [formState, setFormState] = useState({
     user_name: "",
-    user_phone: "",
+    // user_phone: "",
     user_email: "",
     message: "",
+    lesson_name: lesson_name,
   });
 
   const [isSuccess, setIsSuccess] = useState(false);
@@ -134,6 +135,7 @@ export default function Form() {
         />
       ) : (
         <form ref={formRef} onSubmit={handleSubmit}>
+          {/* שדות גלויים */}
           <div style={styles.inputWrapper}>
             <label style={styles.label}> שם </label>
             <input
@@ -141,17 +143,6 @@ export default function Form() {
               type="text"
               name="user_name" // Name attribute should match the template field
               value={formState.user_name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div style={styles.inputWrapper}>
-            <label style={styles.label}> טלפון </label>
-            <input
-              style={styles.input}
-              type="text"
-              name="user_phone" // Name attribute should match the template field
-              value={formState.user_phone}
               onChange={handleChange}
               required
             />
@@ -179,6 +170,15 @@ export default function Form() {
               onBlur={handleBlur}
             ></textarea>
           </div>
+
+          {/* שדה מוסתר */}
+          <input
+            type="hidden"
+            name="lesson_name" // Name attribute should match the template field
+            value={formState.lesson_name}
+          />
+
+          {/* כפתור שליחה */}
           <div style={styles.inputWrapper}>
             <label style={styles.label}></label>
             <button

@@ -6,6 +6,7 @@ import YouTubeVideo2 from "../../../components/elements/youTubeVideo2";
 import getCategoryNameById from "../../../assets/getCategoryNameById";
 import extractYoutubeCoverByVideoId from "../../../assets/extractYoutubeCoverByVideoId";
 import LoaderAnimation from "../../../components/elements/LoaderAnimation";
+import Form from "../../contact/Form";
 
 export default function LessonSection({ videoId }) {
   const { colors, responsive, videos, useCategoryNameById } =
@@ -175,6 +176,12 @@ export default function LessonSection({ videoId }) {
             style={styles.description}
             dangerouslySetInnerHTML={{ __html: video.article }}
           />
+          <h2 style={styles.nameOfRav}>
+            מעוניינים להגיב על השיעור? שלחו לנו הודעה
+          </h2>
+          <br />
+
+          <Form lesson_name={video.title} />
         </div>
       )}
     </div>
