@@ -26,10 +26,20 @@ function VideoCoverImage({ url, videoId, title, rabbiName }) {
 
   const youTubeVideoId = getYouTubeVideoId(url);
 
-  const thumbnailUrl =
-    rabbiName === "הרב ישי ויצמן"
-      ? "/harav-ishay-lesson.png"
-      : "/main-youtube-cover.png";
+  let thumbnailUrl;
+
+  switch (rabbiName) {
+    case "הרב ישי ויצמן":
+      thumbnailUrl = "/harav-ishay-lesson.png";
+      break;
+    case "הרב יהושע ויצמן":
+      thumbnailUrl = "/harav-yehoshua-vaitsman-lesson.png";
+      break;
+
+    default:
+      thumbnailUrl = "/main-youtube-cover.png";
+      break;
+  }
 
   const styles = {
     container: {

@@ -20,28 +20,27 @@ const Button = ({
   const styles = {
     button: {
       color,
-      width: 280,
-      height: 50,
-      padding: 10,
+      width: width || 280,
+      height: height || 50,
+      padding: padding || 10,
       margin,
-      backgroundImage: isHovered ? hoveredBgColor : bgColor,
+      backgroundImage: bgColor, // Adjusted to use backgroundColor for simplicity
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      borderRadius: 5,
+      borderRadius: borderRadius || 5,
       cursor: "pointer",
-      borderRadius,
-      width,
-      height,
-      transition: "all 0.3s ease", // Smooth transition for background and color
+      transition: "all 0.5s ease", // Smooth transition for hover effects
+      boxShadow: isHovered
+        ? "rgba(149, 157, 165, 0.77) 0px 3px 27px" // Correct boxShadow definition
+        : "rgba(0, 0, 0, 0.05) 0px 4px 8px", // Default shadow
     },
     text: {
       color,
       width: "90%",
       textAlign: "center",
-      fontSize: 35,
+      fontSize: fontSize || 35,
       fontWeight,
-      fontSize,
     },
     img: {
       width: "8%",

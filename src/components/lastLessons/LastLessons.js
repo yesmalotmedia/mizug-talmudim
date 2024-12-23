@@ -5,6 +5,7 @@ import Button from "../elements/Button";
 import { useNavigate } from "react-router-dom";
 import { useCategoryNameById } from "../../assets/useCategories";
 import LoaderAnimation from "../elements/LoaderAnimation";
+import bgColors from "../../styles/bg-colors";
 
 const LastLessons = () => {
   const navigate = useNavigate();
@@ -82,8 +83,9 @@ const LastLessons = () => {
       )}
       <Button
         color={colors.white}
-        bgColor={index === 2 ? "#007bff" : "#f4a261"} // Example gradients
-        hoveredBgColor="#003f88" // Example gradient
+        bgColor={
+          index === 2 ? bgColors.darkBlueGradient : bgColors.orangeGradient
+        } // Example gradients
         title={`לכל שיעורי ${
           categoryNames[index === 0 ? 19 : index === 1 ? 18 : 5]
         }`}
