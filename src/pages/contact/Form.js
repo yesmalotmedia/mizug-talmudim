@@ -3,7 +3,7 @@ import emailjs from "@emailjs/browser";
 import { AppContext } from "../../App";
 import TanksMessage from "../../components/elements/TanksMessage";
 
-export default function Form({ lesson_name }) {
+export default function Form({ title, lesson_name }) {
   const formRef = useRef();
   const { colors, isMobile, responsive } = useContext(AppContext);
   const [formState, setFormState] = useState({
@@ -57,6 +57,13 @@ export default function Form({ lesson_name }) {
       borderRadius: 20,
       height: "auto",
       marginInline: "auto",
+    },
+    title: {
+      color: colors.darkBlue,
+      fontWeight: 600,
+      fontSize: 35,
+      padding: 20,
+      textAlign: "center",
     },
     inputWrapper: {
       display: "flex",
@@ -128,6 +135,7 @@ export default function Form({ lesson_name }) {
 
   return (
     <div style={styles.form}>
+      {!isSuccess && <h2 style={styles.title}>{title}</h2>}
       {isSuccess ? (
         <TanksMessage
           msg={"תודה על פנייתך! נחזור אליך בהקדם"}

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import NextAndPreviousBtn from "../../pages/whatsnew/NextAndPreviousBtn";
+import Form from "../contact/Form";
 
 function TalmudMemuzagSection({ id }) {
   const { isMobile, parsedMemuzagData, colors, responsive } =
@@ -112,6 +113,11 @@ function TalmudMemuzagSection({ id }) {
         data={parsedMemuzagData}
         currentId={article?.id}
         UrlPageName={"TalmudHaMemuzag"}
+      />
+
+      <Form
+        title={"מעוניינים להגיב על השיעור? שלחו לנו הודעה"}
+        lesson_name={`תלמוד ממוזג ${talmud} ${masecet} ${perek} ${daf}`}
       />
     </div>
   );

@@ -176,12 +176,13 @@ export default function LessonSection({ videoId }) {
             style={styles.description}
             dangerouslySetInnerHTML={{ __html: video.article }}
           />
-          <h2 style={styles.nameOfRav}>
-            מעוניינים להגיב על השיעור? שלחו לנו הודעה
-          </h2>
+          <h2 style={styles.nameOfRav}></h2>
           <br />
 
-          <Form lesson_name={video.title} />
+          <Form
+            title={"מעוניינים להגיב על השיעור? שלחו לנו הודעה"}
+            lesson_name={video.title}
+          />
         </div>
       )}
     </div>
