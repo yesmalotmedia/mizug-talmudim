@@ -230,6 +230,7 @@ function App() {
         loadingNews,
         parsedPublishData,
         parsedMemuzagData,
+        loadingMemuzag,
         setlessonsType,
         setIsMobileNavOpen,
         getCategoriesByParent,

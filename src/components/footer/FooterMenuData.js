@@ -29,7 +29,7 @@ const FooterMenuData = [
   },
   {
     title: "עמוד הבית",
-    url: "Home",
+    url: "/",
   },
 ];
 

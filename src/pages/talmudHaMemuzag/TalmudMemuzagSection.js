@@ -2,19 +2,20 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import NextAndPreviousBtn from "../../pages/whatsnew/NextAndPreviousBtn";
 import Form from "../contact/Form";
+import LoaderAnimation from "../../components/elements/LoaderAnimation";
 
 function TalmudMemuzagSection({ id }) {
-  const { isMobile, parsedMemuzagData, colors, responsive } =
+  const { isMobile, parsedMemuzagData, colors, responsive, loadingMemuzag } =
     useContext(AppContext);
 
   const article = parsedMemuzagData.find((article) => article?.id == id);
 
-  const talmud = article?.talmud || "N/A";
-  const masecet = article?.masecet || "N/A";
-  const perek = article?.perek || "N/A";
-  const daf = article?.daf || "N/A";
-  const page = article?.page || "N/A";
-  const body = article?.body || "N/A";
+  const talmud = article?.talmud || "";
+  const masecet = article?.masecet || "";
+  const perek = article?.perek || "";
+  const daf = article?.daf || "";
+  const page = article?.page || "";
+  const body = article?.body || "";
 
   const styles = {
     container: {
@@ -95,20 +96,29 @@ function TalmudMemuzagSection({ id }) {
 
   return (
     <div style={styles.container}>
-      <div style={styles.headerSection}>
-        <p style={styles.breadcrumb}>
-          <span>{talmud}</span> / <span>{masecet}</span> /{" "}
-          <span>{`דף ${daf}`}</span> / <span>{`עמוד ${page}`}</span>
-        </p>
-        <div style={styles.masecet}>{masecet}</div>
-        <div style={styles.perek}>פרק {perek}</div>
-        <div style={styles.dafAndAmud}>
-          <span>{`דף ${daf}`}</span> <span>{`עמוד ${page}`}</span>
-        </div>
-      </div>
-      {/* <div>articles nav</div> */}
-      <div style={styles.article} dangerouslySetInnerHTML={{ __html: body }} />
-      {/* <div>comments</div> */}
+      {!loadingMemuzag ? (
+        <>
+          {" "}
+          <div style={styles.headerSection}>
+            <p style={styles.breadcrumb}>
+              <span>{talmud}</span> / <span>{masecet}</span> /{" "}
+              <span>{`דף ${daf}`}</span> / <span>{`עמוד ${page}`}</span>
+            </p>
+            <div style={styles.masecet}>{masecet}</div>
+            <div style={styles.perek}>פרק {perek}</div>
+            <div style={styles.dafAndAmud}>
+              <span>{`דף ${daf}`}</span> <span>{`עמוד ${page}`}</span>
+            </div>
+          </div>
+          <div
+            style={styles.article}
+            dangerouslySetInnerHTML={{ __html: body }}
+          />
+        </>
+      ) : (
+        <LoaderAnimation isLoading={loadingMemuzag} color={colors.orange} />
+      )}
+
       <NextAndPreviousBtn
         data={parsedMemuzagData}
         currentId={article?.id}

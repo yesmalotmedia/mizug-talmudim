@@ -29,6 +29,8 @@ const SeltectButtons = ({
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
+          //outline: "none",
+          WebkitTapHighlightColor: "transparent", // מסיר את ה-highlighting במובייל
         }
       : {},
   };
