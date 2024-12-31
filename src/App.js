@@ -27,42 +27,57 @@ import ExtractPublishData from "./assets/ExtractPublishData";
 import ExtractTalmudMemuzagData from "./assets/ExtractTalmudMemuzagData";
 export const AppContext = React.createContext();
 
-/*
-1. remove trumot btn from terumot page
-2. add link to btn in the page 
-
-*/
 function App() {
   const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedRabbi, setSelectedRabbi] = useState("");
 
-  // Fetch lastLessons data
-  // Fetch the latest post from each category
-  const {
-    data: lastEiun,
-    loading: loadingLastEiun,
-    error: errorLastEiun,
-  } = useFetch(
-    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=1&page=1&categories=19"
-  );
+  const [lastEiun, setLastEiun] = useState(null);
+  const [lastDafYomi, setLastDafYomi] = useState(null);
+  const [lastClalim, setLastClalim] = useState(null);
 
-  const {
-    data: lastDafYomi,
-    loading: loadingLastDafYomi,
-    error: errorLastDafYomi,
-  } = useFetch(
-    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=1&page=1&categories=5"
-  );
+  const [loadingLastEiun, setLoadingLastEiun] = useState(true);
+  const [loadingLastDafYomi, setLoadingLastDafYomi] = useState(true);
+  const [loadingLastClalim, setLoadingLastClalim] = useState(true);
 
-  const {
-    data: lastClalim,
-    loading: loadingLastClalim,
-    error: errorLastClalim,
-  } = useFetch(
-    "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=1&page=1&categories=18"
-  );
+  const fetchData = async () => {
+    try {
+      // Fetch the last lessons first (priority)
+      const [lastEiunData, lastDafYomiData, lastClalimData] = await Promise.all(
+        [
+          fetch(
+            "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=1&page=1&categories=19"
+          ).then((res) => res.json()),
+          fetch(
+            "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=1&page=1&categories=5"
+          ).then((res) => res.json()),
+          fetch(
+            "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=1&page=1&categories=18"
+          ).then((res) => res.json()),
+        ]
+      );
 
-  // Fetch posts data
+      // Set the state once the fetches are complete
+      setLastEiun(lastEiunData);
+      setLastDafYomi(lastDafYomiData);
+      setLastClalim(lastClalimData);
+
+      // Set loading to false after the fetch is completed
+      setLoadingLastEiun(false);
+      setLoadingLastDafYomi(false);
+      setLoadingLastClalim(false);
+    } catch (error) {
+      console.error("Error fetching last lessons:", error);
+      setLoadingLastEiun(false);
+      setLoadingLastDafYomi(false);
+      setLoadingLastClalim(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []); // Fetch data when the component mounts
+
+  // Continue with the other fetches for posts, categories, etc.
   const {
     data: postsData,
     loading: loadingPosts,
@@ -70,8 +85,6 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/posts?per_page=100"
   );
-
-  // Fetch categories data
   const {
     data: categoriesData,
     loading: loadingCategories,
@@ -79,7 +92,6 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/categories?_fields=id,name,parent&per_page=100&page=1"
   );
-  // Fetch rabbies data
   const {
     data: rabbiesData,
     loading: loadingRabbies,
@@ -87,8 +99,6 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/rabbies?_fields=id,description,name&orderby=id&order=desc"
   );
-
-  //Fetch dedications data
   const {
     data: dedicationsData,
     loading: loadingDedications,
@@ -96,7 +106,6 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/dedications"
   );
-  //Fetch news data
   const {
     data: newsData,
     loading: loadingNews,
@@ -104,8 +113,6 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/news"
   );
-
-  //Fetch news data
   const {
     data: publishData,
     loading: loadingPublish,
@@ -113,8 +120,6 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/publish"
   );
-
-  //Fetch talmud memuzag data
   const {
     data: memuzagData,
     loading: loadingMemuzag,
@@ -122,15 +127,7 @@ function App() {
   } = useFetch(
     "https://dev-mizug-talmudim-admin.pantheonsite.io/wp-json/wp/v2/memuzag?per_page=100&page=1"
   );
-  // State for handling mobile view
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
-  const [lessonsType, setlessonsType] = useState("עיון");
-  const [lessonsFilter, setlessonsFilter] = useState({
-    category: "כל השיעורים",
-  });
-  const { responsive } = useResponsive();
   // Parsing data
   let parsedVideosData = [];
   let videos = [];
@@ -162,20 +159,33 @@ function App() {
       lastDafYomi[0],
     ]);
   }
+
   if (newsData) {
     parsedNewsData = ExtractNewsData(newsData);
   }
 
   if (categoriesData) {
-    categories = categoriesData; // Ensure categoriesData is assigned correctly
+    categories = categoriesData;
   }
 
   if (publishData) {
     parsedPublishData = ExtractPublishData(publishData);
   }
+
   if (memuzagData) {
     parsedMemuzagData = ExtractTalmudMemuzagData(memuzagData);
   }
+
+  // Handle mobile view
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  const { responsive } = useResponsive();
+  const [lessonsType, setlessonsType] = useState("עיון");
+  const [lessonsFilter, setlessonsFilter] = useState({
+    category: "כל השיעורים",
+  });
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1200);
@@ -207,7 +217,7 @@ function App() {
         loadingLastClalim,
         isMobileNavOpen,
         videos,
-        categories: categories || [], // Default to an empty array if categoriesData is undefined
+        categories: categories || [],
         loadingCategories,
         lessonsType,
         rabbiesData,
@@ -235,7 +245,6 @@ function App() {
       <div className="App">
         <RouterProvider router={routers} />
       </div>
-      {/* <DataTest /> */}
     </AppContext.Provider>
   );
 }
