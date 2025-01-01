@@ -33,6 +33,7 @@ const SideBarSearch = ({
   const [categoriesOptions, setCategoriesOptions] = useState(
     getCategoriesByParent(categories, 3)
   );
+  console.log(JSON.stringify(getMainCategories(categories, 3), null, 2));
   const [masectotOptions, setMasectotOptions] = useState();
   const [rabbiesOptions, setRabbiesOptions] = useState();
 
