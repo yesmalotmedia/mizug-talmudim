@@ -37,6 +37,7 @@ function Header() {
       height: responsive("130px", "120px", "90px"),
       width: responsive("130px", "120px", "90px"),
       zIndex: 100,
+      cursor: "pointer",
     },
     vector: {
       position: "absolute",
