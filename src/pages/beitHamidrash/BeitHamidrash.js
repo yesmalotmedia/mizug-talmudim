@@ -12,6 +12,8 @@ import { useParams } from "react-router-dom";
 import LoaderAnimation from "../../components/elements/LoaderAnimation";
 
 const BeitHamidrash = () => {
+  const { topic } = useParams();
+  console.log(topic);
   // data
   const {
     responsive,

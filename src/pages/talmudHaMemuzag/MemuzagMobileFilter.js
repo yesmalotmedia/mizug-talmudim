@@ -188,7 +188,7 @@ export default function MemuzagMobileFilter({
             style={{ ...styles.btnWithBckground, ...styles.btn }}
             onClick={handleToggle}
           >
-            <img src="/filter.svg" alt="Filter" /> סנן תוצאות
+            <img src="/filter.svg" alt="Filter" /> חפש שיעור
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider, useParams } from "react-router-dom";
 import {
   useCategoryIdByName,
   useCategoryNameById,

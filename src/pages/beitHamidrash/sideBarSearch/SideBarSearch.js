@@ -5,6 +5,7 @@ import SelectInput from "./SelectInput";
 import Checkbox from "./Checkbox";
 import yerushalmiMasectot from "../../../data/yerushalmiMasectot";
 import getMainCategories from "../../../assets/getMainCategories";
+import { useNavigate } from "react-router-dom";
 const SideBarSearch = ({
   selectedTopic,
   setSelectedTopic,
@@ -13,7 +14,7 @@ const SideBarSearch = ({
   selectedRabbi,
 }) => {
   console.log("seclected", setSelectedRabbi);
-
+  const navigate = useNavigate();
   //data
   const {
     responsive,
@@ -166,6 +167,10 @@ const SideBarSearch = ({
     setlessonsFilter(lessonsFilter);
   }, [setlessonsFilter]);
 
+  const handleSelectChange = (e) => {
+    setSelectedTopic(e.target.value);
+    navigate(`/BeitHamidrash?category=${selectedTopic}`);
+  };
   return (
     <form style={styles.container}>
       {isMobile && (
@@ -192,7 +197,7 @@ const SideBarSearch = ({
       <SelectInput
         options={getMainCategories(categories, 3) || categoriesOptions}
         value={selectedTopic}
-        onChange={(e) => setSelectedTopic(e.target.value)}
+        onChange={(e) => handleSelectChange(e)}
       />
 
       <div style={styles.lable}>הרבנים</div>
@@ -226,7 +231,7 @@ const SideBarSearch = ({
           color={colors.white}
           bgColor={bgColors.orangeGradient}
           hoveredBgColor={bgColors.darkBlueGradient}
-          title={"סנן"}
+          title={"בצע חיפוש"}
           fontSize={20}
           fontWeight={500}
           borderRadius={50}
