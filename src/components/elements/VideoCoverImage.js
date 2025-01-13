@@ -86,11 +86,15 @@ function VideoCoverImage({ url, videoId, title, rabbiName }) {
           onTouchStart={() => setIsHovered(true)}
           onTouchEnd={() => setIsHovered(false)}
         >
-          <img
-            src={thumbnailUrl}
-            alt="YouTube Video Thumbnail"
-            style={styles.img}
-          />
+          <picture>
+            {" "}
+            <img
+              src={thumbnailUrl}
+              alt="YouTube Video Thumbnail"
+              style={styles.img}
+            />
+          </picture>
+
           <div style={styles.title}>{title}</div>
         </div>
       </Link>

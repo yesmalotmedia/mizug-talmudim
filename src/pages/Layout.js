@@ -8,7 +8,7 @@ export default function Layout() {
     <>
       <Header />
       <OutletWrapper />
-      {/* <Modal /> */}
+      <Modal />
       <Footer />
     </>
   );
