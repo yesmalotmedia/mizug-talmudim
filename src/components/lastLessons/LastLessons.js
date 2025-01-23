@@ -39,9 +39,9 @@ const LastLessons = () => {
       backgroundColor: "#f0f8ff", // Example bg-color
       borderRadius: 50,
       transform: responsive(
-        "translateY(-200px)",
+        "translateY(-265px)",
         "translateY(-400px)",
-        "translateY(-200px)"
+        "translateY(-250px)"
       ),
       display: "flex",
       flexDirection: responsive("row", "column", "column"),

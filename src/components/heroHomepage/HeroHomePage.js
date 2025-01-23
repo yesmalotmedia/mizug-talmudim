@@ -18,7 +18,7 @@ const HeroHomePage = () => {
     container: {
       position: "relative",
       width: "100%", // Ensure container fills the viewport width
-      height: "100vh", // Ensure container fills the viewport height
+      height: "calc( 100vh + 100px)", // Ensure container fills the viewport height
       overflow: "hidden", // Hide any overflow from the image (important for radius)
     },
     img: {

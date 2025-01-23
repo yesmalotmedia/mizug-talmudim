@@ -92,6 +92,7 @@ function VideoCoverImage({ url, videoId, title, rabbiName }) {
               src={thumbnailUrl}
               alt="YouTube Video Thumbnail"
               style={styles.img}
+              loading="lazy"
             />
           </picture>
 
