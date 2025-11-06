@@ -52,10 +52,6 @@ const AboutSection = () => {
       textAlign: "center",
       maxWidth: 400,
       marginTop: -5,
-<<<<<<< HEAD
-=======
-
->>>>>>> 5a9966d99d858ebc168a7ffdc10314f90cf1320c
       top: responsive("380px", "-150px", "250px"),
     },
     description: {
@@ -106,15 +102,11 @@ const AboutSection = () => {
         {title}
       </div>
 
-<<<<<<< HEAD
       {/* 👇 כאן השינוי: מציג את הטקסט עם <br /><br /> אמיתיים */}
       <div
         style={styles.description}
         dangerouslySetInnerHTML={{ __html: aboutUsSectionData }}
       />
-=======
-      <div style={styles.description}>{aboutUsSectionData}</div>
->>>>>>> 5a9966d99d858ebc168a7ffdc10314f90cf1320c
 
       <img style={styles.bgImg} src={bgImg} alt="bg-img" />
     </div>
