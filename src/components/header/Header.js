@@ -34,10 +34,12 @@ function Header() {
       padding: responsive(10, 10, 7),
     },
     logo: {
-      height: responsive("130px", "120px", "90px"),
-      width: responsive("130px", "120px", "90px"),
+      height: responsive("130px", "110px", "80px"),
+      width: responsive("180px", "145px", "110px"),
       zIndex: 100,
       cursor: "pointer",
+      marginRight: responsive(0, 0, -10),
+      marginTop: responsive(0, 0, -40),
     },
     vector: {
       position: "absolute",
