@@ -23,7 +23,7 @@ const Subscribe = () => {
       padding: responsive(
         "15px 15px 15px 120px",
         "15px 15px 15px 120px",
-        "20px 15px 20px 105px"
+        "20px 15px 20px 105px",
       ),
       fontSize: responsive(20, "3.6vmin", "3.6vmin"),
       fontWeight: 500,
@@ -60,9 +60,9 @@ const Subscribe = () => {
     emailjs
       .sendForm(
         "service_oktpopo",
-        "template_6tsbbvb",
+        "template_xaadncq",
         form.current,
-        "6nT-r6G4qY9-xawTb"
+        "6nT-r6G4qY9-xawTb",
       )
       .then(
         (result) => {
@@ -71,7 +71,7 @@ const Subscribe = () => {
         },
         (error) => {
           console.log("FAILED...", error.text);
-        }
+        },
       );
   };
 
