@@ -9,8 +9,10 @@ export default function LogoAndSocialIcon() {
 
   const styles = {
     logoWhite: {
-      maxHeight: 90,
+      width: responsive("220px", "180px", "150px"),
+      height: "auto",
       marginBottom: "30px",
+      marginRight: "-20px",
     },
     footerColumn: {
       display: "flex",
@@ -36,7 +38,7 @@ export default function LogoAndSocialIcon() {
       {showLogo && (
         <img
           style={styles.logoWhite}
-          src="/footerImages/logo-white.png"
+          src="/footerImages/logo-white.svg"
           alt="Logo"
         />
       )}
