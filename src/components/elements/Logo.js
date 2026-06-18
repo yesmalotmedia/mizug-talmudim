@@ -8,7 +8,7 @@ const Logo = ({ style }) => {
     <img
       onClick={() => navigate("/")}
       style={style}
-      src="/mizug-logo-transparency.png"
+      src="/mizug-logo-transparency.svg"
       alt="logo"
     />
   );

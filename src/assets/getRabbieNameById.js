@@ -16,6 +16,8 @@ const getRabbieNameById = (id) => {
       break;
     case 108:
       rabbieName = "הרב אלעזר אהרנסון ";
+    case 179:
+      rabbieName = "הרב שמואל טייב ";
       break;
     case 110:
       rabbieName = "כל הרבנים";
